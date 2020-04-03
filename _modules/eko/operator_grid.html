@@ -160,7 +160,7 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">eko.evolution_operator</span> <span class="k">import</span> <span class="n">Operator</span>
+<span class="kn">from</span> <span class="nn">eko.evolution_operator</span> <span class="kn">import</span> <span class="n">Operator</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -184,7 +184,7 @@
 <span class="sd">                Value of nf for this OperatorMaster</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
         <span class="c1"># Get all the integrands necessary for singlet and not singlet for nf</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_dispatcher</span> <span class="o">=</span> <span class="n">kernel_dispatcher</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span> <span class="o">=</span> <span class="n">alpha_generator</span>
@@ -256,7 +256,7 @@
 <span class="sd">                Grid in x used to compute the operators</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Instantiating an operator grid:&quot;</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot; &gt; Flavour scheme: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">scheme</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span> <span class="o">=</span> <span class="n">threshold_holder</span>
@@ -357,11 +357,11 @@
         <span class="c1"># Sanity checks</span>
         <span class="k">if</span> <span class="n">q2min</span> <span class="o">&lt;=</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">q2max</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="n">f</span><span class="s2">&quot;Values of q^2 below 0.0 are not accepted, received [</span><span class="si">{q2min}</span><span class="s2">,</span><span class="si">{q2max}</span><span class="s2">]&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Values of q^2 below 0.0 are not accepted, received [</span><span class="si">{</span><span class="n">q2min</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">q2max</span><span class="si">}</span><span class="s2">]&quot;</span>
             <span class="p">)</span>
         <span class="k">if</span> <span class="n">q2min</span> <span class="o">&gt;</span> <span class="n">q2max</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="n">f</span><span class="s2">&quot;Minimum q^2 is above maximum q^2 (error: </span><span class="si">{q2max}</span><span class="s2"> &lt; </span><span class="si">{q2min}</span><span class="s2">)&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Minimum q^2 is above maximum q^2 (error: </span><span class="si">{</span><span class="n">q2max</span><span class="si">}</span><span class="s2"> &lt; </span><span class="si">{</span><span class="n">q2min</span><span class="si">}</span><span class="s2">)&quot;</span>
             <span class="p">)</span>
         <span class="c1"># Ensure we have all the necessary operators to go from qref to q2min and qmax</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generate_thresholds_op</span><span class="p">(</span><span class="n">q2min</span><span class="p">)</span>

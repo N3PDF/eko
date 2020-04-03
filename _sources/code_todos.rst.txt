@@ -9,7 +9,29 @@ Fom Docstrings
 Fom Source Code
 ---------------
 
-`flavours.py <file:///home/felix/Physik/N3PDF/EKO/eko/src/eko/flavours.py>`_
+`mellin.py <file:///home/runner/work/eko/eko/src/eko/mellin.py>`_
+
+.. warning:: #345 if we keep this function open, we might also think about an implementation (t_float)
+
+
+
+`alpha_s.py <file:///home/runner/work/eko/eko/src/eko/alpha_s.py>`_
+
+.. warning:: #233 add higher orders ...
+
+.. warning:: #275 set up a cache system here
+
+
+
+`operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
+
+.. warning:: #10 the operator grid should have a "save" and "load" method which will allow to store the full grid
+
+.. warning:: #237 everything in parallel
+
+
+
+`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
 
 .. warning:: #48 Should this be a parameter or can it be hardcoded?
 
@@ -21,43 +43,7 @@ Fom Source Code
 
 
 
-`operator_grid.py <file:///home/felix/Physik/N3PDF/EKO/eko/src/eko/operator_grid.py>`_
-
-.. warning:: #10 the operator grid should have a "save" and "load" method which will allow to store the full grid
-
-.. warning:: #237 everything in parallel
-
-
-
-`alpha_s.py <file:///home/felix/Physik/N3PDF/EKO/eko/src/eko/alpha_s.py>`_
-
-.. warning:: #233 add higher orders ...
-
-.. warning:: #275 set up a cache system here
-
-
-
-`dglap.py <file:///home/felix/Physik/N3PDF/EKO/eko/src/eko/dglap.py>`_
-
-.. warning:: #81 the setup dictionary is a mess tbh
-
-.. warning:: #136 rotation from the evolution basis to flavor basis? if yes, here!
-
-
-
-`interpolation.py <file:///home/felix/Physik/N3PDF/EKO/eko/src/eko/interpolation.py>`_
-
-.. warning:: #237 make this in an log independent way!
-
-
-
-`mellin.py <file:///home/felix/Physik/N3PDF/EKO/eko/src/eko/mellin.py>`_
-
-.. warning:: #345 if we keep this function open, we might also think about an implementation (t_float)
-
-
-
-`evolution_operator.py <file:///home/felix/Physik/N3PDF/EKO/eko/src/eko/evolution_operator.py>`_
+`evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
 
 .. warning:: #51 make 'cut' external parameter?
 
@@ -77,7 +63,15 @@ Fom Source Code
 
 
 
-`generate_code_todos.py <file:///home/felix/Physik/N3PDF/EKO/eko/doc/generate_code_todos.py>`_
+`dglap.py <file:///home/runner/work/eko/eko/src/eko/dglap.py>`_
+
+.. warning:: #81 the setup dictionary is a mess tbh
+
+.. warning:: #136 rotation from the evolution basis to flavor basis? if yes, here!
+
+
+
+`generate_code_todos.py <file:///home/runner/work/eko/eko/doc/generate_code_todos.py>`_
 
 .. warning:: #42 grep sourdings?
 
