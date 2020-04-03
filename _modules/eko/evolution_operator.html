@@ -1,0 +1,678 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eko.evolution_operator &mdash; EKO  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>eko.evolution_operator</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eko.evolution_operator</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This module contains all evolution operator classes.</span>
+
+<span class="sd">    The classes are nested as follows:</span>
+<span class="sd">    :class:`PhysicalOperator` &lt;- :class:`Operator` &lt;= :class:`OperatorMember`.</span>
+<span class="sd">    The central class :class:`Operator` lives at given :math:`Q^2` and</span>
+<span class="sd">    consists of several :class:`OperatorMember`.</span>
+<span class="sd">    One instance of :class:`OperatorMember` governs the evolution of a single flavour combination.</span>
+<span class="sd">    Inside :class:`Operator` they refer to the &quot;raw&quot; elements</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        \Gamma_{NS}^{v}, \Gamma_{NS}^{+}, \Gamma_{NS}^{-}, \mathbf\Gamma_S</span>
+
+<span class="sd">    :class:`Operator` manages the correct handling and recombination of the various</span>
+<span class="sd">    :class:`OperatorMember`. In the end a single instance of :class:`PhysicalOperator`</span>
+<span class="sd">    is computed and will be exposed for each :math:`Q^2` to the user.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="kn">import</span> <span class="nn">eko.mellin</span> <span class="k">as</span> <span class="nn">mellin</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_get_kernel_integrands</span><span class="p">(</span><span class="n">singlet_integrands</span><span class="p">,</span> <span class="n">nonsinglet_integrands</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return actual integration kernels.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            singlet_integrands : list</span>
+<span class="sd">                kernels for singlet integrations</span>
+<span class="sd">            nonsinglet_integrands : list</span>
+<span class="sd">                kernels for non-singlet integrations</span>
+<span class="sd">            delta_t : float</span>
+<span class="sd">                evolution distance</span>
+<span class="sd">            xgrid : np.array</span>
+<span class="sd">                basis grid</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            run_singlet : function</span>
+<span class="sd">                singlet integration routine</span>
+<span class="sd">            run_nonsinglet : function</span>
+<span class="sd">                non-singlet integration routine</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Generic parameters</span>
+    <span class="n">cut</span> <span class="o">=</span> <span class="mf">1e-2</span> <span class="c1"># TODO make &#39;cut&#39; external parameter?</span>
+    <span class="n">grid_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xgrid</span><span class="p">)</span>
+    <span class="n">grid_logx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">xgrid</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run_singlet</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting singlet&quot;</span><span class="p">)</span> <span class="c1"># TODO delegate to logger?</span>
+        <span class="n">all_output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">log_prefix</span> <span class="o">=</span> <span class="s2">&quot;computing Singlet operator - </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="c1"># iterate output grid</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">logx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid_logx</span><span class="p">):</span>
+            <span class="n">extra_args</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">typed</span><span class="o">.</span><span class="n">List</span><span class="p">()</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logx</span><span class="p">)</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delta_t</span><span class="p">)</span>
+            <span class="c1"># Path parameters</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.4</span> <span class="o">*</span> <span class="mi">16</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">logx</span><span class="p">))</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">integrand_set</span> <span class="ow">in</span> <span class="n">singlet_integrands</span><span class="p">:</span>
+                <span class="n">all_res</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">integrand</span> <span class="ow">in</span> <span class="n">integrand_set</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">inverse_mellin_transform</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">cut</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
+                    <span class="n">all_res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">all_res</span><span class="p">)</span>
+            <span class="c1">#out = [[[0,0]]*4]*grid_size</span>
+            <span class="n">all_output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+            <span class="n">log_text</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;{k+1}/</span><span class="si">{grid_size}</span><span class="s2">&quot;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">log_prefix</span><span class="p">,</span> <span class="n">log_text</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">log_prefix</span><span class="p">,</span> <span class="s2">&quot;done.&quot;</span><span class="p">)</span>
+        <span class="n">output_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">all_output</span><span class="p">)</span>
+
+        <span class="c1"># resort</span>
+        <span class="n">singlet_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;S_qq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_qg&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gg&quot;</span><span class="p">]</span>
+        <span class="n">op_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">singlet_names</span><span class="p">):</span>
+            <span class="n">op</span> <span class="o">=</span> <span class="n">output_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">er</span> <span class="o">=</span> <span class="n">output_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">new_op</span> <span class="o">=</span> <span class="n">OperatorMember</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">er</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">op_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_op</span>
+
+        <span class="k">return</span> <span class="n">op_dict</span>
+
+    <span class="k">def</span> <span class="nf">run_nonsinglet</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Starting non-singlet&quot;</span><span class="p">)</span> <span class="c1"># TODO delegate to logger?</span>
+        <span class="n">operators</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">operator_errors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">log_prefix</span> <span class="o">=</span> <span class="s2">&quot;computing NS operator - </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="c1"># iterate output grid</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">logx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid_logx</span><span class="p">):</span>
+            <span class="n">extra_args</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">typed</span><span class="o">.</span><span class="n">List</span><span class="p">()</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logx</span><span class="p">)</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delta_t</span><span class="p">)</span>
+            <span class="c1"># Path parameters</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+
+            <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">integrand</span> <span class="ow">in</span> <span class="n">nonsinglet_integrands</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">inverse_mellin_transform</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">cut</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="n">operators</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">operator_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">log_text</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;{k+1}/</span><span class="si">{grid_size}</span><span class="s2">&quot;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">log_prefix</span><span class="p">,</span> <span class="n">log_text</span><span class="p">)</span>
+
+        <span class="c1"># resort</span>
+        <span class="c1"># in LO v=+=-</span>
+        <span class="n">ns_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NS_p&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_m&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_v&quot;</span><span class="p">]</span>
+        <span class="n">op_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ns_names</span><span class="p">):</span>
+            <span class="n">op</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">operators</span><span class="p">)</span>
+            <span class="n">op_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">operator_errors</span><span class="p">)</span>
+            <span class="n">new_op</span> <span class="o">=</span> <span class="n">OperatorMember</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op_err</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">op_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_op</span>
+
+        <span class="k">return</span> <span class="n">op_dict</span>
+
+    <span class="k">return</span> <span class="n">run_singlet</span><span class="p">,</span> <span class="n">run_nonsinglet</span>
+
+<div class="viewcode-block" id="OperatorMember"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.OperatorMember">[docs]</a><span class="k">class</span> <span class="nc">OperatorMember</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A single operator for a specific element in evolution basis.</span>
+
+<span class="sd">        The :class:`OperatorMember` provide some basic mathematical operations such as products.</span>
+<span class="sd">        It can also be applied to a pdf vector by the `__call__` method.</span>
+<span class="sd">        This class will never be exposed to the outside, but will be an internal member</span>
+<span class="sd">        of the :class:`Operator` and :class:`PhysicalOperator` instances.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            value : np.array</span>
+<span class="sd">                operator matrix</span>
+<span class="sd">            error : np.array</span>
+<span class="sd">                operator error matrix</span>
+<span class="sd">            name : str</span>
+<span class="sd">                operator name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="n">error</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; full operator name &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+    <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">new_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; target flavour name (given by the second part of the name) &quot;&quot;&quot;</span>
+        <span class="n">name_spl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_spl</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;This operator is not defining any targets&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">name_spl</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; input flavour name (given by the first part of the name) &quot;&quot;&quot;</span>
+        <span class="n">name_spl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_spl</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;This operator is not defining any input&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">name_spl</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            The operator member can act on a pdf member.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                pdf_member : np.array</span>
+<span class="sd">                    pdf vector</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                result : float</span>
+<span class="sd">                    higher scale pdf</span>
+<span class="sd">                error : float</span>
+<span class="sd">                    evolution uncertainty to pdf at higher scale</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">)</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">error</span>
+
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
+        <span class="c1"># scalar multiplication</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span>
+            <span class="n">rerror</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">new_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="c1"># matrix multiplication</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">OperatorMember</span><span class="p">):</span>
+            <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">rerror</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">error</span>
+            <span class="n">new_name</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.name}</span><span class="s2">.</span><span class="si">{operator_member.name}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Can&#39;t multiply OperatorMember and {type(operator_member)}&quot;</span><span class="p">)</span>
+        <span class="n">lval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">ler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span>
+        <span class="n">new_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">lval</span><span class="p">,</span> <span class="n">rval</span><span class="p">)</span>
+        <span class="c1"># TODO check error propagation</span>
+        <span class="n">new_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">lval</span><span class="p">,</span> <span class="n">rerror</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">rval</span><span class="p">,</span> <span class="n">ler</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">OperatorMember</span><span class="p">(</span><span class="n">new_val</span><span class="p">,</span> <span class="n">new_err</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span>
+            <span class="n">rerror</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">new_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">OperatorMember</span><span class="p">):</span>
+            <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">rerror</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">error</span>
+            <span class="n">new_name</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{self.name}</span><span class="s2">+</span><span class="si">{operator_member.name}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Can&#39;t sum OperatorMember and {type(operator_member)}&quot;</span><span class="p">)</span>
+        <span class="n">new_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="n">rval</span>
+        <span class="c1"># TODO check error propagation</span>
+        <span class="n">new_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="nb">pow</span><span class="p">(</span><span class="n">rerror</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">OperatorMember</span><span class="p">(</span><span class="n">new_val</span><span class="p">,</span> <span class="n">new_err</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="o">-</span><span class="n">operator_member</span><span class="p">)</span>
+
+    <span class="c1"># These are necessary to deal with python operators such as sum</span>
+    <span class="k">def</span> <span class="nf">__radd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">OperatorMember</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">operator_member</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">operator_member</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__radd__</span><span class="p">(</span><span class="o">-</span><span class="n">operator_member</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PhysicalOperator"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator">[docs]</a><span class="k">class</span> <span class="nc">PhysicalOperator</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        PhysicalOperator is exposed to the outside world.</span>
+
+<span class="sd">        This operator is computed via the composition method of the</span>
+<span class="sd">        Operator class.</span>
+
+<span class="sd">        This operator can act on PDFs through the `__call__` method.</span>
+<span class="sd">        Assumes as input a pdf as dictionary with:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            pdf = {</span>
+<span class="sd">                &#39;metadata&#39; : some info,</span>
+<span class="sd">                &#39;members&#39; : {</span>
+<span class="sd">                    &#39;V&#39; : list,</span>
+<span class="sd">                    &#39;g&#39; : list,</span>
+<span class="sd">                    }</span>
+<span class="sd">            }</span>
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            op_members : dict</span>
+<span class="sd">                list of all members</span>
+<span class="sd">            xgrid : np.array</span>
+<span class="sd">                list of basis x points</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op_members</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span> <span class="o">=</span> <span class="n">op_members</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xgrid</span> <span class="o">=</span> <span class="n">xgrid</span>
+
+    <span class="k">def</span> <span class="nf">_get_corresponding_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_pdf_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Searches all operators, that are generated by `input_pdf_name`.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                input_pdf_name : str</span>
+<span class="sd">                    input name</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                active_ops : list</span>
+<span class="sd">                    list with relevant operators</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO change how this work internally</span>
+        <span class="n">active_ops</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">op</span><span class="o">.</span><span class="n">input</span> <span class="o">==</span> <span class="n">input_pdf_name</span><span class="p">:</span>
+                <span class="n">active_ops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">active_ops</span>
+
+    <span class="k">def</span> <span class="nf">_apply_evolution_basis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pdf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Apply the operator on the evolution basis.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                pdf : dict</span>
+<span class="sd">                    input pdf</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                return_pdf : dict</span>
+<span class="sd">                    target pdf</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Generate the return pdf as a copy of the original one</span>
+        <span class="c1"># with all members set to 0</span>
+        <span class="n">return_members</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">member</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pdf</span><span class="p">[</span><span class="s1">&#39;members&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">return_members</span><span class="p">[</span><span class="n">member</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">member_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">pdf</span><span class="p">[</span><span class="s1">&#39;members&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">act_ops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_corresponding_operators</span><span class="p">(</span><span class="n">member_name</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">act_ops</span><span class="p">:</span>
+                <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">op</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">return_members</span><span class="p">[</span><span class="n">op</span><span class="o">.</span><span class="n">target</span><span class="p">]</span> <span class="o">+=</span> <span class="n">res</span>
+        <span class="n">return_pdf</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;metadata&#39;</span> <span class="p">:</span> <span class="n">pdf</span><span class="p">[</span><span class="s1">&#39;metadata&#39;</span><span class="p">],</span>
+                <span class="s1">&#39;members&#39;</span> <span class="p">:</span> <span class="n">return_members</span>
+                <span class="p">}</span>
+        <span class="k">return</span> <span class="n">return_pdf</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pdf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Apply operator to input pdf</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                pdf : dict</span>
+<span class="sd">                    input pdf</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                return_pdf : dict</span>
+<span class="sd">                    target pdf</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># TODO fill this up, check whether flavour or evol basis</span>
+        <span class="c1"># and act depending on that</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_apply_evolution_basis</span><span class="p">(</span><span class="n">pdf</span><span class="p">)</span>
+
+    <span class="c1"># TODO this is a legacy wrapper as the benchmark files use this dictionary</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ret</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            LEGACY WRAPPER</span>
+
+<span class="sd">            .. todo:: remove</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">&quot;operators&quot;</span> <span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;operator_errors&quot;</span> <span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;xgrid&quot;</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">xgrid</span> <span class="p">}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">new_op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;operators&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_op</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;operator_errors&quot;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_op</span><span class="o">.</span><span class="n">error</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="Operator"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.Operator">[docs]</a><span class="k">class</span> <span class="nc">Operator</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Internal representation of a single EKO.</span>
+
+<span class="sd">        The actual matrices are computed only upon calling :meth:`compute`.</span>
+<span class="sd">        :meth:`compose` will generate the :class:`PhysicalOperator` for the outside world.</span>
+<span class="sd">        If not computed yet, :meth:`compose` will call :meth:`compute`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            delta_t : float</span>
+<span class="sd">                Evolution distance</span>
+<span class="sd">            xgrid : np.array</span>
+<span class="sd">                basis interpolation grid</span>
+<span class="sd">            integrands_ns : list(function)</span>
+<span class="sd">                list of non-singlet kernels</span>
+<span class="sd">            integrands_s : list(function)</span>
+<span class="sd">                list of singlet kernels</span>
+<span class="sd">            metadata : dict</span>
+<span class="sd">                metadata with keys `nf`, `q2ref` and `q2`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">integrands_ns</span><span class="p">,</span> <span class="n">integrands_s</span><span class="p">,</span> <span class="n">metadata</span><span class="p">):</span>
+        <span class="c1"># Save the metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span> <span class="o">=</span> <span class="n">xgrid</span>
+        <span class="c1"># Get ready for the computation</span>
+        <span class="n">singlet</span><span class="p">,</span> <span class="n">nons</span> <span class="o">=</span> <span class="n">_get_kernel_integrands</span><span class="p">(</span><span class="n">integrands_s</span><span class="p">,</span> <span class="n">integrands_ns</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_singlet</span> <span class="o">=</span> <span class="n">singlet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_nonsinglet</span> <span class="o">=</span> <span class="n">nons</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_computed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; number of active flavours &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s1">&#39;nf&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">q2ref</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; scale reference point &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s1">&#39;q2ref&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">q2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; actual scale &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s1">&#39;q2&#39;</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">xgrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; underlying basis grid &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span>
+
+<div class="viewcode-block" id="Operator.compose"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.Operator.compose">[docs]</a>    <span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op_list</span><span class="p">,</span> <span class="n">instruction_set</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Compose all :class:`Operator` together.</span>
+
+<span class="sd">            Calls :meth:`compute`, if necessary.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                op_list : list(Operator)</span>
+<span class="sd">                    list of operators to merge</span>
+<span class="sd">                instruction_set : dict</span>
+<span class="sd">                    list of instructions (generated by :class:`eko.thresholds.FlavourTarget`)</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                op : PhysicalOperator</span>
+<span class="sd">                    final operator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># compute?</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_computed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+        <span class="c1"># prepare operators</span>
+        <span class="n">op_to_compose</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">op_members</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">op_list</span><span class="p">)]</span>
+        <span class="c1"># iterate operators</span>
+        <span class="n">new_ops</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">instructions</span> <span class="ow">in</span> <span class="n">instruction_set</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">origin</span><span class="p">,</span> <span class="n">paths</span> <span class="ow">in</span> <span class="n">instructions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">.</span><span class="si">{origin}</span><span class="s1">&#39;</span>
+                <span class="n">new_ops</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">join_members</span><span class="p">(</span><span class="n">op_to_compose</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">PhysicalOperator</span><span class="p">(</span><span class="n">new_ops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xgrid</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Operator.join_members"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.Operator.join_members">[docs]</a>    <span class="k">def</span> <span class="nf">join_members</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">list_of_paths</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Multiply a list of :class:`OperatorMember` using the given paths.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                steps : list(OperatorMember)</span>
+<span class="sd">                    list of raw operators, with the lowest scale to the right</span>
+<span class="sd">                list_of_paths : list(list(str))</span>
+<span class="sd">                    list of paths</span>
+<span class="sd">                name : str</span>
+<span class="sd">                    final name</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                final_op : OperatorMember</span>
+<span class="sd">                    joined operator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">final_op</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">list_of_paths</span><span class="p">:</span>
+            <span class="n">cur_op</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">member</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+                <span class="n">new_op</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="n">member</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">cur_op</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">cur_op</span> <span class="o">=</span> <span class="n">new_op</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">cur_op</span> <span class="o">=</span> <span class="n">cur_op</span><span class="o">*</span><span class="n">new_op</span>
+            <span class="n">final_op</span> <span class="o">+=</span> <span class="n">cur_op</span>
+        <span class="n">final_op</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">return</span> <span class="n">final_op</span></div>
+
+<div class="viewcode-block" id="Operator.compute"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.Operator.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; compute the actual operators (i.e. run the integrations) &quot;&quot;&quot;</span>
+        <span class="n">op_members_ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_nonsinglet</span><span class="p">()</span>
+        <span class="n">op_members_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_singlet</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_computed</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">op_members_s</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">op_members_ns</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

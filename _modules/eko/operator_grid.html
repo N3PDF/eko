@@ -1,0 +1,493 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eko.operator_grid &mdash; EKO  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>eko.operator_grid</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eko.operator_grid</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This module contains the OperatorGrid class</span>
+<span class="sd">    This is the driver class of eko as it is the one that collects all the</span>
+<span class="sd">    previously instantiated information and does the actual computation of the Qs</span>
+
+<span class="sd">    This class, however, has no knowledge about _what_ it does compute as</span>
+<span class="sd">    everything must always come in externally</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="c1"># TODO the operator grid should have a &quot;save&quot; and &quot;load&quot; method which will allow to store the full grid</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">eko.evolution_operator</span> <span class="k">import</span> <span class="n">Operator</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="OperatorMaster"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorMaster">[docs]</a><span class="k">class</span> <span class="nc">OperatorMaster</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The OperatorMaster is instantiated for a given set of parameters</span>
+<span class="sd">        And informs the generation of operators.</span>
+
+<span class="sd">        This class is just a convenience wrapper</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            alpha_generator: eko.alpha_s.StrongCoupling</span>
+<span class="sd">                Instance of the StrongCoupling class able to generate a_s for any q</span>
+<span class="sd">            kernel_dispatcher: eko.kernels.KernelDispatcher</span>
+<span class="sd">                Instance of the KernelDispatcher with the information about the kernels</span>
+<span class="sd">            xgrid: np.array</span>
+<span class="sd">                Grid in x used to compute the operators</span>
+<span class="sd">            nf: int</span>
+<span class="sd">                Value of nf for this OperatorMaster</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+        <span class="c1"># Get all the integrands necessary for singlet and not singlet for nf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_dispatcher</span> <span class="o">=</span> <span class="n">kernel_dispatcher</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span> <span class="o">=</span> <span class="n">alpha_generator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span> <span class="o">=</span> <span class="n">xgrid</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nf</span> <span class="o">=</span> <span class="n">nf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_ns</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_s</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_compile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Compiles the kernels and make them become integrands &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_dispatcher</span><span class="o">.</span><span class="n">get_non_singlet_for_nf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nf</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_dispatcher</span><span class="o">.</span><span class="n">get_singlet_for_nf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nf</span><span class="p">)</span>
+
+<div class="viewcode-block" id="OperatorMaster.get_op"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorMaster.get_op">[docs]</a>    <span class="k">def</span> <span class="nf">get_op</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">,</span> <span class="n">generate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Given a q2_from and a q2_to, returns a raw operator.</span>
+<span class="sd">            If the `generate` flag is set to True, the operator will also be computed</span>
+<span class="sd">            in place.</span>
+
+<span class="sd">            Note: this method is just for convenience and so this method cannot check</span>
+<span class="sd">            that no thresholds are crossed in order to go from q2_from to q2_to.</span>
+<span class="sd">            This is the responsability of the calling function.</span>
+
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                q2_from: float</span>
+<span class="sd">                    Reference value of q^2</span>
+<span class="sd">                q2_to: float</span>
+<span class="sd">                    Target value of q^2</span>
+<span class="sd">                generate: bool</span>
+<span class="sd">                    Whether the operator should be computed (default = False)</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                op: eko.operators.Operator</span>
+<span class="sd">                    operator to go from q2_from to q2_to</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_s</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_compile</span><span class="p">()</span>
+        <span class="c1"># Generate the metadata for this operator</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;q2&quot;</span><span class="p">:</span> <span class="n">q2_to</span><span class="p">,</span> <span class="s2">&quot;q2ref&quot;</span><span class="p">:</span> <span class="n">q2_from</span><span class="p">,</span> <span class="s2">&quot;nf&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nf</span><span class="p">}</span>
+        <span class="c1"># Generate the necessary parameters to compute the operator</span>
+        <span class="n">delta_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span><span class="o">.</span><span class="n">delta_t</span><span class="p">(</span><span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">)</span>
+        <span class="n">op</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span>
+            <span class="n">delta_t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_ns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_s</span><span class="p">,</span> <span class="n">metadata</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">generate</span><span class="p">:</span>
+            <span class="n">op</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">op</span></div></div>
+
+
+<div class="viewcode-block" id="OperatorGrid"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorGrid">[docs]</a><span class="k">class</span> <span class="nc">OperatorGrid</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The operator grid is the driver class of the evolution.</span>
+
+<span class="sd">        It receives as input a threshold holder and a generator of alpha_s.</span>
+<span class="sd">        From that point onwards it can compute any operator at any q2.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            threshold_holder: eko.thresholds.Threshold</span>
+<span class="sd">                Instance of the Threshold class containing information about the thresholds</span>
+<span class="sd">            alpha_generator: eko.alpha_s.StrongCoupling</span>
+<span class="sd">                Instance of the StrongCoupling class able to generate a_s for any q</span>
+<span class="sd">            kernel_dispatcher: eko.kernels.KernelDispatcher</span>
+<span class="sd">                Instance of the KernelDispatcher with the information about the kernels</span>
+<span class="sd">            xgrid: np.array</span>
+<span class="sd">                Grid in x used to compute the operators</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Instantiating an operator grid:&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot; &gt; Flavour scheme: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">scheme</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span> <span class="o">=</span> <span class="n">threshold_holder</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot; &gt; Reference alpha_s(Q^2=</span><span class="si">%f</span><span class="s2">)=</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="o">.</span><span class="n">qref</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="o">.</span><span class="n">ref</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span> <span class="o">=</span> <span class="n">alpha_generator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span> <span class="o">=</span> <span class="n">kernel_dispatcher</span>
+        <span class="c1"># Prepare the OperatorMasters for each accepted value of nf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_op_masters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">nf</span> <span class="ow">in</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">nf_range</span><span class="p">():</span>
+            <span class="c1"># Compile the kernels for each nf</span>
+            <span class="n">kernel_dispatcher</span><span class="o">.</span><span class="n">set_up_all_integrands</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
+            <span class="c1"># Set up the OP Master for each nf</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_op_masters</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span> <span class="o">=</span> <span class="n">OperatorMaster</span><span class="p">(</span>
+                <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">nf</span>
+            <span class="p">)</span>
+        <span class="n">min_nf</span> <span class="o">=</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">min_nf</span>
+        <span class="n">max_nf</span> <span class="o">=</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">max_nf</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot; &gt; Accepted nf range: [</span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">min_nf</span><span class="p">,</span> <span class="n">max_nf</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_operators</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_generate_thresholds_op</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_q2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Generate the thresholds operators</span>
+
+<span class="sd">            This method is called everytime the OperatorGrid is asked for a grid on Q^2</span>
+<span class="sd">            with a list of the relevant areas.</span>
+<span class="sd">            If new threshold operators need to be computed, they will and they will be</span>
+<span class="sd">            cached in an internal dictionary.</span>
+
+<span class="sd">            The internal dictionary is self._threshold_operators and its structure is:</span>
+<span class="sd">                (q2_from, q2_to) : eko.operators.Operator</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                to_q2: float</span>
+<span class="sd">                    value of q2 for which the OperatorGrid will need to pass thresholds</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># The lists of areas as produced by the self._threshold_holder</span>
+        <span class="n">area_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">get_path_from_q2_ref</span><span class="p">(</span><span class="n">to_q2</span><span class="p">)</span>
+        <span class="c1"># The base area is always that of the reference q</span>
+        <span class="n">q2_from</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">q2_ref</span>
+        <span class="n">nf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">nf_ref</span>
+        <span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="n">area_list</span><span class="p">:</span>
+            <span class="n">q2_to</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">q2_ref</span>
+            <span class="k">if</span> <span class="n">q2_to</span> <span class="o">==</span> <span class="n">q2_from</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">new_op</span> <span class="o">=</span> <span class="p">(</span><span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">new_op</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_operators</span><span class="p">:</span>
+                <span class="c1"># Compute the operator in place and store it</span>
+                <span class="n">op_th</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_masters</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span><span class="o">.</span><span class="n">get_op</span><span class="p">(</span><span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">,</span> <span class="n">generate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_operators</span><span class="p">[</span><span class="n">new_op</span><span class="p">]</span> <span class="o">=</span> <span class="n">op_th</span>
+            <span class="n">nf</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">nf</span>
+            <span class="n">q2_from</span> <span class="o">=</span> <span class="n">q2_to</span>
+
+    <span class="k">def</span> <span class="nf">_get_jumps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qsq</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Given a value of q^2, generates the list of operators that need to be</span>
+<span class="sd">            composed in order to get there from q0^2</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                qsq: float</span>
+<span class="sd">                    Target value of q^2</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                op_list: list</span>
+<span class="sd">                    List of threshold operators</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get the list of areas to be crossed</span>
+        <span class="n">full_area_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">get_path_from_q2_ref</span><span class="p">(</span><span class="n">qsq</span><span class="p">)</span>
+        <span class="c1"># The last one is where q resides so it is not needed</span>
+        <span class="n">area_path</span> <span class="o">=</span> <span class="n">full_area_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">op_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># Now loop over the areas to collect the necessary threshold operators</span>
+        <span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="n">area_path</span><span class="p">:</span>
+            <span class="n">q2_from</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">q2_ref</span>
+            <span class="n">q2_to</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">q2_towards</span><span class="p">(</span><span class="n">qsq</span><span class="p">)</span>
+            <span class="n">op_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_threshold_operators</span><span class="p">[(</span><span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">)])</span>
+        <span class="k">return</span> <span class="n">op_list</span>
+
+<div class="viewcode-block" id="OperatorGrid.set_q2_limits"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorGrid.set_q2_limits">[docs]</a>    <span class="k">def</span> <span class="nf">set_q2_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2min</span><span class="p">,</span> <span class="n">q2max</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Sets up the limits of the grid in q^2 to be computed by the OperatorGrid</span>
+
+<span class="sd">            This function is a wrapper to compute the necessary operators to go between areas</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                q2min: float</span>
+<span class="sd">                    Minimum value of q^2 that will be computed</span>
+<span class="sd">                q2max: float</span>
+<span class="sd">                    Maximum value of q^2 that will be computed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Sanity checks</span>
+        <span class="k">if</span> <span class="n">q2min</span> <span class="o">&lt;=</span> <span class="mf">0.0</span> <span class="ow">or</span> <span class="n">q2max</span> <span class="o">&lt;=</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;Values of q^2 below 0.0 are not accepted, received [</span><span class="si">{q2min}</span><span class="s2">,</span><span class="si">{q2max}</span><span class="s2">]&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">q2min</span> <span class="o">&gt;</span> <span class="n">q2max</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="n">f</span><span class="s2">&quot;Minimum q^2 is above maximum q^2 (error: </span><span class="si">{q2max}</span><span class="s2"> &lt; </span><span class="si">{q2min}</span><span class="s2">)&quot;</span>
+            <span class="p">)</span>
+        <span class="c1"># Ensure we have all the necessary operators to go from qref to q2min and qmax</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_thresholds_op</span><span class="p">(</span><span class="n">q2min</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_generate_thresholds_op</span><span class="p">(</span><span class="n">q2max</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_compute_raw_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2grid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Receives a grid in q^2 and computes each opeator inside its</span>
+<span class="sd">            area with reference value the q_ref of its area</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                q2grid: list</span>
+<span class="sd">                    List of q^2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">area_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">get_areas</span><span class="p">(</span><span class="n">q2grid</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">area</span><span class="p">,</span> <span class="n">q2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">area_list</span><span class="p">,</span> <span class="n">q2grid</span><span class="p">):</span>
+            <span class="n">q2_from</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">q2_ref</span>
+            <span class="n">nf</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">nf</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span><span class="p">[</span><span class="n">q2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_masters</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span><span class="o">.</span><span class="n">get_op</span><span class="p">(</span><span class="n">q2_from</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span>
+        <span class="c1"># Now perform the computation</span>
+        <span class="c1"># TODO everything in parallel</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">op</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+<div class="viewcode-block" id="OperatorGrid.compute_q2grid"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorGrid.compute_q2grid">[docs]</a>    <span class="k">def</span> <span class="nf">compute_q2grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2grid</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Receives a grid in q^2 and computes all operations necessary</span>
+<span class="sd">            to return any operator at any given q for the evolution between qref and qgrid</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                q2grid: list</span>
+<span class="sd">                    List of q^2</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                grid_return: list</span>
+<span class="sd">                    List of PhysicalOperator for each value of q^2</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">q2grid</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="n">q2grid</span> <span class="o">=</span> <span class="p">[</span><span class="n">q2grid</span><span class="p">]</span>
+        <span class="c1"># Check max and min of the grid and reset the limits if necessary</span>
+        <span class="n">q2max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">q2grid</span><span class="p">)</span>
+        <span class="n">q2min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">q2grid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_q2_limits</span><span class="p">(</span><span class="n">q2min</span><span class="p">,</span> <span class="n">q2max</span><span class="p">)</span>
+        <span class="c1"># Now compute all raw operators</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_raw_grid</span><span class="p">(</span><span class="n">q2grid</span><span class="p">)</span>
+        <span class="c1"># And now return the grid</span>
+        <span class="n">grid_return</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="n">q2grid</span><span class="p">:</span>
+            <span class="n">grid_return</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_op_at_q2</span><span class="p">(</span><span class="n">q2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">grid_return</span></div>
+
+<div class="viewcode-block" id="OperatorGrid.get_op_at_q2"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorGrid.get_op_at_q2">[docs]</a>    <span class="k">def</span> <span class="nf">get_op_at_q2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">qsq</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Given a value of q^2, returns the PhysicalOperator to get</span>
+<span class="sd">            to q^2 from q0^2</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                qsq: float</span>
+<span class="sd">                    Target value of q^2</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                final_op: eko.operators.PhysicalOperator</span>
+<span class="sd">                    Op(q_0^2 -&gt; q^2)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check the path to q0 for this operator</span>
+        <span class="k">if</span> <span class="n">qsq</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span><span class="p">:</span>
+            <span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span><span class="p">[</span><span class="n">qsq</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Q2=</span><span class="si">%f</span><span class="s2"> not found in the grid, computing...&quot;</span><span class="p">,</span> <span class="n">qsq</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compute_q2grid</span><span class="p">(</span><span class="n">qsq</span><span class="p">)</span>
+            <span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span><span class="p">[</span><span class="n">qsq</span><span class="p">]</span>
+        <span class="n">q2ref</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">q2ref</span>
+        <span class="n">nf</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">nf</span>
+        <span class="c1"># Prepare the path for the composition of the operator</span>
+        <span class="n">operators_to_q2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_jumps</span><span class="p">(</span><span class="n">q2ref</span><span class="p">)</span>
+        <span class="n">number_of_thresholds</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">operators_to_q2</span><span class="p">)</span>
+        <span class="n">instruction_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">get_composition_path</span><span class="p">(</span>
+            <span class="n">nf</span><span class="p">,</span> <span class="n">number_of_thresholds</span>
+        <span class="p">)</span>
+        <span class="c1"># Compose and return</span>
+        <span class="n">final_op</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">operators_to_q2</span><span class="p">,</span> <span class="n">instruction_set</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">final_op</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

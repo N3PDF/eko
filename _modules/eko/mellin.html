@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eko.mellin &mdash; EKO  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>eko.mellin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eko.mellin</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This module contains the implementation of the</span>
+<span class="sd">    `inverse Mellin transformation &lt;https://en.wikipedia.org/wiki/Mellin_inversion_theorem&gt;`_.</span>
+
+<span class="sd">    It contains the actual transformations itself, as well as the necessary tools</span>
+<span class="sd">    such as the definition of paths.</span>
+
+<span class="sd">    Definition</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    The inverse Mellin transformation :math:`g(x)` of a function :math:`\tilde g(N)` is given by</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        g(x) = \mathcal{M}^{-1}[\tilde g(N)](x)</span>
+<span class="sd">             = \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x^{-N} \tilde g(N)\,dN</span>
+
+<span class="sd">    for a suitable integration path :math:`\mathcal P` which runs to the right to the right-most</span>
+<span class="sd">    pole of :math:`\tilde g(N)`. For the implementation we will assume that the integration path</span>
+<span class="sd">    :math:`\mathcal P` is given by</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \mathcal P : [0:1] \to \mathbb C : t \to \mathcal P(t)\quad</span>
+<span class="sd">            \text{with}~\mathcal P(1/2-t) = \mathcal P^*(1/2+t)</span>
+
+<span class="sd">    where :math:`\mathcal P^*` denotes complex conjugation. Assuming further :math:`\tilde g`</span>
+<span class="sd">    to be a holomorphic function along the path, we can rewrite the inversion integral by</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        g(x) &amp;= \frac{1}{2\pi i} \int\limits_{0}^{1} x^{-\mathcal{P}(t)} \tilde g(\mathcal{P}(t)) \frac{d\mathcal{P}(t)}{dt} \,dt\\</span>
+<span class="sd">             &amp;= \frac{1}{\pi} \int\limits_{1/2}^{1} \Re \left(  x^{-\mathcal{P}(t)} \tilde g(\mathcal{P}(t)) \frac 1 i \frac{d\mathcal{P}(t)}{dt} \right) \,dt</span>
+
+<span class="sd">    The integral routine is provided by `scipy.integrate.quad &lt;https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html?highlight=quad#scipy.integrate.quad&gt;`_</span>
+
+<span class="sd">    Integration Paths</span>
+<span class="sd">    -----------------</span>
+
+<span class="sd">    Although this module provides four different path implementations (:meth:`get_path_Talbot`,</span>
+<span class="sd">    :meth:`get_path_line`, :meth:`get_path_edge`, :meth:`get_path_Cauchy_tan`) in practice</span>
+<span class="sd">    only the Talbot path :cite:`Abate`</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        p_{\text{Talbot}}(t) =  o + r \cdot ( \theta \cot(\theta) + i\theta)\quad</span>
+<span class="sd">            \text{with}~\theta = \pi(2t-1)</span>
+
+<span class="sd">    is used, as it results in the most efficient convergence. The default values</span>
+<span class="sd">    for the parameters :math:`r,o` are given by :math:`r = 1/2, o = 0` for</span>
+<span class="sd">    the non-singlet integrals and by :math:`r = \frac{2}{5} \frac{16}{1 - \ln(x)}, o = 1`</span>
+<span class="sd">    for the singlet sector. Note that the non-singlet kernels evolve poles only up to</span>
+<span class="sd">    :math:`N=0` whereas the singlet kernels have poles up to :math:`N=1`.</span>
+
+<span class="sd">    Inversion of Factorizable Kernels</span>
+<span class="sd">    ---------------------------------</span>
+
+<span class="sd">    If the integration kernel :math:`\tilde g(N)` can be factorized</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \tilde g(N) = x_0^N \cdot \tilde h(N)</span>
+
+<span class="sd">    with :math:`x_0` a fixed number in :math:`[0:1]` and :math:`\lim_{N\to\infty}h(N)\to 0`,</span>
+<span class="sd">    the inversion can be simplified if the inversion point :math:`x_i` is **above** :math:`x_0`.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        g(x_i) &amp;= \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x_i^{-N} x_0^N \tilde h(N)\,dN \\</span>
+<span class="sd">            &amp;= \frac{1}{2\pi i} \int\limits_{\mathcal{P}} \exp(-N(\ln(x_i)-\ln(x_0))) \tilde h(N)\,dN</span>
+
+<span class="sd">    Now, take the textbook path :math:`p : \mathbb R \to \mathbb C : t \to p(t) = c + i t` and</span>
+<span class="sd">    shift the parameter :math:`c \to \infty`. As :math:`x_i &gt; x_0` it follows immediately</span>
+<span class="sd">    :math:`\ln(x_i)-\ln(x_0) &gt; 0` and thus :math:`|\exp(-N(\ln(x_i)-\ln(x_0)))| \to 0`.</span>
+<span class="sd">    Together with the assumed vanishing of :math:`\tilde h(N)` we can conclude</span>
+<span class="sd">    :math:`g(x_i) = 0`.</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="c1">#pylint:disable=line-too-long</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
+
+<span class="kn">from</span> <span class="nn">eko</span> <span class="k">import</span> <span class="n">t_complex</span>
+
+
+<div class="viewcode-block" id="compile_integrand"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.compile_integrand">[docs]</a><span class="k">def</span> <span class="nf">compile_integrand</span><span class="p">(</span><span class="n">iker</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">do_numba</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepares the integration kernel `iker` to be integrated by the</span>
+<span class="sd">        inverse mellin transform wrapper.</span>
+
+<span class="sd">        It adds the correct prefactor, resolves the path, adds the jacobian</span>
+<span class="sd">        and applies the real part.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            iker : function</span>
+<span class="sd">                Integration kernel including :math:`x^(-N)`</span>
+<span class="sd">            path : function</span>
+<span class="sd">                Integration path as a function</span>
+<span class="sd">                :math:`p : [0:1] \to \mathbb C : t \to p(t)`</span>
+<span class="sd">            jac : function</span>
+<span class="sd">                Jacobian of integration path :math:`j(t) = \frac{dp(t)}{dt}`</span>
+<span class="sd">            do_numba: bool</span>
+<span class="sd">                Boolean flag to return a numba compiled function (default: true)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
+        <span class="c1"># Make the extra arguments explicit</span>
+        <span class="n">logx</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">delta_t</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">path_param</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">path_param</span><span class="p">)</span>
+        <span class="n">prefactor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">prefactor</span> <span class="o">*</span> <span class="n">iker</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">)</span> <span class="o">*</span> <span class="n">jac</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">path_param</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">if</span> <span class="n">do_numba</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="n">integrand</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">integrand</span></div>
+
+
+<div class="viewcode-block" id="inverse_mellin_transform"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.inverse_mellin_transform">[docs]</a><span class="k">def</span> <span class="nf">inverse_mellin_transform</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">cut</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">,</span> <span class="n">epsabs</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span><span class="n">epsrel</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inverse Mellin transformation.</span>
+
+<span class="sd">        Note that the inversion factor :math:`x^{-N}` has already to be *included* in f(N).</span>
+<span class="sd">        This convention usually improves the convergence of the integral. Typical kernels</span>
+<span class="sd">        will naturally develop similar factors to which the conversion factor can</span>
+<span class="sd">        be joined.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            integrand: function</span>
+<span class="sd">                Integrand to be passed to the integration routine.</span>
+<span class="sd">                The integrand can be generated with the `compile_integrand` function.</span>
+<span class="sd">            cut : float</span>
+<span class="sd">                Numeric cut-off parameter to the integration, the actual integration borders are</span>
+<span class="sd">                determied by :math:`t\\in [c : 1-c]`</span>
+<span class="sd">            extra_args: any</span>
+<span class="sd">                Extra arguments to be passed to the integrand beyond the integration variable</span>
+<span class="sd">            epsabs: float</span>
+<span class="sd">                absolute error tolerance of the integration</span>
+<span class="sd">            epsrel: float</span>
+<span class="sd">                relative error tolerance of the integration</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            res : float</span>
+<span class="sd">                computed point</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">LIMIT</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span>
+        <span class="n">integrand</span><span class="p">,</span>
+        <span class="mf">0.5</span><span class="p">,</span>
+        <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cut</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="n">extra_args</span><span class="p">,</span>
+        <span class="n">epsabs</span><span class="o">=</span><span class="n">epsabs</span><span class="p">,</span>
+        <span class="n">epsrel</span><span class="o">=</span><span class="n">epsrel</span><span class="p">,</span>
+        <span class="n">limit</span><span class="o">=</span><span class="n">LIMIT</span><span class="p">,</span>
+        <span class="n">full_output</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1">#if len(result) &gt; 3:</span>
+    <span class="c1">#    print(result)</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_path_Talbot"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_Talbot">[docs]</a><span class="k">def</span> <span class="nf">get_path_Talbot</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Talbot path.</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            p_{\\text{Talbot}}(t) =  o + r \\cdot ( \\theta \\cot(\\theta) + i\\theta ),</span>
+<span class="sd">            \\theta = \\pi(2t-1)</span>
+
+<span class="sd">        Returns the path and its derivative which then have to be called with the arguments</span>
+<span class="sd">        listed under `Other Parameters`.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        -----------------</span>
+<span class="sd">            r : t_float</span>
+<span class="sd">                scaling parameter - effectivly corresponds to the intersection of the path with the</span>
+<span class="sd">                real axis</span>
+<span class="sd">            o : t_float</span>
+<span class="sd">                offset on real axis</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            path : function</span>
+<span class="sd">                Talbot path function</span>
+<span class="sd">            jac : function</span>
+<span class="sd">                derivative of Talbot path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">extra_args</span><span class="p">):</span>
+        <span class="n">r</span><span class="p">,</span><span class="n">o</span> <span class="o">=</span> <span class="n">extra_args</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># treat singular point seperately</span>
+            <span class="n">re</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">re</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">theta</span>
+        <span class="k">return</span> <span class="n">o</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">t_complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">))</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+    <span class="k">def</span> <span class="nf">jac</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">extra_args</span><span class="p">):</span>
+        <span class="n">r</span><span class="p">,</span><span class="n">o</span> <span class="o">=</span> <span class="n">extra_args</span> <span class="c1"># pylint: disable=unused-variable</span>
+        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># treat singular point seperately</span>
+            <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">re</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+            <span class="n">re</span> <span class="o">-=</span> <span class="n">theta</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">t_complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span></div>
+
+
+<div class="viewcode-block" id="get_path_line"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_line">[docs]</a><span class="k">def</span> <span class="nf">get_path_line</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Textbook path, i.e. a straight line parallel to the imaginary axis.</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            p_{\\text{line}}(t) = c + m \\cdot (2t - 1)</span>
+
+<span class="sd">        Returns the path and its derivative which then have to be called with the arguments</span>
+<span class="sd">        listed under `Other Parameters`.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">            m : t_float</span>
+<span class="sd">                half length of the path</span>
+<span class="sd">            c : t_float</span>
+<span class="sd">                intersection of path with real axis</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            path : function</span>
+<span class="sd">                textbook path</span>
+<span class="sd">            jac : function</span>
+<span class="sd">                derivative of textbook path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
+        <span class="n">m</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">extra_args</span>
+        <span class="k">return</span> <span class="n">t_complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">m</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+    <span class="k">def</span> <span class="nf">jac</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
+        <span class="n">m</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">extra_args</span> <span class="c1"># pylint: disable=unused-variable</span>
+        <span class="k">return</span> <span class="n">t_complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">m</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span></div>
+
+
+<div class="viewcode-block" id="get_path_edge"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_edge">[docs]</a><span class="k">def</span> <span class="nf">get_path_edge</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Edged path with a given angle.</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            p_{\\text{edge}}(t) = c + m\\left|t - \\frac 1 2\\right|\\exp(i\\phi)</span>
+
+<span class="sd">        Returns the path and its derivative which then have to be called with the arguments</span>
+<span class="sd">        listed under `Other Parameters`.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">            m : t_float</span>
+<span class="sd">                length of the path</span>
+<span class="sd">            c : t_float, optional</span>
+<span class="sd">                intersection of path with real axis - defaults to 1</span>
+<span class="sd">            phi : t_complex, optional</span>
+<span class="sd">                bended angle - defaults to +135° with respect to positive x axis</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            path : function</span>
+<span class="sd">                Edged path</span>
+<span class="sd">            jac : function</span>
+<span class="sd">                derivative of edged path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">extra_args</span><span class="p">):</span>
+        <span class="n">m</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">phi</span> <span class="o">=</span> <span class="n">extra_args</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># turning point: path is not differentiable in this point</span>
+            <span class="k">return</span> <span class="n">c</span> <span class="o">+</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">phi</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">c</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">+</span><span class="n">phi</span><span class="p">))</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+    <span class="k">def</span> <span class="nf">jac</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">extra_args</span><span class="p">):</span>
+        <span class="n">m</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">phi</span> <span class="o">=</span> <span class="n">extra_args</span> <span class="c1"># pylint: disable=unused-variable</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># turning point: jacobian is not continuous here</span>
+            <span class="k">return</span> <span class="o">-</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">phi</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">+</span><span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">phi</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span></div>
+
+
+<div class="viewcode-block" id="get_path_Cauchy_tan"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_Cauchy_tan">[docs]</a><span class="k">def</span> <span class="nf">get_path_Cauchy_tan</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cauchy-distribution like path, extended with tan to infinity.</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            p_{\\text{Cauchy}}(t) = \\frac{\\gamma}{u^2 + \\gamma^2} + i u, u = \\tan(\\pi(2t-1)/2)</span>
+
+<span class="sd">        Returns the path and its derivative which then have to be called with the arguments</span>
+<span class="sd">        listed under `Other Parameters`.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ---------------</span>
+<span class="sd">            gamma : t_float</span>
+<span class="sd">                intersection of path with real axis</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            path : function</span>
+<span class="sd">                Cauchy path</span>
+<span class="sd">            jac : function</span>
+<span class="sd">                derivative of Cauchy path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
+        <span class="n">g</span><span class="p">,</span> <span class="n">re_offset</span> <span class="o">=</span> <span class="n">extra_args</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="n">g</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">g</span> <span class="o">*</span> <span class="n">g</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">re_offset</span> <span class="o">+</span> <span class="n">re</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+    <span class="k">def</span> <span class="nf">jac</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
+        <span class="n">g</span><span class="p">,</span> <span class="n">re_offset</span> <span class="o">=</span> <span class="n">extra_args</span> <span class="c1"># pylint: disable=unused-variable</span>
+        <span class="n">arg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="n">dre</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">u</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">g</span> <span class="o">*</span> <span class="n">g</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">du</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">dre</span> <span class="o">*</span> <span class="n">du</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span></div>
+
+
+<span class="c1"># TODO if we keep this function open, we might also think about an implementation (t_float)</span>
+<div class="viewcode-block" id="mellin_transform"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.mellin_transform">[docs]</a><span class="k">def</span> <span class="nf">mellin_transform</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">N</span><span class="p">:</span> <span class="nb">complex</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mellin transformation</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            f : function</span>
+<span class="sd">                integration kernel :math:`f(x)`</span>
+<span class="sd">            N : complex</span>
+<span class="sd">                transformation point</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            res : complex</span>
+<span class="sd">                computed point</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@nb</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">forceobj</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># due to the integration kernel not being necessarily numba</span>
+    <span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">xToN</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">xToN</span>
+
+    <span class="c1"># do real + imaginary part seperately</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">re</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">integrand</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">ie</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">integrand</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">t_complex</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">t_complex</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">ie</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">error</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

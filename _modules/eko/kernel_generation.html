@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eko.kernel_generation &mdash; EKO  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>eko.kernel_generation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eko.kernel_generation</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This module contains functions that generate other functions</span>
+<span class="sd">    All functions will receive a set of parameters so that the output</span>
+<span class="sd">    function can be always numba compilable</span>
+
+<span class="sd">    The generator functions `get_kernel_{kernel_type}` have as signature</span>
+<span class="sd">    the following parameters:</span>
+
+<span class="sd">        - `basis_function`: a callable function with a (N, lnx) signature</span>
+<span class="sd">        - `nf` : number of flavours</span>
+<span class="sd">        - `constants`: an instance of the Constants class</span>
+<span class="sd">        - `beta_0` : value of `beta_0`</span>
+<span class="sd">        - `delta_t`: value of `delta_t`</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">abc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+
+<span class="kn">import</span> <span class="nn">eko.alpha_s</span> <span class="k">as</span> <span class="nn">alpha_s</span>
+<span class="kn">import</span> <span class="nn">eko.splitting_functions_LO</span> <span class="k">as</span> <span class="nn">sf_LO</span>
+<span class="kn">import</span> <span class="nn">eko.mellin</span> <span class="k">as</span> <span class="nn">mellin</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="get_kernel_ns"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.get_kernel_ns">[docs]</a><span class="k">def</span> <span class="nf">get_kernel_ns</span><span class="p">(</span><span class="n">basis_function</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">beta_0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the non-singlet integration kernel&quot;&quot;&quot;</span>
+    <span class="n">CA</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span>
+    <span class="n">CF</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">CF</span>
+
+    <span class="k">def</span> <span class="nf">ker</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">lnx</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;true non-siglet integration kernel&quot;&quot;&quot;</span>
+        <span class="n">ln</span> <span class="o">=</span> <span class="o">-</span><span class="n">delta_t</span> <span class="o">*</span> <span class="n">sf_LO</span><span class="o">.</span><span class="n">gamma_ns_0</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta_0</span>
+        <span class="n">interpoln</span> <span class="o">=</span> <span class="n">basis_function</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">lnx</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ln</span><span class="p">)</span> <span class="o">*</span> <span class="n">interpoln</span>
+
+    <span class="k">return</span> <span class="n">ker</span></div>
+
+
+<div class="viewcode-block" id="get_kernels_s"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.get_kernels_s">[docs]</a><span class="k">def</span> <span class="nf">get_kernels_s</span><span class="p">(</span><span class="n">basis_function</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">beta_0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return all singlet integration kernels&quot;&quot;&quot;</span>
+    <span class="n">CA</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span>
+    <span class="n">CF</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">CF</span>
+
+    <span class="k">def</span> <span class="nf">get_ker</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;true singlet kernel&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">ker</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">lnx</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;a singlet integration kernel&quot;&quot;&quot;</span>
+            <span class="n">l_p</span><span class="p">,</span> <span class="n">l_m</span><span class="p">,</span> <span class="n">e_p</span><span class="p">,</span> <span class="n">e_m</span> <span class="o">=</span> <span class="n">sf_LO</span><span class="o">.</span><span class="n">get_Eigensystem_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span>
+            <span class="n">ln_p</span> <span class="o">=</span> <span class="o">-</span><span class="n">delta_t</span> <span class="o">*</span> <span class="n">l_p</span> <span class="o">/</span> <span class="n">beta_0</span>
+            <span class="n">ln_m</span> <span class="o">=</span> <span class="o">-</span><span class="n">delta_t</span> <span class="o">*</span> <span class="n">l_m</span> <span class="o">/</span> <span class="n">beta_0</span>
+            <span class="n">interpoln</span> <span class="o">=</span> <span class="n">basis_function</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">lnx</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">e_p</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ln_p</span><span class="p">)</span> <span class="o">+</span> <span class="n">e_m</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ln_m</span><span class="p">))</span> <span class="o">*</span> <span class="n">interpoln</span>
+
+        <span class="k">return</span> <span class="n">ker</span>
+
+    <span class="k">return</span> <span class="n">get_ker</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">get_ker</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">get_ker</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">get_ker</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="prepare_singlet"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.prepare_singlet">[docs]</a><span class="k">def</span> <span class="nf">prepare_singlet</span><span class="p">(</span><span class="n">kernels</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return a list of integrands prepare to be run &quot;&quot;&quot;</span>
+    <span class="n">integrands</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Singlet operator: kernel compilation started&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">kernel_set</span> <span class="ow">in</span> <span class="n">kernels</span><span class="p">:</span>
+        <span class="n">kernel_int</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">ker</span> <span class="ow">in</span> <span class="n">kernel_set</span><span class="p">:</span>
+            <span class="n">kernel_int</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mellin</span><span class="o">.</span><span class="n">compile_integrand</span><span class="p">(</span><span class="n">ker</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">))</span>
+        <span class="n">integrands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_int</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Singlet operator: kernel compilation finished&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">integrands</span></div>
+
+<div class="viewcode-block" id="prepare_non_singlet"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.prepare_non_singlet">[docs]</a><span class="k">def</span> <span class="nf">prepare_non_singlet</span><span class="p">(</span><span class="n">kernels</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Return a list of integrands prepare to be run &quot;&quot;&quot;</span>
+    <span class="n">integrands</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Non-singlet operator: kernel compilation started&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">ker</span> <span class="ow">in</span> <span class="n">kernels</span><span class="p">:</span>
+        <span class="n">kernel_int</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">compile_integrand</span><span class="p">(</span><span class="n">ker</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">)</span>
+        <span class="n">integrands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_int</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Non-singlet operator: kernel compilation finished&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">integrands</span></div>
+
+
+<div class="viewcode-block" id="KernelDispatcher"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.KernelDispatcher">[docs]</a><span class="k">class</span> <span class="nc">KernelDispatcher</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The kernel dispatcher does the common preparation for the kernel functions</span>
+
+<span class="sd">        Upon calling the appropiate `compile_` method the dispatcher will return</span>
+<span class="sd">        a `numba` compiled kernel.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            interpol_dispatcher : InterpolatorDispatcher</span>
+<span class="sd">                An instance of the InterpolatorDispatcher class</span>
+<span class="sd">            constants : Constants</span>
+<span class="sd">                An instance of the Constants class</span>
+<span class="sd">            nf : float</span>
+<span class="sd">                Number of flavour to consider</span>
+<span class="sd">            delta_t : float</span>
+<span class="sd">                Value of delta_t for this kernel</span>
+<span class="sd">            numba_it : bool  (default: True)</span>
+<span class="sd">                If true, the functions will be `numba` compiled</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interpol_dispatcher</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">delta_t</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">numba_it</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interpol_dispatcher</span> <span class="o">=</span> <span class="n">interpol_dispatcher</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">constants</span> <span class="o">=</span> <span class="n">constants</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numba_it</span> <span class="o">=</span> <span class="n">numba_it</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrands_ns</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrands_s</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_t</span> <span class="o">=</span> <span class="n">delta_t</span>
+
+    <span class="k">def</span> <span class="nf">_compiler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generating_function</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Call `generating_function` with the appropiate parameters</span>
+<span class="sd">            and pass the output through numba</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">beta_0</span> <span class="o">=</span> <span class="n">alpha_s</span><span class="o">.</span><span class="n">beta_0</span><span class="p">(</span><span class="n">nf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">CA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">CF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">TF</span><span class="p">)</span>
+        <span class="n">kernels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">basis_function</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">interpol_dispatcher</span><span class="p">:</span>
+            <span class="n">new_ker</span> <span class="o">=</span> <span class="n">generating_function</span><span class="p">(</span>
+                <span class="n">basis_function</span><span class="o">.</span><span class="n">callable</span><span class="p">,</span>
+                <span class="n">nf</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="p">,</span>
+                <span class="n">beta_0</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">kernels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="n">new_ker</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">kernels</span>
+
+<div class="viewcode-block" id="KernelDispatcher.compile_singlet"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.KernelDispatcher.compile_singlet">[docs]</a>    <span class="k">def</span> <span class="nf">compile_singlet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compiles the singlet integration kernels for each basis &quot;&quot;&quot;</span>
+        <span class="n">ker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiler</span><span class="p">(</span><span class="n">get_kernels_s</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ker</span></div>
+
+<div class="viewcode-block" id="KernelDispatcher.compile_nonsinglet"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.KernelDispatcher.compile_nonsinglet">[docs]</a>    <span class="k">def</span> <span class="nf">compile_nonsinglet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Compiles the non-singlet integration kernel for each basis &quot;&quot;&quot;</span>
+        <span class="n">ker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiler</span><span class="p">(</span><span class="n">get_kernel_ns</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ker</span></div>
+
+<div class="viewcode-block" id="KernelDispatcher.set_up_all_integrands"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.KernelDispatcher.set_up_all_integrands">[docs]</a>    <span class="k">def</span> <span class="nf">set_up_all_integrands</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf_values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Compiles singlet and non-singlet integration kernel for each basis &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nf_values</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+            <span class="n">nf_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">nf_values</span><span class="p">]</span>
+        <span class="c1"># Setup path</span>
+        <span class="n">path</span><span class="p">,</span> <span class="n">jac</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">get_path_Talbot</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">nf</span> <span class="ow">in</span> <span class="n">nf_values</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">nf</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrands_s</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrands_s</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span> <span class="o">=</span> <span class="n">prepare_singlet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compile_singlet</span><span class="p">(</span><span class="n">nf</span><span class="p">),</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">nf</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrands_ns</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">integrands_ns</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span> <span class="o">=</span> <span class="n">prepare_non_singlet</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">compile_nonsinglet</span><span class="p">(</span><span class="n">nf</span><span class="p">),</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KernelDispatcher.get_singlet_for_nf"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.KernelDispatcher.get_singlet_for_nf">[docs]</a>    <span class="k">def</span> <span class="nf">get_singlet_for_nf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+        <span class="n">integrands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrands_s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">integrands</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_up_all_integrands</span><span class="p">([</span><span class="n">nf</span><span class="p">])</span>
+            <span class="n">integrands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrands_s</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">integrands</span></div>
+
+<div class="viewcode-block" id="KernelDispatcher.get_non_singlet_for_nf"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.KernelDispatcher.get_non_singlet_for_nf">[docs]</a>    <span class="k">def</span> <span class="nf">get_non_singlet_for_nf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+        <span class="n">integrands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrands_ns</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">integrands</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_up_all_integrands</span><span class="p">([</span><span class="n">nf</span><span class="p">])</span>
+            <span class="n">integrands</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integrands_ns</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">integrands</span></div>
+
+<div class="viewcode-block" id="KernelDispatcher.njit"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.KernelDispatcher.njit">[docs]</a>    <span class="k">def</span> <span class="nf">njit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Do nb.njit to the function if the `numba_it` flag is set to True.</span>
+
+<span class="sd">            Check whether a list of functions is passed.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ---------</span>
+<span class="sd">                function : function</span>
+<span class="sd">                    input function</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                funciton : function</span>
+<span class="sd">                    compiled function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Iterable</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">function</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numba_it</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">function</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
