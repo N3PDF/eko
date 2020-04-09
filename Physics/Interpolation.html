@@ -87,7 +87,10 @@
 <li class="toctree-l2"><a class="reference internal" href="Math.html">Mathematical ingredients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Math.html#qcd-ingredients">QCD ingredients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Math.html#solving-dglap">Solving DGLAP</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Interpolation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#algorithm">Algorithm</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#references">References</a></li>
 </ul>
@@ -183,22 +186,43 @@ of degree <span class="math notranslate nohighlight">\(N_{degree}=3\)</span> to 
 <a class="reference internal" href="../modules/eko/eko.html#eko.interpolation.Area" title="eko.interpolation.Area"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.Area</span></code></a>), which are bound by the grid points:</p>
 <div class="math notranslate nohighlight">
 \[A_j = (x_j,x_{j+1}], \quad \text{for}~j=0,\ldots,N_{grid}-2\]</div>
-<p>Note, that we include the right border point into the definition, but not the left: this
-keeps all Areas disjoint. This assumption is based on the physical fact, that PDFs do
-have a fixed upper bound (<span class="math notranslate nohighlight">\(x=1\)</span>), but no lower bound.</p>
+<p>Note, that we include the right border point into the definition, but not the left which
+keeps all areas disjoint. This assumption is based on the physical fact, that PDFs do
+have a fixed upper bound (<span class="math notranslate nohighlight">\(x=1\)</span>), but no fixed lower bound.</p>
 <p>Second, we define the interpolation blocks, which will build the interpolation polynomials
 and contain the needed amount of points:</p>
 <div class="math notranslate nohighlight">
-\[B_j = \{x_j,\ldots,x_{j+N_{degree}+1}\}, \quad \text{for}~j=0,\ldots,N_{grid}-N_{degree}-2\]</div>
+\[B_j = \{x_j,\ldots,x_{j+N_{degree}+1}\} \quad \text{for}~j=0,\ldots,N_{grid}-N_{degree}-2\]</div>
+<div class="section" id="algorithm">
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Now, we construct the interpolation in a bottom-up approach for a given point
 <span class="math notranslate nohighlight">\(\bar x\)</span> for the interpolating function <span class="math notranslate nohighlight">\(\bar f(\bar x)\)</span></p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Determine the active relevant Area</p></li>
+<ol class="arabic simple">
+<li><p>Determine the active relevant area <span class="math notranslate nohighlight">\(\bar A(\bar x)\)</span> :</p></li>
 </ol>
-</div></blockquote>
 <div class="math notranslate nohighlight">
-\[A(\bar x) = A_j : \bar x \in A_j\]</div>
+\[\bar A(\bar x) = A_j : \bar x \in A_j\]</div>
+<p>2. Determine the associated block <span class="math notranslate nohighlight">\(\bar B(\bar A)\)</span> :
+Choose the block in which <span class="math notranslate nohighlight">\(\bar A(\bar x)\)</span> is located most central.
+For an odd number of <span class="math notranslate nohighlight">\(N_{degree}\)</span> choose the block which is
+loacted higher, i.e. closer to <span class="math notranslate nohighlight">\(x=1\)</span>. At the border of the grid, choose
+the “most central”.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Example configuration</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A0 -&gt; B0, A1 -&gt; B0, A2 -&gt; B1, A3 -&gt; B2, A4 -&gt; B3, A5-&gt; B4, A6 -&gt; B5, A7 -&gt; B5
+</pre></div>
+</div>
+</div>
+<p>3. Only the points and their associated polynomials which are in <span class="math notranslate nohighlight">\(\bar B\)</span>
+participate in the interpolation of <span class="math notranslate nohighlight">\(\bar f(\bar x)\)</span>. All other polynomials vanish:</p>
+<div class="math notranslate nohighlight">
+\[p_j(\bar x) = 0 \quad \text{for}~\{j : x_j \not\in \bar B \}\]</div>
+<ol class="arabic simple" start="4">
+<li><p>The active polynomials build a Lagrange interpolation over their associated points</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[p_j(\bar x) = \prod\limits_{j\neq k} \frac{\ln(x) - \ln(x_k)}{\ln(x_j) - \ln(x_k)} \quad \text{for}~\{j,k : x_{j,k} \in \bar B \}\]</div>
+</div>
 </div>
 
 
