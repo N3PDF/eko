@@ -197,9 +197,9 @@ coupling <span class="math notranslate nohighlight">\(\alpha_s\)</span>.</p>
 <p>The 5-loop references are <a class="bibtex reference internal" href="../../Physics/index.html#herzog-2017ohr" id="id2">[HRU+17]</a>, <a class="bibtex reference internal" href="../../Physics/index.html#luthe-2016ima" id="id3">[LMMS16]</a>,
 <a class="bibtex reference internal" href="../../Physics/index.html#baikov-2016tgj" id="id4">[BCK17]</a> which also include the lower order results.
 We use the Herzog paper <a class="bibtex reference internal" href="../../Physics/index.html#herzog-2017ohr" id="id5">[HRU+17]</a> as our main reference.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="eko.alpha_s.StrongCoupling">
-<em class="property">class </em><code class="sig-prename descclassname">eko.alpha_s.</code><code class="sig-name descname">StrongCoupling</code><span class="sig-paren">(</span><em class="sig-param">constants</em>, <em class="sig-param">alpha_s_ref</em>, <em class="sig-param">scale_ref</em>, <em class="sig-param">threshold_holder</em>, <em class="sig-param">order=0</em>, <em class="sig-param">method='analytic'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#StrongCoupling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.StrongCoupling" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.alpha_s.</code><code class="sig-name descname">StrongCoupling</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">alpha_s_ref</span></em>, <em class="sig-param"><span class="n">scale_ref</span></em>, <em class="sig-param"><span class="n">threshold_holder</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'analytic'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#StrongCoupling"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.StrongCoupling" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Computes strong coupling constant <span class="math notranslate nohighlight">\(a_s\)</span>.</p>
 <p>Note that all scale parameters, <cite>scale_ref</cite>, <cite>scale_to</cite>, <cite>thresholds</cite>,
@@ -237,9 +237,9 @@ given in terms of <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)
 <span class="go">0.54</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.alpha_s.StrongCoupling.a_s">
-<code class="sig-name descname">a_s</code><span class="sig-paren">(</span><em class="sig-param">scale_to</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#StrongCoupling.a_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.StrongCoupling.a_s" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">a_s</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scale_to</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#StrongCoupling.a_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.StrongCoupling.a_s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes strong coupling <span class="math notranslate nohighlight">\(a_s(Q^2) = \frac{\alpha_s(Q^2)}{4\pi}\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -254,9 +254,9 @@ given in terms of <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.alpha_s.StrongCoupling.delta_t">
-<code class="sig-name descname">delta_t</code><span class="sig-paren">(</span><em class="sig-param">scale_from</em>, <em class="sig-param">scale_to</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#StrongCoupling.delta_t"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.StrongCoupling.delta_t" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delta_t</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scale_from</span></em>, <em class="sig-param"><span class="n">scale_to</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#StrongCoupling.delta_t"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.StrongCoupling.delta_t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute evolution parameter <span class="math notranslate nohighlight">\(\Delta t(Q_0^2, Q_1^2) = t(Q_1^2)-t(Q_0^2)\)</span></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -274,13 +274,13 @@ given in terms of <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.alpha_s.StrongCoupling.qref">
 <em class="property">property </em><code class="sig-name descname">qref</code><a class="headerlink" href="#eko.alpha_s.StrongCoupling.qref" title="Permalink to this definition">¶</a></dt>
 <dd><p>reference scale</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.alpha_s.StrongCoupling.ref">
 <em class="property">property </em><code class="sig-name descname">ref</code><a class="headerlink" href="#eko.alpha_s.StrongCoupling.ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>reference value</p>
@@ -288,9 +288,9 @@ given in terms of <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)
 
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.alpha_s.beta_0">
-<code class="sig-prename descclassname">eko.alpha_s.</code><code class="sig-name descname">beta_0</code><a class="reference internal" href="../../_modules/eko/alpha_s.html#beta_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.beta_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.alpha_s.</code><code class="sig-name descname">beta_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#beta_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.beta_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the first coefficient of the QCD beta function.</p>
 <p>Implements Eq. (3.1) of <a class="bibtex reference internal" href="../../Physics/index.html#herzog-2017ohr" id="id7">[HRU+17]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
@@ -312,9 +312,9 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.alpha_s.beta_1">
-<code class="sig-prename descclassname">eko.alpha_s.</code><code class="sig-name descname">beta_1</code><a class="reference internal" href="../../_modules/eko/alpha_s.html#beta_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.beta_1" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.alpha_s.</code><code class="sig-name descname">beta_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#beta_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.beta_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the second coefficient of the QCD beta function.</p>
 <p>Implements Eq. (3.2) of <a class="bibtex reference internal" href="../../Physics/index.html#herzog-2017ohr" id="id8">[HRU+17]</a>.</p>
 <dl class="field-list simple">
@@ -335,9 +335,9 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.alpha_s.beta_2">
-<code class="sig-prename descclassname">eko.alpha_s.</code><code class="sig-name descname">beta_2</code><a class="reference internal" href="../../_modules/eko/alpha_s.html#beta_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.beta_2" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.alpha_s.</code><code class="sig-name descname">beta_2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/alpha_s.html#beta_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.alpha_s.beta_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the third coefficient of the QCD beta function</p>
 <p>Implements Eq. (3.3) of <a class="bibtex reference internal" href="../../Physics/index.html#herzog-2017ohr" id="id9">[HRU+17]</a>.</p>
 <dl class="field-list simple">
@@ -374,14 +374,14 @@ or other different choices.</p>
 <li><p><span class="math notranslate nohighlight">\(C_F\)</span> second Casimir constant in the fundamental representation - defaults to <span class="math notranslate nohighlight">\(\frac{N_C^2-1}{2N_C} = 4/3\)</span></p></li>
 </ul>
 </div></blockquote>
-<dl class="class">
+<dl class="py class">
 <dt id="eko.constants.Constants">
 <em class="property">class </em><code class="sig-prename descclassname">eko.constants.</code><code class="sig-name descname">Constants</code><a class="reference internal" href="../../_modules/eko/constants.html#Constants"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.constants.Constants" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Upon initialization all constants are set and a <cite>lock</cite> variable is put is place.
 As long as the <cite>lock</cite> variable is active, setting attributes of this class will result
 in an <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#AttributeError" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AttributeError</span></code></a>.</p>
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="eko.constants.Constants.NC">
 <code class="sig-name descname">NC</code><a class="headerlink" href="#eko.constants.Constants.NC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of colors = 3</p>
@@ -392,7 +392,7 @@ in an <a class="reference external" href="https://docs.python.org/3/library/exce
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="eko.constants.Constants.TF">
 <code class="sig-name descname">TF</code><a class="headerlink" href="#eko.constants.Constants.TF" title="Permalink to this definition">¶</a></dt>
 <dd><p>normalization of fundamental generators = 1/2</p>
@@ -403,7 +403,7 @@ in an <a class="reference external" href="https://docs.python.org/3/library/exce
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="eko.constants.Constants.CA">
 <code class="sig-name descname">CA</code><a class="headerlink" href="#eko.constants.Constants.CA" title="Permalink to this definition">¶</a></dt>
 <dd><p>second Casimir constant in the adjoint representation = NC</p>
@@ -414,7 +414,7 @@ in an <a class="reference external" href="https://docs.python.org/3/library/exce
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="eko.constants.Constants.CF">
 <code class="sig-name descname">CF</code><a class="headerlink" href="#eko.constants.Constants.CF" title="Permalink to this definition">¶</a></dt>
 <dd><p>second Casimir constant in the fundamental representation = (NC^2 - 1)/(2 NC)</p>
@@ -425,7 +425,7 @@ in an <a class="reference external" href="https://docs.python.org/3/library/exce
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.constants.Constants.dict">
 <code class="sig-name descname">dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/constants.html#Constants.dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.constants.Constants.dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the constants class in the form of a dictionary.
@@ -441,7 +441,7 @@ protected variables</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.constants.Constants.lock">
 <em class="property">property </em><code class="sig-name descname">lock</code><a class="headerlink" href="#eko.constants.Constants.lock" title="Permalink to this definition">¶</a></dt>
 <dd><p>lock tracker</p>
@@ -453,9 +453,9 @@ protected variables</p>
 <div class="section" id="module-eko.dglap">
 <span id="eko-dglap-module"></span><h2>eko.dglap module<a class="headerlink" href="#module-eko.dglap" title="Permalink to this headline">¶</a></h2>
 <p>This file contains the main loop for the DGLAP calculations.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="eko.dglap.apply_operator">
-<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">apply_operator</code><span class="sig-paren">(</span><em class="sig-param">ret</em>, <em class="sig-param">input_pdfs</em>, <em class="sig-param">targetgrid=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#apply_operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.apply_operator" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">apply_operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span></em>, <em class="sig-param"><span class="n">input_pdfs</span></em>, <em class="sig-param"><span class="n">targetgrid</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#apply_operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.apply_operator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply all available operators to the input PDFs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -475,9 +475,9 @@ protected variables</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.dglap.get_YAML">
-<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">get_YAML</code><span class="sig-paren">(</span><em class="sig-param">ret</em>, <em class="sig-param">stream=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#get_YAML"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.get_YAML" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">get_YAML</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span></em>, <em class="sig-param"><span class="n">stream</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#get_YAML"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.get_YAML" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize result as YAML.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -496,9 +496,9 @@ the Null, if output is written sucessfully to stream</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.dglap.run_dglap">
-<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">run_dglap</code><span class="sig-paren">(</span><em class="sig-param">setup</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#run_dglap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.run_dglap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">run_dglap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#run_dglap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.run_dglap" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function takes a DGLAP theory configuration dictionary
 and performs the solution of the DGLAP equations.</p>
 <p>The EKO <span class="math notranslate nohighlight">\(\hat O_{k,j}^{(0)}(t_1,t_0)\)</span> is determined in order
@@ -565,9 +565,9 @@ to fullfill the following evolution</p>
 <p class="rubric">Notes</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.dglap.write_YAML_to_file">
-<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">write_YAML_to_file</code><span class="sig-paren">(</span><em class="sig-param">ret</em>, <em class="sig-param">filename</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#write_YAML_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.write_YAML_to_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">write_YAML_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#write_YAML_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.write_YAML_to_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes YAML representation to a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -596,9 +596,9 @@ to fullfill the following evolution</p>
 <li><p><a class="reference external" href="https://www.gnu.org/software/gsl/doc/html/index.html">gsl</a></p></li>
 </ul>
 </div></blockquote>
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.ekomath.gsl_digamma">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">gsl_digamma</code><a class="reference internal" href="../../_modules/eko/ekomath.html#gsl_digamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.gsl_digamma" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">gsl_digamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#gsl_digamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.gsl_digamma" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper around the gsl implementation via cffi of the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Digamma_function">digamma function</a>.</p>
 <p>The wrapper allows both input and output to be complex.
@@ -621,9 +621,9 @@ does not allow for complex inputs.</p>
 <a class="reference external" href="http://git.savannah.gnu.org/cgit/gsl.git/tree/specfunc/gsl_sf_psi.h#n76">complex version</a></p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.ekomath.harmonic_S1">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S1</code><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S1" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the simple harmonic sum.</p>
 <div class="math notranslate nohighlight">
 \[S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E\]</div>
@@ -642,7 +642,7 @@ Euler-Mascheroni constant.</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#eko.ekomath.gsl_digamma" title="eko.ekomath.gsl_digamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gsl_digamma</span></code></a></p>
+<p><a class="reference internal" href="#eko.ekomath.gsl_digamma" title="eko.ekomath.gsl_digamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">gsl_digamma()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -661,9 +661,9 @@ Inside <a class="reference internal" href="#eko.evolution_operator.Operator" tit
 <p><a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> manages the correct handling and recombination of the various
 <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a>. In the end a single instance of <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a>
 is computed and will be exposed for each <span class="math notranslate nohighlight">\(Q^2\)</span> to the user.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="eko.evolution_operator.Operator">
-<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param">delta_t</em>, <em class="sig-param">xgrid</em>, <em class="sig-param">integrands_ns</em>, <em class="sig-param">integrands_s</em>, <em class="sig-param">metadata</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delta_t</span></em>, <em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">integrands_ns</span></em>, <em class="sig-param"><span class="n">integrands_s</span></em>, <em class="sig-param"><span class="n">metadata</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Internal representation of a single EKO.</p>
 <p>The actual matrices are computed only upon calling <a class="reference internal" href="#eko.evolution_operator.Operator.compute" title="eko.evolution_operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.
@@ -680,9 +680,9 @@ If not computed yet, <a class="reference internal" href="#eko.evolution_operator
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.Operator.compose">
-<code class="sig-name descname">compose</code><span class="sig-paren">(</span><em class="sig-param">op_list</em>, <em class="sig-param">instruction_set</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.compose" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">compose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_list</span></em>, <em class="sig-param"><span class="n">instruction_set</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.compose" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compose all <a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> together.</p>
 <p>Calls <a class="reference internal" href="#eko.evolution_operator.Operator.compute" title="eko.evolution_operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>, if necessary.</p>
 <dl class="field-list simple">
@@ -701,15 +701,15 @@ If not computed yet, <a class="reference internal" href="#eko.evolution_operator
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.Operator.compute">
 <code class="sig-name descname">compute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.compute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.compute" title="Permalink to this definition">¶</a></dt>
 <dd><p>compute the actual operators (i.e. run the integrations)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.Operator.join_members">
-<code class="sig-name descname">join_members</code><span class="sig-paren">(</span><em class="sig-param">steps</em>, <em class="sig-param">list_of_paths</em>, <em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.join_members"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.join_members" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">join_members</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">steps</span></em>, <em class="sig-param"><span class="n">list_of_paths</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.join_members"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.join_members" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multiply a list of <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> using the given paths.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -728,25 +728,25 @@ If not computed yet, <a class="reference internal" href="#eko.evolution_operator
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.Operator.nf">
 <em class="property">property </em><code class="sig-name descname">nf</code><a class="headerlink" href="#eko.evolution_operator.Operator.nf" title="Permalink to this definition">¶</a></dt>
 <dd><p>number of active flavours</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.Operator.q2">
 <em class="property">property </em><code class="sig-name descname">q2</code><a class="headerlink" href="#eko.evolution_operator.Operator.q2" title="Permalink to this definition">¶</a></dt>
 <dd><p>actual scale</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.Operator.q2ref">
 <em class="property">property </em><code class="sig-name descname">q2ref</code><a class="headerlink" href="#eko.evolution_operator.Operator.q2ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>scale reference point</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.Operator.xgrid">
 <em class="property">property </em><code class="sig-name descname">xgrid</code><a class="headerlink" href="#eko.evolution_operator.Operator.xgrid" title="Permalink to this definition">¶</a></dt>
 <dd><p>underlying basis grid</p>
@@ -754,9 +754,9 @@ If not computed yet, <a class="reference internal" href="#eko.evolution_operator
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="eko.evolution_operator.OperatorMember">
-<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">OperatorMember</code><span class="sig-paren">(</span><em class="sig-param">value</em>, <em class="sig-param">error</em>, <em class="sig-param">name</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#OperatorMember"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.OperatorMember" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">OperatorMember</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">error</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#OperatorMember"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.OperatorMember" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A single operator for a specific element in evolution basis.</p>
 <p>The <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> provide some basic mathematical operations such as products.
@@ -772,19 +772,19 @@ of the <a class="reference internal" href="#eko.evolution_operator.Operator" tit
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.OperatorMember.input">
 <em class="property">property </em><code class="sig-name descname">input</code><a class="headerlink" href="#eko.evolution_operator.OperatorMember.input" title="Permalink to this definition">¶</a></dt>
 <dd><p>input flavour name (given by the first part of the name)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.OperatorMember.name">
 <em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#eko.evolution_operator.OperatorMember.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>full operator name</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.OperatorMember.target">
 <em class="property">property </em><code class="sig-name descname">target</code><a class="headerlink" href="#eko.evolution_operator.OperatorMember.target" title="Permalink to this definition">¶</a></dt>
 <dd><p>target flavour name (given by the second part of the name)</p>
@@ -792,9 +792,9 @@ of the <a class="reference internal" href="#eko.evolution_operator.Operator" tit
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="eko.evolution_operator.PhysicalOperator">
-<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">PhysicalOperator</code><span class="sig-paren">(</span><em class="sig-param">op_members</em>, <em class="sig-param">xgrid</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#PhysicalOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.PhysicalOperator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">PhysicalOperator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_members</span></em>, <em class="sig-param"><span class="n">xgrid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#PhysicalOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.PhysicalOperator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>PhysicalOperator is exposed to the outside world.</p>
 <p>This operator is computed via the composition method of the
@@ -818,7 +818,7 @@ Assumes as input a pdf as dictionary with:</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.evolution_operator.PhysicalOperator.ret">
 <em class="property">property </em><code class="sig-name descname">ret</code><a class="headerlink" href="#eko.evolution_operator.PhysicalOperator.ret" title="Permalink to this definition">¶</a></dt>
 <dd><p>LEGACY WRAPPER</p>
@@ -866,9 +866,9 @@ T_{35} &amp;= u^+ + d^+ + s^+ + c^+ + b^+ - 5 t^+\end{split}\]</div>
 <span class="math notranslate nohighlight">\(j\)</span> follow the common group-theoretical notation <span class="math notranslate nohighlight">\(j = n_f^2 - 1\)</span>
 where <span class="math notranslate nohighlight">\(n_f\)</span> denotes the incorporated number of quark flavours.</p>
 <p>The write-up of the matching conditions is given in <a class="reference internal" href="../../Physics/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="eko.flavours.FlavourTarget">
-<em class="property">class </em><code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">FlavourTarget</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">path</em>, <em class="sig-param">original=None</em>, <em class="sig-param">nf_min=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#FlavourTarget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.FlavourTarget" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">FlavourTarget</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">original</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nf_min</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#FlavourTarget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.FlavourTarget" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Defines the scheme</p>
 <dl class="field-list simple">
@@ -881,9 +881,9 @@ where <span class="math notranslate nohighlight">\(n_f\)</span> denotes the inco
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.flavours.FlavourTarget.get_path">
-<code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param">nf_target</em>, <em class="sig-param">n_thresholds</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#FlavourTarget.get_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.FlavourTarget.get_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf_target</span></em>, <em class="sig-param"><span class="n">n_thresholds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#FlavourTarget.get_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.FlavourTarget.get_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the path to a given value of nf
 given a number of thresholds to be crossed</p>
 <dl class="field-list simple">
@@ -905,9 +905,9 @@ and whose items are the corresponding path</p>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.flavours.get_all_flavour_paths">
-<code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">get_all_flavour_paths</code><span class="sig-paren">(</span><em class="sig-param">nf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#get_all_flavour_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.get_all_flavour_paths" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">get_all_flavour_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#get_all_flavour_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.get_all_flavour_paths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Builds all <a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -922,9 +922,9 @@ and whose items are the corresponding path</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.flavours.get_singlet_paths">
-<code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">get_singlet_paths</code><span class="sig-paren">(</span><em class="sig-param">to</em>, <em class="sig-param">fromm</em>, <em class="sig-param">depth</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#get_singlet_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.get_singlet_paths" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">get_singlet_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to</span></em>, <em class="sig-param"><span class="n">fromm</span></em>, <em class="sig-param"><span class="n">depth</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#get_singlet_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.get_singlet_paths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute all possible path in the singlet sector to reach <cite>to</cite> starting from  <cite>fromm</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -960,9 +960,9 @@ as <cite>numpy</cite> arrays:</p>
 <p>This library also provides a class to generate the interpolator <cite>InterpolatorDispatcher</cite>.
 Upon construction the dispatcher generates a number of functions
 to evaluate the interpolator.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="eko.interpolation.Area">
-<em class="property">class </em><code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">Area</code><span class="sig-paren">(</span><em class="sig-param">lower_index</em>, <em class="sig-param">poly_number</em>, <em class="sig-param">block</em>, <em class="sig-param">xgrid</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#Area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.Area" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">Area</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lower_index</span></em>, <em class="sig-param"><span class="n">poly_number</span></em>, <em class="sig-param"><span class="n">block</span></em>, <em class="sig-param"><span class="n">xgrid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#Area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.Area" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Class that define each of the area
 of each of the subgrid interpolators.</p>
@@ -978,23 +978,23 @@ is generated.</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.Area.compute_coefs">
-<code class="sig-name descname">compute_coefs</code><span class="sig-paren">(</span><em class="sig-param">xgrid</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#Area.compute_coefs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.Area.compute_coefs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">compute_coefs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xgrid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#Area.compute_coefs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.Area.compute_coefs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the coefficients for this area
 given a grid on x</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.Area.reference_indices">
 <em class="property">property </em><code class="sig-name descname">reference_indices</code><a class="headerlink" href="#eko.interpolation.Area.reference_indices" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="eko.interpolation.BasisFunction">
-<em class="property">class </em><code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">BasisFunction</code><span class="sig-paren">(</span><em class="sig-param">xgrid</em>, <em class="sig-param">poly_number</em>, <em class="sig-param">list_of_blocks</em>, <em class="sig-param">mode_log=True</em>, <em class="sig-param">mode_N=True</em>, <em class="sig-param">numba_it=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">BasisFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">poly_number</span></em>, <em class="sig-param"><span class="n">list_of_blocks</span></em>, <em class="sig-param"><span class="n">mode_log</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">mode_N</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">numba_it</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Object containing a list of areas for a given polynomial number
 defined by (xmin-xmax) and containing a list of coefficients.</p>
@@ -1012,7 +1012,7 @@ a function to evaluate in N (or x) the iterpolator</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.BasisFunction.areas_to_const">
 <code class="sig-name descname">areas_to_const</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.areas_to_const"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.areas_to_const" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retruns a tuple of tuples, one for each area
@@ -1020,7 +1020,7 @@ each containing
 (<cite>xmin</cite>, <cite>xmax</cite>, <cite>numpy.array</cite> of coefficients)</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.BasisFunction.compile_N">
 <code class="sig-name descname">compile_N</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.compile_N"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.compile_N" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles the function to evaluate the interpolator in N space.</p>
@@ -1045,7 +1045,7 @@ which can be joined with the Mellin inversion factor.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.BasisFunction.compile_X">
 <code class="sig-name descname">compile_X</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.compile_X"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.compile_X" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles the function to evaluate the interpolator
@@ -1068,9 +1068,9 @@ in x space</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.BasisFunction.evaluate_x">
-<code class="sig-name descname">evaluate_x</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.evaluate_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.evaluate_x" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">evaluate_x</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.evaluate_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.evaluate_x" title="Permalink to this definition">¶</a></dt>
 <dd><p>Evaluate basis function in x-space.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1085,9 +1085,9 @@ in x space</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.BasisFunction.is_below_x">
-<code class="sig-name descname">is_below_x</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.is_below_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.is_below_x" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">is_below_x</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.is_below_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.is_below_x" title="Permalink to this definition">¶</a></dt>
 <dd><p>Are all areas below x?</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1102,9 +1102,9 @@ in x space</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.BasisFunction.njit">
-<code class="sig-name descname">njit</code><span class="sig-paren">(</span><em class="sig-param">function</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.njit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.njit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">njit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">function</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.njit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.njit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles the function to Numba, if necessary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1121,9 +1121,9 @@ in x space</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="eko.interpolation.InterpolatorDispatcher">
-<em class="property">class </em><code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">InterpolatorDispatcher</code><span class="sig-paren">(</span><em class="sig-param">xgrid</em>, <em class="sig-param">polynomial_degree</em>, <em class="sig-param">log=True</em>, <em class="sig-param">mode_N=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#InterpolatorDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.InterpolatorDispatcher" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">InterpolatorDispatcher</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">polynomial_degree</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">mode_N</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#InterpolatorDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.InterpolatorDispatcher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Setups the interpolator.</p>
 <p>Upon construction will generate a list of <cite>BasisFunction</cite> objects.
@@ -1140,9 +1140,9 @@ which will be numba-compiled.</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.interpolation.InterpolatorDispatcher.get_interpolation">
-<code class="sig-name descname">get_interpolation</code><span class="sig-paren">(</span><em class="sig-param">targetgrid</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#InterpolatorDispatcher.get_interpolation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.InterpolatorDispatcher.get_interpolation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_interpolation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">targetgrid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#InterpolatorDispatcher.get_interpolation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.InterpolatorDispatcher.get_interpolation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes interpolation matrix between <cite>targetgrid</cite> and <cite>xgrid</cite>.</p>
 <div class="math notranslate nohighlight">
 \[f(targetgrid) = R \cdot f(xgrid)\]</div>
@@ -1161,9 +1161,9 @@ which will be numba-compiled.</p>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.interpolation.generate_xgrid">
-<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">generate_xgrid</code><span class="sig-paren">(</span><em class="sig-param">xgrid_type='log'</em>, <em class="sig-param">xgrid_size=10</em>, <em class="sig-param">xgrid_min=1e-07</em>, <em class="sig-param">xgrid=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#generate_xgrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.generate_xgrid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">generate_xgrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xgrid_type</span><span class="o">=</span><span class="default_value">'log'</span></em>, <em class="sig-param"><span class="n">xgrid_size</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">xgrid_min</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">xgrid</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#generate_xgrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.generate_xgrid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generates input xgrid</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1184,9 +1184,9 @@ which will be outputed after checking for uniqueness</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.interpolation.get_xgrid_linear_at_id">
-<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">get_xgrid_linear_at_id</code><span class="sig-paren">(</span><em class="sig-param">grid_size: int</em>, <em class="sig-param">xmin: numpy.float64 = 0.0</em>, <em class="sig-param">xmax: numpy.float64 = 1.0</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#get_xgrid_linear_at_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.get_xgrid_linear_at_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">get_xgrid_linear_at_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">xmin</span><span class="p">:</span> <span class="n">numpy.float64</span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">xmax</span><span class="p">:</span> <span class="n">numpy.float64</span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#get_xgrid_linear_at_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.get_xgrid_linear_at_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes a linear grid on x, maps to <cite>numpy.linspace</cite>
 corresponds to the flag <cite>linear&#64;id</cite></p>
 <dl class="field-list simple">
@@ -1206,9 +1206,9 @@ corresponds to the flag <cite>linear&#64;id</cite></p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.interpolation.get_xgrid_linear_at_log">
-<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">get_xgrid_linear_at_log</code><span class="sig-paren">(</span><em class="sig-param">grid_size: int</em>, <em class="sig-param">xmin: numpy.float64</em>, <em class="sig-param">xmax: numpy.float64 = 1.0</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#get_xgrid_linear_at_log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.get_xgrid_linear_at_log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">get_xgrid_linear_at_log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_size</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">xmin</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">xmax</span><span class="p">:</span> <span class="n">numpy.float64</span> <span class="o">=</span> <span class="default_value">1.0</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#get_xgrid_linear_at_log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.get_xgrid_linear_at_log" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes a linear grid on log(x), maps to <cite>numpy.logspace</cite>
 corresponds to the flag <cite>linear&#64;log</cite></p>
 <dl class="field-list simple">
@@ -1245,9 +1245,9 @@ the following parameters:</p>
 <li><p><cite>delta_t</cite>: value of <cite>delta_t</cite></p></li>
 </ul>
 </div></blockquote>
-<dl class="class">
+<dl class="py class">
 <dt id="eko.kernel_generation.KernelDispatcher">
-<em class="property">class </em><code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">KernelDispatcher</code><span class="sig-paren">(</span><em class="sig-param">interpol_dispatcher</em>, <em class="sig-param">constants</em>, <em class="sig-param">delta_t=None</em>, <em class="sig-param">numba_it=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">KernelDispatcher</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interpol_dispatcher</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">delta_t</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">numba_it</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The kernel dispatcher does the common preparation for the kernel functions</p>
 <p>Upon calling the appropiate <cite>compile_</cite> method the dispatcher will return
@@ -1263,31 +1263,31 @@ a <cite>numba</cite> compiled kernel.</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.kernel_generation.KernelDispatcher.compile_nonsinglet">
-<code class="sig-name descname">compile_nonsinglet</code><span class="sig-paren">(</span><em class="sig-param">nf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.compile_nonsinglet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.compile_nonsinglet" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">compile_nonsinglet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.compile_nonsinglet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.compile_nonsinglet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles the non-singlet integration kernel for each basis</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.kernel_generation.KernelDispatcher.compile_singlet">
-<code class="sig-name descname">compile_singlet</code><span class="sig-paren">(</span><em class="sig-param">nf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.compile_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.compile_singlet" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">compile_singlet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.compile_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.compile_singlet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles the singlet integration kernels for each basis</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.kernel_generation.KernelDispatcher.get_non_singlet_for_nf">
-<code class="sig-name descname">get_non_singlet_for_nf</code><span class="sig-paren">(</span><em class="sig-param">nf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.get_non_singlet_for_nf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.get_non_singlet_for_nf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_non_singlet_for_nf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.get_non_singlet_for_nf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.get_non_singlet_for_nf" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.kernel_generation.KernelDispatcher.get_singlet_for_nf">
-<code class="sig-name descname">get_singlet_for_nf</code><span class="sig-paren">(</span><em class="sig-param">nf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.get_singlet_for_nf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.get_singlet_for_nf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_singlet_for_nf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.get_singlet_for_nf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.get_singlet_for_nf" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.kernel_generation.KernelDispatcher.njit">
-<code class="sig-name descname">njit</code><span class="sig-paren">(</span><em class="sig-param">function</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.njit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.njit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">njit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">function</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.njit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.njit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Do nb.njit to the function if the <cite>numba_it</cite> flag is set to True.</p>
 <p>Check whether a list of functions is passed.</p>
 <dl class="field-list simple">
@@ -1303,35 +1303,35 @@ a <cite>numba</cite> compiled kernel.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.kernel_generation.KernelDispatcher.set_up_all_integrands">
-<code class="sig-name descname">set_up_all_integrands</code><span class="sig-paren">(</span><em class="sig-param">nf_values</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.set_up_all_integrands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.set_up_all_integrands" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_up_all_integrands</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf_values</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.set_up_all_integrands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.set_up_all_integrands" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles singlet and non-singlet integration kernel for each basis</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.kernel_generation.get_kernel_ns">
-<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">get_kernel_ns</code><span class="sig-paren">(</span><em class="sig-param">basis_function</em>, <em class="sig-param">nf</em>, <em class="sig-param">constants</em>, <em class="sig-param">beta_0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#get_kernel_ns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.get_kernel_ns" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">get_kernel_ns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">basis_function</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">beta_0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#get_kernel_ns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.get_kernel_ns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the non-singlet integration kernel</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.kernel_generation.get_kernels_s">
-<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">get_kernels_s</code><span class="sig-paren">(</span><em class="sig-param">basis_function</em>, <em class="sig-param">nf</em>, <em class="sig-param">constants</em>, <em class="sig-param">beta_0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#get_kernels_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.get_kernels_s" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">get_kernels_s</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">basis_function</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">beta_0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#get_kernels_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.get_kernels_s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return all singlet integration kernels</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.kernel_generation.prepare_non_singlet">
-<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">prepare_non_singlet</code><span class="sig-paren">(</span><em class="sig-param">kernels</em>, <em class="sig-param">path</em>, <em class="sig-param">jac</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#prepare_non_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.prepare_non_singlet" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">prepare_non_singlet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">kernels</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">jac</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#prepare_non_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.prepare_non_singlet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of integrands prepare to be run</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.kernel_generation.prepare_singlet">
-<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">prepare_singlet</code><span class="sig-paren">(</span><em class="sig-param">kernels</em>, <em class="sig-param">path</em>, <em class="sig-param">jac</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#prepare_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.prepare_singlet" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">prepare_singlet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">kernels</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">jac</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#prepare_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.prepare_singlet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of integrands prepare to be run</p>
 </dd></dl>
 
@@ -1390,9 +1390,9 @@ shift the parameter <span class="math notranslate nohighlight">\(c \to \infty\)<
 <span class="math notranslate nohighlight">\(\ln(x_i)-\ln(x_0) &gt; 0\)</span> and thus <span class="math notranslate nohighlight">\(|\exp(-N(\ln(x_i)-\ln(x_0)))| \to 0\)</span>.
 Together with the assumed vanishing of <span class="math notranslate nohighlight">\(\tilde h(N)\)</span> we can conclude
 <span class="math notranslate nohighlight">\(g(x_i) = 0\)</span>.</p>
-<dl class="function">
+<dl class="py function">
 <dt id="eko.mellin.compile_integrand">
-<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">compile_integrand</code><span class="sig-paren">(</span><em class="sig-param">iker</em>, <em class="sig-param">path</em>, <em class="sig-param">jac</em>, <em class="sig-param">do_numba=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#compile_integrand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.compile_integrand" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">compile_integrand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iker</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">jac</span></em>, <em class="sig-param"><span class="n">do_numba</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#compile_integrand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.compile_integrand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prepares the integration kernel <cite>iker</cite> to be integrated by the
 inverse mellin transform wrapper.</p>
 <p>It adds the correct prefactor, resolves the path, adds the jacobian
@@ -1410,7 +1410,7 @@ and applies the real part.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.mellin.get_path_Cauchy_tan">
 <code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">get_path_Cauchy_tan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#get_path_Cauchy_tan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.get_path_Cauchy_tan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cauchy-distribution like path, extended with tan to infinity.</p>
@@ -1432,7 +1432,7 @@ listed under <cite>Other Parameters</cite>.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.mellin.get_path_Talbot">
 <code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">get_path_Talbot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#get_path_Talbot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.get_path_Talbot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Talbot path.</p>
@@ -1459,7 +1459,7 @@ real axis</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.mellin.get_path_edge">
 <code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">get_path_edge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#get_path_edge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.get_path_edge" title="Permalink to this definition">¶</a></dt>
 <dd><p>Edged path with a given angle.</p>
@@ -1485,7 +1485,7 @@ listed under <cite>Other Parameters</cite>.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.mellin.get_path_line">
 <code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">get_path_line</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#get_path_line"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.get_path_line" title="Permalink to this definition">¶</a></dt>
 <dd><p>Textbook path, i.e. a straight line parallel to the imaginary axis.</p>
@@ -1510,9 +1510,9 @@ listed under <cite>Other Parameters</cite>.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.mellin.inverse_mellin_transform">
-<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">inverse_mellin_transform</code><span class="sig-paren">(</span><em class="sig-param">integrand</em>, <em class="sig-param">cut</em>, <em class="sig-param">extra_args</em>, <em class="sig-param">epsabs=1e-12</em>, <em class="sig-param">epsrel=1e-08</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#inverse_mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.inverse_mellin_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">inverse_mellin_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">integrand</span></em>, <em class="sig-param"><span class="n">cut</span></em>, <em class="sig-param"><span class="n">extra_args</span></em>, <em class="sig-param"><span class="n">epsabs</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">epsrel</span><span class="o">=</span><span class="default_value">1e-08</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#inverse_mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.inverse_mellin_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inverse Mellin transformation.</p>
 <p>Note that the inversion factor <span class="math notranslate nohighlight">\(x^{-N}\)</span> has already to be <em>included</em> in f(N).
 This convention usually improves the convergence of the integral. Typical kernels
@@ -1539,9 +1539,9 @@ determied by <span class="math notranslate nohighlight">\(t\in [c : 1-c]\)</span
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="eko.mellin.mellin_transform">
-<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">mellin_transform</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">N: complex</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.mellin_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">mellin_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.mellin_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mellin transformation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1568,9 +1568,9 @@ This is the driver class of eko as it is the one that collects all the
 previously instantiated information and does the actual computation of the Qs</p>
 <p>This class, however, has no knowledge about _what_ it does compute as
 everything must always come in externally</p>
-<dl class="class">
+<dl class="py class">
 <dt id="eko.operator_grid.OperatorGrid">
-<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorGrid</code><span class="sig-paren">(</span><em class="sig-param">threshold_holder</em>, <em class="sig-param">alpha_generator</em>, <em class="sig-param">kernel_dispatcher</em>, <em class="sig-param">xgrid</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorGrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">threshold_holder</span></em>, <em class="sig-param"><span class="n">alpha_generator</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em>, <em class="sig-param"><span class="n">xgrid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The operator grid is the driver class of the evolution.</p>
 <p>It receives as input a threshold holder and a generator of alpha_s.
@@ -1585,9 +1585,9 @@ From that point onwards it can compute any operator at any q2.</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.operator_grid.OperatorGrid.compute_q2grid">
-<code class="sig-name descname">compute_q2grid</code><span class="sig-paren">(</span><em class="sig-param">q2grid</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.compute_q2grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.compute_q2grid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">compute_q2grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2grid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.compute_q2grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.compute_q2grid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Receives a grid in q^2 and computes all operations necessary
 to return any operator at any given q for the evolution between qref and qgrid</p>
 <dl class="field-list simple">
@@ -1603,9 +1603,9 @@ to return any operator at any given q for the evolution between qref and qgrid</
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.operator_grid.OperatorGrid.get_op_at_q2">
-<code class="sig-name descname">get_op_at_q2</code><span class="sig-paren">(</span><em class="sig-param">qsq</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.get_op_at_q2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.get_op_at_q2" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_op_at_q2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">qsq</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.get_op_at_q2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.get_op_at_q2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a value of q^2, returns the PhysicalOperator to get
 to q^2 from q0^2</p>
 <dl class="field-list simple">
@@ -1621,9 +1621,9 @@ to q^2 from q0^2</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.operator_grid.OperatorGrid.set_q2_limits">
-<code class="sig-name descname">set_q2_limits</code><span class="sig-paren">(</span><em class="sig-param">q2min</em>, <em class="sig-param">q2max</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.set_q2_limits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.set_q2_limits" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_q2_limits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2min</span></em>, <em class="sig-param"><span class="n">q2max</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.set_q2_limits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.set_q2_limits" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets up the limits of the grid in q^2 to be computed by the OperatorGrid</p>
 <p>This function is a wrapper to compute the necessary operators to go between areas</p>
 <dl class="field-list simple">
@@ -1638,9 +1638,9 @@ to q^2 from q0^2</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="eko.operator_grid.OperatorMaster">
-<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorMaster</code><span class="sig-paren">(</span><em class="sig-param">alpha_generator</em>, <em class="sig-param">kernel_dispatcher</em>, <em class="sig-param">xgrid</em>, <em class="sig-param">nf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorMaster</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha_generator</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em>, <em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The OperatorMaster is instantiated for a given set of parameters
 And informs the generation of operators.</p>
@@ -1655,9 +1655,9 @@ And informs the generation of operators.</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.operator_grid.OperatorMaster.get_op">
-<code class="sig-name descname">get_op</code><span class="sig-paren">(</span><em class="sig-param">q2_from</em>, <em class="sig-param">q2_to</em>, <em class="sig-param">generate=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster.get_op"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster.get_op" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_op</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">generate</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster.get_op"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster.get_op" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a q2_from and a q2_to, returns a raw operator.
 If the <cite>generate</cite> flag is set to True, the operator will also be computed
 in place.</p>
@@ -1697,9 +1697,9 @@ order results. The results are also determined in Mellin space in
 terms of the anomalous dimensions (note the additional sign!)</p>
 <div class="math notranslate nohighlight">
 \[\gamma(N) = - \mathcal{M}[\mathbf{P}(x)](N)\]</div>
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.splitting_functions_LO.gamma_gg_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_gg_0</code><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_gg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_gg_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_gg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_gg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_gg_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order gluon-gluon anomalous dimension</p>
 <p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../Physics/index.html#vogt-2004mw" id="id14">[VMV04]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
@@ -1723,9 +1723,9 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.splitting_functions_LO.gamma_gq_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_gq_0</code><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_gq_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_gq_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_gq_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_gq_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_gq_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order gluon-quark anomalous dimension</p>
 <p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../Physics/index.html#vogt-2004mw" id="id15">[VMV04]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
@@ -1749,9 +1749,9 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.splitting_functions_LO.gamma_ns_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_ns_0</code><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_ns_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_ns_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_ns_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_ns_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_ns_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order non-singlet anomalous dimension.</p>
 <p>Implements Eq. (3.4) of <a class="bibtex reference internal" href="../../Physics/index.html#moch-2004pa" id="id16">[MVV04]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
@@ -1775,9 +1775,9 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.splitting_functions_LO.gamma_ps_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_ps_0</code><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_ps_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_ps_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_ps_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_ps_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_ps_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order pure-singlet anomalous dimension</p>
 <p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../Physics/index.html#vogt-2004mw" id="id17">[VMV04]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
@@ -1801,9 +1801,9 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.splitting_functions_LO.gamma_qg_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_qg_0</code><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_qg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_qg_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_qg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_qg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_qg_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order quark-gluon anomalous dimension</p>
 <p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../Physics/index.html#vogt-2004mw" id="id18">[VMV04]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
@@ -1825,9 +1825,9 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.splitting_functions_LO.get_Eigensystem_gamma_singlet_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">get_Eigensystem_gamma_singlet_0</code><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#get_Eigensystem_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.get_Eigensystem_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">get_Eigensystem_gamma_singlet_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#get_Eigensystem_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.get_Eigensystem_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the Eigensystem of the leading-order singlet anomalous dimension matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1856,9 +1856,9 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py function">
 <dt id="eko.splitting_functions_LO.get_gamma_singlet_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">get_gamma_singlet_0</code><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#get_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.get_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">get_gamma_singlet_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#get_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.get_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order singlet anomalous dimension matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\gamma_S^{(0)} = \left(\begin{array}
@@ -1890,9 +1890,9 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 <span id="eko-thresholds-module"></span><h2>eko.thresholds module<a class="headerlink" href="#module-eko.thresholds" title="Permalink to this headline">¶</a></h2>
 <p>This module holds the classes that define the FNS: Threshold,
 Area</p>
-<dl class="class">
+<dl class="py class">
 <dt id="eko.thresholds.Area">
-<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">Area</code><span class="sig-paren">(</span><em class="sig-param">q2_min</em>, <em class="sig-param">q2_max</em>, <em class="sig-param">q2_0</em>, <em class="sig-param">nf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Area" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">Area</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_min</span></em>, <em class="sig-param"><span class="n">q2_max</span></em>, <em class="sig-param"><span class="n">q2_0</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Area" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Sets up a single threhold area with a fixed configuration.</p>
 <dl class="field-list simple">
@@ -1905,9 +1905,9 @@ Area</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.thresholds.Area.q2_towards">
-<code class="sig-name descname">q2_towards</code><span class="sig-paren">(</span><em class="sig-param">q2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Area.q2_towards"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Area.q2_towards" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">q2_towards</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Area.q2_towards"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Area.q2_towards" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return q2_min or q2_max depending on whether
 we are going towards the max or the min or q2
 if we are alreay in the correct area</p>
@@ -1926,9 +1926,9 @@ if we are alreay in the correct area</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="eko.thresholds.Threshold">
-<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">Threshold</code><span class="sig-paren">(</span><em class="sig-param">q2_ref=None</em>, <em class="sig-param">scheme=None</em>, <em class="sig-param">threshold_list=None</em>, <em class="sig-param">nf=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">Threshold</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_ref</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">scheme</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">threshold_list</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nf</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The threshold class holds information about the thresholds any
 Q2 has to pass in order to get there from a given q2_ref and scheme.</p>
@@ -1942,9 +1942,9 @@ Q2 has to pass in order to get there from a given q2_ref and scheme.</p>
 </ul>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="eko.thresholds.Threshold.get_areas">
-<code class="sig-name descname">get_areas</code><span class="sig-paren">(</span><em class="sig-param">q2arr</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.get_areas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.get_areas" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_areas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.get_areas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.get_areas" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the Areas in which each value of q2arr falls</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1959,9 +1959,9 @@ Q2 has to pass in order to get there from a given q2_ref and scheme.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.thresholds.Threshold.get_areas_idx">
-<code class="sig-name descname">get_areas_idx</code><span class="sig-paren">(</span><em class="sig-param">q2arr</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.get_areas_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.get_areas_idx" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_areas_idx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.get_areas_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.get_areas_idx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the index of the area in which each value of q2arr falls.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1976,9 +1976,9 @@ Q2 has to pass in order to get there from a given q2_ref and scheme.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.thresholds.Threshold.get_composition_path">
-<code class="sig-name descname">get_composition_path</code><span class="sig-paren">(</span><em class="sig-param">nf</em>, <em class="sig-param">n_thres</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.get_composition_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.get_composition_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_composition_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">n_thres</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.get_composition_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.get_composition_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterates all flavour targets.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1996,9 +1996,9 @@ Q2 has to pass in order to get there from a given q2_ref and scheme.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.thresholds.Threshold.get_path_from_q2_ref">
-<code class="sig-name descname">get_path_from_q2_ref</code><span class="sig-paren">(</span><em class="sig-param">q2</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.get_path_from_q2_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.get_path_from_q2_ref" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_path_from_q2_ref</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.get_path_from_q2_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.get_path_from_q2_ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get the Area path from q2_ref to q2.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2015,7 +2015,7 @@ last one contains q2</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.thresholds.Threshold.nf_range">
 <code class="sig-name descname">nf_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Threshold.nf_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Threshold.nf_range" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterate number of flavours, including min_nf <em>and</em> max_nf</p>
@@ -2026,7 +2026,7 @@ last one contains q2</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="eko.thresholds.Threshold.nf_ref">
 <em class="property">property </em><code class="sig-name descname">nf_ref</code><a class="headerlink" href="#eko.thresholds.Threshold.nf_ref" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of flavours in the reference area</p>

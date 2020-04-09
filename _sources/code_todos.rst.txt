@@ -9,20 +9,6 @@ Fom Docstrings
 Fom Source Code
 ---------------
 
-`mellin.py <file:///home/runner/work/eko/eko/src/eko/mellin.py>`_
-
-.. warning:: #345 if we keep this function open, we might also think about an implementation (t_float)
-
-
-
-`alpha_s.py <file:///home/runner/work/eko/eko/src/eko/alpha_s.py>`_
-
-.. warning:: #233 add higher orders ...
-
-.. warning:: #275 set up a cache system here
-
-
-
 `operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
 
 .. warning:: #10 the operator grid should have a "save" and "load" method which will allow to store the full grid
@@ -31,15 +17,17 @@ Fom Source Code
 
 
 
-`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
+`mellin.py <file:///home/runner/work/eko/eko/src/eko/mellin.py>`_
 
-.. warning:: #48 Should this be a parameter or can it be hardcoded?
+.. warning:: #345 if we keep this function open, we might also think about an implementation (t_float)
 
-.. warning:: #72 there are still a few hard-coded things in this class
 
-.. warning:: #102 this is just a hack because I'm not able to generalize this part
 
-.. warning:: #149 can this be made more concise, or is this really the best that can be done?
+`dglap.py <file:///home/runner/work/eko/eko/src/eko/dglap.py>`_
+
+.. warning:: #81 the setup dictionary is a mess tbh
+
+.. warning:: #136 rotation from the evolution basis to flavor basis? if yes, here!
 
 
 
@@ -63,11 +51,23 @@ Fom Source Code
 
 
 
-`dglap.py <file:///home/runner/work/eko/eko/src/eko/dglap.py>`_
+`alpha_s.py <file:///home/runner/work/eko/eko/src/eko/alpha_s.py>`_
 
-.. warning:: #81 the setup dictionary is a mess tbh
+.. warning:: #233 add higher orders ...
 
-.. warning:: #136 rotation from the evolution basis to flavor basis? if yes, here!
+.. warning:: #275 set up a cache system here
+
+
+
+`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
+
+.. warning:: #48 Should this be a parameter or can it be hardcoded?
+
+.. warning:: #72 there are still a few hard-coded things in this class
+
+.. warning:: #102 this is just a hack because I'm not able to generalize this part
+
+.. warning:: #149 can this be made more concise, or is this really the best that can be done?
 
 
 
