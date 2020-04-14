@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Math.html#solving-dglap">Solving DGLAP</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Interpolation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#algorithm">Algorithm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
@@ -96,6 +97,9 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Dev:</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../code_todos.html">TODOs</a></li>
 </ul>
 
@@ -172,17 +176,14 @@ Therefore, we define the basis grid</p>
 <p>from which we define our interpolation</p>
 <div class="math notranslate nohighlight">
 \[f(x) \sim \bar f(x) \sum\limits_{j=0}^{N_{grid} - 1 } f(x_j) p_j(x)\]</div>
-<p>Thus each grid point <span class="math notranslate nohighlight">\(x_j\)</span> has an associated interpolation polynomial <span class="math notranslate nohighlight">\(p_j(x)\)</span>.
+<p>Thus each grid point <span class="math notranslate nohighlight">\(x_j\)</span> has an associated interpolation polynomial <span class="math notranslate nohighlight">\(p_j(x)\)</span>
+(represented by <a class="reference internal" href="../modules/eko/eko.html#eko.interpolation.BasisFunction" title="eko.interpolation.BasisFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.BasisFunction</span></code></a>).
 We interpolate in <span class="math notranslate nohighlight">\(\ln(x)\)</span> using Lagrange interpolation among the nearest
 <span class="math notranslate nohighlight">\(N_{degree}+1\)</span> points, which renders the <span class="math notranslate nohighlight">\(p_j(x)\)</span>: polynomials of order
-<span class="math notranslate nohighlight">\(O(\ln^{N_{degree}}(x))\)</span>. The interpolation routine can be outlined by the following
-image:</p>
-<div class="figure align-center" id="id1">
-<img alt="../_images/grid.png" src="../_images/grid.png" />
-<p class="caption"><span class="caption-text">Example interpolation configuration with <span class="math notranslate nohighlight">\(N_{grid}=9\)</span> points using a polynomial
-of degree <span class="math notranslate nohighlight">\(N_{degree}=3\)</span> to interpolate. It has 8 areas and 6 blocks.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
-<p>First, we split the interpolation region into several Areas (represented by
+<span class="math notranslate nohighlight">\(O(\ln^{N_{degree}}(x))\)</span>.</p>
+<div class="section" id="algorithm">
+<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h2>
+<p>First, we split the interpolation region into several areas (represented by
 <a class="reference internal" href="../modules/eko/eko.html#eko.interpolation.Area" title="eko.interpolation.Area"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.Area</span></code></a>), which are bound by the grid points:</p>
 <div class="math notranslate nohighlight">
 \[A_j = (x_j,x_{j+1}], \quad \text{for}~j=0,\ldots,N_{grid}-2\]</div>
@@ -193,35 +194,69 @@ have a fixed upper bound (<span class="math notranslate nohighlight">\(x=1\)</sp
 and contain the needed amount of points:</p>
 <div class="math notranslate nohighlight">
 \[B_j = \{x_j,\ldots,x_{j+N_{degree}+1}\} \quad \text{for}~j=0,\ldots,N_{grid}-N_{degree}-2\]</div>
-<div class="section" id="algorithm">
-<h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h2>
 <p>Now, we construct the interpolation in a bottom-up approach for a given point
-<span class="math notranslate nohighlight">\(\bar x\)</span> for the interpolating function <span class="math notranslate nohighlight">\(\bar f(\bar x)\)</span></p>
+<span class="math notranslate nohighlight">\(\bar x\)</span> for the interpolating function <span class="math notranslate nohighlight">\(\bar f(\bar x)\)</span>.
+(The actual implementation is done in <a class="reference internal" href="../modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher" title="eko.interpolation.InterpolatorDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.InterpolatorDispatcher</span></code></a>)</p>
 <ol class="arabic simple">
-<li><p>Determine the active relevant area <span class="math notranslate nohighlight">\(\bar A(\bar x)\)</span> :</p></li>
+<li><p>Determine the relevant active area <span class="math notranslate nohighlight">\(\bar A(\bar x)\)</span> :</p></li>
 </ol>
 <div class="math notranslate nohighlight">
 \[\bar A(\bar x) = A_j : \bar x \in A_j\]</div>
-<p>2. Determine the associated block <span class="math notranslate nohighlight">\(\bar B(\bar A)\)</span> :
+<ol class="arabic simple" start="2">
+<li><p>Determine the associated block <span class="math notranslate nohighlight">\(\bar B(\bar A)\)</span> :
 Choose the block in which <span class="math notranslate nohighlight">\(\bar A(\bar x)\)</span> is located most central.
 For an odd number of <span class="math notranslate nohighlight">\(N_{degree}\)</span> choose the block which is
-loacted higher, i.e. closer to <span class="math notranslate nohighlight">\(x=1\)</span>. At the border of the grid, choose
-the “most central”.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">Example configuration</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A0 -&gt; B0, A1 -&gt; B0, A2 -&gt; B1, A3 -&gt; B2, A4 -&gt; B3, A5-&gt; B4, A6 -&gt; B5, A7 -&gt; B5
-</pre></div>
-</div>
-</div>
-<p>3. Only the points and their associated polynomials which are in <span class="math notranslate nohighlight">\(\bar B\)</span>
-participate in the interpolation of <span class="math notranslate nohighlight">\(\bar f(\bar x)\)</span>. All other polynomials vanish:</p>
+loacted higher, i.e. closer to <span class="math notranslate nohighlight">\(x=1\)</span> (following the choice of borders
+for the areas). At the border of the grid, choose the “most central”.</p></li>
+<li><p>Only the points and their associated polynomials which are in <span class="math notranslate nohighlight">\(\bar B\)</span>
+participate in the interpolation of <span class="math notranslate nohighlight">\(\bar f(\bar x)\)</span>.
+All other polynomials vanish:</p></li>
+</ol>
 <div class="math notranslate nohighlight">
-\[p_j(\bar x) = 0 \quad \text{for}~\{j : x_j \not\in \bar B \}\]</div>
+\[p_j(\bar x) = 0 \quad \text{for}~j : x_j \not\in \bar B\]</div>
 <ol class="arabic simple" start="4">
 <li><p>The active polynomials build a Lagrange interpolation over their associated points</p></li>
 </ol>
 <div class="math notranslate nohighlight">
-\[p_j(\bar x) = \prod\limits_{j\neq k} \frac{\ln(x) - \ln(x_k)}{\ln(x_j) - \ln(x_k)} \quad \text{for}~\{j,k : x_{j,k} \in \bar B \}\]</div>
+\[p_j(\bar x) = \prod\limits_{j\neq k} \frac{\ln(x) - \ln(x_k)}{\ln(x_j) - \ln(x_k)} \quad \text{for}~j,k : x_{j,k} \in \bar B\]</div>
+<p>The generated polynomials are orthonormal in the following sense</p>
+<div class="math notranslate nohighlight">
+\[p_j(x_k) = \delta_{jk}, \quad \text{for}~j,k=0,\ldots,N_{grid}-1\]</div>
+<p>and thus continuous, however, they are not necessarily differentiable.
+They are also complete in the following sense</p>
+<div class="math notranslate nohighlight">
+\[\sum\limits_{j=0}^{N_{grid}-1} p_j(x) = 1, \quad \text{for}~x \in (\text{min}(\mathbb G),\text{max}(\mathbb G)]\]</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>To outline the interpolation algorithm, let’s consider the following example configuration:</p>
+<div class="figure align-center" id="id2">
+<img alt="../_images/interpolation-grid.png" src="../_images/interpolation-grid.png" />
+<p class="caption"><span class="caption-text">Example interpolation configuration with <span class="math notranslate nohighlight">\(N_{grid}=9\)</span> points using a polynomial
+of degree <span class="math notranslate nohighlight">\(N_{degree}=3\)</span> to interpolate. It has 8 areas and 6 blocks.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The mapping between areas and blocks are then given by</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Mapping in the example configuration</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>A0 -&gt; B0, A1 -&gt; B0, A2 -&gt; B1, A3 -&gt; B2, A4 -&gt; B3, A5-&gt; B4, A6 -&gt; B5, A7 -&gt; B5
+</pre></div>
+</div>
+</div>
+<p>The generated polynomials then look like:</p>
+<div class="figure align-center" id="id4">
+<img alt="../_images/interpolation-polynomials.png" src="../_images/interpolation-polynomials.png" />
+<p class="caption"><span class="caption-text">Selected polynomials of the example configuration. The 9 points have been placed
+logarithmically equidistant in <span class="math notranslate nohighlight">\((10^{-5},1]\)</span>. Note that <span class="math notranslate nohighlight">\(p_4(x)\)</span>
+is still piecewise of degree 3.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<ul class="simple">
+<li><p>document grid generation</p></li>
+<li><p>we seem to require a linear grid at large x</p></li>
+<li><p>given some hints about typical choices of N_grid/N_degree -&gt; do we want to comment about benchmarks?</p></li>
+</ul>
+</div>
 </div>
 </div>
 
