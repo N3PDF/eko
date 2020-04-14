@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Mathematical ingredients &mdash; EKO  documentation</title>
+  <title>QCD ingredients &mdash; EKO  documentation</title>
   
 
   
@@ -84,10 +84,10 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Physics documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Mathematical ingredients</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#qcd-ingredients">QCD ingredients</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QCD ingredients</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#solving-dglap">Solving DGLAP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#references">References</a></li>
 </ul>
@@ -144,7 +144,7 @@
         
           <li><a href="index.html">Physics documentation</a> &raquo;</li>
         
-      <li>Mathematical ingredients</li>
+      <li>QCD ingredients</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -163,60 +163,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="mathematical-ingredients">
-<h1>Mathematical ingredients<a class="headerlink" href="#mathematical-ingredients" title="Permalink to this headline">¶</a></h1>
-<p>We solve the equations in Mellin-space as there multiplicative convolution is
-mapped onto a normal multiplication and thus integro-differential equations,
-such as DGLAP equations, are instead just normal differential equations.
-The Mellin transformation is given by</p>
-<div class="math notranslate nohighlight">
-\[\tilde g(N) = \mathcal{M}[g(x)](N) = \int\limits_{0}^{1} x^{N-1} g(x)\,dx\]</div>
-<p>where we will denote all objects in Mellin-space with an additional tilde.
-The inverse Mellin transformation is given by</p>
-<div class="math notranslate nohighlight">
-\[g(x) = \mathcal{M}^{-1}[\tilde g(N)](x) = \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x^{-N} \tilde g(N)\,dN\]</div>
-<p>for a suitable path <span class="math notranslate nohighlight">\(\mathcal{P}(t)\)</span>. The textbook path is given by
-<span class="math notranslate nohighlight">\(p(t) = c + i t\)</span>. In the code the more efficient Talbot
-path <a class="bibtex reference internal" href="index.html#abate" id="id1">[AV04]</a> is used.</p>
-<p>We will also use approximation theory, i.e., we interpolate the unkown PDF as a
-weighted sum of polynomials</p>
-<div class="math notranslate nohighlight">
-\[f(x,t_0) = \sum_{j=1}^{N_{grid}} f(x_j,t_0) \cdot p_j(x)\]</div>
-<p>The current implementation uses a grid <span class="math notranslate nohighlight">\(\{x_j\}\)</span> defined by the user and
-a Lagrange interpolation in <span class="math notranslate nohighlight">\(\log(x)\)</span> using the nearest <span class="math notranslate nohighlight">\(k\)</span> points.
-Thus the interpolation polynomials <span class="math notranslate nohighlight">\(\{p_j(x)\}\)</span> are all of degree
-<span class="math notranslate nohighlight">\((k-1)\)</span>.</p>
-<p>The multiplicative convolution integral runs from <span class="math notranslate nohighlight">\(x\)</span> to 1, thus only
-basis functions which have support above <span class="math notranslate nohighlight">\(x\)</span> may contribute to the
-integral. This information is encoded in N-space in the following way: Due
-to the Mellin kernel <span class="math notranslate nohighlight">\(x^{N-1}\)</span> any piecewise polynomial, such as we
-are doing, are proportional to
-<span class="math notranslate nohighlight">\(x_{\text{min/max}}^N = \exp(N\ln(x_{\text{min/max}}))\)</span>. When
-multiplied with the inverse Mellin kernel <span class="math notranslate nohighlight">\(x^{-N}\)</span> this leads to an
-expresion which is propotional to</p>
-<div class="math notranslate nohighlight">
-\[\exp(N(\ln(x_{\text{min/max}})-\ln(x)))\,.\]</div>
-<p>Thus, if</p>
-<div class="math notranslate nohighlight">
-\[\ln(x_{\text{min/max}})-\ln(x) &lt;= 0 \Leftrightarrow x_{\text{min/max}} - x &lt;= 0\]</div>
-<p>we can integrate these terms with their own contour. We can choose the textbook
-contour with <span class="math notranslate nohighlight">\(Re(\mathcal P(t)) \to \infty\)</span> and thus these terms get
-exponentially suppressed. In the limit these terms vanish exactly and thus we
-exclude them from our numerical kernels.</p>
-</div>
-<div class="section" id="qcd-ingredients">
+  <div class="section" id="qcd-ingredients">
 <h1>QCD ingredients<a class="headerlink" href="#qcd-ingredients" title="Permalink to this headline">¶</a></h1>
 <p>We use perturbative QCD with the running coupling
 <span class="math notranslate nohighlight">\(a_s(\mu_F^2) = \alpha_s(\mu_F^2)/(4\pi)\)</span> given by
-<a class="bibtex reference internal" href="index.html#herzog-2017ohr" id="id2">[HRU+17]</a> <a class="bibtex reference internal" href="index.html#luthe-2016ima" id="id3">[LMMS16]</a> <a class="bibtex reference internal" href="index.html#baikov-2016tgj" id="id4">[BCK17]</a></p>
+<a class="bibtex reference internal" href="index.html#herzog-2017ohr" id="id1">[HRU+17]</a> <a class="bibtex reference internal" href="index.html#luthe-2016ima" id="id2">[LMMS16]</a> <a class="bibtex reference internal" href="index.html#baikov-2016tgj" id="id3">[BCK17]</a></p>
 <div class="math notranslate nohighlight">
-\[\frac{da_s}{d\ln\mu^2} = \beta(a) \
-= - \sum\limits_{n=0} \beta_n a_s^{n+2}\]</div>
+\[\frac{da_s}{d\ln\mu^2} = \beta(a_s) \
+= - \sum\limits_{j=0} \beta_n a_s^{j+2}\]</div>
 <p>The Altarelli-Parisi splitting kernels can be expanded in powers of the strong
 coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and are given by
-<a class="bibtex reference internal" href="index.html#moch-2004pa" id="id5">[MVV04]</a> <a class="bibtex reference internal" href="index.html#vogt-2004mw" id="id6">[VMV04]</a></p>
+<a class="bibtex reference internal" href="index.html#moch-2004pa" id="id4">[MVV04]</a> <a class="bibtex reference internal" href="index.html#vogt-2004mw" id="id5">[VMV04]</a></p>
 <div class="math notranslate nohighlight">
-\[\mathbf{P}(x,\mu^2)  = - \sum\limits_{n=0} a_s^{n+1}(\mu^2) \mathbf P^{(n)}(x)\]</div>
+\[\begin{split}\mathbf{P}(x,\mu^2) &amp;= \sum\limits_{j=0} a_s^{j+1}(\mu^2) \mathbf{P}^{(j)}(x) \\
+\tilde{\gamma}^{(j)}(N) &amp;= -\mathcal{M}[\mathbf{P}^{(j)}(x)](N)\end{split}\]</div>
 </div>
 <div class="section" id="solving-dglap">
 <h1>Solving DGLAP<a class="headerlink" href="#solving-dglap" title="Permalink to this headline">¶</a></h1>
@@ -230,7 +190,7 @@ coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and ar
     \int\limits_x^1\!\frac{dy}{y}\, P_{ns}(y/x) \cdot f_{ns}(y,\mu_F^2)\]</div>
 <p>We can thus write the non-siglet equations in N-space by</p>
 <div class="math notranslate nohighlight">
-\[\frac{d\tilde f_{ns}(N,\mu_F^2)}{d\ln(\mu_F^2)} = \tilde P_{ns}(N) \cdot \tilde f_{ns}(N,\mu_F^2)\]</div>
+\[\frac{d\tilde f_{ns}(N,\mu_F^2)}{d\ln(\mu_F^2)} = -\tilde \gamma_{ns}(N) \cdot \tilde f_{ns}(N,\mu_F^2)\]</div>
 <p>We also change the evolution variable to
 <span class="math notranslate nohighlight">\(t(\mu_F^2) = \ln(1/a_s(\mu_F^2))\)</span>
 and then the differential equations to solve is given by</p>
@@ -252,8 +212,8 @@ evolution kernel operator <span class="math notranslate nohighlight">\(\hat O\)<
 find</p>
 <div class="math notranslate nohighlight">
 \[f^{(0)}(x_k,t_1) = \hat O_{k,j}^{(0)}(t_1,t_0) f^{(0)}(x_j,t_0)\]</div>
-<p>The benchmarking LHA reference is given by <a class="bibtex reference internal" href="index.html#giele-2002hx" id="id7">[G+02]</a>
-and <a class="bibtex reference internal" href="index.html#dittmar-2005ed" id="id8">[D+05]</a>.</p>
+<p>The benchmarking LHA reference is given by <a class="bibtex reference internal" href="index.html#giele-2002hx" id="id6">[G+02]</a>
+and <a class="bibtex reference internal" href="index.html#dittmar-2005ed" id="id7">[D+05]</a>.</p>
 </div>
 
 

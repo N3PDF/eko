@@ -19,7 +19,7 @@ Fom Source Code
 
 `mellin.py <file:///home/runner/work/eko/eko/src/eko/mellin.py>`_
 
-.. warning:: #345 if we keep this function open, we might also think about an implementation (t_float)
+.. warning:: #299 if we keep this function open, we might also think about an implementation (t_float)
 
 
 

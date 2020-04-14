@@ -158,32 +158,6 @@
 <span class="sd">    It contains the actual transformations itself, as well as the necessary tools</span>
 <span class="sd">    such as the definition of paths.</span>
 
-<span class="sd">    Definition</span>
-<span class="sd">    ----------</span>
-
-<span class="sd">    The inverse Mellin transformation :math:`g(x)` of a function :math:`\tilde g(N)` is given by</span>
-
-<span class="sd">    .. math::</span>
-
-<span class="sd">        g(x) = \mathcal{M}^{-1}[\tilde g(N)](x)</span>
-<span class="sd">             = \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x^{-N} \tilde g(N)\,dN</span>
-
-<span class="sd">    for a suitable integration path :math:`\mathcal P` which runs to the right to the right-most</span>
-<span class="sd">    pole of :math:`\tilde g(N)`. For the implementation we will assume that the integration path</span>
-<span class="sd">    :math:`\mathcal P` is given by</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">        \mathcal P : [0:1] \to \mathbb C : t \to \mathcal P(t)\quad</span>
-<span class="sd">            \text{with}~\mathcal P(1/2-t) = \mathcal P^*(1/2+t)</span>
-
-<span class="sd">    where :math:`\mathcal P^*` denotes complex conjugation. Assuming further :math:`\tilde g`</span>
-<span class="sd">    to be a holomorphic function along the path, we can rewrite the inversion integral by</span>
-
-<span class="sd">    .. math::</span>
-
-<span class="sd">        g(x) &amp;= \frac{1}{2\pi i} \int\limits_{0}^{1} x^{-\mathcal{P}(t)} \tilde g(\mathcal{P}(t)) \frac{d\mathcal{P}(t)}{dt} \,dt\\</span>
-<span class="sd">             &amp;= \frac{1}{\pi} \int\limits_{1/2}^{1} \Re \left(  x^{-\mathcal{P}(t)} \tilde g(\mathcal{P}(t)) \frac 1 i \frac{d\mathcal{P}(t)}{dt} \right) \,dt</span>
-
 <span class="sd">    The integral routine is provided by `scipy.integrate.quad &lt;https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html?highlight=quad#scipy.integrate.quad&gt;`_</span>
 
 <span class="sd">    Integration Paths</span>
@@ -203,26 +177,6 @@
 <span class="sd">    for the singlet sector. Note that the non-singlet kernels evolve poles only up to</span>
 <span class="sd">    :math:`N=0` whereas the singlet kernels have poles up to :math:`N=1`.</span>
 
-<span class="sd">    Inversion of Factorizable Kernels</span>
-<span class="sd">    ---------------------------------</span>
-
-<span class="sd">    If the integration kernel :math:`\tilde g(N)` can be factorized</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">        \tilde g(N) = x_0^N \cdot \tilde h(N)</span>
-
-<span class="sd">    with :math:`x_0` a fixed number in :math:`[0:1]` and :math:`\lim_{N\to\infty}h(N)\to 0`,</span>
-<span class="sd">    the inversion can be simplified if the inversion point :math:`x_i` is **above** :math:`x_0`.</span>
-
-<span class="sd">    .. math::</span>
-<span class="sd">        g(x_i) &amp;= \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x_i^{-N} x_0^N \tilde h(N)\,dN \\</span>
-<span class="sd">            &amp;= \frac{1}{2\pi i} \int\limits_{\mathcal{P}} \exp(-N(\ln(x_i)-\ln(x_0))) \tilde h(N)\,dN</span>
-
-<span class="sd">    Now, take the textbook path :math:`p : \mathbb R \to \mathbb C : t \to p(t) = c + i t` and</span>
-<span class="sd">    shift the parameter :math:`c \to \infty`. As :math:`x_i &gt; x_0` it follows immediately</span>
-<span class="sd">    :math:`\ln(x_i)-\ln(x_0) &gt; 0` and thus :math:`|\exp(-N(\ln(x_i)-\ln(x_0)))| \to 0`.</span>
-<span class="sd">    Together with the assumed vanishing of :math:`\tilde h(N)` we can conclude</span>
-<span class="sd">    :math:`g(x_i) = 0`.</span>
 <span class="sd">&quot;&quot;&quot;</span><span class="c1">#pylint:disable=line-too-long</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>

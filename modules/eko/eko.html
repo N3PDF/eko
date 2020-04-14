@@ -99,9 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.interpolation">eko.interpolation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.kernel_generation">eko.kernel_generation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.mellin">eko.mellin module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#definition">Definition</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#integration-paths">Integration Paths</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#inversion-of-factorizable-kernels">Inversion of Factorizable Kernels</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.operator_grid">eko.operator_grid module</a></li>
@@ -1345,30 +1343,12 @@ a <cite>numba</cite> compiled kernel.</p>
 <a class="reference external" href="https://en.wikipedia.org/wiki/Mellin_inversion_theorem">inverse Mellin transformation</a>.</p>
 <p>It contains the actual transformations itself, as well as the necessary tools
 such as the definition of paths.</p>
-<div class="section" id="definition">
-<h3>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h3>
-<p>The inverse Mellin transformation <span class="math notranslate nohighlight">\(g(x)\)</span> of a function <span class="math notranslate nohighlight">\(\tilde g(N)\)</span> is given by</p>
-<div class="math notranslate nohighlight">
-\[g(x) = \mathcal{M}^{-1}[\tilde g(N)](x)
-     = \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x^{-N} \tilde g(N)\,dN\]</div>
-<p>for a suitable integration path <span class="math notranslate nohighlight">\(\mathcal P\)</span> which runs to the right to the right-most
-pole of <span class="math notranslate nohighlight">\(\tilde g(N)\)</span>. For the implementation we will assume that the integration path
-<span class="math notranslate nohighlight">\(\mathcal P\)</span> is given by</p>
-<div class="math notranslate nohighlight">
-\[\mathcal P : [0:1] \to \mathbb C : t \to \mathcal P(t)\quad
-    \text{with}~\mathcal P(1/2-t) = \mathcal P^*(1/2+t)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathcal P^*\)</span> denotes complex conjugation. Assuming further <span class="math notranslate nohighlight">\(\tilde g\)</span>
-to be a holomorphic function along the path, we can rewrite the inversion integral by</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}g(x) &amp;= \frac{1}{2\pi i} \int\limits_{0}^{1} x^{-\mathcal{P}(t)} \tilde g(\mathcal{P}(t)) \frac{d\mathcal{P}(t)}{dt} \,dt\\
-     &amp;= \frac{1}{\pi} \int\limits_{1/2}^{1} \Re \left(  x^{-\mathcal{P}(t)} \tilde g(\mathcal{P}(t)) \frac 1 i \frac{d\mathcal{P}(t)}{dt} \right) \,dt\end{split}\]</div>
 <p>The integral routine is provided by <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html?highlight=quad#scipy.integrate.quad">scipy.integrate.quad</a></p>
-</div>
 <div class="section" id="integration-paths">
 <h3>Integration Paths<a class="headerlink" href="#integration-paths" title="Permalink to this headline">¶</a></h3>
 <p>Although this module provides four different path implementations (<a class="reference internal" href="#eko.mellin.get_path_Talbot" title="eko.mellin.get_path_Talbot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Talbot()</span></code></a>,
 <a class="reference internal" href="#eko.mellin.get_path_line" title="eko.mellin.get_path_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_line()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_edge" title="eko.mellin.get_path_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_edge()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_Cauchy_tan" title="eko.mellin.get_path_Cauchy_tan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Cauchy_tan()</span></code></a>) in practice
-only the Talbot path <a class="bibtex reference internal" href="../../Physics/index.html#abate" id="id11">[AV04]</a></p>
+only the Talbot path <span class="bibtex" id="id11">[Abate]</span></p>
 <div class="math notranslate nohighlight">
 \[p_{\text{Talbot}}(t) =  o + r \cdot ( \theta \cot(\theta) + i\theta)\quad
     \text{with}~\theta = \pi(2t-1)\]</div>
@@ -1377,22 +1357,6 @@ for the parameters <span class="math notranslate nohighlight">\(r,o\)</span> are
 the non-singlet integrals and by <span class="math notranslate nohighlight">\(r = \frac{2}{5} \frac{16}{1 - \ln(x)}, o = 1\)</span>
 for the singlet sector. Note that the non-singlet kernels evolve poles only up to
 <span class="math notranslate nohighlight">\(N=0\)</span> whereas the singlet kernels have poles up to <span class="math notranslate nohighlight">\(N=1\)</span>.</p>
-</div>
-<div class="section" id="inversion-of-factorizable-kernels">
-<h3>Inversion of Factorizable Kernels<a class="headerlink" href="#inversion-of-factorizable-kernels" title="Permalink to this headline">¶</a></h3>
-<p>If the integration kernel <span class="math notranslate nohighlight">\(\tilde g(N)\)</span> can be factorized</p>
-<div class="math notranslate nohighlight">
-\[\tilde g(N) = x_0^N \cdot \tilde h(N)\]</div>
-<p>with <span class="math notranslate nohighlight">\(x_0\)</span> a fixed number in <span class="math notranslate nohighlight">\([0:1]\)</span> and <span class="math notranslate nohighlight">\(\lim_{N\to\infty}h(N)\to 0\)</span>,
-the inversion can be simplified if the inversion point <span class="math notranslate nohighlight">\(x_i\)</span> is <strong>above</strong> <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}g(x_i) &amp;= \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x_i^{-N} x_0^N \tilde h(N)\,dN \\
-    &amp;= \frac{1}{2\pi i} \int\limits_{\mathcal{P}} \exp(-N(\ln(x_i)-\ln(x_0))) \tilde h(N)\,dN\end{split}\]</div>
-<p>Now, take the textbook path <span class="math notranslate nohighlight">\(p : \mathbb R \to \mathbb C : t \to p(t) = c + i t\)</span> and
-shift the parameter <span class="math notranslate nohighlight">\(c \to \infty\)</span>. As <span class="math notranslate nohighlight">\(x_i &gt; x_0\)</span> it follows immediately
-<span class="math notranslate nohighlight">\(\ln(x_i)-\ln(x_0) &gt; 0\)</span> and thus <span class="math notranslate nohighlight">\(|\exp(-N(\ln(x_i)-\ln(x_0)))| \to 0\)</span>.
-Together with the assumed vanishing of <span class="math notranslate nohighlight">\(\tilde h(N)\)</span> we can conclude
-<span class="math notranslate nohighlight">\(g(x_i) = 0\)</span>.</p>
 <dl class="py function">
 <dt id="eko.mellin.compile_integrand">
 <code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">compile_integrand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iker</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">jac</span></em>, <em class="sig-param"><span class="n">do_numba</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#compile_integrand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.compile_integrand" title="Permalink to this definition">¶</a></dt>

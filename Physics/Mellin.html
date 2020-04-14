@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mellin Space and Transformations &mdash; EKO  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Matching Conditions on Crossing Thresholds" href="Matching.html" />
+    <link rel="prev" title="Interpolation" href="Interpolation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Physics documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Math.html">QCD ingredients</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Math.html#solving-dglap">Solving DGLAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mellin Space and Transformations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#important-examples">Important Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#polynomials">Polynomials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#logarithms">Logarithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plus-distributions">Plus Distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#inversion-of-factorizable-kernels">Inversion of Factorizable Kernels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convolution">Convolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Dev:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Physics documentation</a> &raquo;</li>
+        
+      <li>Mellin Space and Transformations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Physics/Mellin.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mellin-space-and-transformations">
+<h1>Mellin Space and Transformations<a class="headerlink" href="#mellin-space-and-transformations" title="Permalink to this headline">¶</a></h1>
+<p>We solve the equations in Mellin-space as there multiplicative convolution is
+mapped onto a normal multiplication and thus integro-differential equations,
+such as DGLAP equations, are instead just normal differential equations.</p>
+<p>The Mellin transformation is given by</p>
+<div class="math notranslate nohighlight">
+\[\tilde g(N) = \mathcal{M}[g(x)](N) = \int\limits_{0}^{1} x^{N-1} g(x)\,dx\]</div>
+<p>where we will denote all objects in Mellin-space with an additional tilde.
+The inverse Mellin transformation is given by</p>
+<div class="math notranslate nohighlight">
+\[g(x) = \mathcal{M}^{-1}[\tilde g(N)](x) = \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x^{-N} \tilde g(N)\,dN\]</div>
+<p>for a suitable path <span class="math notranslate nohighlight">\(\mathcal{P}(t)\)</span> which runs to the right to the right-most
+pole of <span class="math notranslate nohighlight">\(\tilde g(N)\)</span>. For the implementation we will assume that the integration path
+<span class="math notranslate nohighlight">\(\mathcal P\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\mathcal P : [0,1] \to \mathbb C : t \to \mathcal P(t)\quad
+    \text{with}~\mathcal P(1/2-t) = \mathcal P^*(1/2+t)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathcal P^*\)</span> denotes complex conjugation. Assuming further <span class="math notranslate nohighlight">\(\tilde g\)</span>
+to be a holomorphic function along the path, we can rewrite the inversion integral by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g(x) &amp;= \frac{1}{2\pi i} \int\limits_{0}^{1} x^{-\mathcal{P}(t)} \tilde g(\mathcal{P}(t)) \frac{d\mathcal{P}(t)}{dt} \,dt\\
+     &amp;= \frac{1}{\pi} \int\limits_{1/2}^{1} \Re \left(  x^{-\mathcal{P}(t)} \tilde g(\mathcal{P}(t)) \frac 1 i \frac{d\mathcal{P}(t)}{dt} \right) \,dt\end{split}\]</div>
+<div class="section" id="important-examples">
+<h2>Important Examples<a class="headerlink" href="#important-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="polynomials">
+<h3>Polynomials<a class="headerlink" href="#polynomials" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal M[x^m](N) &amp;= \frac 1 {N + m}\\
+\mathcal M[x^m\Theta(x - x_{min})\Theta(x_{max} - x)](N) &amp;= \frac {x_{max}^{N+m} - x_{min}^{N+m}} {N + m}\end{split}\]</div>
+</div>
+<div class="section" id="logarithms">
+<h3>Logarithms<a class="headerlink" href="#logarithms" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathcal M[\ln(x)^m](N) &amp;= \frac{d^m}{dN^m}\frac 1 {N}\\
+\mathcal M[\ln^m(x)\Theta(x - x_{min})\Theta(x_{max} - x)](N) &amp;= \frac{d^m}{dN^m}\frac {x_{max}^{N} - x_{min}^{N}} {N}\end{split}\]</div>
+<p>Note that any derivative to either <span class="math notranslate nohighlight">\(x_m^N\)</span> or <span class="math notranslate nohighlight">\(1/N\)</span> is again proportional to its source.</p>
+</div>
+<div class="section" id="plus-distributions">
+<h3>Plus Distributions<a class="headerlink" href="#plus-distributions" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[\mathcal M[1/(1-x)_+](N) = S_1(N)\]</div>
+<p>whith the harmonic sum (implemented as <a class="reference internal" href="../modules/eko/eko.html#eko.ekomath.harmonic_S1" title="eko.ekomath.harmonic_S1"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eko.ekomath.harmonic_S1()</span></code></a>)</p>
+<div class="math notranslate nohighlight">
+\[S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E\]</div>
+</div>
+</div>
+<div class="section" id="inversion-of-factorizable-kernels">
+<h2>Inversion of Factorizable Kernels<a class="headerlink" href="#inversion-of-factorizable-kernels" title="Permalink to this headline">¶</a></h2>
+<p>If the integration kernel <span class="math notranslate nohighlight">\(\tilde g(N)\)</span> can be factorized</p>
+<div class="math notranslate nohighlight">
+\[\tilde g(N) = x_0^N \cdot \tilde h(N)\]</div>
+<p>with <span class="math notranslate nohighlight">\(x_0\)</span> a fixed number in <span class="math notranslate nohighlight">\((0,1]\)</span> and <span class="math notranslate nohighlight">\(\lim_{N\to\infty}h(N)\to 0\)</span>,
+the inversion can be simplified if the inversion point <span class="math notranslate nohighlight">\(x_i\)</span> is <strong>above</strong> <span class="math notranslate nohighlight">\(x_0\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}g(x_i) &amp;= \frac{1}{2\pi i} \int\limits_{\mathcal{P}} x_i^{-N} x_0^N \tilde h(N)\,dN \\
+       &amp;= \frac{1}{2\pi i} \int\limits_{\mathcal{P}} \exp(-N(\ln(x_i)-\ln(x_0))) \tilde h(N)\,dN\end{split}\]</div>
+<p>Now, take the textbook path <span class="math notranslate nohighlight">\(p : \mathbb R \to \mathbb C : t \to p(t) = c + i t\)</span> and
+consider the limit in which we shift the parameter <span class="math notranslate nohighlight">\(c \to \infty\)</span>.
+As <span class="math notranslate nohighlight">\(x_i &gt; x_0\)</span> it follows immediately
+<span class="math notranslate nohighlight">\(\ln(x_i)-\ln(x_0) &gt; 0\)</span> and thus</p>
+<div class="math notranslate nohighlight">
+\[|\exp(-N(\ln(x_i)-\ln(x_0)))| \to 0\]</div>
+<p>Together with the assumed vanishing of <span class="math notranslate nohighlight">\(\tilde h(N)\)</span> we can conclude
+<span class="math notranslate nohighlight">\(g(x_i) = 0\)</span>.</p>
+</div>
+<div class="section" id="convolution">
+<h2>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h2>
+<p>Mellin space factorizes multiplicative convolution</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(f \otimes g)(x) &amp;= \int\limits_x^1 \frac{dy}{y} f(x/y) g(y)\\
+\mathcal M[(f \otimes g)(x)](N) &amp;= \mathcal M[f(x)](N) \cdot \mathcal M[g(x)](N)\end{split}\]</div>
+<p>The convolution integral runs from <span class="math notranslate nohighlight">\(x\)</span> to 1, thus only
+basis functions which have support above <span class="math notranslate nohighlight">\(x\)</span> may contribute to the
+integral. This information is encoded in N-space in the following way: Due
+to the Mellin kernel <span class="math notranslate nohighlight">\(x^{N-1}\)</span> any piecewise polynomial, such as we
+are doing, are proportional to
+<span class="math notranslate nohighlight">\(x_{\text{min/max}}^N = \exp(N\ln(x_{\text{min/max}}))\)</span>
+(see Examples). They are thus factorizable is the above sense.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Matching.html" class="btn btn-neutral float-right" title="Matching Conditions on Crossing Thresholds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Interpolation.html" class="btn btn-neutral float-left" title="Interpolation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
