@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; EKO  documentation</title>
+  <title>Solving DGLAP &mdash; EKO  documentation</title>
   
 
   
@@ -36,7 +36,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Matching Conditions on Crossing Thresholds" href="Matching.html" />
+    <link rel="prev" title="pQCD ingredients" href="pQCD.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,8 +82,15 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Physics/index.html">Physics documentation</a></li>
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Physics documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Solving DGLAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
 </ul>
@@ -133,10 +142,16 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+          <li><a href="index.html">Physics documentation</a> &raquo;</li>
+        
+      <li>Solving DGLAP</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Physics/DGLAP.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -148,25 +163,58 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="eko/alpha_s.html">eko.alpha_s</a></li>
-<li><a href="eko/constants.html">eko.constants</a></li>
-<li><a href="eko/dglap.html">eko.dglap</a></li>
-<li><a href="eko/ekomath.html">eko.ekomath</a></li>
-<li><a href="eko/evolution_operator.html">eko.evolution_operator</a></li>
-<li><a href="eko/flavours.html">eko.flavours</a></li>
-<li><a href="eko/interpolation.html">eko.interpolation</a></li>
-<li><a href="eko/kernel_generation.html">eko.kernel_generation</a></li>
-<li><a href="eko/mellin.html">eko.mellin</a></li>
-<li><a href="eko/operator_grid.html">eko.operator_grid</a></li>
-<li><a href="eko/splitting_functions_LO.html">eko.splitting_functions_LO</a></li>
-<li><a href="eko/thresholds.html">eko.thresholds</a></li>
-</ul>
+  <div class="section" id="solving-dglap">
+<h1>Solving DGLAP<a class="headerlink" href="#solving-dglap" title="Permalink to this headline">¶</a></h1>
+<p>We are solving the DGLAP equations given by</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{d\ln(\mu_F^2)} \mathbf{f}(x,\mu_F^2) =
+    \int\limits_x^1\!\frac{dy}{y}\, \mathbf{P}(x/y) \cdot \mathbf{f}(y,\mu_F^2)\]</div>
+<p>The non-siglet case can be solved in a linear way:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d f_{ns}(x,\mu_F^2)}{d\ln(\mu_F^2)} =
+    \int\limits_x^1\!\frac{dy}{y}\, P_{ns}(y/x) \cdot f_{ns}(y,\mu_F^2)\]</div>
+<p>We can thus write the non-siglet equations in N-space by</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\tilde f_{ns}(N,\mu_F^2)}{d\ln(\mu_F^2)} = -\tilde \gamma_{ns}(N) \cdot \tilde f_{ns}(N,\mu_F^2)\]</div>
+<p>We also change the evolution variable to
+<span class="math notranslate nohighlight">\(t(\mu_F^2) = \ln(1/a_s(\mu_F^2))\)</span>
+and then the differential equations to solve is given by</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\tilde f_{ns}(N,\mu_F^2)}{dt}
+    = \frac{d\ln(\mu_F^2)}{dt} \cdot \frac{d\tilde f(N,\mu_F^2)}{d\ln(\mu_F^2)}
+    = - \frac{a_s(\mu_F^2)}{\beta(a_s(\mu_F^2))} \tilde P_{ns}(N) \cdot \tilde f_{ns}(N,\mu_F^2)\]</div>
+<p>Expanding the rhs to LO we get the final equation</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\tilde f^{(0)}(N,\mu_F^2)}{dt} = \frac{1}{\beta_0} \cdot \tilde P_{ns}^{(0)}(N) \cdot \tilde f_{ns}^{(0)}(N,\mu_F^2)\]</div>
+<p>which is solved by</p>
+<div class="math notranslate nohighlight">
+\[\tilde f^{(0)}(N,t_1) = \exp((t_1-t_0) \tilde P_{ns}^{(0)}(N)/\beta_0 ) \cdot \tilde f_{ns}^{(0)}(N,t_0)\]</div>
+<p>Using the interpolation basis on the inital state PDF, we can define the
+evolution kernel operator <span class="math notranslate nohighlight">\(\hat O\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[\hat O_{k,j}^{ns,(0)}(t_1,t_0) = \mathcal{M}^{-1}\left[\exp((t_1-t_0)\tilde P_{ns}^{(0)}(N)/\beta_0)\tilde p_j(N)\right](x_k')\]</div>
+<p>Now, we can write the solution to DGLAP in a true matrix operator scheme and
+find</p>
+<div class="math notranslate nohighlight">
+\[f^{(0)}(x_k,t_1) = \hat O_{k,j}^{(0)}(t_1,t_0) f^{(0)}(x_j,t_0)\]</div>
+<p>The benchmarking LHA reference is given by <a class="bibtex reference internal" href="../zzz-refs.html#giele-2002hx" id="id1">[G+02]</a>
+and <a class="bibtex reference internal" href="../zzz-refs.html#dittmar-2005ed" id="id2">[D+05]</a>.</p>
+</div>
+
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Matching.html" class="btn btn-neutral float-right" title="Matching Conditions on Crossing Thresholds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pQCD.html" class="btn btn-neutral float-left" title="pQCD ingredients" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
