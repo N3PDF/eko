@@ -90,21 +90,21 @@
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.alpha_s">eko.alpha_s module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.constants">eko.constants module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.dglap">eko.dglap module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.ekomath">eko.ekomath module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eko-dglap-module">eko.dglap module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eko-ekomath-module">eko.ekomath module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.evolution_operator">eko.evolution_operator module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.flavours">eko.flavours module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#evolution-basis">Evolution Basis</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.interpolation">eko.interpolation module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.kernel_generation">eko.kernel_generation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eko-kernel-generation-module">eko.kernel_generation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.mellin">eko.mellin module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#integration-paths">Integration Paths</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.operator_grid">eko.operator_grid module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.splitting_functions_LO">eko.splitting_functions_LO module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eko-splitting-functions-lo-module">eko.splitting_functions_LO module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.thresholds">eko.thresholds module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko">Module contents</a></li>
 </ul>
@@ -452,202 +452,11 @@ protected variables</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-eko.dglap">
-<span id="eko-dglap-module"></span><h2>eko.dglap module<a class="headerlink" href="#module-eko.dglap" title="Permalink to this headline">¶</a></h2>
-<p>This file contains the main loop for the DGLAP calculations.</p>
-<dl class="py function">
-<dt id="eko.dglap.apply_operator">
-<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">apply_operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span></em>, <em class="sig-param"><span class="n">input_pdfs</span></em>, <em class="sig-param"><span class="n">targetgrid</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#apply_operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.apply_operator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply all available operators to the input PDFs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – operator definitions - return value of <cite>run_dglap</cite></p></li>
-<li><p><strong>input_pdfs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – input PDFs as dictionary {name: PDF}</p></li>
-<li><p><strong>targetgrid</strong> (<em>array</em>) – if given, interpolates to the pdfs given at targetgrid (instead of xgrid)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>outs</strong> (<em>dict</em>) – output PDFs</p></li>
-<li><p><strong>out_errors</strong> (<em>dict</em>) – associated error to the output PDFs</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.dglap.get_YAML">
-<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">get_YAML</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span></em>, <em class="sig-param"><span class="n">stream</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#get_YAML"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.get_YAML" title="Permalink to this definition">¶</a></dt>
-<dd><p>Serialize result as YAML.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – DGLAP result</p></li>
-<li><p><strong>stream</strong> (<em>(</em><em>Default: None</em><em>)</em>) – if given, is written on</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>result of dump(output, stream), i.e. a string, if no stream is given or
-the Null, if output is written sucessfully to stream</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dump</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.dglap.run_dglap">
-<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">run_dglap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#run_dglap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.run_dglap" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function takes a DGLAP theory configuration dictionary
-and performs the solution of the DGLAP equations.</p>
-<p>The EKO <span class="math notranslate nohighlight">\(\hat O_{k,j}^{(0)}(t_1,t_0)\)</span> is determined in order
-to fullfill the following evolution</p>
-<div class="math notranslate nohighlight">
-\[f^{(0)}(x_k,t_1) = \hat O_{k,j}^{(0)}(t_1,t_0) f^{(0)}(x_j,t_0)\]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – <p>a dictionary with the theory parameters for the evolution</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 82%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>key</p></th>
-<th class="head"><p>description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>’PTO’</p></td>
-<td><p>order of perturbation theory: <code class="docutils literal notranslate"><span class="pre">0</span></code> = LO, …</p></td>
-</tr>
-<tr class="row-odd"><td><p>’alphas’</p></td>
-<td><p>reference value of the strong coupling <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p>’xgrid’</p></td>
-<td><p>the interpolation grid</p></td>
-</tr>
-<tr class="row-odd"><td><p>’xgrid_type’</p></td>
-<td><p>generating function for the interpolation grid - see below</p></td>
-</tr>
-<tr class="row-even"><td><p>’log_interpol’</p></td>
-<td><p>boolean, whether it is log interpolation or not, defaults to <cite>True</cite></p></td>
-</tr>
-</tbody>
-</table>
-</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><p><strong>ret</strong> – a dictionary with a defined set of keys</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 21%" />
-<col style="width: 79%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>key</p></th>
-<th class="head"><p>description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.dglap.write_YAML_to_file">
-<code class="sig-prename descclassname">eko.dglap.</code><code class="sig-name descname">write_YAML_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/dglap.html#write_YAML_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.dglap.write_YAML_to_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes YAML representation to a file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – DGLAP result</p></li>
-<li><p><strong>filename</strong> (<em>string</em>) – target file name</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>result of dump(output, stream), i.e. Null if written sucessfully</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ret</p>
-</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="eko-dglap-module">
+<h2>eko.dglap module<a class="headerlink" href="#eko-dglap-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-eko.ekomath">
-<span id="eko-ekomath-module"></span><h2>eko.ekomath module<a class="headerlink" href="#module-eko.ekomath" title="Permalink to this headline">¶</a></h2>
-<p>Implements the cffi ports from gsl for higher mathematical functions.</p>
-<p>Used libraries:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><a class="reference external" href="https://cffi.readthedocs.io/en/latest/">cffi</a></p></li>
-<li><p><a class="reference external" href="https://www.gnu.org/software/gsl/doc/html/index.html">gsl</a></p></li>
-</ul>
-</div></blockquote>
-<dl class="py function">
-<dt id="eko.ekomath.gsl_digamma">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">gsl_digamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#gsl_digamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.gsl_digamma" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wrapper around the gsl implementation via cffi of the
-<a class="reference external" href="https://en.wikipedia.org/wiki/Digamma_function">digamma function</a>.</p>
-<p>The wrapper allows both input and output to be complex.
-Note that the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html">SciPy implementation</a>
-does not allow for complex inputs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>N</strong> (<em>t_complex</em>) – input</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>psi</strong> – digamma function <span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p><a class="reference external" href="https://www.gnu.org/software/gsl/doc/html/specfunc.html#psi-digamma-function">GSL documentation</a></p>
-<p>Note that, although not listed in the documentation, there <strong>is</strong> a
-<a class="reference external" href="http://git.savannah.gnu.org/cgit/gsl.git/tree/specfunc/gsl_sf_psi.h#n76">complex version</a></p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.ekomath.harmonic_S1">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S1" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the simple harmonic sum.</p>
-<div class="math notranslate nohighlight">
-\[S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E\]</div>
-<p>with <span class="math notranslate nohighlight">\(\psi_0(N)\)</span> the digamma function and <span class="math notranslate nohighlight">\(\gamma_E\)</span> the
-Euler-Mascheroni constant.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>S_1</strong> – (simple) Harmonic sum <span class="math notranslate nohighlight">\(S_1(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#eko.ekomath.gsl_digamma" title="eko.ekomath.gsl_digamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">gsl_digamma()</span></code></a></p>
-</div>
-</dd></dl>
-
+<div class="section" id="eko-ekomath-module">
+<h2>eko.ekomath module<a class="headerlink" href="#eko-ekomath-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-eko.evolution_operator">
 <span id="eko-evolution-operator-module"></span><h2>eko.evolution_operator module<a class="headerlink" href="#module-eko.evolution_operator" title="Permalink to this headline">¶</a></h2>
@@ -1125,7 +934,7 @@ in x space</p>
 
 <dl class="py class">
 <dt id="eko.interpolation.InterpolatorDispatcher">
-<em class="property">class </em><code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">InterpolatorDispatcher</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">polynomial_degree</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">mode_N</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#InterpolatorDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.InterpolatorDispatcher" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">InterpolatorDispatcher</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">polynomial_degree</span></em>, <em class="sig-param"><span class="n">log</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">mode_N</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">numba_it</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#InterpolatorDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.InterpolatorDispatcher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Setups the interpolator.</p>
 <p>Upon construction will generate a list of <cite>BasisFunction</cite> objects.
@@ -1139,6 +948,7 @@ which will be numba-compiled.</p>
 <li><p><strong>polynomial_degree</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – degree of the interpolation polynomial</p></li>
 <li><p><strong>log</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>  (</em><em>default: True</em><em>)</em>) – Whether it is a log or linear interpolator</p></li>
 <li><p><strong>mode_N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> (</em><em>default: True</em><em>)</em>) – if true compiles the function on N, otherwise compiles x</p></li>
+<li><p><strong>numba_it</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em> (</em><em>default: True</em><em>)</em>) – compile with numba?</p></li>
 </ul>
 </dd>
 </dl>
@@ -1231,112 +1041,8 @@ corresponds to the flag <cite>linear&#64;log</cite></p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-eko.kernel_generation">
-<span id="eko-kernel-generation-module"></span><h2>eko.kernel_generation module<a class="headerlink" href="#module-eko.kernel_generation" title="Permalink to this headline">¶</a></h2>
-<p>This module contains functions that generate other functions
-All functions will receive a set of parameters so that the output
-function can be always numba compilable</p>
-<p>The generator functions <cite>get_kernel_{kernel_type}</cite> have as signature
-the following parameters:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><cite>basis_function</cite>: a callable function with a (N, lnx) signature</p></li>
-<li><p><cite>nf</cite> : number of flavours</p></li>
-<li><p><cite>constants</cite>: an instance of the Constants class</p></li>
-<li><p><cite>beta_0</cite> : value of <cite>beta_0</cite></p></li>
-<li><p><cite>delta_t</cite>: value of <cite>delta_t</cite></p></li>
-</ul>
-</div></blockquote>
-<dl class="py class">
-<dt id="eko.kernel_generation.KernelDispatcher">
-<em class="property">class </em><code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">KernelDispatcher</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interpol_dispatcher</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">delta_t</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">numba_it</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>The kernel dispatcher does the common preparation for the kernel functions</p>
-<p>Upon calling the appropiate <cite>compile_</cite> method the dispatcher will return
-a <cite>numba</cite> compiled kernel.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>interpol_dispatcher</strong> (<a class="reference internal" href="#eko.interpolation.InterpolatorDispatcher" title="eko.interpolation.InterpolatorDispatcher"><em>InterpolatorDispatcher</em></a>) – An instance of the InterpolatorDispatcher class</p></li>
-<li><p><strong>constants</strong> (<a class="reference internal" href="#eko.constants.Constants" title="eko.constants.Constants"><em>Constants</em></a>) – An instance of the Constants class</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Number of flavour to consider</p></li>
-<li><p><strong>delta_t</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Value of delta_t for this kernel</p></li>
-<li><p><strong>numba_it</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>  (</em><em>default: True</em><em>)</em>) – If true, the functions will be <cite>numba</cite> compiled</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="eko.kernel_generation.KernelDispatcher.compile_nonsinglet">
-<code class="sig-name descname">compile_nonsinglet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.compile_nonsinglet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.compile_nonsinglet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compiles the non-singlet integration kernel for each basis</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.kernel_generation.KernelDispatcher.compile_singlet">
-<code class="sig-name descname">compile_singlet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.compile_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.compile_singlet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compiles the singlet integration kernels for each basis</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.kernel_generation.KernelDispatcher.get_non_singlet_for_nf">
-<code class="sig-name descname">get_non_singlet_for_nf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.get_non_singlet_for_nf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.get_non_singlet_for_nf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="eko.kernel_generation.KernelDispatcher.get_singlet_for_nf">
-<code class="sig-name descname">get_singlet_for_nf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.get_singlet_for_nf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.get_singlet_for_nf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="eko.kernel_generation.KernelDispatcher.njit">
-<code class="sig-name descname">njit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">function</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.njit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.njit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Do nb.njit to the function if the <cite>numba_it</cite> flag is set to True.</p>
-<p>Check whether a list of functions is passed.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>function</strong> (<em>function</em>) – input function</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>funciton</strong> – compiled function</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>function</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.kernel_generation.KernelDispatcher.set_up_all_integrands">
-<code class="sig-name descname">set_up_all_integrands</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf_values</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher.set_up_all_integrands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher.set_up_all_integrands" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compiles singlet and non-singlet integration kernel for each basis</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.kernel_generation.get_kernel_ns">
-<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">get_kernel_ns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">basis_function</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">beta_0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#get_kernel_ns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.get_kernel_ns" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the non-singlet integration kernel</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.kernel_generation.get_kernels_s">
-<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">get_kernels_s</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">basis_function</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">beta_0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#get_kernels_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.get_kernels_s" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all singlet integration kernels</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.kernel_generation.prepare_non_singlet">
-<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">prepare_non_singlet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">kernels</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">jac</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#prepare_non_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.prepare_non_singlet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of integrands prepare to be run</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.kernel_generation.prepare_singlet">
-<code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">prepare_singlet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">kernels</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">jac</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#prepare_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.prepare_singlet" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of integrands prepare to be run</p>
-</dd></dl>
-
+<div class="section" id="eko-kernel-generation-module">
+<h2>eko.kernel_generation module<a class="headerlink" href="#eko-kernel-generation-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-eko.mellin">
 <span id="eko-mellin-module"></span><h2>eko.mellin module<a class="headerlink" href="#module-eko.mellin" title="Permalink to this headline">¶</a></h2>
@@ -1652,195 +1358,8 @@ This is the responsability of the calling function.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-eko.splitting_functions_LO">
-<span id="eko-splitting-functions-lo-module"></span><h2>eko.splitting_functions_LO module<a class="headerlink" href="#module-eko.splitting_functions_LO" title="Permalink to this headline">¶</a></h2>
-<p>This file contains the Altarelli-Parisi splitting kernels.</p>
-<p>Normalization is given by</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{P}(x) = \sum\limits_{j=0} a_s^{j+1} \mathbf P^{(j)}(x)\]</div>
-<p>with <span class="math notranslate nohighlight">\(a_s = \frac{\alpha_S(\mu^2)}{4\pi}\)</span>.
-The 3-loop references are given for the non-singlet <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id12">[MVV04]</a>
-and singlet <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id13">[VMV04]</a> case, which contain also the lower
-order results. The results are also determined in Mellin space in
-terms of the anomalous dimensions (note the additional sign!)</p>
-<div class="math notranslate nohighlight">
-\[\gamma(N) = - \mathcal{M}[\mathbf{P}(x)](N)\]</div>
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_gg_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_gg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_gg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_gg_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order gluon-gluon anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id14">[VMV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_0</strong> – Leading-order gluon-gluon anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{gg}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_gq_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_gq_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_gq_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_gq_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order gluon-quark anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id15">[VMV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours (which is actually not used here)</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation (which is actually not used here)</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_0</strong> – Leading-order gluon-quark anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{gq}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_ns_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_ns_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_ns_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_ns_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.4) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id16">[MVV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours (which is actually not used here)</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation (which is actually not used here)</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_ns_0</strong> – Leading-order non-singlet anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{ns}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_ps_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_ps_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_ps_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_ps_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order pure-singlet anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id17">[VMV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours (which is actually not used here)</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation (which is actually not used here)</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_ps_0</strong> – Leading-order pure-singlet anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{ps}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_qg_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_qg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_qg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_qg_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order quark-gluon anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id18">[VMV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation (which is actually not used here)</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_0</strong> – Leading-order quark-gluon anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{qg}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.get_Eigensystem_gamma_singlet_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">get_Eigensystem_gamma_singlet_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#get_Eigensystem_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.get_Eigensystem_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the Eigensystem of the leading-order singlet anomalous dimension matrix</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>lambda_p</strong> (<em>t_complex</em>) – positive eigenvalue of the Leading-order singlet anomalous dimension matrix
-<span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>lambda_m</strong> (<em>t_complex</em>) – negative eigenvalue of the Leading-order singlet anomalous dimension matrix
-<span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>e_p</strong> (<em>np.array</em>) – projector for the positive eigenvalue of the Leading-order singlet anomalous
-dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>e_m</strong> (<em>np.array</em>) – projector for the negative eigenvalue of the Leading-order singlet anomalous
-dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.get_gamma_singlet_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">get_gamma_singlet_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#get_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.get_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order singlet anomalous dimension matrix</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\gamma_S^{(0)} = \left(\begin{array}
-  \gamma_{qq}^{(0)} &amp; \gamma_{qg}^{(0)}\\
-  \gamma_{gq}^{(0)} &amp; \gamma_{gg}^{(0)}
-\end{array}\right)\end{split}\]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_S_0</strong> – Leading-order singlet anomalous dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.array</p>
-</dd>
-</dl>
-</dd></dl>
-
+<div class="section" id="eko-splitting-functions-lo-module">
+<h2>eko.splitting_functions_LO module<a class="headerlink" href="#eko-splitting-functions-lo-module" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="module-eko.thresholds">
 <span id="eko-thresholds-module"></span><h2>eko.thresholds module<a class="headerlink" href="#module-eko.thresholds" title="Permalink to this headline">¶</a></h2>
