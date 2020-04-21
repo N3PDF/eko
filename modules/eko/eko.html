@@ -35,6 +35,7 @@
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="TODOs" href="../../code_todos.html" />
@@ -659,10 +660,19 @@ consists of several <a class="reference internal" href="#eko.evolution_operator.
 One instance of <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> governs the evolution of a single flavour combination.
 Inside <a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> they refer to the “raw” elements</p>
 <div class="math notranslate nohighlight">
-\[\Gamma_{NS}^{v}, \Gamma_{NS}^{+}, \Gamma_{NS}^{-}, \mathbf\Gamma_S\]</div>
+\[\gamma_{ns,v}, \gamma_{ns,+}, \gamma_{ns,-}, \mathbf\gamma_S\]</div>
 <p><a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> manages the correct handling and recombination of the various
 <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a>. In the end a single instance of <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a>
 is computed and will be exposed for each <span class="math notranslate nohighlight">\(Q^2\)</span> to the user.</p>
+<div class="figure align-center" id="structure">
+digraph G {
+    bgcolor = transparent
+
+    node [shape=box]
+    Operator [label=&quot;Operator&quot;]
+
+}<p class="caption"><span class="caption-text">classes’ structure</span><a class="headerlink" href="#structure" title="Permalink to this image">¶</a></p>
+</div>
 <dl class="py class">
 <dt id="eko.evolution_operator.Operator">
 <em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delta_t</span></em>, <em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">integrands_ns</span></em>, <em class="sig-param"><span class="n">integrands_s</span></em>, <em class="sig-param"><span class="n">metadata</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator" title="Permalink to this definition">¶</a></dt>

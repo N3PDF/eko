@@ -35,6 +35,7 @@
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -168,14 +169,14 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">abc</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
 <span class="kn">import</span> <span class="nn">eko.alpha_s</span> <span class="k">as</span> <span class="nn">alpha_s</span>
 <span class="kn">import</span> <span class="nn">eko.splitting_functions_LO</span> <span class="k">as</span> <span class="nn">sf_LO</span>
 <span class="kn">import</span> <span class="nn">eko.mellin</span> <span class="k">as</span> <span class="nn">mellin</span>
-
-<span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <div class="viewcode-block" id="get_kernel_ns"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.get_kernel_ns">[docs]</a><span class="k">def</span> <span class="nf">get_kernel_ns</span><span class="p">(</span><span class="n">basis_function</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">beta_0</span><span class="p">):</span>

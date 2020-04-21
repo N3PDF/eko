@@ -35,6 +35,7 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Matching Conditions on Crossing Thresholds" href="Matching.html" />
@@ -208,8 +209,8 @@ evolution kernel operator and define <span class="math notranslate nohighlight">
 <p>We find</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{dt} \tilde f_{ns}^{(0)}(t) = -\frac{1}{\beta_0} \cdot \tilde \gamma_{ns}^{(0)}(N) \cdot \tilde f_{ns}^{(0)}(t)\]</div>
-<p>with <span class="math notranslate nohighlight">\(\tilde \gamma_{ns}^{(0)} = \tilde\gamma_{ns,+}^{(0)} = \tilde\gamma_{ns,-}^{(0)} = \tilde\gamma_{ns,v}^{(0)}\)</span>.
-The solution is then given by a simple exponential <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id1">[Vog05]</a></p>
+<p>with <span class="math notranslate nohighlight">\(\tilde \gamma_{ns}^{(0)} = \tilde\gamma_{ns,+}^{(0)} = \tilde\gamma_{ns,-}^{(0)} = \tilde\gamma_{ns,v}^{(0)}\)</span>.</p>
+<p>The evolution kernel operator is then given by a simple exponential <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id1">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
 \[\tilde E^{(0)}_{ns}(t_1\leftarrow t_0) = \exp(-(t_1-t_0) \tilde \gamma_{ns}^{(0)}(N)/\beta_0 )\]</div>
 </div>
@@ -230,15 +231,24 @@ the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</sp
 <div class="math notranslate nohighlight">
 \[\begin{split}\lambda_{\pm} &amp;= \frac 1 2 \left( \gamma_{qq}^{(0)} + \gamma_{gg}^{(0)} + \pm \sqrt{(\gamma_{qq}^{(0)}-\gamma_{gg}^{(0)})^2 + 4\gamma_{qg}^{(0)}\gamma_{gq}^{(0)}} \right)\\
 \tilde {\bf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \tilde \gamma_S^{(0)}  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
-<p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the identity matrix. The projectors obey the usual projector properties, i.e.</p>
+<p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the identity matrix in flavour space.
+The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
 \[\tilde {\bf e}_{\pm} \cdot \tilde {\bf e}_{\pm} = \tilde {\bf e}_{\pm} \qquad \tilde {\bf e}_{\pm} \cdot \tilde {\bf e}_{\mp} = 0\]</div>
+<p>and thus the expontiation becomes easier again.</p>
+<p>The evolution kernel operator is then given by</p>
+<div class="math notranslate nohighlight">
+\[\tilde{\mathbf{E}}^{(0)}_{S}(t_1\leftarrow t_0) = \tilde{\mathbf{e}}_-\exp(-(t_1-t_0) \lambda_{-}(N)/\beta_0 ) + \tilde{\mathbf{e}}_+\exp(-(t_1-t_0) \lambda_{+}(N)/\beta_0 )\]</div>
 </div>
 </div>
 <div class="section" id="benchmarks">
 <h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this headline">¶</a></h2>
 <p>The benchmarking LHA reference is given by <a class="bibtex reference internal" href="../zzz-refs.html#giele-2002hx" id="id3">[G+02]</a>
 and <a class="bibtex reference internal" href="../zzz-refs.html#dittmar-2005ed" id="id4">[D+05]</a>.</p>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<p>do we want to comment about benchmarks?</p>
+</div>
 </div>
 </div>
 
