@@ -33,21 +33,21 @@ Fom Source Code
 
 `evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
 
-.. warning:: #64 make 'cut' external parameter?
+.. warning:: #80 make 'cut' external parameter?
 
-.. warning:: #69 delegate to logger?
+.. warning:: #85 delegate to logger?
 
-.. warning:: #106 delegate to logger?
-
-.. warning:: #229 check error propagation
+.. warning:: #122 delegate to logger?
 
 .. warning:: #245 check error propagation
 
-.. warning:: #311 change how this work internally
+.. warning:: #261 check error propagation
 
-.. warning:: #362 fill this up, check whether flavour or evol basis
+.. warning:: #327 change how this work internally
 
-.. warning:: #366 this is a legacy wrapper as the benchmark files use this dictionary
+.. warning:: #378 fill this up, check whether flavour or evol basis
+
+.. warning:: #382 this is a legacy wrapper as the benchmark files use this dictionary
 
 
 

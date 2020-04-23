@@ -157,7 +157,36 @@
 <span class="sd">    This module contains all evolution operator classes.</span>
 
 <span class="sd">    The classes are nested as follows:</span>
-<span class="sd">    :class:`PhysicalOperator` &lt;- :class:`Operator` &lt;= :class:`OperatorMember`.</span>
+
+<span class="sd">    .. graphviz::</span>
+<span class="sd">        :name: operators</span>
+<span class="sd">        :caption: nesting of the operator classes: solid lines means &quot;has many&quot;,</span>
+<span class="sd">                  dashed lines means &quot;creates&quot;</span>
+<span class="sd">        :align: center</span>
+
+<span class="sd">        digraph G {</span>
+<span class="sd">            bgcolor = transparent</span>
+
+<span class="sd">            node [shape=box]</span>
+<span class="sd">            OperatorGrid [label=&quot;OperatorGrid&quot;];</span>
+<span class="sd">            OperatorMaster [label=&quot;OperatorMaster&quot; ];</span>
+<span class="sd">            test, test1 [style=invis];</span>
+<span class="sd">            Operator [label=&quot;Operator&quot; ];</span>
+<span class="sd">            PhysicalOperator [label=&quot;PhysicalOperator&quot;];</span>
+<span class="sd">            OperatorMember [label=&quot;OperatorMember&quot;];</span>
+
+<span class="sd">            {rank=same OperatorMaster test test1}</span>
+<span class="sd">            {rank=same Operator PhysicalOperator}</span>
+
+<span class="sd">            OperatorGrid -&gt; OperatorMaster;</span>
+<span class="sd">            OperatorMaster -&gt; Operator  [weight=1000];</span>
+<span class="sd">            Operator -&gt; OperatorMember;</span>
+<span class="sd">            Operator -&gt; PhysicalOperator [style=dashed len=10];</span>
+<span class="sd">            PhysicalOperator -&gt; OperatorMember</span>
+<span class="sd">            OperatorMaster -&gt; test -&gt; test1 [style=invis];</span>
+<span class="sd">            test1 -&gt; PhysicalOperator [weight=1000 style=invis];</span>
+<span class="sd">        }</span>
+
 <span class="sd">    The central class :class:`Operator` lives at given :math:`Q^2` and</span>
 <span class="sd">    consists of several :class:`OperatorMember`.</span>
 <span class="sd">    One instance of :class:`OperatorMember` governs the evolution of a single flavour combination.</span>
@@ -170,19 +199,6 @@
 <span class="sd">    :class:`Operator` manages the correct handling and recombination of the various</span>
 <span class="sd">    :class:`OperatorMember`. In the end a single instance of :class:`PhysicalOperator`</span>
 <span class="sd">    is computed and will be exposed for each :math:`Q^2` to the user.</span>
-
-<span class="sd">    .. graphviz::</span>
-<span class="sd">        :name: structure</span>
-<span class="sd">        :caption: classes&#39; structure</span>
-<span class="sd">        :align: center</span>
-
-<span class="sd">        digraph G {</span>
-<span class="sd">            bgcolor = transparent</span>
-
-<span class="sd">            node [shape=box]</span>
-<span class="sd">            Operator [label=&quot;Operator&quot;]</span>
-
-<span class="sd">        }</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
