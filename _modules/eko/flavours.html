@@ -81,12 +81,23 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Code/index.html">Code documentation</a></li>
+              <p class="caption"><span class="caption-text">Theory:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Dev:</span></p>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
 </ul>
@@ -158,9 +169,9 @@
 <span class="sd">    related to the flavour combinations.</span>
 
 <span class="sd">    The write-up of the matching conditions is given in</span>
-<span class="sd">    :doc:`Matching Conditions &lt;/Physics/Matching&gt;`.</span>
+<span class="sd">    :doc:`Matching Conditions &lt;/Theory/Matching&gt;`.</span>
 
-<span class="sd">&quot;&quot;&quot;</span> <span class="c1">#pylint:disable=line-too-long</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">MINIMAL_NF</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># TODO Should this be a parameter or can it be hardcoded?</span>
 
@@ -190,7 +201,9 @@
 <span class="c1"># it would be nice to make it even more general</span>
 <div class="viewcode-block" id="FlavourTarget"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.flavours.FlavourTarget">[docs]</a><span class="k">class</span> <span class="nc">FlavourTarget</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Defines the scheme</span>
+<span class="sd">        Defines the path across the quark thresholds.</span>
+
+<span class="sd">        See :doc:`Matching Conditions &lt;/Theory/Matching&gt;`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -348,7 +361,7 @@
 
 <div class="viewcode-block" id="get_all_flavour_paths"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.flavours.get_all_flavour_paths">[docs]</a><span class="k">def</span> <span class="nf">get_all_flavour_paths</span><span class="p">(</span><span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Builds all :class:`FlavourTarget`.</span>
+<span class="sd">        Builds all :class:`FlavourTarget` - see :doc:`Matching Conditions &lt;/Theory/Matching&gt;`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

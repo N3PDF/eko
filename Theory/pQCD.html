@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; EKO  documentation</title>
+  <title>pQCD ingredients &mdash; EKO  documentation</title>
   
 
   
@@ -37,7 +37,9 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Solving DGLAP" href="DGLAP.html" />
+    <link rel="prev" title="Mellin Space and Transformations" href="Mellin.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,13 +84,17 @@
             
             
               <p class="caption"><span class="caption-text">Theory:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pQCD ingredients</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-coupling">Running Coupling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#splitting-functions">Splitting Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -145,10 +151,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+      <li>pQCD ingredients</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Theory/pQCD.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -160,25 +170,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="eko/alpha_s.html">eko.alpha_s</a></li>
-<li><a href="eko/constants.html">eko.constants</a></li>
-<li><a href="eko/dglap.html">eko.dglap</a></li>
-<li><a href="eko/ekomath.html">eko.ekomath</a></li>
-<li><a href="eko/evolution_operator.html">eko.evolution_operator</a></li>
-<li><a href="eko/flavours.html">eko.flavours</a></li>
-<li><a href="eko/interpolation.html">eko.interpolation</a></li>
-<li><a href="eko/kernel_generation.html">eko.kernel_generation</a></li>
-<li><a href="eko/mellin.html">eko.mellin</a></li>
-<li><a href="eko/operator_grid.html">eko.operator_grid</a></li>
-<li><a href="eko/splitting_functions_LO.html">eko.splitting_functions_LO</a></li>
-<li><a href="eko/thresholds.html">eko.thresholds</a></li>
-</ul>
+  <div class="section" id="pqcd-ingredients">
+<h1>pQCD ingredients<a class="headerlink" href="#pqcd-ingredients" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="running-coupling">
+<h2>Running Coupling<a class="headerlink" href="#running-coupling" title="Permalink to this headline">¶</a></h2>
+<p>We use perturbative QCD with the running coupling
+<span class="math notranslate nohighlight">\(a_s(\mu_F^2) = \alpha_s(\mu_F^2)/(4\pi)\)</span> given by
+<a class="bibtex reference internal" href="../zzz-refs.html#herzog-2017ohr" id="id1">[HRU+17]</a> <a class="bibtex reference internal" href="../zzz-refs.html#luthe-2016ima" id="id2">[LMMS16]</a> <a class="bibtex reference internal" href="../zzz-refs.html#baikov-2016tgj" id="id3">[BCK17]</a></p>
+<div class="math notranslate nohighlight">
+\[\frac{da_s}{d\ln\mu^2} = \beta(a_s) \
+= - \sum\limits_{j=0} \beta_n a_s^{j+2}\]</div>
+</div>
+<div class="section" id="splitting-functions">
+<h2>Splitting Functions<a class="headerlink" href="#splitting-functions" title="Permalink to this headline">¶</a></h2>
+<p>The Altarelli-Parisi splitting kernels can be expanded in powers of the strong
+coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and are given by
+<a class="bibtex reference internal" href="../zzz-refs.html#moch-2004pa" id="id4">[MVV04]</a> <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004mw" id="id5">[VMV04]</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathbf{P}(x,\mu^2) &amp;= \sum\limits_{j=0} a_s^{j+1}(\mu^2) \mathbf{P}^{(j)}(x) \\
+\tilde{\gamma}^{(j)}(N) &amp;= -\mathcal{M}[\mathbf{P}^{(j)}(x)](N)\end{split}\]</div>
+<p>Note the additional minus in the definition of <span class="math notranslate nohighlight">\(\tilde \gamma\)</span>.</p>
+</div>
+</div>
+
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="DGLAP.html" class="btn btn-neutral float-right" title="Solving DGLAP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Mellin.html" class="btn btn-neutral float-left" title="Mellin Space and Transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

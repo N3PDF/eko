@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Physics documentation" href="Physics/index.html" /> 
+    <link rel="next" title="Interpolation" href="Theory/Interpolation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,12 +82,23 @@
               
             
             
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="Physics/index.html">Physics documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Code/index.html">Code documentation</a></li>
+              <p class="caption"><span class="caption-text">Theory:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zzz-refs.html">References</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Dev:</span></p>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/eko/modules.html">eko</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="code_todos.html">TODOs</a></li>
 </ul>
@@ -156,88 +167,39 @@
             
   <div class="section" id="eko-documentation">
 <h1>EKO documentation<a class="headerlink" href="#eko-documentation" title="Permalink to this headline">¶</a></h1>
+<p>EKO solves the DGLAP equations in Mellin space and produces evolution kernel operators.
+It is thus PDF-independet and the operators can be computed for a given configuration
+once and be reused after.</p>
+<p>This documentation is organised in three sections: first, an quick overview on the theoretical ingredients is given,
+second, an overview of the implementation details, and, last, the available indices.</p>
 <div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Physics/index.html">Physics documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Physics/Interpolation.html">Interpolation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Interpolation.html#algorithm">Algorithm</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Interpolation.html#example">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Physics/Mellin.html">Mellin Space and Transformations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Mellin.html#important-examples">Important Examples</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Physics/Mellin.html#polynomials">Polynomials</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Physics/Mellin.html#logarithms">Logarithms</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Physics/Mellin.html#plus-distributions">Plus Distributions</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Mellin.html#inversion-of-factorizable-kernels">Inversion of Factorizable Kernels</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Mellin.html#convolution">Convolution</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Physics/pQCD.html">pQCD ingredients</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Physics/pQCD.html#running-coupling">Running Coupling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Physics/pQCD.html#splitting-functions">Splitting Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Physics/DGLAP.html">Solving DGLAP</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Physics/DGLAP.html#leading-order">Leading Order</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="Physics/DGLAP.html#non-singlet-evolution">Non-Singlet Evolution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="Physics/DGLAP.html#singlet-evolution">Singlet Evolution</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="Physics/DGLAP.html#benchmarks">Benchmarks</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Physics/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Physics/Matching.html">Matching Conditions on Crossing Thresholds</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Matching.html#zero-thresholds">Zero Thresholds</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Matching.html#one-threshold">One Threshold</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Matching.html#two-thresholds">Two Thresholds</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Physics/Matching.html#three-thresholds">Three Thresholds</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Code/index.html">Code documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Code/Operators.html">Operators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules/eko/modules.html">eko</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="modules/eko/eko.html">eko package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.alpha_s">eko.alpha_s module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.constants">eko.constants module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.dglap">eko.dglap module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.ekomath">eko.ekomath module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.evolution_operator">eko.evolution_operator module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.flavours">eko.flavours module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.interpolation">eko.interpolation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.kernel_generation">eko.kernel_generation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.mellin">eko.mellin module</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="modules/eko/eko.html#integration-paths">Integration Paths</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.operator_grid">eko.operator_grid module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.splitting_functions_LO">eko.splitting_functions_LO module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko.thresholds">eko.thresholds module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="modules/eko/eko.html#module-eko">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zzz-refs.html">References</a></li>
 </ul>
 </div>
-<p>#    modules/eko/modules</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Dev:</span></p>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_todos.html">TODOs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code_todos.html#fom-docstrings">Fom Docstrings</a></li>
-<li class="toctree-l2"><a class="reference internal" href="code_todos.html#fom-source-code">Fom Source Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/eko/modules.html">eko</a></li>
 </ul>
-</li>
+</div>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>This section has to be removed in an production environment (maybe?)</p>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Development:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="code_todos.html">TODOs</a></li>
 </ul>
 </div>
 </div>
@@ -258,7 +220,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Physics/index.html" class="btn btn-neutral float-right" title="Physics documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Theory/Interpolation.html" class="btn btn-neutral float-right" title="Interpolation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

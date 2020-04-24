@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="References" href="../../zzz-refs.html" />
+    <link rel="next" title="TODOs" href="../../code_todos.html" />
     <link rel="prev" title="eko" href="modules.html" /> 
 </head>
 
@@ -83,35 +83,45 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../Code/index.html">Code documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../Code/Operators.html">Operators</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="modules.html">eko</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">eko package</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.alpha_s">eko.alpha_s module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.constants">eko.constants module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.dglap">eko.dglap module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.ekomath">eko.ekomath module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.evolution_operator">eko.evolution_operator module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.flavours">eko.flavours module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.interpolation">eko.interpolation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.kernel_generation">eko.kernel_generation module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.mellin">eko.mellin module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.operator_grid">eko.operator_grid module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.splitting_functions_LO">eko.splitting_functions_LO module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko.thresholds">eko.thresholds module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-eko">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+              <p class="caption"><span class="caption-text">Theory:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Dev:</span></p>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">eko</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">eko package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.alpha_s">eko.alpha_s module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.constants">eko.constants module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.dglap">eko.dglap module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.ekomath">eko.ekomath module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.evolution_operator">eko.evolution_operator module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.flavours">eko.flavours module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.interpolation">eko.interpolation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.kernel_generation">eko.kernel_generation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.mellin">eko.mellin module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#integration-paths">Integration Paths</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.operator_grid">eko.operator_grid module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.splitting_functions_LO">eko.splitting_functions_LO module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko.thresholds">eko.thresholds module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-eko">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
 </ul>
@@ -158,8 +168,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../../Code/index.html">Code documentation</a> &raquo;</li>
         
           <li><a href="modules.html">eko</a> &raquo;</li>
         
@@ -830,12 +838,13 @@ It assumes as input a pdf as dictionary with:</p>
 <p>This module holds the <a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a> class and the data
 related to the flavour combinations.</p>
 <p>The write-up of the matching conditions is given in
-<a class="reference internal" href="../../Physics/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
+<a class="reference internal" href="../../Theory/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
 <dl class="py class">
 <dt id="eko.flavours.FlavourTarget">
 <em class="property">class </em><code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">FlavourTarget</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">original</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nf_min</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#FlavourTarget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.FlavourTarget" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Defines the scheme</p>
+<p>Defines the path across the quark thresholds.</p>
+<p>See <a class="reference internal" href="../../Theory/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -873,7 +882,7 @@ and whose items are the corresponding path</p>
 <dl class="py function">
 <dt id="eko.flavours.get_all_flavour_paths">
 <code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">get_all_flavour_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#get_all_flavour_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.get_all_flavour_paths" title="Permalink to this definition">¶</a></dt>
-<dd><p>Builds all <a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a>.</p>
+<dd><p>Builds all <a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a> - see <a class="reference internal" href="../../Theory/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>nf</strong> (<em>None | int</em>) – if given, paths are filtered by beeing active for at least <cite>nf</cite> flavours</p>
@@ -1969,7 +1978,7 @@ last one contains q2</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../zzz-refs.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../../code_todos.html" class="btn btn-neutral float-right" title="TODOs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="modules.html" class="btn btn-neutral float-left" title="eko" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

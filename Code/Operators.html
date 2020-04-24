@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Operators &mdash; EKO  documentation</title>
+  <title>Operator Hierachy &mdash; EKO  documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="eko" href="../modules/eko/modules.html" />
-    <link rel="prev" title="Code documentation" href="index.html" /> 
+    <link rel="next" title="Input &amp; Output" href="IO.html" />
+    <link rel="prev" title="References" href="../zzz-refs.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,16 +83,23 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../Physics/index.html">Physics documentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Code documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Operators</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
-</ul>
-</li>
+              <p class="caption"><span class="caption-text">Theory:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Dev:</span></p>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../code_todos.html">TODOs</a></li>
 </ul>
@@ -140,9 +147,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Code documentation</a> &raquo;</li>
-        
-      <li>Operators</li>
+      <li>Operator Hierachy</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -161,10 +166,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="operators">
-<h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="operator-hierachy">
+<h1>Operator Hierachy<a class="headerlink" href="#operator-hierachy" title="Permalink to this headline">¶</a></h1>
 <p>The classes are nested as follows:</p>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="operators">
 digraph G {
     bgcolor = transparent
 
@@ -187,10 +192,10 @@ digraph G {
     OperatorMaster -&gt; test -&gt; test1 [style=invis];
     test1 -&gt; PhysicalOperator [weight=1000 style=invis];
 }<p class="caption"><span class="caption-text">nesting of the operator classes: solid lines means “has many”,
-dashed lines means “creates”</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+dashed lines means “evolves into”</span><a class="headerlink" href="#operators" title="Permalink to this image">¶</a></p>
 </div>
 <ul>
-<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a>:</p>
+<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a></p>
 <blockquote>
 <div><ul class="simple">
 <li><p>this is the master class which administrates all evolution kernel operator tasks</p></li>
@@ -198,7 +203,8 @@ dashed lines means “creates”</span><a class="headerlink" href="#id1" title="
 <li><p>it divides the given range of <span class="math notranslate nohighlight">\(Q^2\)</span> into the necessary threshold crossings and
 creates a <a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> for each</p></li>
 <li><p>it recollects all necessary operators in the end to create the
-<a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p></li>
+<a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> following the instructions of
+<a class="reference internal" href="../modules/eko/eko.html#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a></p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -237,8 +243,8 @@ to the final scale</p></li>
 <li><p>inside <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> they are in “raw” evolution basis, i.e.
 <span class="math notranslate nohighlight">\(\tilde{\mathbf{E}}_S, \tilde{E}_{ns}^{\pm,v}\)</span>, and they never cross a threshold</p></li>
 <li><p>inside <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> they are in “true” evolution
-basis, i.e. they evolve e.g. <span class="math notranslate nohighlight">\(\tilde V, \tilde T_3\)</span> etc., so they are a evetually
-a product of the “raw” basis (see <a class="reference internal" href="../Physics/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
+basis, i.e. they evolve e.g. <span class="math notranslate nohighlight">\(\tilde V, \tilde T_3\)</span> etc., so they are eventually
+a product of the “raw” basis (see <a class="reference internal" href="../Theory/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -253,10 +259,10 @@ a product of the “raw” basis (see <a class="reference internal" href="../Phy
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../modules/eko/modules.html" class="btn btn-neutral float-right" title="eko" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="IO.html" class="btn btn-neutral float-right" title="Input &amp; Output" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Code documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../zzz-refs.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

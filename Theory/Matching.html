@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Matching Conditions on Crossing Thresholds &mdash; EKO  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="References" href="../zzz-refs.html" />
+    <link rel="prev" title="Evolution Basis" href="FlavourBasis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Theory:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Matching Conditions on Crossing Thresholds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#zero-thresholds">Zero Thresholds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#one-threshold">One Threshold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#two-thresholds">Two Thresholds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#three-thresholds">Three Thresholds</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Matching Conditions on Crossing Thresholds</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Theory/Matching.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="matching-conditions-on-crossing-thresholds">
+<h1>Matching Conditions on Crossing Thresholds<a class="headerlink" href="#matching-conditions-on-crossing-thresholds" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="../modules/eko/eko.html#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a> class is used to provide a consistent transition in the Variable
+Flavour Number Scheme (VFNS) of the <a class="reference internal" href="FlavourBasis.html"><span class="doc">evolution distributions</span></a> across the mass thresholds provided by
+the <a class="reference internal" href="../modules/eko/eko.html#eko.thresholds.Threshold" title="eko.thresholds.Threshold"><code class="xref py py-class docutils literal notranslate"><span class="pre">Threshold</span></code></a> class.
+We denote the solution of the <a class="reference internal" href="DGLAP.html"><span class="doc">DGLAP equation</span></a> in <a class="reference internal" href="Mellin.html"><span class="doc">Mellin space</span></a> as</p>
+<div class="math notranslate nohighlight">
+\[\tilde{f_j}(Q^2_1)= \tilde E_{jk}(Q^2_1\leftarrow Q^2_0) \tilde{f_k}(Q^2_0)\]</div>
+<p>For the singlet sector, we define the singlet evolution kernel matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ES{Q_1^2}{Q_0^2} = \begin{pmatrix}
+    \tilde E_{qq} &amp; \tilde E_{qg}\\
+    \tilde E_{gq} &amp; \tilde E_{gg}
+\end{pmatrix}(Q_1^2\leftarrow Q_0^2)\end{split}\]</div>
+<p>which is the only coupled system amongst the DGLAP equations.</p>
+<p>Next, we list the matching conditions for the different evolution distributions up to LO.
+Note, that the non-trivial matching of the discontinuities only enters at NNLO.</p>
+<div class="section" id="zero-thresholds">
+<h2>Zero Thresholds<a class="headerlink" href="#zero-thresholds" title="Permalink to this headline">¶</a></h2>
+<p>Here, we consider <span class="math notranslate nohighlight">\(m_{q}^2 &lt; Q_0^2 &lt; Q_1^2 &lt; m_{q+1}^2\)</span> and we assume that
+<span class="math notranslate nohighlight">\(m_q\)</span> is the mass of the <span class="math notranslate nohighlight">\(n_f\)</span>-th flavour. This configuration corresponds
+effectivelyto a Fixed Flavour Number Scheme (FFNS).
+Here all distributions simply evolve with their associated operator.
+The singlet sector and the full valence distributions are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dSV{n_f}{Q_1^2} &amp;= \ES{Q^2_1}{Q_0^2} \dSV{n_f}{Q_0^2}\\
+\dVf{n_f}{Q_1^2} &amp;= \Ev{Q^2_1}{Q_0^2} \dVf{n_f}{Q_0^2}\end{split}\]</div>
+<p>If the valence-like/singlet-like non-singlet distributions are already active,
+they keep evolving from themselves</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{j}{n_f}{Q_1^2} &amp;= \Em{Q^2_1}{Q_0^2} \dVj{j}{n_f}{Q_0^2} \\
+\dTj{j}{n_f}{Q_1^2} &amp;= \Ep{Q^2_1}{Q_0^2} \dTj{j}{n_f}{Q_0^2} \\
+ &amp;\text{for }j=3,\ldots, n_f^2-1\end{split}\]</div>
+<p>Otherwise, they are generated dynamically by the full valence distribution or the singlet
+sector respectively</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{k}{n_f}{Q_1^2} &amp;= \Ev{Q^2_1}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{k}{n_f}{Q_1^2} &amp;= \left(1, 0\right)\ES{Q_1^2}{Q_0^2}\dSV{n_f}{Q_0^2} \\
+ &amp;\text{for }k=(n_f+1)^2-1, \ldots, 35\end{split}\]</div>
+<p>and making the distributions thus linearly dependent <span class="math notranslate nohighlight">\(V_k = V, T_k = \Sigma\)</span>
+(as they should).</p>
+</div>
+<div class="section" id="one-threshold">
+<h2>One Threshold<a class="headerlink" href="#one-threshold" title="Permalink to this headline">¶</a></h2>
+<p>Here, we consider <span class="math notranslate nohighlight">\(m_q^2 &lt; Q_0^2 &lt; m_{q+1}^2 &lt; Q_1^2 &lt; m_{q+2}^2\)</span> and we assume that
+<span class="math notranslate nohighlight">\(m_q\)</span> is the mass of the <span class="math notranslate nohighlight">\(n_f\)</span>-th flavour.
+The singlet sector and the full valence distributions are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dSV{n_f+1}{Q_1^2}    &amp;= \ES{Q^2_1}{m_{q+1}^2} \ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
+\dVj{j}{n_f+1}{Q_1^2} &amp;= \Ev{Q^2_1}{m_{q+1}^2} \Ev{m_{q+1}^2}{Q^2_0} \dVf{n_f}{Q_0^2}\end{split}\]</div>
+<p>If the valence-like/singlet-like non-singlet distributions have already been active before
+the threshold, they keep evolving from themselves</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{j}{n_f+1}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+1}^2}\Em{m_{q+1}^2}{Q_0^2} \dVj{j}{n_f}{Q_0^2}\\
+\dTj{j}{n_f+1}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+1}^2}\Ep{m_{q+1}^2}{Q_0^2} \dTj{j}{n_f}{Q_0^2}\\
+ &amp;\text{for }j=3,\ldots, n_f^2-1\end{split}\]</div>
+<p>The two distributions which become active after crossing the threshold are generated
+dynamically up to the threshold and then set themselves apart:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{j'}{n_f+1}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{j'}{n_f+1}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+1}^2}\left(1,0\right)\ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
+ &amp; \text{for }j'=(n_f+1)^2-1\end{split}\]</div>
+<p>The remaining distributions are generated again purely dynamically:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{k}{n_f+1}{Q_1^2} &amp;= \Ev{Q^2_1}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{k}{n_f+1}{Q_1^2} &amp;= \left(1, 0\right)\ES{Q_1^2}{m_{q+1}^2}\ES{m_{q+1}^2}{Q_0^2}\dSV{n_f}{Q_0^2} \\
+ &amp; \text{for }k=(n_f+2)^2-1, \ldots, 35\end{split}\]</div>
+</div>
+<div class="section" id="two-thresholds">
+<h2>Two Thresholds<a class="headerlink" href="#two-thresholds" title="Permalink to this headline">¶</a></h2>
+<p>Here, we consider <span class="math notranslate nohighlight">\(m_q^2 &lt; Q_0^2 &lt; m_{q+1}^2 &lt; m_{q+2}^2 &lt; Q_1^2 &lt; m_{q+3}^2\)</span> and we assume that
+<span class="math notranslate nohighlight">\(m_q\)</span> is the mass of the <span class="math notranslate nohighlight">\(n_f\)</span>-th flavour.
+The singlet sector and the full valence distributions are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dSV{n_f+2}{Q_1^2}    &amp;= \ES{Q^2_1}{m_{q+2}^2} \ES{m_{q+2}^2}{m_{q+1}^2} \ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
+\dVj{j}{n_f+2}{Q_1^2} &amp;= \Ev{Q^2_1}{m_{q+2}^2} \Ev{m_{q+2}^2}{m_{q+1}^2} \Ev{m_{q+1}^2}{Q^2_0} \dVf{n_f}{Q_0^2}\end{split}\]</div>
+<p>If the valence-like/singlet-like non-singlet distributions have already been active before
+the threshold, they keep evolving from themselves</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{j}{n_f+2}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+2}^2}\Em{m_{q+2}^2}{m_{q+1}^2}\Em{m_{q+1}^2}{Q_0^2} \dVj{j}{n_f}{Q_0^2}\\
+\dTj{j}{n_f+2}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+2}^2}\Ep{m_{q+2}^2}{m_{q+1}^2}\Ep{m_{q+1}^2}{Q_0^2} \dTj{j}{n_f}{Q_0^2}\\
+ &amp;\text{for }j=3,\ldots, n_f^2-1\end{split}\]</div>
+<p>The two distributions which become active after crossing the <em>first</em> threshold are generated
+dynamically up to the first threshold and then set themselves apart:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{j'}{n_f+2}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+2}^2}\Em{m_{q+2}^2}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{j'}{n_f+2}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+2}^2}\Ep{m_{q+2}^2}{m_{q+1}^2}\left(1,0\right)\ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
+ &amp; \text{for }j'=(n_f+1)^2-1\end{split}\]</div>
+<p>The two distributions which become active after crossing the <em>second</em> threshold are generated
+dynamically up to the second threshold and then set themselves apart:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{j''}{n_f+2}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+2}^2}\Ev{m_{q+2}^2}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{j''}{n_f+2}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+2}^2}\left(1,0\right)\ES{m_{q+2}^2}{m_{q+1}^2} \ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
+ &amp; \text{for }j''=(n_f+2)^2-1\end{split}\]</div>
+<p>If there is a distributions remaining it is generated again purely dynamically:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{k}{n_f+2}{Q_1^2} &amp;= \Ev{Q^2_1}{m_{q+2}^2}\Ev{m_{q+2}^2}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{k}{n_f+2}{Q_1^2} &amp;= \left(1, 0\right)\ES{Q_1^2}{m_{q+2}^2}\ES{m_{q+2}^2}{m_{q+1}^2}\ES{m_{q+1}^2}{Q_0^2}\dSV{n_f}{Q_0^2} \\
+ &amp; \text{for }k=(n_f+3)^2-1\end{split}\]</div>
+</div>
+<div class="section" id="three-thresholds">
+<h2>Three Thresholds<a class="headerlink" href="#three-thresholds" title="Permalink to this headline">¶</a></h2>
+<p>Here, we consider <span class="math notranslate nohighlight">\(0 &lt; Q_0^2 &lt; m_{c}^2 &lt; m_{b}^2 &lt; m_{t}^2 &lt; Q_1^2 &lt; \infty\)</span>.
+The singlet sector and the full valence distributions are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dSV{6}{Q_1^2} &amp;=       \ES{Q^2_1}{m_{t}^2} \ES{m_t^2}{m_{b}^2} \\
+               &amp; \quad  \ES{m_b^2}{m_{c}^2} \ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2} \\
+\dVj{j}{6}{Q_1^2} &amp;=      \Ev{Q^2_1}{m_{t}^2}   \Ev{m_{t}^2}{m_{b}^2} \\
+                  &amp; \quad \Ev{m_{b}^2}{m_{c}^2} \Ev{m_{c}^2}{Q^2_0} \dVf{3}{Q_0^2}\end{split}\]</div>
+<p>The valence-like/singlet-like non-singlet distributions containing flavours up to strange,
+they keep evolving from themselves</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{j}{6}{Q_1^2} &amp;=      \Em{Q^2_1}{m_{t}^2}   \Em{m_{t}^2}{m_{b}^2} \\
+                  &amp; \quad \Em{m_{b}^2}{m_{c}^2} \Em{m_{c}^2}{Q_0^2} \dVj{j}{3}{Q_0^2} \\
+\dTj{j}{6}{Q_1^2} &amp;=      \Ep{Q^2_1}{m_{t}^2}   \Ep{m_t^2}{m_{qb}^2} \\
+                  &amp; \quad \Ep{m_{b}^2}{m_{c}^2} \Ep{m_{c}^2}{Q_0^2} \dTj{j}{3}{Q_0^2} \\
+ &amp;\text{for }j=3,8\end{split}\]</div>
+<p>The two distributions containing charm are generated dynamically up to the first threshold
+and then set themselves apart:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{15}{6}{Q_1^2} &amp;=      \Em{Q^2_1}{m_{t}^2}   \Em{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \Em{m_{b}^2}{m_{c}^2} \Ev{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
+\dTj{15}{6}{Q_1^2} &amp;=      \Ep{Q^2_1}{m_{t}^2} \Ep{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \Ep{m_{b}^2}{m_{c}^2} \left(1,0\right)\ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2}\end{split}\]</div>
+<p>The two distributions containing bottom are generated dynamically up to the second threshold
+and then set themselves apart:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{24}{6}{Q_1^2} &amp;=      \Em{Q^2_1}{m_{t}^2}   \Em{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \Ev{m_{b}^2}{m_{c}^2} \Ev{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
+\dTj{24}{6}{Q_1^2} &amp;=      \Ep{Q^2_1}{m_{t}^2} \Ep{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \left(1,0\right) \ES{m_{b}^2}{m_{c}^2} \ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2}\end{split}\]</div>
+<p>The two distributions containing top are generated dynamically up to the third threshold
+and then set themselves apart:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\dVj{35}{6}{Q_1^2} &amp;=      \Em{Q^2_1}{m_{t}^2}   \Ev{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \Ev{m_{b}^2}{m_{c}^2} \Ev{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
+\dTj{35}{6}{Q_1^2} &amp;=      \Ep{Q^2_1}{m_{t}^2} \left(1,0\right) \ES{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \ES{m_{b}^2}{m_{c}^2} \ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2}\end{split}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../zzz-refs.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="FlavourBasis.html" class="btn btn-neutral float-left" title="Evolution Basis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

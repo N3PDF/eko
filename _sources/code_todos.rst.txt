@@ -1,13 +1,13 @@
 TODOs
 =====
 
-Fom Docstrings
---------------
+From Docstrings
+---------------
 
 .. todolist ::
 
-Fom Source Code
----------------
+From Source Code
+----------------
 
 `operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
 
@@ -65,9 +65,9 @@ Fom Source Code
 
 .. warning:: #35 there are still a few hard-coded things in this class
 
-.. warning:: #65 this is just a hack because I'm not able to generalize this part
+.. warning:: #67 this is just a hack because I'm not able to generalize this part
 
-.. warning:: #112 can this be made more concise, or is this really the best that can be done?
+.. warning:: #114 can this be made more concise, or is this really the best that can be done?
 
 
 

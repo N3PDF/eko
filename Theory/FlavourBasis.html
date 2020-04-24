@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview: module code &mdash; EKO  documentation</title>
+  <title>Evolution Basis &mdash; EKO  documentation</title>
   
 
   
@@ -37,7 +37,9 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Matching Conditions on Crossing Thresholds" href="Matching.html" />
+    <link rel="prev" title="Solving DGLAP" href="DGLAP.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,13 +84,13 @@
             
             
               <p class="caption"><span class="caption-text">Theory:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -145,10 +147,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Overview: module code</li>
+      <li>Evolution Basis</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Theory/FlavourBasis.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -160,25 +166,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>All modules for which code is available</h1>
-<ul><li><a href="eko/alpha_s.html">eko.alpha_s</a></li>
-<li><a href="eko/constants.html">eko.constants</a></li>
-<li><a href="eko/dglap.html">eko.dglap</a></li>
-<li><a href="eko/ekomath.html">eko.ekomath</a></li>
-<li><a href="eko/evolution_operator.html">eko.evolution_operator</a></li>
-<li><a href="eko/flavours.html">eko.flavours</a></li>
-<li><a href="eko/interpolation.html">eko.interpolation</a></li>
-<li><a href="eko/kernel_generation.html">eko.kernel_generation</a></li>
-<li><a href="eko/mellin.html">eko.mellin</a></li>
-<li><a href="eko/operator_grid.html">eko.operator_grid</a></li>
-<li><a href="eko/splitting_functions_LO.html">eko.splitting_functions_LO</a></li>
-<li><a href="eko/thresholds.html">eko.thresholds</a></li>
-</ul>
+  <div class="section" id="evolution-basis">
+<h1>Evolution Basis<a class="headerlink" href="#evolution-basis" title="Permalink to this headline">¶</a></h1>
+<p>The evolution flavours are</p>
+<div class="math notranslate nohighlight">
+\[V, V_3, V_8, V_{15}, V_{24}, V_{35}, T_3, T_8, T_{15}, T_{24}, T_{35}, \Sigma, g\]</div>
+<p>and they can be seperated into two major classes: the singlet sector, consisting of the
+singlet distribution <span class="math notranslate nohighlight">\(\Sigma\)</span> and the gluon distribution <span class="math notranslate nohighlight">\(g\)</span>, and the non-singlet
+sector. The non-singlet sector can be again subdivided into three groups: first the full
+valence distribution <span class="math notranslate nohighlight">\(V\)</span>, second the valence-like distributions
+<span class="math notranslate nohighlight">\(V_3 \ldots V_{35}\)</span>, and third the singlet like distributions <span class="math notranslate nohighlight">\(T_3 \ldots T_{35}\)</span>.
+The mapping between the Evolution Basis and the Flavour Basis is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Sigma &amp;= \sum\limits_{j} q_j^+\\
+V &amp;= \sum\limits_{j} q_j^-\\
+V_3 &amp;= u^- - d^-\\
+V_8 &amp;= u^- + d^- - 2 s^-\\
+V_{15} &amp;= u^- + d^- + s^- - 3 c^-\\
+V_{24} &amp;= u^- + d^- + s^- + c^- - 4 b^-\\
+V_{35} &amp;= u^- + d^- + s^- + c^- + b^- - 5 t^-\\
+T_3 &amp;= u^+ - d^+\\
+T_8 &amp;= u^+ + d^+ - 2 s^+\\
+T_{15} &amp;= u^+ + d^+ + s^+ - 3 c^+\\
+T_{24} &amp;= u^+ + d^+ + s^+ + c^+ - 4 b^+\\
+T_{35} &amp;= u^+ + d^+ + s^+ + c^+ + b^+ - 5 t^+\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[q^\pm = q \pm \bar q\]</div>
+<p>Note that the associated numbers to the valence-like and singlet-like non-singlet distributions
+<span class="math notranslate nohighlight">\(k\)</span> follow the common group-theoretical notation <span class="math notranslate nohighlight">\(k = n_f^2 - 1\)</span>
+where <span class="math notranslate nohighlight">\(n_f\)</span> denotes the incorporated number of quark flavours.</p>
+<p>The matching conditions when crossing flavour thresholds are given in <a class="reference internal" href="Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
+</div>
+
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Matching.html" class="btn btn-neutral float-right" title="Matching Conditions on Crossing Thresholds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="DGLAP.html" class="btn btn-neutral float-left" title="Solving DGLAP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
