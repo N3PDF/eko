@@ -83,8 +83,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/index.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Dev:</span></p>
 <ul>
@@ -153,12 +153,16 @@
             
   <h1>Source code for eko.operator_grid</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This module contains the OperatorGrid class</span>
-<span class="sd">    This is the driver class of eko as it is the one that collects all the</span>
+<span class="sd">    This module contains the :class:`OperatorGrid`  and the</span>
+<span class="sd">    :class:`OperatorMaster` class.</span>
+
+<span class="sd">    The first is the driver class of eko as it is the one that collects all the</span>
 <span class="sd">    previously instantiated information and does the actual computation of the Qs</span>
 
-<span class="sd">    This class, however, has no knowledge about _what_ it does compute as</span>
-<span class="sd">    everything must always come in externally</span>
+<span class="sd">    The classes, however, have no knowledge about _what_ it does compute as</span>
+<span class="sd">    everything must always come in externally.</span>
+
+<span class="sd">    See :doc:`Operator overview &lt;/Code/Operators&gt;`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="c1"># TODO the operator grid should have a &quot;save&quot; and &quot;load&quot; method which will allow to store the full grid</span>
@@ -172,21 +176,21 @@
 
 <div class="viewcode-block" id="OperatorMaster"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorMaster">[docs]</a><span class="k">class</span> <span class="nc">OperatorMaster</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The OperatorMaster is instantiated for a given set of parameters</span>
+<span class="sd">        The :class:`OperatorMaster` is instantiated for a given set of parameters</span>
 <span class="sd">        And informs the generation of operators.</span>
 
-<span class="sd">        This class is just a convenience wrapper</span>
+<span class="sd">        This class is just a convenience wrapper.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">            alpha_generator: eko.alpha_s.StrongCoupling</span>
-<span class="sd">                Instance of the StrongCoupling class able to generate a_s for any q</span>
+<span class="sd">                Instance of the :class:`~eko.alpha_s.StrongCoupling` class able to generate a_s for any q</span>
 <span class="sd">            kernel_dispatcher: eko.kernels.KernelDispatcher</span>
-<span class="sd">                Instance of the KernelDispatcher with the information about the kernels</span>
+<span class="sd">                Instance of the :class:`~eko.kernels.KernelDispatcher` with the information about the kernels</span>
 <span class="sd">            xgrid: np.array</span>
 <span class="sd">                Grid in x used to compute the operators</span>
 <span class="sd">            nf: int</span>
-<span class="sd">                Value of nf for this OperatorMaster</span>
+<span class="sd">                Value of nf for this :class:`OperatorMaster`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>

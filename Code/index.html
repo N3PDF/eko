@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Physics documentation &mdash; EKO  documentation</title>
+  <title>Code documentation &mdash; EKO  documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Interpolation" href="Interpolation.html" />
-    <link rel="prev" title="EKO documentation" href="../index.html" /> 
+    <link rel="next" title="Operators" href="Operators.html" />
+    <link rel="prev" title="Matching Conditions on Crossing Thresholds" href="../Physics/Matching.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,16 +84,12 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Physics documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../Code/index.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Dev:</span></p>
@@ -144,13 +140,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Physics documentation</li>
+      <li>Code documentation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Physics/index.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Code/index.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -163,46 +159,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="physics-documentation">
-<h1>Physics documentation<a class="headerlink" href="#physics-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="code-documentation">
+<h1>Code documentation<a class="headerlink" href="#code-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Interpolation.html">Interpolation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Interpolation.html#algorithm">Algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Interpolation.html#example">Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Operators.html">Operators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../modules/eko/eko.html">eko package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.alpha_s">eko.alpha_s module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.constants">eko.constants module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.dglap">eko.dglap module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.ekomath">eko.ekomath module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.evolution_operator">eko.evolution_operator module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.flavours">eko.flavours module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.interpolation">eko.interpolation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.kernel_generation">eko.kernel_generation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.mellin">eko.mellin module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../modules/eko/eko.html#integration-paths">Integration Paths</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Mellin.html#important-examples">Important Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Mellin.html#polynomials">Polynomials</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Mellin.html#logarithms">Logarithms</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Mellin.html#plus-distributions">Plus Distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.operator_grid">eko.operator_grid module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.splitting_functions_LO">eko.splitting_functions_LO module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko.thresholds">eko.thresholds module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../modules/eko/eko.html#module-eko">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="Mellin.html#inversion-of-factorizable-kernels">Inversion of Factorizable Kernels</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Mellin.html#convolution">Convolution</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="pQCD.html">pQCD ingredients</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="pQCD.html#running-coupling">Running Coupling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pQCD.html#splitting-functions">Splitting Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="DGLAP.html#leading-order">Leading Order</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="DGLAP.html#non-singlet-evolution">Non-Singlet Evolution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="DGLAP.html#singlet-evolution">Singlet Evolution</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="DGLAP.html#benchmarks">Benchmarks</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Matching.html#zero-thresholds">Zero Thresholds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matching.html#one-threshold">One Threshold</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matching.html#two-thresholds">Two Thresholds</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Matching.html#three-thresholds">Three Thresholds</a></li>
 </ul>
 </li>
 </ul>
@@ -217,10 +199,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Interpolation.html" class="btn btn-neutral float-right" title="Interpolation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Operators.html" class="btn btn-neutral float-right" title="Operators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral float-left" title="EKO documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../Physics/Matching.html" class="btn btn-neutral float-left" title="Matching Conditions on Crossing Thresholds" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

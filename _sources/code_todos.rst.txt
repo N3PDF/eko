@@ -11,9 +11,9 @@ Fom Source Code
 
 `operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
 
-.. warning:: #10 the operator grid should have a "save" and "load" method which will allow to store the full grid
+.. warning:: #14 the operator grid should have a "save" and "load" method which will allow to store the full grid
 
-.. warning:: #237 everything in parallel
+.. warning:: #241 everything in parallel
 
 
 
@@ -33,21 +33,21 @@ Fom Source Code
 
 `evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
 
-.. warning:: #104 make 'cut' external parameter?
+.. warning:: #38 make 'cut' external parameter?
 
-.. warning:: #109 delegate to logger?
+.. warning:: #43 delegate to logger?
 
-.. warning:: #146 delegate to logger?
+.. warning:: #80 delegate to logger?
 
-.. warning:: #269 check error propagation
+.. warning:: #203 check error propagation
 
-.. warning:: #285 check error propagation
+.. warning:: #219 check error propagation
 
-.. warning:: #351 change how this work internally
+.. warning:: #286 change how this work internally
 
-.. warning:: #402 fill this up, check whether flavour or evol basis
+.. warning:: #337 fill this up, check whether flavour or evol basis
 
-.. warning:: #406 this is a legacy wrapper as the benchmark files use this dictionary
+.. warning:: #341 this is a legacy wrapper as the benchmark files use this dictionary
 
 
 
@@ -61,13 +61,13 @@ Fom Source Code
 
 `flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
 
-.. warning:: #48 Should this be a parameter or can it be hardcoded?
+.. warning:: #11 Should this be a parameter or can it be hardcoded?
 
-.. warning:: #72 there are still a few hard-coded things in this class
+.. warning:: #35 there are still a few hard-coded things in this class
 
-.. warning:: #102 this is just a hack because I'm not able to generalize this part
+.. warning:: #65 this is just a hack because I'm not able to generalize this part
 
-.. warning:: #149 can this be made more concise, or is this really the best that can be done?
+.. warning:: #112 can this be made more concise, or is this really the best that can be done?
 
 
 

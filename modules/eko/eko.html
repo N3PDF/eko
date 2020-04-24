@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="TODOs" href="../../code_todos.html" />
+    <link rel="next" title="References" href="../../zzz-refs.html" />
     <link rel="prev" title="eko" href="modules.html" /> 
 </head>
 
@@ -85,33 +85,31 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../Code/index.html">Code documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../Code/Operators.html">Operators</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="modules.html">eko</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">eko package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.alpha_s">eko.alpha_s module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.constants">eko.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.dglap">eko.dglap module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.ekomath">eko.ekomath module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.evolution_operator">eko.evolution_operator module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.flavours">eko.flavours module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.interpolation">eko.interpolation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.kernel_generation">eko.kernel_generation module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.mellin">eko.mellin module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.operator_grid">eko.operator_grid module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.splitting_functions_LO">eko.splitting_functions_LO module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.thresholds">eko.thresholds module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">eko</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">eko package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.alpha_s">eko.alpha_s module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.constants">eko.constants module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.dglap">eko.dglap module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.ekomath">eko.ekomath module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.evolution_operator">eko.evolution_operator module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.flavours">eko.flavours module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#evolution-basis">Evolution Basis</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.interpolation">eko.interpolation module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.kernel_generation">eko.kernel_generation module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.mellin">eko.mellin module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#integration-paths">Integration Paths</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.operator_grid">eko.operator_grid module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.splitting_functions_LO">eko.splitting_functions_LO module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.thresholds">eko.thresholds module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 <p class="caption"><span class="caption-text">Dev:</span></p>
 <ul>
@@ -160,6 +158,8 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../Code/index.html">Code documentation</a> &raquo;</li>
         
           <li><a href="modules.html">eko</a> &raquo;</li>
         
@@ -653,86 +653,7 @@ Euler-Mascheroni constant.</p>
 <div class="section" id="module-eko.evolution_operator">
 <span id="eko-evolution-operator-module"></span><h2>eko.evolution_operator module<a class="headerlink" href="#module-eko.evolution_operator" title="Permalink to this headline">¶</a></h2>
 <p>This module contains all evolution operator classes.</p>
-<p>The classes are nested as follows:</p>
-<div class="figure align-center" id="operators">
-digraph G {
-    bgcolor = transparent
-
-    node [shape=box]
-    OperatorGrid [label=&quot;OperatorGrid&quot;];
-    OperatorMaster [label=&quot;OperatorMaster&quot; ];
-    test, test1 [style=invis];
-    Operator [label=&quot;Operator&quot; ];
-    PhysicalOperator [label=&quot;PhysicalOperator&quot;];
-    OperatorMember [label=&quot;OperatorMember&quot;];
-
-    {rank=same OperatorMaster test test1}
-    {rank=same Operator PhysicalOperator}
-
-    OperatorGrid -&gt; OperatorMaster;
-    OperatorMaster -&gt; Operator  [weight=1000];
-    Operator -&gt; OperatorMember;
-    Operator -&gt; PhysicalOperator [style=dashed len=10];
-    PhysicalOperator -&gt; OperatorMember
-    OperatorMaster -&gt; test -&gt; test1 [style=invis];
-    test1 -&gt; PhysicalOperator [weight=1000 style=invis];
-}<p class="caption"><span class="caption-text">nesting of the operator classes: solid lines means “has many”,
-dashed lines means “creates”</span><a class="headerlink" href="#operators" title="Permalink to this image">¶</a></p>
-</div>
-<ul>
-<li><p><a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a>:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>this is the master class which administrates all evolution kernel operator tasks</p></li>
-<li><p>it is instantiated once for each run</p></li>
-<li><p>it divides the given range of <span class="math notranslate nohighlight">\(Q^2\)</span> into the necessary threshold crossings and
-creates a <a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> for each</p></li>
-<li><p>it recollects all necessary operators in the end to create the
-<a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p><a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>this represents a configuration for a fixed number of flavours</p></li>
-<li><p>it creates an <a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> for each final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p><a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>this represents a configuration for a fixed final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
-<li><p>this class is only used <em>internally</em></p></li>
-<li><p>its <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> are only valid in the current
-threshold area</p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p><a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>this is the exposed equivalent of <a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a>,
-i.e. it also lives at at fixed final scale</p></li>
-<li><p>its <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> are valid from the starting scale
-to the final scale</p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p><a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>this represents a single evolution kernel operator</p></li>
-<li><p>inside <a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> they are in “raw” evolution basis, i.e.
-<span class="math notranslate nohighlight">\(\tilde{\mathbf{E}}_S, \tilde{E}_{ns}^{\pm,v}\)</span>, and they never cross a threshold</p></li>
-<li><p>inside <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> they are in “true” evolution
-basis, i.e. they evolve e.g. <span class="math notranslate nohighlight">\(\tilde V, \tilde T_3\)</span> etc., so they are a evetually
-a product of the “raw” basis (see <a class="reference internal" href="../../Physics/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
+<p>See <a class="reference internal" href="../../Code/Operators.html"><span class="doc">Operator overview</span></a>.</p>
 <dl class="py class">
 <dt id="eko.evolution_operator.Operator">
 <em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delta_t</span></em>, <em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">integrands_ns</span></em>, <em class="sig-param"><span class="n">integrands_s</span></em>, <em class="sig-param"><span class="n">metadata</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator" title="Permalink to this definition">¶</a></dt>
@@ -868,16 +789,17 @@ of the <a class="reference internal" href="#eko.evolution_operator.Operator" tit
 <dt id="eko.evolution_operator.PhysicalOperator">
 <em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">PhysicalOperator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_members</span></em>, <em class="sig-param"><span class="n">xgrid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#PhysicalOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.PhysicalOperator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>PhysicalOperator is exposed to the outside world.</p>
+<p>This is exposed to the outside world.</p>
 <p>This operator is computed via the composition method of the
-Operator class.</p>
+<a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> class.</p>
 <p>This operator can act on PDFs through the <cite>__call__</cite> method.
-Assumes as input a pdf as dictionary with:</p>
+It assumes as input a pdf as dictionary with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pdf</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;metadata&#39;</span> <span class="p">:</span> <span class="n">some</span> <span class="n">info</span><span class="p">,</span>
     <span class="s1">&#39;members&#39;</span> <span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;V&#39;</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
         <span class="s1">&#39;g&#39;</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+        <span class="c1"># ...</span>
         <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -905,39 +827,10 @@ Assumes as input a pdf as dictionary with:</p>
 </div>
 <div class="section" id="module-eko.flavours">
 <span id="eko-flavours-module"></span><h2>eko.flavours module<a class="headerlink" href="#module-eko.flavours" title="Permalink to this headline">¶</a></h2>
-<p>This module holds the class <a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a> and the data
+<p>This module holds the <a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a> class and the data
 related to the flavour combinations.</p>
-<div class="section" id="evolution-basis">
-<h3>Evolution Basis<a class="headerlink" href="#evolution-basis" title="Permalink to this headline">¶</a></h3>
-<p>The evolution flavours are</p>
-<div class="math notranslate nohighlight">
-\[V, V_3, V_8, V_{15}, V_{24}, V_{35}, T_3, T_8, T_{15}, T_{24}, T_{35}, \Sigma, g\]</div>
-<p>and they can be seperated into two major classes: the singlet sector, consisting of the
-singlet distribution <span class="math notranslate nohighlight">\(\Sigma\)</span> and the gluon distribution <span class="math notranslate nohighlight">\(g\)</span>, and the non-singlet
-sector. The non-singlet sector can be again subdivided into three groups: first the full
-valence distribution <span class="math notranslate nohighlight">\(V\)</span>, second the valence-like distributions
-<span class="math notranslate nohighlight">\(V_3 \ldots V_{35}\)</span>, and third the singlet like distributions <span class="math notranslate nohighlight">\(T_3 \ldots T_{35}\)</span>.
-The mapping between the Evolution Basis and the Flavour Basis is given by</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\Sigma &amp;= \sum\limits_{j} q_j^+\\
-V &amp;= \sum\limits_{j} q_j^-\\
-V_3 &amp;= u^- - d^-\\
-V_8 &amp;= u^- + d^- - 2 s^-\\
-V_{15} &amp;= u^- + d^- + s^- - 3 c^-\\
-V_{24} &amp;= u^- + d^- + s^- + c^- - 4 b^-\\
-V_{35} &amp;= u^- + d^- + s^- + c^- + b^- - 5 t^-\\
-T_3 &amp;= u^+ - d^+\\
-T_8 &amp;= u^+ + d^+ - 2 s^+\\
-T_{15} &amp;= u^+ + d^+ + s^+ - 3 c^+\\
-T_{24} &amp;= u^+ + d^+ + s^+ + c^+ - 4 b^+\\
-T_{35} &amp;= u^+ + d^+ + s^+ + c^+ + b^+ - 5 t^+\end{split}\]</div>
-<p>with</p>
-<div class="math notranslate nohighlight">
-\[q^\pm = q \pm \bar q\]</div>
-<p>Note that the associated numbers to the valence-like and singlet-like non-singlet distributions
-<span class="math notranslate nohighlight">\(j\)</span> follow the common group-theoretical notation <span class="math notranslate nohighlight">\(j = n_f^2 - 1\)</span>
-where <span class="math notranslate nohighlight">\(n_f\)</span> denotes the incorporated number of quark flavours.</p>
-<p>The write-up of the matching conditions is given in <a class="reference internal" href="../../Physics/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
+<p>The write-up of the matching conditions is given in
+<a class="reference internal" href="../../Physics/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
 <dl class="py class">
 <dt id="eko.flavours.FlavourTarget">
 <em class="property">class </em><code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">FlavourTarget</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">original</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nf_min</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#FlavourTarget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.FlavourTarget" title="Permalink to this definition">¶</a></dt>
@@ -1016,7 +909,6 @@ and whose items are the corresponding path</p>
 </dl>
 </dd></dl>
 
-</div>
 </div>
 <div class="section" id="module-eko.interpolation">
 <span id="eko-interpolation-module"></span><h2>eko.interpolation module<a class="headerlink" href="#module-eko.interpolation" title="Permalink to this headline">¶</a></h2>
@@ -1602,11 +1494,13 @@ determied by <span class="math notranslate nohighlight">\(t\in [c : 1-c]\)</span
 </div>
 <div class="section" id="module-eko.operator_grid">
 <span id="eko-operator-grid-module"></span><h2>eko.operator_grid module<a class="headerlink" href="#module-eko.operator_grid" title="Permalink to this headline">¶</a></h2>
-<p>This module contains the OperatorGrid class
-This is the driver class of eko as it is the one that collects all the
+<p>This module contains the <a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a>  and the
+<a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> class.</p>
+<p>The first is the driver class of eko as it is the one that collects all the
 previously instantiated information and does the actual computation of the Qs</p>
-<p>This class, however, has no knowledge about _what_ it does compute as
-everything must always come in externally</p>
+<p>The classes, however, have no knowledge about _what_ it does compute as
+everything must always come in externally.</p>
+<p>See <a class="reference internal" href="../../Code/Operators.html"><span class="doc">Operator overview</span></a>.</p>
 <dl class="py class">
 <dt id="eko.operator_grid.OperatorGrid">
 <em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorGrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">threshold_holder</span></em>, <em class="sig-param"><span class="n">alpha_generator</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em>, <em class="sig-param"><span class="n">xgrid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid" title="Permalink to this definition">¶</a></dt>
@@ -1681,16 +1575,16 @@ to q^2 from q0^2</p>
 <dt id="eko.operator_grid.OperatorMaster">
 <em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorMaster</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha_generator</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em>, <em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>The OperatorMaster is instantiated for a given set of parameters
+<p>The <a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> is instantiated for a given set of parameters
 And informs the generation of operators.</p>
-<p>This class is just a convenience wrapper</p>
+<p>This class is just a convenience wrapper.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>alpha_generator</strong> (<a class="reference internal" href="#eko.alpha_s.StrongCoupling" title="eko.alpha_s.StrongCoupling"><em>eko.alpha_s.StrongCoupling</em></a>) – Instance of the StrongCoupling class able to generate a_s for any q</p></li>
-<li><p><strong>kernel_dispatcher</strong> (<em>eko.kernels.KernelDispatcher</em>) – Instance of the KernelDispatcher with the information about the kernels</p></li>
+<li><p><strong>alpha_generator</strong> (<a class="reference internal" href="#eko.alpha_s.StrongCoupling" title="eko.alpha_s.StrongCoupling"><em>eko.alpha_s.StrongCoupling</em></a>) – Instance of the <a class="reference internal" href="#eko.alpha_s.StrongCoupling" title="eko.alpha_s.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a> class able to generate a_s for any q</p></li>
+<li><p><strong>kernel_dispatcher</strong> (<em>eko.kernels.KernelDispatcher</em>) – Instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">KernelDispatcher</span></code> with the information about the kernels</p></li>
 <li><p><strong>xgrid</strong> (<em>np.array</em>) – Grid in x used to compute the operators</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Value of nf for this OperatorMaster</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Value of nf for this <a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -2075,7 +1969,7 @@ last one contains q2</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../code_todos.html" class="btn btn-neutral float-right" title="TODOs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../../zzz-refs.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="modules.html" class="btn btn-neutral float-left" title="eko" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -83,8 +83,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/index.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Dev:</span></p>
 <ul>
@@ -154,48 +154,11 @@
   <h1>Source code for eko.flavours</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This module holds the class :class:`FlavourTarget` and the data</span>
+<span class="sd">    This module holds the :class:`FlavourTarget` class and the data</span>
 <span class="sd">    related to the flavour combinations.</span>
 
-
-<span class="sd">    Evolution Basis</span>
-<span class="sd">    ---------------</span>
-<span class="sd">    The evolution flavours are</span>
-
-<span class="sd">    .. math ::</span>
-<span class="sd">        V, V_3, V_8, V_{15}, V_{24}, V_{35}, T_3, T_8, T_{15}, T_{24}, T_{35}, \Sigma, g</span>
-
-<span class="sd">    and they can be seperated into two major classes: the singlet sector, consisting of the</span>
-<span class="sd">    singlet distribution :math:`\Sigma` and the gluon distribution :math:`g`, and the non-singlet</span>
-<span class="sd">    sector. The non-singlet sector can be again subdivided into three groups: first the full</span>
-<span class="sd">    valence distribution :math:`V`, second the valence-like distributions</span>
-<span class="sd">    :math:`V_3 \ldots V_{35}`, and third the singlet like distributions :math:`T_3 \ldots T_{35}`.</span>
-<span class="sd">    The mapping between the Evolution Basis and the Flavour Basis is given by</span>
-
-<span class="sd">    .. math ::</span>
-<span class="sd">        \Sigma &amp;= \sum\limits_{j} q_j^+\\</span>
-<span class="sd">        V &amp;= \sum\limits_{j} q_j^-\\</span>
-<span class="sd">        V_3 &amp;= u^- - d^-\\</span>
-<span class="sd">        V_8 &amp;= u^- + d^- - 2 s^-\\</span>
-<span class="sd">        V_{15} &amp;= u^- + d^- + s^- - 3 c^-\\</span>
-<span class="sd">        V_{24} &amp;= u^- + d^- + s^- + c^- - 4 b^-\\</span>
-<span class="sd">        V_{35} &amp;= u^- + d^- + s^- + c^- + b^- - 5 t^-\\</span>
-<span class="sd">        T_3 &amp;= u^+ - d^+\\</span>
-<span class="sd">        T_8 &amp;= u^+ + d^+ - 2 s^+\\</span>
-<span class="sd">        T_{15} &amp;= u^+ + d^+ + s^+ - 3 c^+\\</span>
-<span class="sd">        T_{24} &amp;= u^+ + d^+ + s^+ + c^+ - 4 b^+\\</span>
-<span class="sd">        T_{35} &amp;= u^+ + d^+ + s^+ + c^+ + b^+ - 5 t^+</span>
-
-<span class="sd">    with</span>
-
-<span class="sd">    .. math ::</span>
-<span class="sd">        q^\pm = q \pm \bar q</span>
-
-<span class="sd">    Note that the associated numbers to the valence-like and singlet-like non-singlet distributions</span>
-<span class="sd">    :math:`j` follow the common group-theoretical notation :math:`j = n_f^2 - 1`</span>
-<span class="sd">    where :math:`n_f` denotes the incorporated number of quark flavours.</span>
-
-<span class="sd">    The write-up of the matching conditions is given in :doc:`Matching Conditions &lt;/Physics/Matching&gt;`.</span>
+<span class="sd">    The write-up of the matching conditions is given in</span>
+<span class="sd">    :doc:`Matching Conditions &lt;/Physics/Matching&gt;`.</span>
 
 <span class="sd">&quot;&quot;&quot;</span> <span class="c1">#pylint:disable=line-too-long</span>
 

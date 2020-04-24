@@ -83,8 +83,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/index.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Dev:</span></p>
 <ul>
@@ -156,73 +156,7 @@
 <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This module contains all evolution operator classes.</span>
 
-<span class="sd">    The classes are nested as follows:</span>
-
-<span class="sd">    .. graphviz::</span>
-<span class="sd">        :name: operators</span>
-<span class="sd">        :caption: nesting of the operator classes: solid lines means &quot;has many&quot;,</span>
-<span class="sd">                  dashed lines means &quot;creates&quot;</span>
-<span class="sd">        :align: center</span>
-
-<span class="sd">        digraph G {</span>
-<span class="sd">            bgcolor = transparent</span>
-
-<span class="sd">            node [shape=box]</span>
-<span class="sd">            OperatorGrid [label=&quot;OperatorGrid&quot;];</span>
-<span class="sd">            OperatorMaster [label=&quot;OperatorMaster&quot; ];</span>
-<span class="sd">            test, test1 [style=invis];</span>
-<span class="sd">            Operator [label=&quot;Operator&quot; ];</span>
-<span class="sd">            PhysicalOperator [label=&quot;PhysicalOperator&quot;];</span>
-<span class="sd">            OperatorMember [label=&quot;OperatorMember&quot;];</span>
-
-<span class="sd">            {rank=same OperatorMaster test test1}</span>
-<span class="sd">            {rank=same Operator PhysicalOperator}</span>
-
-<span class="sd">            OperatorGrid -&gt; OperatorMaster;</span>
-<span class="sd">            OperatorMaster -&gt; Operator  [weight=1000];</span>
-<span class="sd">            Operator -&gt; OperatorMember;</span>
-<span class="sd">            Operator -&gt; PhysicalOperator [style=dashed len=10];</span>
-<span class="sd">            PhysicalOperator -&gt; OperatorMember</span>
-<span class="sd">            OperatorMaster -&gt; test -&gt; test1 [style=invis];</span>
-<span class="sd">            test1 -&gt; PhysicalOperator [weight=1000 style=invis];</span>
-<span class="sd">        }</span>
-
-<span class="sd">    - :class:`~eko.operator_grid.OperatorGrid`:</span>
-
-<span class="sd">        *  this is the master class which administrates all evolution kernel operator tasks</span>
-<span class="sd">        *  it is instantiated once for each run</span>
-<span class="sd">        *  it divides the given range of :math:`Q^2` into the necessary threshold crossings and</span>
-<span class="sd">           creates a :class:`~eko.operator_grid.OperatorMaster` for each</span>
-<span class="sd">        *  it recollects all necessary operators in the end to create the</span>
-<span class="sd">           :class:`~eko.evolution_operator.PhysicalOperator`</span>
-
-<span class="sd">    - :class:`~eko.operator_grid.OperatorMaster`</span>
-
-<span class="sd">        * this represents a configuration for a fixed number of flavours</span>
-<span class="sd">        * it creates an :class:`~eko.evolution_operator.Operator` for each final scale :math:`Q^2`</span>
-
-<span class="sd">    - :class:`~eko.evolution_operator.Operator`</span>
-
-<span class="sd">        * this represents a configuration for a fixed final scale :math:`Q^2`</span>
-<span class="sd">        * this class is only used *internally*</span>
-<span class="sd">        * its :class:`~eko.evolution_operator.OperatorMember` are only valid in the current</span>
-<span class="sd">          threshold area</span>
-
-<span class="sd">    - :class:`~eko.evolution_operator.PhysicalOperator`</span>
-
-<span class="sd">        * this is the exposed equivalent of :class:`~eko.evolution_operator.Operator`,</span>
-<span class="sd">          i.e. it also lives at at fixed final scale</span>
-<span class="sd">        * its :class:`~eko.evolution_operator.OperatorMember` are valid from the starting scale</span>
-<span class="sd">          to the final scale</span>
-
-<span class="sd">    - :class:`~eko.evolution_operator.OperatorMember`</span>
-
-<span class="sd">        * this represents a single evolution kernel operator</span>
-<span class="sd">        * inside :class:`~eko.evolution_operator.Operator` they are in &quot;raw&quot; evolution basis, i.e.</span>
-<span class="sd">          :math:`\tilde{\mathbf{E}}_S, \tilde{E}_{ns}^{\pm,v}`, and they never cross a threshold</span>
-<span class="sd">        * inside :class:`~eko.evolution_operator.PhysicalOperator` they are in &quot;true&quot; evolution</span>
-<span class="sd">          basis, i.e. they evolve e.g. :math:`\tilde V, \tilde T_3` etc., so they are a evetually</span>
-<span class="sd">          a product of the &quot;raw&quot; basis (see :doc:`Matching Conditions &lt;/Physics/Matching&gt;`)</span>
+<span class="sd">    See :doc:`Operator overview &lt;/Code/Operators&gt;`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -458,13 +392,13 @@
 
 <div class="viewcode-block" id="PhysicalOperator"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator">[docs]</a><span class="k">class</span> <span class="nc">PhysicalOperator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        PhysicalOperator is exposed to the outside world.</span>
+<span class="sd">        This is exposed to the outside world.</span>
 
 <span class="sd">        This operator is computed via the composition method of the</span>
-<span class="sd">        Operator class.</span>
+<span class="sd">        :class:`Operator` class.</span>
 
 <span class="sd">        This operator can act on PDFs through the `__call__` method.</span>
-<span class="sd">        Assumes as input a pdf as dictionary with:</span>
+<span class="sd">        It assumes as input a pdf as dictionary with:</span>
 
 <span class="sd">        .. code-block:: python</span>
 
@@ -473,6 +407,7 @@
 <span class="sd">                &#39;members&#39; : {</span>
 <span class="sd">                    &#39;V&#39; : list,</span>
 <span class="sd">                    &#39;g&#39; : list,</span>
+<span class="sd">                    # ...</span>
 <span class="sd">                    }</span>
 <span class="sd">            }</span>
 

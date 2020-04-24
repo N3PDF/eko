@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Operators &mdash; EKO  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="eko" href="../modules/eko/modules.html" />
+    <link rel="prev" title="Code documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Physics/index.html">Physics documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Code documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Dev:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Code documentation</a> &raquo;</li>
+        
+      <li>Operators</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Code/Operators.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="operators">
+<h1>Operators<a class="headerlink" href="#operators" title="Permalink to this headline">¶</a></h1>
+<p>The classes are nested as follows:</p>
+<div class="figure align-center" id="id1">
+digraph G {
+    bgcolor = transparent
+
+    node [shape=box]
+    OperatorGrid [label=&quot;OperatorGrid&quot;];
+    OperatorMaster [label=&quot;OperatorMaster&quot; ];
+    test, test1 [style=invis];
+    Operator [label=&quot;Operator&quot; ];
+    PhysicalOperator [label=&quot;PhysicalOperator&quot;];
+    OperatorMember [label=&quot;OperatorMember&quot;];
+
+    {rank=same OperatorMaster test test1}
+    {rank=same Operator PhysicalOperator}
+
+    OperatorGrid -&gt; OperatorMaster;
+    OperatorMaster -&gt; Operator  [weight=1000];
+    Operator -&gt; OperatorMember;
+    Operator -&gt; PhysicalOperator [style=dashed len=10];
+    PhysicalOperator -&gt; OperatorMember
+    OperatorMaster -&gt; test -&gt; test1 [style=invis];
+    test1 -&gt; PhysicalOperator [weight=1000 style=invis];
+}<p class="caption"><span class="caption-text">nesting of the operator classes: solid lines means “has many”,
+dashed lines means “creates”</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<ul>
+<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>this is the master class which administrates all evolution kernel operator tasks</p></li>
+<li><p>it is instantiated once for each run</p></li>
+<li><p>it divides the given range of <span class="math notranslate nohighlight">\(Q^2\)</span> into the necessary threshold crossings and
+creates a <a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> for each</p></li>
+<li><p>it recollects all necessary operators in the end to create the
+<a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>this represents a configuration for a fixed number of flavours</p></li>
+<li><p>it creates an <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> for each final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>this represents a configuration for a fixed final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
+<li><p>this class is only used <em>internally</em></p></li>
+<li><p>its <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> are only valid in the current
+threshold area</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>this is the exposed equivalent of <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a>,
+i.e. it also lives at at fixed final scale</p></li>
+<li><p>its <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> are valid from the starting scale
+to the final scale</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>this represents a single evolution kernel operator</p></li>
+<li><p>inside <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> they are in “raw” evolution basis, i.e.
+<span class="math notranslate nohighlight">\(\tilde{\mathbf{E}}_S, \tilde{E}_{ns}^{\pm,v}\)</span>, and they never cross a threshold</p></li>
+<li><p>inside <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> they are in “true” evolution
+basis, i.e. they evolve e.g. <span class="math notranslate nohighlight">\(\tilde V, \tilde T_3\)</span> etc., so they are a evetually
+a product of the “raw” basis (see <a class="reference internal" href="../Physics/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../modules/eko/modules.html" class="btn btn-neutral float-right" title="eko" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Code documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

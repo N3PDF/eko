@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Matching Conditions on Crossing Thresholds" href="Matching.html" />
+    <link rel="next" title="Evolution Basis" href="FlavourBasis.html" />
     <link rel="prev" title="pQCD ingredients" href="pQCD.html" /> 
 </head>
 
@@ -97,11 +97,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../Code/index.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Dev:</span></p>
 <ul>
@@ -190,7 +191,8 @@ and then the differential equations to solve are given by</p>
     = \frac{d\ln(\mu_F^2)}{dt} \cdot \frac{d \tilde{\mathbf{f}}(N,\mu_F^2)}{d\ln(\mu_F^2)}
     = \frac{a_s(\mu_F^2)}{\beta(a_s(\mu_F^2))} \cdot \tilde \gamma(N) \cdot \tilde{\mathbf{f}}(N,t)\]</div>
 <p>This transformation makes the equations explicitly independent of the <a class="reference internal" href="pQCD.html"><span class="doc">running coupling</span></a> at LO.</p>
-<p>The solution can be written in terms of an evolution kernel operator <span class="math notranslate nohighlight">\(\mathbf E\)</span></p>
+<p>The solution can be written in terms of an evolution kernel operator <span class="math notranslate nohighlight">\(\mathbf E\)</span> (represented by
+<a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a>)</p>
 <div class="math notranslate nohighlight">
 \[\tilde{\mathbf{f}}(N,t_1) = \tilde{\mathbf{E}}(t_1 \leftarrow t_0) \cdot \tilde{\mathbf{f}}(N,t_0)\]</div>
 <p>Using <a class="reference internal" href="Interpolation.html"><span class="doc">Interpolation</span></a> on both the inital and final PDF, we can then discretize the
@@ -260,7 +262,7 @@ and <a class="bibtex reference internal" href="../zzz-refs.html#dittmar-2005ed" 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Matching.html" class="btn btn-neutral float-right" title="Matching Conditions on Crossing Thresholds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="FlavourBasis.html" class="btn btn-neutral float-right" title="Evolution Basis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pQCD.html" class="btn btn-neutral float-left" title="pQCD ingredients" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
