@@ -170,7 +170,7 @@
 <h1>Operator Hierachy<a class="headerlink" href="#operator-hierachy" title="Permalink to this headline">¶</a></h1>
 <p>The classes are nested as follows:</p>
 <div class="figure align-center" id="operators">
-digraph G {
+<div class="graphviz"><img src="../_images/graphviz-aeeb86869e060b3230563bd54580f54f6c31eeec.png" alt="digraph G {
     bgcolor = transparent
 
     node [shape=box]
@@ -191,7 +191,8 @@ digraph G {
     PhysicalOperator -&gt; OperatorMember
     OperatorMaster -&gt; test -&gt; test1 [style=invis];
     test1 -&gt; PhysicalOperator [weight=1000 style=invis];
-}<p class="caption"><span class="caption-text">nesting of the operator classes: solid lines means “has many”,
+}" class="graphviz" /></div>
+<p class="caption"><span class="caption-text">nesting of the operator classes: solid lines means “has many”,
 dashed lines means “evolves into”</span><a class="headerlink" href="#operators" title="Permalink to this image">¶</a></p>
 </div>
 <ul>
