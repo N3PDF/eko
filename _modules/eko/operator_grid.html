@@ -147,6 +147,8 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../eko.html">eko</a> &raquo;</li>
+        
       <li>eko.operator_grid</li>
     
     
@@ -195,9 +197,11 @@
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">            alpha_generator: eko.alpha_s.StrongCoupling</span>
-<span class="sd">                Instance of the :class:`~eko.alpha_s.StrongCoupling` class able to generate a_s for any q</span>
+<span class="sd">                Instance of the :class:`~eko.alpha_s.StrongCoupling` class able to</span>
+<span class="sd">                generate a_s for any q</span>
 <span class="sd">            kernel_dispatcher: eko.kernels.KernelDispatcher</span>
-<span class="sd">                Instance of the :class:`~eko.kernels.KernelDispatcher` with the information about the kernels</span>
+<span class="sd">                Instance of the :class:`~eko.kernels.KernelDispatcher` with the information</span>
+<span class="sd">                about the kernels</span>
 <span class="sd">            xgrid: np.array</span>
 <span class="sd">                Grid in x used to compute the operators</span>
 <span class="sd">            nf: int</span>
@@ -278,10 +282,10 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Instantiating an operator grid:&quot;</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot; &gt; Flavour scheme: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">scheme</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Flavour scheme: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">scheme</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span> <span class="o">=</span> <span class="n">threshold_holder</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="s2">&quot; &gt; Reference alpha_s(Q^2=</span><span class="si">%f</span><span class="s2">)=</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="o">.</span><span class="n">qref</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="o">.</span><span class="n">ref</span>
+            <span class="s2">&quot;Reference alpha_s(Q^2=</span><span class="si">%f</span><span class="s2">)=</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="o">.</span><span class="n">qref</span><span class="p">,</span> <span class="n">alpha_generator</span><span class="o">.</span><span class="n">ref</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span> <span class="o">=</span> <span class="n">alpha_generator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span> <span class="o">=</span> <span class="n">kernel_dispatcher</span>
@@ -296,7 +300,7 @@
             <span class="p">)</span>
         <span class="n">min_nf</span> <span class="o">=</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">min_nf</span>
         <span class="n">max_nf</span> <span class="o">=</span> <span class="n">threshold_holder</span><span class="o">.</span><span class="n">max_nf</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot; &gt; Accepted nf range: [</span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">min_nf</span><span class="p">,</span> <span class="n">max_nf</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Accepted nf range: [</span><span class="si">%d</span><span class="s2">, </span><span class="si">%d</span><span class="s2">]&quot;</span><span class="p">,</span> <span class="n">min_nf</span><span class="p">,</span> <span class="n">max_nf</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_operators</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -467,7 +471,7 @@
             <span class="n">nf</span><span class="p">,</span> <span class="n">number_of_thresholds</span>
         <span class="p">)</span>
         <span class="c1"># Compose and return</span>
-        <span class="n">final_op</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">operators_to_q2</span><span class="p">,</span> <span class="n">instruction_set</span><span class="p">)</span>
+        <span class="n">final_op</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">operators_to_q2</span><span class="p">,</span> <span class="n">instruction_set</span><span class="p">,</span> <span class="n">qsq</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">final_op</span></div></div>
 </pre></div>
 

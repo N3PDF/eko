@@ -20,14 +20,6 @@ eko.constants module
    :undoc-members:
    :show-inheritance:
 
-eko.dglap module
-----------------
-
-.. automodule:: eko.dglap
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 eko.ekomath module
 ------------------
 
@@ -80,6 +72,22 @@ eko.operator\_grid module
 -------------------------
 
 .. automodule:: eko.operator_grid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.output module
+-----------------
+
+.. automodule:: eko.output
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.runner module
+-----------------
+
+.. automodule:: eko.runner
    :members:
    :undoc-members:
    :show-inheritance:

@@ -13,21 +13,7 @@ From Source Code
 
 .. warning:: #14 the operator grid should have a "save" and "load" method which will allow to store the full grid
 
-.. warning:: #241 everything in parallel
-
-
-
-`mellin.py <file:///home/runner/work/eko/eko/src/eko/mellin.py>`_
-
-.. warning:: #299 if we keep this function open, we might also think about an implementation (t_float)
-
-
-
-`dglap.py <file:///home/runner/work/eko/eko/src/eko/dglap.py>`_
-
-.. warning:: #81 the setup dictionary is a mess tbh
-
-.. warning:: #136 rotation from the evolution basis to flavor basis? if yes, here!
+.. warning:: #243 everything in parallel
 
 
 
@@ -43,11 +29,19 @@ From Source Code
 
 .. warning:: #219 check error propagation
 
-.. warning:: #286 change how this work internally
 
-.. warning:: #337 fill this up, check whether flavour or evol basis
 
-.. warning:: #341 this is a legacy wrapper as the benchmark files use this dictionary
+`runner.py <file:///home/runner/work/eko/eko/src/eko/runner.py>`_
+
+.. warning:: #84 the setup dictionary is a mess tbh
+
+.. warning:: #121 follow yadism and create an extra Output class?
+
+
+
+`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
+
+.. warning:: #38 rotation from the evolution basis to flavor basis? if yes, here!
 
 
 

@@ -147,6 +147,8 @@
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../eko.html">eko</a> &raquo;</li>
+        
       <li>eko.kernel_generation</li>
     
     
@@ -227,23 +229,19 @@
 <div class="viewcode-block" id="prepare_singlet"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.prepare_singlet">[docs]</a><span class="k">def</span> <span class="nf">prepare_singlet</span><span class="p">(</span><span class="n">kernels</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Return a list of integrands prepare to be run &quot;&quot;&quot;</span>
     <span class="n">integrands</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Singlet operator: kernel compilation started&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">kernel_set</span> <span class="ow">in</span> <span class="n">kernels</span><span class="p">:</span>
         <span class="n">kernel_int</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">ker</span> <span class="ow">in</span> <span class="n">kernel_set</span><span class="p">:</span>
             <span class="n">kernel_int</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mellin</span><span class="o">.</span><span class="n">compile_integrand</span><span class="p">(</span><span class="n">ker</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">))</span>
         <span class="n">integrands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_int</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Singlet operator: kernel compilation finished&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">integrands</span></div>
 
 <div class="viewcode-block" id="prepare_non_singlet"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.prepare_non_singlet">[docs]</a><span class="k">def</span> <span class="nf">prepare_non_singlet</span><span class="p">(</span><span class="n">kernels</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Return a list of integrands prepare to be run &quot;&quot;&quot;</span>
     <span class="n">integrands</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Non-singlet operator: kernel compilation started&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ker</span> <span class="ow">in</span> <span class="n">kernels</span><span class="p">:</span>
         <span class="n">kernel_int</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">compile_integrand</span><span class="p">(</span><span class="n">ker</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">)</span>
         <span class="n">integrands</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel_int</span><span class="p">)</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Non-singlet operator: kernel compilation finished&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">integrands</span></div>
 
 

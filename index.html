@@ -192,6 +192,28 @@ second, an overview of the implementation details, and, last, the available indi
 <li class="toctree-l1"><a class="reference internal" href="modules/eko/modules.html">eko</a></li>
 </ul>
 </div>
+<dl class="py function">
+<dt>
+<code class="sig-prename descclassname">eko.</code><code class="sig-name descname">run_dglap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eko.html#run_dglap"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>This function takes a DGLAP theory configuration dictionary
+and performs the solution of the DGLAP equations.</p>
+<p>The EKO <span class="math notranslate nohighlight">\(\hat E_{k,j}(t_1\leftarrow t_0)\)</span> is determined in order
+to fullfill the following evolution</p>
+<div class="math notranslate nohighlight">
+\[f(x_k,t_1) = \hat E_{k,j}(t_1\leftarrow t_0) f(x_j,t_0)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – input card - see <a class="reference internal" href="Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output</strong> – output dictionary - see <a class="reference internal" href="Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>This section has to be removed in an production environment (maybe?)</p>
