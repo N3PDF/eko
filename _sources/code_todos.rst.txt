@@ -11,45 +11,7 @@ From Source Code
 
 `operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
 
-.. warning:: #14 the operator grid should have a "save" and "load" method which will allow to store the full grid
-
-.. warning:: #243 everything in parallel
-
-
-
-`evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
-
-.. warning:: #38 make 'cut' external parameter?
-
-.. warning:: #43 delegate to logger?
-
-.. warning:: #80 delegate to logger?
-
-.. warning:: #203 check error propagation
-
-.. warning:: #219 check error propagation
-
-
-
-`runner.py <file:///home/runner/work/eko/eko/src/eko/runner.py>`_
-
-.. warning:: #84 the setup dictionary is a mess tbh
-
-.. warning:: #121 follow yadism and create an extra Output class?
-
-
-
-`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
-
-.. warning:: #38 rotation from the evolution basis to flavor basis? if yes, here!
-
-
-
-`alpha_s.py <file:///home/runner/work/eko/eko/src/eko/alpha_s.py>`_
-
-.. warning:: #233 add higher orders ...
-
-.. warning:: #275 set up a cache system here
+.. warning:: #246 everything in parallel
 
 
 
@@ -62,6 +24,36 @@ From Source Code
 .. warning:: #67 this is just a hack because I'm not able to generalize this part
 
 .. warning:: #114 can this be made more concise, or is this really the best that can be done?
+
+
+
+`evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
+
+.. warning:: #224 check error propagation
+
+.. warning:: #495 make 'cut' external parameter?
+
+
+
+`strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
+
+.. warning:: #262 how can this be obtained from the Lambda-equivalent?
+
+.. warning:: #300 set up a cache system here
+
+.. warning:: #335 why fact_scale instead of m2
+
+.. warning:: #338 recover color constants
+
+
+
+`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
+
+.. warning:: #39 rotation from the evolution basis to flavor basis? if yes, here!
+
+.. warning:: #62 do we really need numba for the rotation?
+
+.. warning:: #116 explicitly silence yaml
 
 
 

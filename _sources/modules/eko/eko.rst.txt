@@ -4,14 +4,6 @@ eko package
 Submodules
 ----------
 
-eko.alpha\_s module
--------------------
-
-.. automodule:: eko.alpha_s
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 eko.constants module
 --------------------
 
@@ -96,6 +88,14 @@ eko.splitting\_functions\_LO module
 -----------------------------------
 
 .. automodule:: eko.splitting_functions_LO
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.strong\_coupling module
+---------------------------
+
+.. automodule:: eko.strong_coupling
    :members:
    :undoc-members:
    :show-inheritance:

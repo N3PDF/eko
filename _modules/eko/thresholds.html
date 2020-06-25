@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -25,17 +31,12 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> EKO
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> EKO
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -105,6 +107,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -143,7 +146,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
@@ -171,6 +174,8 @@
 <span class="sd">    Area</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numbers</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">eko.flavours</span> <span class="kn">import</span> <span class="n">get_all_flavour_paths</span>
@@ -256,7 +261,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_min</span> <span class="o">&lt;=</span> <span class="n">q2</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_max</span></div>
 
 
-<div class="viewcode-block" id="Threshold"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.Threshold">[docs]</a><span class="k">class</span> <span class="nc">Threshold</span><span class="p">:</span>
+<div class="viewcode-block" id="ThresholdsConfig"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig">[docs]</a><span class="k">class</span> <span class="nc">ThresholdsConfig</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The threshold class holds information about the thresholds any</span>
 <span class="sd">        Q2 has to pass in order to get there from a given q2_ref and scheme.</span>
@@ -273,18 +278,14 @@
 <span class="sd">                Number of flavour for the FFNS</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2_ref</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scheme</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threshold_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">q2_ref</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">&quot;The threshold class needs to know about the reference q^2&quot;</span>
-            <span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2_ref</span><span class="p">,</span> <span class="n">scheme</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">threshold_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Initial values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">q2_ref</span> <span class="o">=</span> <span class="n">q2_ref</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheme</span> <span class="o">=</span> <span class="n">scheme</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_areas</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_area_walls</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_area_ref</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">scheme</span> <span class="o">=</span> <span class="n">scheme</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_nf</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">min_nf</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_operator_paths</span> <span class="o">=</span> <span class="p">[]</span>
@@ -299,20 +300,19 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">max_nf</span> <span class="o">=</span> <span class="n">nf</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">min_nf</span> <span class="o">=</span> <span class="n">nf</span>
             <span class="n">protection</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">elif</span> <span class="n">scheme</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;VFNS&quot;</span><span class="p">,</span> <span class="s2">&quot;ZM-VFNS&quot;</span><span class="p">]:</span>
+        <span class="k">elif</span> <span class="n">scheme</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ZM-VFNS&quot;</span><span class="p">,</span> <span class="s2">&quot;FONLL-A&quot;</span><span class="p">,</span> <span class="s2">&quot;FONLL-A&#39;&quot;</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">nf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-                    <span class="s2">&quot;The VFNS configures its own value for nf, ignoring input nf=</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">nf</span>
+                    <span class="s2">&quot;The ZM-VFNS configures its own value for nf, ignoring input nf=</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="n">nf</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="k">if</span> <span class="n">threshold_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;The VFNS scheme was selected but no thresholds were input&quot;</span>
+                    <span class="s2">&quot;The ZM-VFN scheme was selected but no thresholds were given&quot;</span>
                 <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_setup_vfns</span><span class="p">(</span><span class="n">threshold_list</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;The scheme </span><span class="si">{</span><span class="n">scheme</span><span class="si">}</span><span class="s2"> not implemented in eko.dglap.py&quot;</span>
-            <span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The scheme </span><span class="si">{</span><span class="n">scheme</span><span class="si">}</span><span class="s2"> is not implemented&quot;</span><span class="p">)</span>
 
         <span class="c1"># build flavour targets</span>
         <span class="n">nf_protected</span> <span class="o">=</span> <span class="kc">None</span>
@@ -320,12 +320,27 @@
             <span class="n">nf_protected</span> <span class="o">=</span> <span class="n">nf</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_operator_paths</span> <span class="o">=</span> <span class="n">get_all_flavour_paths</span><span class="p">(</span><span class="n">nf_protected</span><span class="p">)</span>
 
+<div class="viewcode-block" id="ThresholdsConfig.from_dict"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">setup</span><span class="p">):</span>
+        <span class="n">FNS</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;FNS&quot;</span><span class="p">]</span>
+        <span class="n">q2_ref</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;Q0&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">FNS</span> <span class="o">!=</span> <span class="s2">&quot;FFNS&quot;</span><span class="p">:</span>  <span class="c1"># setup ZM-VFNS</span>
+            <span class="n">mc</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;mc&quot;</span><span class="p">]</span>
+            <span class="n">mb</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;mb&quot;</span><span class="p">]</span>
+            <span class="n">mt</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;mt&quot;</span><span class="p">]</span>
+            <span class="n">threshold_list</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mc</span><span class="p">,</span> <span class="n">mb</span><span class="p">,</span> <span class="n">mt</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">nf</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># here FFNS</span>
+            <span class="n">nf</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;NfFF&quot;</span><span class="p">]</span>
+            <span class="n">threshold_list</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">q2_ref</span><span class="p">,</span> <span class="n">FNS</span><span class="p">,</span> <span class="n">threshold_list</span><span class="o">=</span><span class="n">threshold_list</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="n">nf</span><span class="p">)</span></div>
+
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">nf_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Number of flavours in the reference area &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_areas</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_area_ref</span><span class="p">]</span><span class="o">.</span><span class="n">nf</span>
 
-<div class="viewcode-block" id="Threshold.nf_range"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.Threshold.nf_range">[docs]</a>    <span class="k">def</span> <span class="nf">nf_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdsConfig.nf_range"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.nf_range">[docs]</a>    <span class="k">def</span> <span class="nf">nf_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Iterate number of flavours, including min_nf *and* max_nf</span>
 
@@ -362,7 +377,7 @@
             <span class="n">q2_min</span> <span class="o">=</span> <span class="n">q2_max</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_nf</span> <span class="o">=</span> <span class="n">nf</span>
 
-<div class="viewcode-block" id="Threshold.get_path_from_q2_ref"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.Threshold.get_path_from_q2_ref">[docs]</a>    <span class="k">def</span> <span class="nf">get_path_from_q2_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdsConfig.get_path_from_q2_ref"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_path_from_q2_ref">[docs]</a>    <span class="k">def</span> <span class="nf">get_path_from_q2_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Get the Area path from q2_ref to q2.</span>
 
@@ -388,15 +403,15 @@
         <span class="p">]</span>
         <span class="k">return</span> <span class="n">area_path</span></div>
 
-<div class="viewcode-block" id="Threshold.get_composition_path"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.Threshold.get_composition_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_composition_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">n_thres</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdsConfig.get_composition_path"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_composition_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_composition_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">n_thres</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Iterates all flavour targets.</span>
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
-<span class="sd">                nf_target: int</span>
+<span class="sd">                nf: int</span>
 <span class="sd">                    nf value of the target flavour</span>
-<span class="sd">                threshold: int</span>
+<span class="sd">                n_thres: int</span>
 <span class="sd">                    number of thresholds which are going to be crossed</span>
 
 <span class="sd">            Yields</span>
@@ -409,7 +424,7 @@
         <span class="k">for</span> <span class="n">flavour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operator_paths</span><span class="p">:</span>
             <span class="k">yield</span> <span class="n">flavour</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">flavour</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="n">nf</span><span class="p">,</span> <span class="n">n_thres</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Threshold.get_areas_idx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.Threshold.get_areas_idx">[docs]</a>    <span class="k">def</span> <span class="nf">get_areas_idx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2arr</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdsConfig.get_areas_idx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_areas_idx">[docs]</a>    <span class="k">def</span> <span class="nf">get_areas_idx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2arr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Returns the index of the area in which each value of q2arr falls.</span>
 
@@ -424,13 +439,13 @@
 <span class="sd">                    list with the indices of the corresponding areas for q2arr</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Ensure q2arr is an array</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">q2arr</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">q2arr</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
             <span class="n">q2arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">q2arr</span><span class="p">])</span>
         <span class="c1"># Check in which area is every q2</span>
         <span class="n">areas_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">digitize</span><span class="p">(</span><span class="n">q2arr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_area_walls</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">areas_idx</span></div>
 
-<div class="viewcode-block" id="Threshold.get_areas"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.Threshold.get_areas">[docs]</a>    <span class="k">def</span> <span class="nf">get_areas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2arr</span><span class="p">):</span>
+<div class="viewcode-block" id="ThresholdsConfig.get_areas"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_areas">[docs]</a>    <span class="k">def</span> <span class="nf">get_areas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2arr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Returns the Areas in which each value of q2arr falls</span>
 
@@ -459,11 +474,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019-2020, the N3PDF team
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -474,7 +497,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

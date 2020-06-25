@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -25,17 +31,12 @@
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
 </head>
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> EKO
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> EKO
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -105,6 +107,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -143,7 +146,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../index.html">Module code</a> &raquo;</li>
         
@@ -170,12 +173,13 @@
 <span class="sd">    This file contains the output management</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">yaml</span> <span class="kn">import</span> <span class="n">dump</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
 
 <span class="kn">import</span> <span class="nn">eko.interpolation</span> <span class="k">as</span> <span class="nn">interpolation</span>
-<span class="kn">from</span> <span class="nn">eko.evolution_operator</span> <span class="kn">import</span> <span class="n">apply_PDF_to_operator</span>
+<span class="kn">from</span> <span class="nn">eko.evolution_operator</span> <span class="kn">import</span> <span class="n">OperatorMember</span><span class="p">,</span> <span class="n">PhysicalOperator</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -183,24 +187,24 @@
 <div class="viewcode-block" id="Output"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output">[docs]</a><span class="k">class</span> <span class="nc">Output</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Wrapper for the output to help with application</span>
-<span class="sd">        to PDFs and dumping to file</span>
+<span class="sd">        to PDFs and dumping to file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Output.apply_PDF"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.apply_PDF">[docs]</a>    <span class="k">def</span> <span class="nf">apply_PDF</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_pdfs</span><span class="p">,</span> <span class="n">targetgrid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Output.apply_pdf"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.apply_pdf">[docs]</a>    <span class="k">def</span> <span class="nf">apply_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_pdfs</span><span class="p">,</span> <span class="n">targetgrid</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Apply all available operators to the input PDFs.</span>
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
 <span class="sd">                input_pdfs : dict</span>
-<span class="sd">                    input PDFs as dictionary {name: PDF}</span>
-<span class="sd">                targetgrid : array</span>
+<span class="sd">                    input PDFs as dictionary {name: callable PDF}</span>
+<span class="sd">                targetgrid : list</span>
 <span class="sd">                    if given, interpolates to the pdfs given at targetgrid (instead of xgrid)</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            ---------</span>
 <span class="sd">                out_grid : dict</span>
-<span class="sd">                    output PDFs and their associated errors for the computed q2_grid</span>
+<span class="sd">                    output PDFs and their associated errors for the computed Q2grid</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO rotation from the evolution basis to flavor basis? if yes, here!</span>
         <span class="c1"># turn input_pdfs into lists</span>
@@ -212,10 +216,9 @@
             <span class="n">input_lists</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
 
         <span class="c1"># build output</span>
-        <span class="n">in_grid</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_grid&quot;</span><span class="p">]</span>
         <span class="n">out_grid</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="n">in_grid</span><span class="p">:</span>
-            <span class="n">pdfs</span><span class="p">,</span> <span class="n">errs</span> <span class="o">=</span> <span class="n">apply_PDF_to_operator</span><span class="p">(</span><span class="n">in_grid</span><span class="p">[</span><span class="n">q2</span><span class="p">],</span> <span class="n">input_lists</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]:</span>
+            <span class="n">pdfs</span><span class="p">,</span> <span class="n">errs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_op</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span><span class="o">.</span><span class="n">apply_pdf</span><span class="p">(</span><span class="n">input_lists</span><span class="p">)</span>
             <span class="n">out_grid</span><span class="p">[</span><span class="n">q2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;pdfs&quot;</span><span class="p">:</span> <span class="n">pdfs</span><span class="p">,</span> <span class="s2">&quot;errors&quot;</span><span class="p">:</span> <span class="n">errs</span><span class="p">}</span>
 
         <span class="c1"># interpolate to target grid</span>
@@ -226,6 +229,7 @@
                 <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;is_log_interpolation&quot;</span><span class="p">],</span>
                 <span class="kc">False</span><span class="p">,</span>
             <span class="p">)</span>
+            <span class="c1"># TODO do we really need numba for the rotation?</span>
             <span class="n">rot</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">get_interpolation</span><span class="p">(</span><span class="n">targetgrid</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="n">out_grid</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">pdf_label</span> <span class="ow">in</span> <span class="n">out_grid</span><span class="p">[</span><span class="n">q2</span><span class="p">][</span><span class="s2">&quot;pdfs&quot;</span><span class="p">]:</span>
@@ -238,8 +242,33 @@
 
         <span class="k">return</span> <span class="n">out_grid</span></div>
 
+<div class="viewcode-block" id="Output.get_raw"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.get_raw">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Serialize result as dict/YAML.</span>
 
-<div class="viewcode-block" id="Output.dump_YAML"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.dump_YAML">[docs]</a>    <span class="k">def</span> <span class="nf">dump_YAML</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="sd">            This maps the original numpy matrices to lists.</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                out : dict</span>
+<span class="sd">                    dictionary which will be written on output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># prepare output dict</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Q2grid&quot;</span><span class="p">:</span> <span class="p">{},</span>
+        <span class="p">}</span>
+        <span class="c1"># dump raw elements</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;polynomial_degree&quot;</span><span class="p">,</span> <span class="s2">&quot;is_log_interpolation&quot;</span><span class="p">,</span> <span class="s2">&quot;q2_ref&quot;</span><span class="p">]:</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">f</span><span class="p">]</span>
+        <span class="c1"># make raw lists</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">]:</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="c1"># make operators raw</span>
+        <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]:</span>
+            <span class="n">out</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">][</span><span class="n">q2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_op</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span><span class="o">.</span><span class="n">get_raw_operators</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="Output.dump_yaml"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.dump_yaml">[docs]</a>    <span class="k">def</span> <span class="nf">dump_yaml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Serialize result as YAML.</span>
 
@@ -250,36 +279,15 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                dump : Any</span>
+<span class="sd">                dump : any</span>
 <span class="sd">                    result of dump(output, stream), i.e. a string, if no stream is given or</span>
-<span class="sd">                    Null, self is written sucessfully to stream</span>
+<span class="sd">                    Null, if self is written sucessfully to stream</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># prepare output dict</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;q2_grid&quot;</span><span class="p">:</span> <span class="p">{},</span>
-        <span class="p">}</span>
-        <span class="c1"># dump raw elements</span>
-        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;polynomial_degree&quot;</span><span class="p">,</span><span class="s2">&quot;is_log_interpolation&quot;</span><span class="p">,</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]:</span>
-            <span class="n">out</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">f</span><span class="p">]</span>
-        <span class="c1"># make raw lists</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">]:</span>
-            <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="c1"># make operators raw</span>
-        <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_grid&quot;</span><span class="p">]:</span>
-            <span class="n">out_op</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;operators&quot;</span><span class="p">:</span> <span class="p">{},</span>
-                <span class="s2">&quot;operator_errors&quot;</span><span class="p">:</span> <span class="p">{}</span>
-            <span class="p">}</span>
-            <span class="c1"># map matrices</span>
-            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_grid&quot;</span><span class="p">][</span><span class="n">q2</span><span class="p">][</span><span class="s2">&quot;operators&quot;</span><span class="p">]:</span>
-                <span class="n">out_op</span><span class="p">[</span><span class="s2">&quot;operators&quot;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_grid&quot;</span><span class="p">][</span><span class="n">q2</span><span class="p">][</span><span class="s2">&quot;operators&quot;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-                <span class="n">out_op</span><span class="p">[</span><span class="s2">&quot;operator_errors&quot;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_grid&quot;</span><span class="p">][</span><span class="n">q2</span><span class="p">][</span><span class="s2">&quot;operator_errors&quot;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-            <span class="n">out</span><span class="p">[</span><span class="s2">&quot;q2_grid&quot;</span><span class="p">][</span><span class="n">q2</span><span class="p">]</span> <span class="o">=</span> <span class="n">out_op</span>
-        <span class="c1"># everything else is up to pyyaml</span>
-        <span class="k">return</span> <span class="n">dump</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span></div>
+        <span class="c1"># TODO explicitly silence yaml</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_raw</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">stream</span><span class="p">)</span></div>
 
-
-<div class="viewcode-block" id="Output.write_YAML_to_file"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.write_YAML_to_file">[docs]</a>    <span class="k">def</span> <span class="nf">write_YAML_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="Output.dump_yaml_to_file"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.dump_yaml_to_file">[docs]</a>    <span class="k">def</span> <span class="nf">dump_yaml_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Writes YAML representation to a file.</span>
 
@@ -290,12 +298,117 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                ret :</span>
+<span class="sd">                ret : any</span>
 <span class="sd">                    result of dump(output, stream), i.e. Null if written sucessfully</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump_YAML</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div></div>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dump_yaml</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="Output.load_yaml"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.load_yaml">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_yaml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Load YAML representation from stream</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                stream : any</span>
+<span class="sd">                    source stream</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                obj : output</span>
+<span class="sd">                    loaded object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Output.load_yaml_from_file"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.load_yaml_from_file">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">load_yaml_from_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Load YAML representation from file</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                filename : string</span>
+<span class="sd">                    source file name</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                obj : output</span>
+<span class="sd">                    loaded object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">o</span><span class="p">:</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="n">Output</span><span class="o">.</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">obj</span></div>
+
+<div class="viewcode-block" id="Output.get_op"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.get_op">[docs]</a>    <span class="k">def</span> <span class="nf">get_op</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Load a :class:`PhysicalOperator` from the raw data.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                q2 : float</span>
+<span class="sd">                    target scale</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                op : PhysicalOperator</span>
+<span class="sd">                    corresponding Operator</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check existence</span>
+        <span class="k">if</span> <span class="n">q2</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;q2=</span><span class="si">{</span><span class="n">q2</span><span class="si">}</span><span class="s2"> not in grid&quot;</span><span class="p">)</span>
+        <span class="c1"># compose</span>
+        <span class="n">ops</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">][</span><span class="n">q2</span><span class="p">]</span>
+        <span class="n">op_members</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">ops</span><span class="p">[</span><span class="s2">&quot;operators&quot;</span><span class="p">]:</span>
+            <span class="n">op_members</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">OperatorMember</span><span class="p">(</span>
+                <span class="n">ops</span><span class="p">[</span><span class="s2">&quot;operators&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">],</span> <span class="n">ops</span><span class="p">[</span><span class="s2">&quot;operator_errors&quot;</span><span class="p">][</span><span class="n">name</span><span class="p">],</span> <span class="n">name</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">PhysicalOperator</span><span class="p">(</span><span class="n">op_members</span><span class="p">,</span> <span class="n">q2</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Output.concat"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.output.Output.concat">[docs]</a>    <span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Concatenate (multiply) two outputs.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                other : Output</span>
+<span class="sd">                    other factor to be multiplied from the left, i.e. with *smaller* intial scale</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                out : Output</span>
+<span class="sd">                    self * other</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># check type</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Output</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can only concatenate two Output instances!&quot;</span><span class="p">)</span>
+        <span class="c1"># check parameters</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;polynomial_degree&quot;</span><span class="p">,</span> <span class="s2">&quot;is_log_interpolation&quot;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">==</span> <span class="n">other</span><span class="p">[</span><span class="n">f</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&#39; of the two factors does not match: </span><span class="si">{</span><span class="bp">self</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">other</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">],</span> <span class="n">other</span><span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;xgrid&#39; of the two factors does not match&quot;</span><span class="p">)</span>
+        <span class="c1"># check matching</span>
+        <span class="n">mid_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mid_scale</span> <span class="ow">in</span> <span class="n">other</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Operators can not be joined&quot;</span><span class="p">)</span>
+        <span class="c1"># prepare output</span>
+        <span class="n">other_op</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">get_op</span><span class="p">(</span><span class="n">mid_scale</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">other</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]:</span>
+            <span class="c1"># multiply operators</span>
+            <span class="n">me</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_op</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span>
+            <span class="n">prod</span> <span class="o">=</span> <span class="n">me</span> <span class="o">*</span> <span class="n">other_op</span>
+            <span class="n">out</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">][</span><span class="n">q2</span><span class="p">]</span> <span class="o">=</span> <span class="n">prod</span><span class="o">.</span><span class="n">get_raw_operators</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">out</span></div></div>
 </pre></div>
 
            </div>
@@ -308,11 +421,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019-2020, the N3PDF team
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -323,7 +444,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

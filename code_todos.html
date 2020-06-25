@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -25,17 +31,12 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="eko package" href="modules/eko/eko.html" /> 
@@ -52,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> EKO
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> EKO
           
 
           
@@ -75,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -110,6 +112,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -148,7 +151,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="index.html">Docs</a> &raquo;</li>
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>TODOs</li>
     
@@ -191,62 +194,14 @@
 <p class="admonition-title">Todo</p>
 <p>This section has to be removed in an production environment (maybe?)</p>
 </div>
-<p class="todo-source">(The <a class="reference internal" href="index.html#id1"><em>original entry</em></a> is located in /home/runner/work/eko/eko/doc/source/index.txt, line 37.)</p>
+<p class="todo-source">(The <a class="reference internal" href="index.html#id1"><em>original entry</em></a> is located in /home/runner/work/eko/eko/doc/source/index.txt, line 42.)</p>
 </div>
 <div class="section" id="from-source-code">
 <h2>From Source Code<a class="headerlink" href="#from-source-code" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/operator_grid.py">operator_grid.py</a></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>#14 the operator grid should have a “save” and “load” method which will allow to store the full grid</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#243 everything in parallel</p>
-</div>
-<p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/evolution_operator.py">evolution_operator.py</a></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#38 make ‘cut’ external parameter?</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#43 delegate to logger?</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#80 delegate to logger?</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#203 check error propagation</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#219 check error propagation</p>
-</div>
-<p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/runner.py">runner.py</a></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#84 the setup dictionary is a mess tbh</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#121 follow yadism and create an extra Output class?</p>
-</div>
-<p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/output.py">output.py</a></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#38 rotation from the evolution basis to flavor basis? if yes, here!</p>
-</div>
-<p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/alpha_s.py">alpha_s.py</a></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#233 add higher orders …</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>#275 set up a cache system here</p>
+<p>#246 everything in parallel</p>
 </div>
 <p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/flavours.py">flavours.py</a></p>
 <div class="admonition warning">
@@ -264,6 +219,45 @@
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>#114 can this be made more concise, or is this really the best that can be done?</p>
+</div>
+<p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/evolution_operator.py">evolution_operator.py</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#224 check error propagation</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#495 make ‘cut’ external parameter?</p>
+</div>
+<p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/strong_coupling.py">strong_coupling.py</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#262 how can this be obtained from the Lambda-equivalent?</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#300 set up a cache system here</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#335 why fact_scale instead of m2</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#338 recover color constants</p>
+</div>
+<p><a class="reference external" href="file:///home/runner/work/eko/eko/src/eko/output.py">output.py</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#39 rotation from the evolution basis to flavor basis? if yes, here!</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#62 do we really need numba for the rotation?</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>#116 explicitly silence yaml</p>
 </div>
 <p><a class="reference external" href="file:///home/runner/work/eko/eko/doc/generate_code_todos.py">generate_code_todos.py</a></p>
 <div class="admonition warning">
@@ -295,11 +289,19 @@
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2019-2020, the N3PDF team
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -310,7 +312,6 @@
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
