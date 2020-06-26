@@ -1,6 +1,14 @@
 eko package
 ===========
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   eko.anomalous_dimensions
+
 Submodules
 ----------
 
@@ -80,14 +88,6 @@ eko.runner module
 -----------------
 
 .. automodule:: eko.runner
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-eko.splitting\_functions\_LO module
------------------------------------
-
-.. automodule:: eko.splitting_functions_LO
    :members:
    :undoc-members:
    :show-inheritance:

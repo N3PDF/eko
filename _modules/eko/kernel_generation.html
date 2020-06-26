@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.kernel_generation &mdash; EKO  documentation</title>
+  <title>eko.kernel_generation &mdash; EKO v0.2.0 documentation</title>
   
 
   
@@ -60,6 +60,10 @@
 
           
             
+            
+              <div class="version">
+                0.2
+              </div>
             
           
 
@@ -189,7 +193,7 @@
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
 <span class="kn">import</span> <span class="nn">eko.strong_coupling</span> <span class="k">as</span> <span class="nn">sc</span>
-<span class="kn">import</span> <span class="nn">eko.splitting_functions_LO</span> <span class="k">as</span> <span class="nn">sf_LO</span>
+<span class="kn">import</span> <span class="nn">eko.anomalous_dimensions.lo</span> <span class="k">as</span> <span class="nn">ad_lo</span>
 <span class="kn">import</span> <span class="nn">eko.mellin</span> <span class="k">as</span> <span class="nn">mellin</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -221,7 +225,7 @@
 
     <span class="k">def</span> <span class="nf">ker</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">lnx</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;true non-siglet integration kernel&quot;&quot;&quot;</span>
-        <span class="n">ln</span> <span class="o">=</span> <span class="o">-</span><span class="n">delta_t</span> <span class="o">*</span> <span class="n">sf_LO</span><span class="o">.</span><span class="n">gamma_ns_0</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta_0</span>
+        <span class="n">ln</span> <span class="o">=</span> <span class="o">-</span><span class="n">delta_t</span> <span class="o">*</span> <span class="n">ad_lo</span><span class="o">.</span><span class="n">gamma_ns_0</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta_0</span>
         <span class="n">interpoln</span> <span class="o">=</span> <span class="n">basis_function</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">lnx</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">ln</span><span class="p">)</span> <span class="o">*</span> <span class="n">interpoln</span>
 
@@ -257,7 +261,7 @@
 
         <span class="k">def</span> <span class="nf">ker</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">lnx</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;a singlet integration kernel&quot;&quot;&quot;</span>
-            <span class="n">l_p</span><span class="p">,</span> <span class="n">l_m</span><span class="p">,</span> <span class="n">e_p</span><span class="p">,</span> <span class="n">e_m</span> <span class="o">=</span> <span class="n">sf_LO</span><span class="o">.</span><span class="n">get_Eigensystem_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span>
+            <span class="n">l_p</span><span class="p">,</span> <span class="n">l_m</span><span class="p">,</span> <span class="n">e_p</span><span class="p">,</span> <span class="n">e_m</span> <span class="o">=</span> <span class="n">ad_lo</span><span class="o">.</span><span class="n">get_Eigensystem_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span>
             <span class="n">ln_p</span> <span class="o">=</span> <span class="o">-</span><span class="n">delta_t</span> <span class="o">*</span> <span class="n">l_p</span> <span class="o">/</span> <span class="n">beta_0</span>
             <span class="n">ln_m</span> <span class="o">=</span> <span class="o">-</span><span class="n">delta_t</span> <span class="o">*</span> <span class="n">l_m</span> <span class="o">/</span> <span class="n">beta_0</span>
             <span class="n">interpoln</span> <span class="o">=</span> <span class="n">basis_function</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">lnx</span><span class="p">)</span>

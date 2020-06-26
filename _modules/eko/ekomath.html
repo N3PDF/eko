@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.ekomath &mdash; EKO  documentation</title>
+  <title>eko.ekomath &mdash; EKO v0.2.0 documentation</title>
   
 
   
@@ -60,6 +60,10 @@
 
           
             
+            
+              <div class="version">
+                0.2
+              </div>
             
           
 
@@ -168,13 +172,16 @@
            <div itemprop="articleBody">
             
   <h1>Source code for eko.ekomath</h1><div class="highlight"><pre>
-<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implements the cffi ports from gsl for higher mathematical functions.</span>
 
 <span class="sd">    Used libraries:</span>
 
 <span class="sd">      - `cffi &lt;https://cffi.readthedocs.io/en/latest/&gt;`_</span>
 <span class="sd">      - `gsl &lt;https://www.gnu.org/software/gsl/doc/html/index.html&gt;`_</span>
+
+<span class="sd">    The functions are need in :doc:`Mellin space &lt;/Theory/Mellin&gt;`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -223,6 +230,120 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
+<div class="viewcode-block" id="cern_polygamma"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.cern_polygamma">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">cern_polygamma</span><span class="p">(</span><span class="n">Z</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span> <span class="c1"># pylint: disable=too-many-locals,too-many-branches,too-many-statements</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Computes the polygamma functions :math:`\\psi_k(z)`.</span>
+
+<span class="sd">      Reimplementation of ``WPSIPG`` (C317) in `CERNlib &lt;http://cernlib.web.cern.ch/cernlib/&gt;`_</span>
+<span class="sd">      :cite:`KOLBIG1972221`.</span>
+
+<span class="sd">      Parameters</span>
+<span class="sd">      ----------</span>
+<span class="sd">        Z : t_complex</span>
+<span class="sd">          argument of polygamma function</span>
+<span class="sd">        K : int</span>
+<span class="sd">          order of polygamma function</span>
+
+<span class="sd">      Returns</span>
+<span class="sd">      -------</span>
+<span class="sd">        H : t_complex</span>
+<span class="sd">          k-th polygamma function :math:`\\psi_k(z)`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># fmt: off</span>
+    <span class="n">DELTA</span> <span class="o">=</span> <span class="mf">5e-13</span>
+    <span class="n">R1</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">HF</span> <span class="o">=</span> <span class="n">R1</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">C1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">C2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">3</span>
+    <span class="n">C3</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">4</span>
+    <span class="n">C4</span> <span class="o">=</span> <span class="mi">8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">**</span><span class="mi">5</span>
+
+    <span class="c1"># SGN is originally indexed 0:4 -&gt; no shift</span>
+    <span class="n">SGN</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1"># FCT is originally indexed -1:4 -&gt; shift +1</span>
+    <span class="n">FCT</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">24</span><span class="p">]</span>
+
+    <span class="c1"># C is originally indexed 1:6 x 0:4 -&gt; swap indices and shift new last -1</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">typed</span><span class="o">.</span><span class="n">List</span><span class="p">()</span>
+    <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+            <span class="mf">8.33333333333333333e-2</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">8.33333333333333333e-3</span><span class="p">,</span>
+            <span class="mf">3.96825396825396825e-3</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">4.16666666666666667e-3</span><span class="p">,</span>
+            <span class="mf">7.57575757575757576e-3</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">2.10927960927960928e-2</span><span class="p">])</span>
+    <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+            <span class="mf">1.66666666666666667e-1</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">3.33333333333333333e-2</span><span class="p">,</span>
+            <span class="mf">2.38095238095238095e-2</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">3.33333333333333333e-2</span><span class="p">,</span>
+            <span class="mf">7.57575757575757576e-2</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">2.53113553113553114e-1</span><span class="p">])</span>
+    <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+            <span class="mf">5.00000000000000000e-1</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">1.66666666666666667e-1</span><span class="p">,</span>
+            <span class="mf">1.66666666666666667e-1</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">3.00000000000000000e-1</span><span class="p">,</span>
+            <span class="mf">8.33333333333333333e-1</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">3.29047619047619048e+0</span><span class="p">])</span>
+    <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+            <span class="mf">2.00000000000000000e+0</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">1.00000000000000000e+0</span><span class="p">,</span>
+            <span class="mf">1.33333333333333333e+0</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">3.00000000000000000e+0</span><span class="p">,</span>
+            <span class="mf">1.00000000000000000e+1</span><span class="p">,</span>
+           <span class="o">-</span><span class="mf">4.60666666666666667e+1</span><span class="p">])</span>
+    <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mf">10.</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">,</span> <span class="o">-</span><span class="mf">33.</span><span class="p">,</span> <span class="mf">130.</span><span class="p">,</span> <span class="o">-</span><span class="mf">691.</span><span class="p">])</span>
+    <span class="n">U</span><span class="o">=</span><span class="n">Z</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+    <span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">K</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">K</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Order K has to be in [0:4]&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">U</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">DELTA</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">A</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">DELTA</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument Z equals non-positive integer&quot;</span><span class="p">)</span>
+    <span class="n">K1</span><span class="o">=</span><span class="n">K</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">X</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">U</span><span class="o">=-</span><span class="n">U</span>
+    <span class="n">V</span><span class="o">=</span><span class="n">U</span>
+    <span class="n">H</span><span class="o">=</span><span class="mi">0</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="o">&lt;</span> <span class="mi">15</span><span class="p">:</span>
+        <span class="n">H</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">V</span><span class="o">**</span><span class="n">K1</span>
+        <span class="k">for</span> <span class="n">I</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">14</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">V</span><span class="o">=</span><span class="n">V</span><span class="o">+</span><span class="mi">1</span>
+            <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="n">V</span><span class="o">**</span><span class="n">K1</span>
+        <span class="n">V</span><span class="o">=</span><span class="n">V</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">R</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">V</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">P</span><span class="o">=</span><span class="n">R</span><span class="o">*</span><span class="n">C</span><span class="p">[</span><span class="n">K</span><span class="p">][</span><span class="mi">6</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">I</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">P</span><span class="o">=</span><span class="n">R</span><span class="o">*</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">K</span><span class="p">][</span><span class="n">I</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">P</span><span class="p">)</span>
+    <span class="n">H</span><span class="o">=</span><span class="n">SGN</span><span class="p">[</span><span class="n">K</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">FCT</span><span class="p">[</span><span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">H</span><span class="o">+</span><span class="p">(</span><span class="n">V</span><span class="o">*</span><span class="p">(</span><span class="n">FCT</span><span class="p">[</span><span class="n">K</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">P</span><span class="p">)</span><span class="o">+</span><span class="n">HF</span><span class="o">*</span><span class="n">FCT</span><span class="p">[</span><span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">V</span><span class="o">**</span><span class="n">K1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">K</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">X</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">V</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">U</span>
+        <span class="n">X</span><span class="o">=</span><span class="n">V</span>
+        <span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+        <span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">B</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">T</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+        <span class="n">P</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="o">-</span><span class="n">A</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">K</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="n">U</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">P</span>
+        <span class="k">elif</span> <span class="n">K</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">H</span><span class="o">=-</span><span class="n">H</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="n">U</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">C1</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">K</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="o">+</span><span class="mi">2</span><span class="o">/</span><span class="n">U</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="n">C2</span><span class="o">*</span><span class="n">P</span><span class="o">*</span><span class="p">(</span><span class="n">P</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">K</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">R</span><span class="o">=</span><span class="n">P</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">H</span><span class="o">=-</span><span class="n">H</span><span class="o">+</span><span class="mi">6</span><span class="o">/</span><span class="n">U</span><span class="o">**</span><span class="mi">4</span><span class="o">+</span><span class="n">C3</span><span class="o">*</span><span class="p">((</span><span class="mi">3</span><span class="o">*</span><span class="n">R</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">K</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">R</span><span class="o">=</span><span class="n">P</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">H</span><span class="o">=</span><span class="n">H</span><span class="o">+</span><span class="mi">24</span><span class="o">/</span><span class="n">U</span><span class="o">**</span><span class="mi">5</span><span class="o">+</span><span class="n">C4</span><span class="o">*</span><span class="n">P</span><span class="o">*</span><span class="p">((</span><span class="mi">3</span><span class="o">*</span><span class="n">R</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">H</span></div>
+    <span class="c1"># fmt: on</span>
+
+
 <div class="viewcode-block" id="harmonic_S1"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">harmonic_S1</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
@@ -246,10 +367,9 @@
 
 <span class="sd">      See Also</span>
 <span class="sd">      --------</span>
-<span class="sd">        gsl_digamma :</span>
+<span class="sd">        cern_polygamma :</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">gsl_digamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">result</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">euler_gamma</span></div>
+    <span class="k">return</span> <span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">euler_gamma</span></div>
 </pre></div>
 
            </div>

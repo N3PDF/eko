@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.output &mdash; EKO  documentation</title>
+  <title>eko.output &mdash; EKO v0.2.0 documentation</title>
   
 
   
@@ -60,6 +60,10 @@
 
           
             
+            
+              <div class="version">
+                0.2
+              </div>
             
           
 
@@ -211,7 +215,7 @@
         <span class="n">input_lists</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">input_pdfs</span><span class="p">:</span>
             <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">]:</span>
                 <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">input_pdfs</span><span class="p">[</span><span class="n">k</span><span class="p">](</span><span class="n">x</span><span class="p">))</span>
             <span class="n">input_lists</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
 
@@ -223,13 +227,7 @@
 
         <span class="c1"># interpolate to target grid</span>
         <span class="k">if</span> <span class="n">targetgrid</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">b</span> <span class="o">=</span> <span class="n">interpolation</span><span class="o">.</span><span class="n">InterpolatorDispatcher</span><span class="p">(</span>
-                <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;polynomial_degree&quot;</span><span class="p">],</span>
-                <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;is_log_interpolation&quot;</span><span class="p">],</span>
-                <span class="kc">False</span><span class="p">,</span>
-            <span class="p">)</span>
-            <span class="c1"># TODO do we really need numba for the rotation?</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">interpolation</span><span class="o">.</span><span class="n">InterpolatorDispatcher</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">rot</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">get_interpolation</span><span class="p">(</span><span class="n">targetgrid</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="n">out_grid</span><span class="p">:</span>
                 <span class="k">for</span> <span class="n">pdf_label</span> <span class="ow">in</span> <span class="n">out_grid</span><span class="p">[</span><span class="n">q2</span><span class="p">][</span><span class="s2">&quot;pdfs&quot;</span><span class="p">]:</span>
@@ -258,10 +256,10 @@
             <span class="s2">&quot;Q2grid&quot;</span><span class="p">:</span> <span class="p">{},</span>
         <span class="p">}</span>
         <span class="c1"># dump raw elements</span>
-        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;polynomial_degree&quot;</span><span class="p">,</span> <span class="s2">&quot;is_log_interpolation&quot;</span><span class="p">,</span> <span class="s2">&quot;q2_ref&quot;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;interpolation_polynomial_degree&quot;</span><span class="p">,</span> <span class="s2">&quot;interpolation_is_log&quot;</span><span class="p">,</span> <span class="s2">&quot;q2_ref&quot;</span><span class="p">]:</span>
             <span class="n">out</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">f</span><span class="p">]</span>
         <span class="c1"># make raw lists</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">]:</span>
             <span class="n">out</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
         <span class="c1"># make operators raw</span>
         <span class="k">for</span> <span class="n">q2</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]:</span>
@@ -387,13 +385,13 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Output</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;can only concatenate two Output instances!&quot;</span><span class="p">)</span>
         <span class="c1"># check parameters</span>
-        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;polynomial_degree&quot;</span><span class="p">,</span> <span class="s2">&quot;is_log_interpolation&quot;</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;interpolation_polynomial_degree&quot;</span><span class="p">,</span> <span class="s2">&quot;interpolation_is_log&quot;</span><span class="p">]:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">[</span><span class="n">f</span><span class="p">]</span> <span class="o">==</span> <span class="n">other</span><span class="p">[</span><span class="n">f</span><span class="p">]:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&#39; of the two factors does not match: </span><span class="si">{</span><span class="bp">self</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">other</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">],</span> <span class="n">other</span><span class="p">[</span><span class="s2">&quot;xgrid&quot;</span><span class="p">]):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;xgrid&#39; of the two factors does not match&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">],</span> <span class="n">other</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;interpolation_xgrid&#39; of the two factors does not match&quot;</span><span class="p">)</span>
         <span class="c1"># check matching</span>
         <span class="n">mid_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">mid_scale</span> <span class="ow">in</span> <span class="n">other</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]:</span>

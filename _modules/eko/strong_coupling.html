@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.strong_coupling &mdash; EKO  documentation</title>
+  <title>eko.strong_coupling &mdash; EKO v0.2.0 documentation</title>
   
 
   
@@ -60,6 +60,10 @@
 
           
             
+            
+              <div class="version">
+                0.2
+              </div>
             
           
 
@@ -471,7 +475,7 @@
         <span class="c1"># at the moment everything is analytic - and type has been checked in the constructor</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_analytic</span><span class="p">(</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
 
-<div class="viewcode-block" id="StrongCoupling.a_s"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.a_s">[docs]</a>    <span class="k">def</span> <span class="nf">a_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">,</span> <span class="n">fact_scale</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="StrongCoupling.a_s"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.a_s">[docs]</a>    <span class="k">def</span> <span class="nf">a_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">,</span> <span class="n">fact_scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Computes strong coupling :math:`a_s(Q^2) = \\frac{\\alpha_s(Q^2)}{4\\pi}`.</span>
 
@@ -502,7 +506,7 @@
             <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">area_path</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">next_nf_is_down</span> <span class="o">=</span> <span class="n">area_path</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nf</span> <span class="o">&lt;</span> <span class="n">area</span><span class="o">.</span><span class="n">nf</span>
                 <span class="c1"># q2_to is the threshold value</span>
-                <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale_to</span> <span class="o">/</span> <span class="n">fact_scale</span><span class="p">)</span> <span class="c1"># TODO why fact_scale instead of m2</span>
+                <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale_to</span> <span class="o">/</span> <span class="n">fact_scale</span><span class="p">)</span>  <span class="c1"># TODO why fact_scale instead of m2</span>
                 <span class="k">if</span> <span class="n">next_nf_is_down</span><span class="p">:</span>
                     <span class="n">c1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">TF</span> <span class="o">*</span> <span class="n">L</span>
                     <span class="c1"># TODO recover color constants</span>

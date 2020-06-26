@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Input &amp; Output &mdash; EKO  documentation</title>
+  <title>Input &amp; Output &mdash; EKO v0.2.0 documentation</title>
   
 
   
@@ -62,6 +62,10 @@
 
           
             
+            
+              <div class="version">
+                0.2
+              </div>
             
           
 
@@ -192,7 +196,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code> - <em>list(float)</em> : the interpolation grid</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code> - <em>integer[4]</em> : polynomial degree of the interpolating function</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code> - <em>boolean [True]</em> : use logarithmic interpolation?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">q2_grid</span></code> - <em>list(float)</em> : the target grid in <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Q2grid</span></code> - <em>list(float)</em> : the target grid in <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
 </ul>
 </div>
 <div class="section" id="output">
@@ -203,7 +207,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">polynomial_degree</span></code> - <em>integer</em> : polynomial degree of the interpolating function</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">is_log_interpolation</span></code> - <em>boolean</em> : use logarithmic interpolation?</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">q2_ref</span></code> - <em>float</em> : starting scale</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">q2_grid</span></code> - <em>dict</em> : all operators at the requested values of <span class="math notranslate nohighlight">\(Q^2\)</span> represented by the key</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Q2grid</span></code> - <em>dict</em> : all operators at the requested values of <span class="math notranslate nohighlight">\(Q^2\)</span> represented by the key</p></li>
 </ul>
 <p>The grid elements contains two keys each</p>
 <ul class="simple">
@@ -218,7 +222,7 @@ the <code class="docutils literal notranslate"><span class="pre">operator</span>
 <span class="nt">polynomial_degree</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
 <span class="nt">xgrid</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0.001 0.01 0.1 1.0</span><span class="p p-Indicator">]</span>
 <span class="nt">q2_ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
-<span class="nt">q2_grid</span><span class="p">:</span>
+<span class="nt">Q2grid</span><span class="p">:</span>
   <span class="nt">1000.0</span><span class="p">:</span>
     <span class="nt">operator_errors</span><span class="p">:</span>
       <span class="nt">S.S</span><span class="p">:</span>

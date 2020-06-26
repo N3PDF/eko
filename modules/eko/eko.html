@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko package &mdash; EKO  documentation</title>
+  <title>eko package &mdash; EKO v0.2.0 documentation</title>
   
 
   
@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="TODOs" href="../../code_todos.html" />
+    <link rel="next" title="eko.anomalous_dimensions package" href="eko.anomalous_dimensions.html" />
     <link rel="prev" title="eko" href="modules.html" /> 
 </head>
 
@@ -62,6 +62,10 @@
 
           
             
+            
+              <div class="version">
+                0.2
+              </div>
             
           
 
@@ -101,6 +105,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">eko</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">eko package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eko.anomalous_dimensions.html">eko.anomalous_dimensions package</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.constants">eko.constants module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.ekomath">eko.ekomath module</a></li>
@@ -115,7 +123,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.operator_grid">eko.operator_grid module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.output">eko.output module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.runner">eko.runner module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.splitting_functions_LO">eko.splitting_functions_LO module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.strong_coupling">eko.strong_coupling module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.thresholds">eko.thresholds module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko">Module contents</a></li>
@@ -196,6 +203,20 @@
             
   <div class="section" id="eko-package">
 <h1>eko package<a class="headerlink" href="#eko-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="eko.anomalous_dimensions.html">eko.anomalous_dimensions package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions.lo">eko.anomalous_dimensions.lo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions.nlo">eko.anomalous_dimensions.nlo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -300,6 +321,29 @@ protected variables</p>
 <li><p><a class="reference external" href="https://www.gnu.org/software/gsl/doc/html/index.html">gsl</a></p></li>
 </ul>
 </div></blockquote>
+<p>The functions are need in <a class="reference internal" href="../../Theory/Mellin.html"><span class="doc">Mellin space</span></a>.</p>
+<dl class="py function">
+<dt id="eko.ekomath.cern_polygamma">
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">cern_polygamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Z</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">K</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#cern_polygamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.cern_polygamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the polygamma functions <span class="math notranslate nohighlight">\(\psi_k(z)\)</span>.</p>
+<p>Reimplementation of <code class="docutils literal notranslate"><span class="pre">WPSIPG</span></code> (C317) in <a class="reference external" href="http://cernlib.web.cern.ch/cernlib/">CERNlib</a>
+<a class="bibtex reference internal" href="../../zzz-refs.html#kolbig1972221" id="id1">[Kol72]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Z</strong> (<em>t_complex</em>) – argument of polygamma function</p></li>
+<li><p><strong>K</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – order of polygamma function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>H</strong> – k-th polygamma function <span class="math notranslate nohighlight">\(\psi_k(z)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>t_complex</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt id="eko.ekomath.gsl_digamma">
 <code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">gsl_digamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#gsl_digamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.gsl_digamma" title="Permalink to this definition">¶</a></dt>
@@ -346,7 +390,7 @@ Euler-Mascheroni constant.</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#eko.ekomath.gsl_digamma" title="eko.ekomath.gsl_digamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">gsl_digamma()</span></code></a></p>
+<p><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></p>
 </div>
 </dd></dl>
 
@@ -1022,7 +1066,7 @@ such as the definition of paths.</p>
 <h3>Integration Paths<a class="headerlink" href="#integration-paths" title="Permalink to this headline">¶</a></h3>
 <p>Although this module provides four different path implementations (<a class="reference internal" href="#eko.mellin.get_path_Talbot" title="eko.mellin.get_path_Talbot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Talbot()</span></code></a>,
 <a class="reference internal" href="#eko.mellin.get_path_line" title="eko.mellin.get_path_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_line()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_edge" title="eko.mellin.get_path_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_edge()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_Cauchy_tan" title="eko.mellin.get_path_Cauchy_tan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Cauchy_tan()</span></code></a>) in practice
-only the Talbot path <a class="bibtex reference internal" href="../../zzz-refs.html#abate" id="id1">[AV04]</a></p>
+only the Talbot path <a class="bibtex reference internal" href="../../zzz-refs.html#abate" id="id2">[AV04]</a></p>
 <div class="math notranslate nohighlight">
 \[p_{\text{Talbot}}(t) =  o + r \cdot ( \theta \cot(\theta) + i\theta)\quad
     \text{with}~\theta = \pi(2t-1)\]</div>
@@ -1519,196 +1563,6 @@ Null, if self is written sucessfully to stream</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-eko.splitting_functions_LO">
-<span id="eko-splitting-functions-lo-module"></span><h2>eko.splitting_functions_LO module<a class="headerlink" href="#module-eko.splitting_functions_LO" title="Permalink to this headline">¶</a></h2>
-<p>This file contains the Altarelli-Parisi splitting kernels.</p>
-<p>Normalization is given by</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{P}(x) = \sum\limits_{j=0} a_s^{j+1} \mathbf P^{(j)}(x)\]</div>
-<p>with <span class="math notranslate nohighlight">\(a_s = \frac{\alpha_S(\mu^2)}{4\pi}\)</span>.
-The 3-loop references are given for the non-singlet <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id2">[MVV04]</a>
-and singlet <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id3">[VMV04]</a> case, which contain also the lower
-order results. The results are also determined in Mellin space in
-terms of the anomalous dimensions (note the additional sign!)</p>
-<div class="math notranslate nohighlight">
-\[\gamma(N) = - \mathcal{M}[\mathbf{P}(x)](N)\]</div>
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_gg_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_gg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_gg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_gg_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order gluon-gluon anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id4">[VMV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_0</strong> – Leading-order gluon-gluon anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{gg}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_gq_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_gq_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_gq_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_gq_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order gluon-quark anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id5">[VMV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours (which is actually not used here)</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation (which is actually not used here)</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_0</strong> – Leading-order gluon-quark anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{gq}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_ns_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_ns_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_ns_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_ns_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.4) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id6">[MVV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours (which is actually not used here)</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation (which is actually not used here)</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_ns_0</strong> – Leading-order non-singlet anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{ns}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_ps_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_ps_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_ps_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_ps_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order pure-singlet anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id7">[VMV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours (which is actually not used here)</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation (which is actually not used here)</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_ps_0</strong> – Leading-order pure-singlet anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{ps}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.gamma_qg_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">gamma_qg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#gamma_qg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.gamma_qg_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order quark-gluon anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id8">[VMV04]</a>.
-For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation (which is actually not used here)</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_0</strong> – Leading-order quark-gluon anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{qg}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.get_Eigensystem_gamma_singlet_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">get_Eigensystem_gamma_singlet_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#get_Eigensystem_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.get_Eigensystem_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the Eigensystem of the leading-order singlet anomalous dimension matrix</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>lambda_p</strong> (<em>t_complex</em>) – positive eigenvalue of the Leading-order singlet anomalous dimension matrix
-<span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>lambda_m</strong> (<em>t_complex</em>) – negative eigenvalue of the Leading-order singlet anomalous dimension matrix
-<span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>e_p</strong> (<em>np.array</em>) – projector for the positive eigenvalue of the Leading-order singlet anomalous
-dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>e_m</strong> (<em>np.array</em>) – projector for the negative eigenvalue of the Leading-order singlet anomalous
-dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.splitting_functions_LO.get_gamma_singlet_0">
-<code class="sig-prename descclassname">eko.splitting_functions_LO.</code><code class="sig-name descname">get_gamma_singlet_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/splitting_functions_LO.html#get_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.splitting_functions_LO.get_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the leading-order singlet anomalous dimension matrix</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\gamma_S^{(0)} = \left(\begin{array}
-  \gamma_{qq}^{(0)} &amp; \gamma_{qg}^{(0)}\\
-  \gamma_{gq}^{(0)} &amp; \gamma_{gg}^{(0)}
-\end{array}\right)\end{split}\]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_S_0</strong> – Leading-order singlet anomalous dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.array</p>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
 <div class="section" id="module-eko.strong_coupling">
 <span id="eko-strong-coupling-module"></span><h2>eko.strong_coupling module<a class="headerlink" href="#module-eko.strong_coupling" title="Permalink to this headline">¶</a></h2>
 <p>This file contains the QCD beta function coefficients and the handling of the running
@@ -1731,7 +1585,7 @@ given in terms of <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)
 meas at 1-loop - so there is a natural mismatch between <cite>order</cite> and the
 number of loop by one unit</p></li>
 </ul>
-<p>Normalization is given by <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id9">[HRU+17]</a>:</p>
+<p>Normalization is given by <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id3">[HRU+17]</a>:</p>
 <div class="math notranslate nohighlight">
 \[\frac{da_s}{d\ln\mu^2} = \beta(a_s) \
 = - \sum\limits_{n=0} \beta_n a_s^{n+2} \quad
@@ -1838,7 +1692,7 @@ with <span class="math notranslate nohighlight">\(t(Q^2) = log(1/a_s(Q^2))\)</sp
 <dt id="eko.strong_coupling.beta_0">
 <code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the first coefficient of the QCD beta function.</p>
-<p>Implements Eq. (3.1) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id10">[HRU+17]</a>.
+<p>Implements Eq. (3.1) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id4">[HRU+17]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1862,7 +1716,7 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 <dt id="eko.strong_coupling.beta_1">
 <code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the second coefficient of the QCD beta function.</p>
-<p>Implements Eq. (3.2) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id11">[HRU+17]</a>.</p>
+<p>Implements Eq. (3.2) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id5">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1885,7 +1739,7 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 <dt id="eko.strong_coupling.beta_2">
 <code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the third coefficient of the QCD beta function</p>
-<p>Implements Eq. (3.3) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id12">[HRU+17]</a>.</p>
+<p>Implements Eq. (3.3) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id6">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2094,7 +1948,7 @@ to fullfill the following evolution</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../code_todos.html" class="btn btn-neutral float-right" title="TODOs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="eko.anomalous_dimensions.html" class="btn btn-neutral float-right" title="eko.anomalous_dimensions package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="modules.html" class="btn btn-neutral float-left" title="eko" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

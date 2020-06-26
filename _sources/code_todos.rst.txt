@@ -51,9 +51,7 @@ From Source Code
 
 .. warning:: #39 rotation from the evolution basis to flavor basis? if yes, here!
 
-.. warning:: #62 do we really need numba for the rotation?
-
-.. warning:: #116 explicitly silence yaml
+.. warning:: #110 explicitly silence yaml
 
 
 

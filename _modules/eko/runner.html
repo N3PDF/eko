@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.runner &mdash; EKO  documentation</title>
+  <title>eko.runner &mdash; EKO v0.2.0 documentation</title>
   
 
   
@@ -60,6 +60,10 @@
 
           
             
+            
+              <div class="version">
+                0.2
+              </div>
             
           
 
@@ -246,11 +250,11 @@
         <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_basis_function_dispatcher</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
         <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">q2_ref</span><span class="p">)</span>
         <span class="c1"># add all operators</span>
-        <span class="n">q2_grid</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">Q2grid</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_operators</span><span class="p">():</span>
             <span class="n">final_scale</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">q2_final</span>
-            <span class="n">q2_grid</span><span class="p">[</span><span class="n">final_scale</span><span class="p">]</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">get_raw_operators</span><span class="p">()</span>
-        <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">q2_grid</span>
+            <span class="n">Q2grid</span><span class="p">[</span><span class="n">final_scale</span><span class="p">]</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">get_raw_operators</span><span class="p">()</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q2grid</span>
         <span class="k">return</span> <span class="n">ret</span></div></div>
 </pre></div>
 
