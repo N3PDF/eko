@@ -313,14 +313,7 @@ protected variables</p>
 </div>
 <div class="section" id="module-eko.ekomath">
 <span id="eko-ekomath-module"></span><h2>eko.ekomath module<a class="headerlink" href="#module-eko.ekomath" title="Permalink to this headline">¶</a></h2>
-<p>Implements the cffi ports from gsl for higher mathematical functions.</p>
-<p>Used libraries:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><a class="reference external" href="https://cffi.readthedocs.io/en/latest/">cffi</a></p></li>
-<li><p><a class="reference external" href="https://www.gnu.org/software/gsl/doc/html/index.html">gsl</a></p></li>
-</ul>
-</div></blockquote>
+<p>Implements higher mathematical functions.</p>
 <p>The functions are need in <a class="reference internal" href="../../Theory/Mellin.html"><span class="doc">Mellin space</span></a>.</p>
 <dl class="py function">
 <dt id="eko.ekomath.cern_polygamma">
@@ -328,6 +321,8 @@ protected variables</p>
 <dd><p>Computes the polygamma functions <span class="math notranslate nohighlight">\(\psi_k(z)\)</span>.</p>
 <p>Reimplementation of <code class="docutils literal notranslate"><span class="pre">WPSIPG</span></code> (C317) in <a class="reference external" href="http://cernlib.web.cern.ch/cernlib/">CERNlib</a>
 <a class="bibtex reference internal" href="../../zzz-refs.html#kolbig1972221" id="id1">[Kol72]</a>.</p>
+<p>Note that the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html">SciPy implementation</a>
+does not allow for complex inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -342,31 +337,6 @@ protected variables</p>
 <dd class="field-odd"><p>t_complex</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.ekomath.gsl_digamma">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">gsl_digamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#gsl_digamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.gsl_digamma" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wrapper around the gsl implementation via cffi of the
-<a class="reference external" href="https://en.wikipedia.org/wiki/Digamma_function">digamma function</a>.</p>
-<p>The wrapper allows both input and output to be complex.
-Note that the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html">SciPy implementation</a>
-does not allow for complex inputs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>N</strong> (<em>t_complex</em>) – input</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>psi</strong> – digamma function <span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p><a class="reference external" href="https://www.gnu.org/software/gsl/doc/html/specfunc.html#psi-digamma-function">GSL documentation</a></p>
-<p>Note that, although not listed in the documentation, there <strong>is</strong> a
-<a class="reference external" href="http://git.savannah.gnu.org/cgit/gsl.git/tree/specfunc/gsl_sf_psi.h#n76">complex version</a></p>
 </dd></dl>
 
 <dl class="py function">
