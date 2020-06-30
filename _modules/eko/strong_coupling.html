@@ -181,6 +181,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
 <span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">t_float</span>
@@ -319,7 +320,7 @@
 <span class="sd">                An instance of :class:`~eko.thresholds.ThresholdsConfig`</span>
 <span class="sd">            order: int</span>
 <span class="sd">                Evaluated order of the beta function: ``0`` = LO, ...</span>
-<span class="sd">            method : [&quot;analytic&quot;]</span>
+<span class="sd">            method : [&quot;expanded&quot;, &quot;exact&quot;]</span>
 <span class="sd">                Applied method to solve the beta function</span>
 
 <span class="sd">        Examples</span>
@@ -335,7 +336,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">consts</span><span class="p">,</span> <span class="n">alpha_s_ref</span><span class="p">,</span> <span class="n">scale_ref</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;analytic&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">consts</span><span class="p">,</span> <span class="n">alpha_s_ref</span><span class="p">,</span> <span class="n">scale_ref</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;expanded&quot;</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="c1"># Sanity checks</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">consts</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">Constants</span><span class="p">):</span>
@@ -349,7 +350,7 @@
         <span class="k">if</span> <span class="n">order</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;a_s beyond NNLO is not implemented&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">=</span> <span class="n">order</span>
-        <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;analytic&quot;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;expanded&quot;</span><span class="p">,</span> <span class="s2">&quot;exact&quot;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown method </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_method</span> <span class="o">=</span> <span class="n">method</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span> <span class="o">=</span> <span class="n">consts</span>
@@ -400,9 +401,9 @@
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">constants</span><span class="p">,</span> <span class="n">alpha_ref</span><span class="p">,</span> <span class="n">q2_alpha</span><span class="p">,</span> <span class="n">thresholds</span><span class="p">,</span> <span class="n">order</span><span class="p">)</span></div>
 
     <span class="c1"># Hidden computation functions</span>
-    <span class="k">def</span> <span class="nf">_compute_analytic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_compute_expanded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Compute via analytic expression.</span>
+<span class="sd">            Compute via expanded expression.</span>
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
@@ -450,6 +451,51 @@
 
         <span class="k">return</span> <span class="n">res</span>
 
+    <span class="k">def</span> <span class="nf">_compute_exact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Compute via RGE.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">                as_ref: t_float</span>
+<span class="sd">                    reference alpha_s</span>
+<span class="sd">                nf: int</span>
+<span class="sd">                    value of nf for computing alpha_s</span>
+<span class="sd">                scale_from: t_float</span>
+<span class="sd">                    reference scale</span>
+<span class="sd">                scale_to : t_float</span>
+<span class="sd">                    target scale</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                a_s : t_float</span>
+<span class="sd">                    strong coupling at target scale :math:`a_s(Q^2)`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># u = beta0 * ln(scale_to/scale_from)</span>
+        <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta_0</span><span class="p">(</span><span class="n">nf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">TF</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">beta0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale_to</span> <span class="o">/</span> <span class="n">scale_from</span><span class="p">)</span>
+        <span class="n">b_vec</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># NLO</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">beta1</span> <span class="o">=</span> <span class="n">beta_1</span><span class="p">(</span>
+                <span class="n">nf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">TF</span>
+            <span class="p">)</span>
+            <span class="n">b1</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">/</span> <span class="n">beta0</span>
+            <span class="n">b_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b1</span><span class="p">)</span>
+            <span class="c1"># NNLO</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">beta2</span> <span class="o">=</span> <span class="n">beta_2</span><span class="p">(</span>
+                    <span class="n">nf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">TF</span>
+                <span class="p">)</span>
+                <span class="n">b2</span> <span class="o">=</span> <span class="n">beta2</span> <span class="o">/</span> <span class="n">beta0</span>
+                <span class="n">b_vec</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b2</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">rge</span><span class="p">(</span><span class="n">_t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b_vec</span><span class="p">):</span>
+            <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">a</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">a</span> <span class="o">**</span> <span class="n">k</span> <span class="o">*</span> <span class="n">b</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">b_vec</span><span class="p">)])</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">integrate</span><span class="o">.</span><span class="n">solve_ivp</span><span class="p">(</span><span class="n">rge</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">u</span><span class="p">),</span> <span class="p">(</span><span class="n">as_ref</span><span class="p">,),</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">b_vec</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
     <span class="k">def</span> <span class="nf">_compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Wrapper in order to pass the computation to the corresponding</span>
@@ -472,8 +518,12 @@
 <span class="sd">                    strong coupling at target scale :math:`a_s(Q^2)`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO set up a cache system here</span>
-        <span class="c1"># at the moment everything is analytic - and type has been checked in the constructor</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_analytic</span><span class="p">(</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
+        <span class="c1"># at the moment everything is expanded - and type has been checked in the constructor</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method</span> <span class="o">==</span> <span class="s2">&quot;exact&quot;</span><span class="p">:</span>
+            <span class="n">as_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_exact</span><span class="p">(</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">as_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_expanded</span><span class="p">(</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">as_new</span>
 
 <div class="viewcode-block" id="StrongCoupling.a_s"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.a_s">[docs]</a>    <span class="k">def</span> <span class="nf">a_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">,</span> <span class="n">fact_scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -506,7 +556,7 @@
             <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">area_path</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">next_nf_is_down</span> <span class="o">=</span> <span class="n">area_path</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nf</span> <span class="o">&lt;</span> <span class="n">area</span><span class="o">.</span><span class="n">nf</span>
                 <span class="c1"># q2_to is the threshold value</span>
-                <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale_to</span> <span class="o">/</span> <span class="n">fact_scale</span><span class="p">)</span>  <span class="c1"># TODO why fact_scale instead of m2</span>
+                <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale_to</span> <span class="o">/</span> <span class="n">fact_scale</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">next_nf_is_down</span><span class="p">:</span>
                     <span class="n">c1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">TF</span> <span class="o">*</span> <span class="n">L</span>
                     <span class="c1"># TODO recover color constants</span>
