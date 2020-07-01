@@ -1623,13 +1623,15 @@ with <span class="math notranslate nohighlight">\(t(Q^2) = log(1/a_s(Q^2))\)</sp
 
 <dl class="py method">
 <dt id="eko.strong_coupling.StrongCoupling.from_dict">
-<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">thresholds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#StrongCoupling.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.StrongCoupling.from_dict" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em>, <em class="sig-param"><span class="n">thresholds_config</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">consts</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#StrongCoupling.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.StrongCoupling.from_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create object from theory dictionary.</p>
 <p>Read keys:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>alphas : required, reference value for  alpha_s (!)</p></li>
 <li><p>Qref : required, reference value in GeV (!)</p></li>
+<li><p>PTO : required, perturbative order</p></li>
+<li><p>ModEv : optional, method to solve RGE</p></li>
 </ul>
 </div></blockquote>
 <dl class="field-list simple">
@@ -1637,7 +1639,7 @@ with <span class="math notranslate nohighlight">\(t(Q^2) = log(1/a_s(Q^2))\)</sp
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – theory dictionary</p></li>
 <li><p><strong>constants</strong> (<a class="reference internal" href="#eko.constants.Constants" title="eko.constants.Constants"><em>eko.constants.Constants</em></a>) – Color constants</p></li>
-<li><p><strong>thresholds</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – threshold configuration</p></li>
+<li><p><strong>thresholds_config</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – threshold configuration</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
