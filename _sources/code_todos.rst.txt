@@ -37,11 +37,11 @@ From Source Code
 
 `strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
 
-.. warning:: #263 how can this be obtained from the Lambda-equivalent?
+.. warning:: #264 how can this be obtained from the Lambda-equivalent?
 
-.. warning:: #346 set up a cache system here
+.. warning:: #347 set up a cache system here
 
-.. warning:: #388 recover color constants
+.. warning:: #389 recover color constants
 
 
 
