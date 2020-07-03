@@ -183,24 +183,35 @@
 <h2>Running Coupling<a class="headerlink" href="#running-coupling" title="Permalink to this headline">¶</a></h2>
 <p>Implementation: <a class="reference internal" href="../modules/eko/eko.html#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a>.</p>
 <p>We use perturbative QCD with the running coupling
-<span class="math notranslate nohighlight">\(a_s(\mu_F^2) = \alpha_s(\mu_F^2)/(4\pi)\)</span> given by
+<span class="math notranslate nohighlight">\(a_s(\mu_R^2) = \alpha_s(\mu_R^2)/(4\pi)\)</span> given at 5-loop by
 <a class="bibtex reference internal" href="../zzz-refs.html#herzog-2017ohr" id="id1">[HRU+17]</a> <a class="bibtex reference internal" href="../zzz-refs.html#luthe-2016ima" id="id2">[LMMS16]</a> <a class="bibtex reference internal" href="../zzz-refs.html#baikov-2016tgj" id="id3">[BCK17]</a></p>
 <div class="math notranslate nohighlight">
-\[\frac{da_s}{d\ln\mu^2} = \beta(a_s) \
-= - \sum\limits_{j=0} \beta_n a_s^{j+2}\]</div>
-<p>Our main reference is <a class="bibtex reference internal" href="../zzz-refs.html#herzog-2017ohr" id="id4">[HRU+17]</a>.</p>
-<p>The matching conditions between different number of flavors are given in <a class="bibtex reference internal" href="../zzz-refs.html#schroder-2005hy" id="id5">[SS06]</a> <a class="bibtex reference internal" href="../zzz-refs.html#chetyrkin-2005ia" id="id6">[CKS06]</a>.</p>
-<p>At the moment we only implement an approximate solution to the RGE.</p>
+\[\frac{da_s}{d\ln\mu_R^2} = \beta(a_s(\mu_R^2)) \
+= - \sum\limits_{n=0} \beta_n a_s^{n+2}(\mu_R^2)\]</div>
+<p>We implement two different strategies to solve the renormalization group equation (RGE):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;exact&quot;</span></code>: Solve using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html">scipy.integrate.solve_ivp</a>.
+In LO we fall back to the expanded solution as this is already the true solution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;expanded&quot;</span></code>: using approximate solutions:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}a^{\text{LO}}_s(\mu_R^2)  &amp;= \frac{a_s(\mu_0^2)}{1 + a_s(\mu_0^2) \beta_0 \ln(\mu_R^2/\mu_0^2)} \\
+a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) &amp;= a^{\text{LO}}_s(\mu_R^2)-b_1 \left[a^{\text{LO}}_s(\mu_R^2)\right]^2 \ln\left(1+a_s(\mu_0^2) \beta_0 \ln(\mu_R^2/\mu_0^2)\right) \\
+a^{\text{NNLO}}_{s,\text{exp}}(\mu_R^2) &amp;= a^{\text{LO}}_s(\mu_R^2)\left[1 + a^{\text{LO}}_s(\mu_R^2)\left(a^{\text{LO}}_s(\mu_R^2) - a_s(\mu_0^2)\right)(b_2 - b_1^2) \right.\\
+                                      &amp; \hspace{60pt} \left. + a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) b_1 \ln\left(a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2)/a_s(\mu_0^2)\right)\right] \\\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(b_1 = \beta_1/\beta_0, b_2=\beta_2/\beta_0\)</span>.</p>
+<p>When the renormalization scale crosses a flavor threshold matching conditions have to be
+applied <a class="bibtex reference internal" href="../zzz-refs.html#schroder-2005hy" id="id4">[SS06]</a> <a class="bibtex reference internal" href="../zzz-refs.html#chetyrkin-2005ia" id="id5">[CKS06]</a>.</p>
 </div>
 <div class="section" id="splitting-functions">
 <h2>Splitting Functions<a class="headerlink" href="#splitting-functions" title="Permalink to this headline">¶</a></h2>
 <p>The Altarelli-Parisi splitting kernels can be expanded in powers of the strong
-coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and are given by
-<a class="bibtex reference internal" href="../zzz-refs.html#moch-2004pa" id="id7">[MVV04]</a> <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004mw" id="id8">[VMV04]</a></p>
+coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and are given by <a class="bibtex reference internal" href="../zzz-refs.html#moch-2004pa" id="id6">[MVV04]</a> <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004mw" id="id7">[VMV04]</a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{P}(x,\mu^2) &amp;= \sum\limits_{j=0} a_s^{j+1}(\mu^2) \mathbf{P}^{(j)}(x) \\
 \tilde{\gamma}^{(j)}(N) &amp;= -\mathcal{M}[\mathbf{P}^{(j)}(x)](N)\end{split}\]</div>
-<p>Note the additional minus in the definition of <span class="math notranslate nohighlight">\(\tilde \gamma\)</span>.</p>
+<p>Note the additional minus in the definition of <span class="math notranslate nohighlight">\(\tilde \gamma\)</span> and that we denote objects
+in Mellin space with an tilde.</p>
 </div>
 </div>
 
