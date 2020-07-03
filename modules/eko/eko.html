@@ -341,7 +341,7 @@ does not allow for complex inputs.</p>
 <dl class="py function">
 <dt id="eko.ekomath.harmonic_S1">
 <code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S1" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the simple harmonic sum.</p>
+<dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_1(N)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E\]</div>
 <p>with <span class="math notranslate nohighlight">\(\psi_0(N)\)</span> the digamma function and <span class="math notranslate nohighlight">\(\gamma_E\)</span> the
@@ -352,6 +352,56 @@ Euler-Mascheroni constant.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>S_1</strong> – (simple) Harmonic sum <span class="math notranslate nohighlight">\(S_1(N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>t_complex</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.ekomath.harmonic_S2">
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_2(N)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[S_2(N) = \sum\limits_{j=1}^N \frac 1 {j^2} = -\psi_1(N+1)+\zeta(2)\]</div>
+<p>with <span class="math notranslate nohighlight">\(\psi_1(N)\)</span> the trigamma function and <span class="math notranslate nohighlight">\(\zeta\)</span> the
+Riemann zeta function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_2</strong> – Harmonic sum <span class="math notranslate nohighlight">\(S_2(N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>t_complex</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.ekomath.harmonic_S3">
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_3(N)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[S_3(N) = \sum\limits_{j=1}^N \frac 1 {j^3} = \frac 1 2 \psi_2(N+1)+\zeta(3)\]</div>
+<p>with <span class="math notranslate nohighlight">\(\psi_3(N)\)</span> the 3rd-polygamma function and <span class="math notranslate nohighlight">\(\zeta\)</span> the
+Riemann zeta function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_3</strong> – Harmonic sum <span class="math notranslate nohighlight">\(S_3(N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>t_complex</p>

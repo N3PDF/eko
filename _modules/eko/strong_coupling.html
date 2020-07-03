@@ -449,7 +449,6 @@
                 <span class="n">nf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">TF</span>
             <span class="p">)</span>
             <span class="n">b1</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">/</span> <span class="n">beta0</span>
-            <span class="c1"># TODO how can this be obtained from the Lambda-equivalent?</span>
             <span class="n">as_NLO</span> <span class="o">=</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">den</span><span class="p">))</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">as_NLO</span>
             <span class="c1"># NNLO</span>
