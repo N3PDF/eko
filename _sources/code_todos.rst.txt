@@ -17,13 +17,9 @@ From Source Code
 
 `flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
 
-.. warning:: #11 Should this be a parameter or can it be hardcoded?
+.. warning:: #65 this is just a hack because I'm not able to generalize this part
 
-.. warning:: #35 there are still a few hard-coded things in this class
-
-.. warning:: #67 this is just a hack because I'm not able to generalize this part
-
-.. warning:: #114 can this be made more concise, or is this really the best that can be done?
+.. warning:: #112 can this be made more concise, or is this really the best that can be done?
 
 
 
@@ -31,7 +27,7 @@ From Source Code
 
 .. warning:: #224 check error propagation
 
-.. warning:: #495 make 'cut' external parameter?
+.. warning:: #492 make 'cut' external parameter?
 
 
 

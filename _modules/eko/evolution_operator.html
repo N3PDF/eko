@@ -377,7 +377,7 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">OperatorMember</span><span class="p">):</span>
             <span class="c1"># check compatibility</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_physical</span> <span class="o">!=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">is_physical</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operators do not live in the same space!&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Operators do not live in the same space!&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_physical</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">!=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">target</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -412,7 +412,7 @@
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">OperatorMember</span><span class="p">):</span>
             <span class="c1"># check compatibility</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_physical</span> <span class="o">!=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">is_physical</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operators do not live in the same space!&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Operators do not live in the same space!&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_physical</span> <span class="ow">and</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="sa">f</span><span class="s2">&quot;Can not sum </span><span class="si">{</span><span class="n">operator_member</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> OperatorMembers!&quot;</span>
@@ -663,10 +663,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span> <span class="o">=</span> <span class="n">xgrid</span>
         <span class="c1"># Get ready for the computation</span>
+        <span class="c1"># TODO make &#39;cut&#39; external parameter?</span>
         <span class="n">singlet</span><span class="p">,</span> <span class="n">nons</span> <span class="o">=</span> <span class="n">_get_kernel_integrands</span><span class="p">(</span>
             <span class="n">integrands_s</span><span class="p">,</span> <span class="n">integrands_ns</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="n">mellin_cut</span>
         <span class="p">)</span>
-        <span class="c1"># TODO make &#39;cut&#39; external parameter?</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_compute_singlet</span> <span class="o">=</span> <span class="n">singlet</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_compute_nonsinglet</span> <span class="o">=</span> <span class="n">nons</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_computed</span> <span class="o">=</span> <span class="kc">False</span>
