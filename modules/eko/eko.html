@@ -230,8 +230,10 @@ or other different choices.</p>
 <div><ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(N_C\)</span> the number of colors - defaults to <span class="math notranslate nohighlight">\(3\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(T_F\)</span> the normalization of fundamental generators - defaults to <span class="math notranslate nohighlight">\(1/2\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(C_A\)</span> second Casimir constant in the adjoint representation - defaults to <span class="math notranslate nohighlight">\(N_C = 3\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(C_F\)</span> second Casimir constant in the fundamental representation - defaults to <span class="math notranslate nohighlight">\(\frac{N_C^2-1}{2N_C} = 4/3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_A\)</span> second Casimir constant in the adjoint representation - defaults to
+<span class="math notranslate nohighlight">\(N_C = 3\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_F\)</span> second Casimir constant in the fundamental representation - defaults to
+<span class="math notranslate nohighlight">\(\frac{N_C^2-1}{2N_C} = 4/3\)</span></p></li>
 </ul>
 </div></blockquote>
 <dl class="py class">
@@ -258,7 +260,7 @@ in an <a class="reference external" href="https://docs.python.org/3/library/exce
 <dd><p>normalization of fundamental generators = 1/2</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -269,7 +271,7 @@ in an <a class="reference external" href="https://docs.python.org/3/library/exce
 <dd><p>second Casimir constant in the adjoint representation = NC</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -280,7 +282,7 @@ in an <a class="reference external" href="https://docs.python.org/3/library/exce
 <dd><p>second Casimir constant in the fundamental representation = (NC^2 - 1)/(2 NC)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -316,7 +318,7 @@ protected variables</p>
 <p>The functions are need in <a class="reference internal" href="../../Theory/Mellin.html"><span class="doc">Mellin space</span></a>.</p>
 <dl class="py function">
 <dt id="eko.ekomath.cern_polygamma">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">cern_polygamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Z</span><span class="p">:</span> <span class="n">numpy.complex128</span></em>, <em class="sig-param"><span class="n">K</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#cern_polygamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.cern_polygamma" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">cern_polygamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Z</span></em>, <em class="sig-param"><span class="n">K</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#cern_polygamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.cern_polygamma" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the polygamma functions <span class="math notranslate nohighlight">\(\psi_k(z)\)</span>.</p>
 <p>Reimplementation of <code class="docutils literal notranslate"><span class="pre">WPSIPG</span></code> (C317) in <a class="reference external" href="http://cernlib.web.cern.ch/cernlib/">CERNlib</a>
 <a class="bibtex reference internal" href="../../zzz-refs.html#kolbig1972221" id="id1">[Kol72]</a>.</p>
@@ -325,7 +327,7 @@ does not allow for complex inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>Z</strong> (<em>t_complex</em>) – argument of polygamma function</p></li>
+<li><p><strong>Z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – argument of polygamma function</p></li>
 <li><p><strong>K</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – order of polygamma function</p></li>
 </ul>
 </dd>
@@ -333,14 +335,14 @@ does not allow for complex inputs.</p>
 <dd class="field-even"><p><strong>H</strong> – k-th polygamma function <span class="math notranslate nohighlight">\(\psi_k(z)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="eko.ekomath.harmonic_S1">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S1" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_1(N)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E\]</div>
@@ -348,13 +350,13 @@ does not allow for complex inputs.</p>
 Euler-Mascheroni constant.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p>
+<dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – Mellin moment</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>S_1</strong> – (simple) Harmonic sum <span class="math notranslate nohighlight">\(S_1(N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -365,7 +367,7 @@ Euler-Mascheroni constant.</p>
 
 <dl class="py function">
 <dt id="eko.ekomath.harmonic_S2">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S2" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_2(N)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[S_2(N) = \sum\limits_{j=1}^N \frac 1 {j^2} = -\psi_1(N+1)+\zeta(2)\]</div>
@@ -373,13 +375,13 @@ Euler-Mascheroni constant.</p>
 Riemann zeta function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p>
+<dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – Mellin moment</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>S_2</strong> – Harmonic sum <span class="math notranslate nohighlight">\(S_2(N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -390,7 +392,7 @@ Riemann zeta function.</p>
 
 <dl class="py function">
 <dt id="eko.ekomath.harmonic_S3">
-<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n">numpy.complex128</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S3" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">harmonic_S3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#harmonic_S3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.harmonic_S3" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_3(N)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[S_3(N) = \sum\limits_{j=1}^N \frac 1 {j^3} = \frac 1 2 \psi_2(N+1)+\zeta(3)\]</div>
@@ -398,13 +400,13 @@ Riemann zeta function.</p>
 Riemann zeta function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>N</strong> (<em>t_complex</em>) – Mellin moment</p>
+<dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – Mellin moment</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>S_3</strong> – Harmonic sum <span class="math notranslate nohighlight">\(S_3(N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
 </dd>
 </dl>
 <div class="admonition seealso">
@@ -787,15 +789,15 @@ which can be joined with the Mellin inversion factor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>N</strong> (<em>t_float</em>) – Evaluated point in N-space</p></li>
-<li><p><strong>logx</strong> (<em>t_float</em>) – Mellin-inversion point <span class="math notranslate nohighlight">\(log(x)\)</span></p></li>
+<li><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Evaluated point in N-space</p></li>
+<li><p><strong>logx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Mellin-inversion point <span class="math notranslate nohighlight">\(log(x)\)</span></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>p(N)*x^{-N}</strong> – Evaluated polynomial at N times x^{-N}</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_complex</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -810,7 +812,7 @@ in x space</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<em>t_float</em>) – Evaluated point</p></li>
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Evaluated point</p></li>
 <li><p><strong>conf</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – dictionary of values for the coefficients of the interpolator</p></li>
 </ul>
 </dd>
@@ -818,7 +820,7 @@ in x space</p>
 <dd class="field-even"><p><strong>p(x)</strong> – Evaluated polynom at x</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -829,13 +831,13 @@ in x space</p>
 <dd><p>Evaluate basis function in x-space.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>x</strong> (<em>t_float</em>) – evaluated point</p>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – evaluated point</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>res</strong> – p(x)</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1124,7 +1126,7 @@ and applies the real part.</p>
 listed under <cite>Other Parameters</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><p><strong>gamma</strong> (<em>t_float</em>) – intersection of path with real axis</p>
+<dd class="field-odd"><p><strong>gamma</strong> (<em>float</em>) – intersection of path with real axis</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
@@ -1148,9 +1150,9 @@ listed under <cite>Other Parameters</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Other Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>r</strong> (<em>t_float</em>) – scaling parameter - effectivly corresponds to the intersection of the path with the
+<li><p><strong>r</strong> (<em>float</em>) – scaling parameter - effectivly corresponds to the intersection of the path with the
 real axis</p></li>
-<li><p><strong>o</strong> (<em>t_float</em>) – offset on real axis</p></li>
+<li><p><strong>o</strong> (<em>float</em>) – offset on real axis</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1174,9 +1176,9 @@ listed under <cite>Other Parameters</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Other Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>m</strong> (<em>t_float</em>) – length of the path</p></li>
-<li><p><strong>c</strong> (<em>t_float, optional</em>) – intersection of path with real axis - defaults to 1</p></li>
-<li><p><strong>phi</strong> (<em>t_complex, optional</em>) – bended angle - defaults to +135° with respect to positive x axis</p></li>
+<li><p><strong>m</strong> (<em>float</em>) – length of the path</p></li>
+<li><p><strong>c</strong> (<em>float, optional</em>) – intersection of path with real axis - defaults to 1</p></li>
+<li><p><strong>phi</strong> (<em>complex, optional</em>) – bended angle - defaults to +135° with respect to positive x axis</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1200,8 +1202,8 @@ listed under <cite>Other Parameters</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Other Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>m</strong> (<em>t_float</em>) – half length of the path</p></li>
-<li><p><strong>c</strong> (<em>t_float</em>) – intersection of path with real axis</p></li>
+<li><p><strong>m</strong> (<em>float</em>) – half length of the path</p></li>
+<li><p><strong>c</strong> (<em>float</em>) – intersection of path with real axis</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1245,7 +1247,7 @@ determied by <span class="math notranslate nohighlight">\(t\in [c : 1-c]\)</span
 
 <dl class="py function">
 <dt id="eko.mellin.mellin_transform">
-<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">mellin_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">N</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.mellin_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">mellin_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em>, <em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.mellin_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mellin transformation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1614,8 +1616,8 @@ number of loop by one unit</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>constants</strong> (<a class="reference internal" href="#eko.constants.Constants" title="eko.constants.Constants"><em>eko.constants.Constants</em></a>) – An instance of <a class="reference internal" href="#eko.constants.Constants" title="eko.constants.Constants"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constants</span></code></a></p></li>
-<li><p><strong>alpha_s_ref</strong> (<em>t_float</em>) – alpha_s(!) at the reference scale <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)\)</span></p></li>
-<li><p><strong>scale_ref</strong> (<em>t_float</em>) – reference scale <span class="math notranslate nohighlight">\(\mu_0^2\)</span></p></li>
+<li><p><strong>alpha_s_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – alpha_s(!) at the reference scale <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)\)</span></p></li>
+<li><p><strong>scale_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – reference scale <span class="math notranslate nohighlight">\(\mu_0^2\)</span></p></li>
 <li><p><strong>threshold_holder</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – An instance of <a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThresholdsConfig</span></code></a></p></li>
 <li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Evaluated order of the beta function: <code class="docutils literal notranslate"><span class="pre">0</span></code> = LO, …</p></li>
 <li><p><strong>method</strong> (<em>[</em><em>&quot;expanded&quot;</em><em>, </em><em>&quot;exact&quot;</em><em>]</em>) – Applied method to solve the beta function</p></li>
@@ -1639,13 +1641,13 @@ number of loop by one unit</p></li>
 <dd><p>Computes strong coupling <span class="math notranslate nohighlight">\(a_s(Q^2) = \frac{\alpha_s(Q^2)}{4\pi}\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>scale_to</strong> (<em>t_float</em>) – final scale to evolve to <span class="math notranslate nohighlight">\(Q^2\)</span></p>
+<dd class="field-odd"><p><strong>scale_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – final scale to evolve to <span class="math notranslate nohighlight">\(Q^2\)</span></p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>a_s</strong> – strong coupling <span class="math notranslate nohighlight">\(a_s(Q^2) = \frac{\alpha_s(Q^2)}{4\pi}\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1658,15 +1660,15 @@ with <span class="math notranslate nohighlight">\(t(Q^2) = log(1/a_s(Q^2))\)</sp
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>scale_from</strong> (<em>t_float</em>) – scale to evolve from <span class="math notranslate nohighlight">\(Q_0^2\)</span></p></li>
-<li><p><strong>scale_to</strong> (<em>t_float</em>) – final scale to evolve to <span class="math notranslate nohighlight">\(Q_1^2\)</span></p></li>
+<li><p><strong>scale_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – scale to evolve from <span class="math notranslate nohighlight">\(Q_0^2\)</span></p></li>
+<li><p><strong>scale_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – final scale to evolve to <span class="math notranslate nohighlight">\(Q_1^2\)</span></p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>delta</strong> – evolution parameter <span class="math notranslate nohighlight">\(\Delta t(Q_0^2, Q_1^2)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1711,7 +1713,7 @@ with <span class="math notranslate nohighlight">\(t(Q^2) = log(1/a_s(Q^2))\)</sp
 
 <dl class="py function">
 <dt id="eko.strong_coupling.beta_0">
-<code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_0" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the first coefficient of the QCD beta function.</p>
 <p>Implements Eq. (3.1) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id4">[HRU+17]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
@@ -1719,62 +1721,62 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
-<li><p><strong>TF</strong> (<em>t_float</em>) – fundamental normalization factor</p></li>
+<li><p><strong>CA</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of adjoint representation</p></li>
+<li><p><strong>CF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of fundamental representation (which is actually not used here)</p></li>
+<li><p><strong>TF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – fundamental normalization factor</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>beta_0</strong> – first coefficient of the QCD beta function <span class="math notranslate nohighlight">\(\beta_0^{n_f}\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="eko.strong_coupling.beta_1">
-<code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_1" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the second coefficient of the QCD beta function.</p>
 <p>Implements Eq. (3.2) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id5">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavours</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation</p></li>
-<li><p><strong>TF</strong> (<em>t_float</em>) – fundamental normalization factor</p></li>
+<li><p><strong>CA</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of adjoint representation</p></li>
+<li><p><strong>CF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of fundamental representation</p></li>
+<li><p><strong>TF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – fundamental normalization factor</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>beta_1</strong> – second coefficient of the QCD beta function <span class="math notranslate nohighlight">\(\beta_1^{n_f}\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="eko.strong_coupling.beta_2">
-<code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n">numpy.float64</span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n">numpy.float64</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_2" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the third coefficient of the QCD beta function</p>
 <p>Implements Eq. (3.3) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id6">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavours.</p></li>
-<li><p><strong>CA</strong> (<em>t_float</em>) – Casimir constant of adjoint representation.</p></li>
-<li><p><strong>CF</strong> (<em>t_float</em>) – Casimir constant of fundamental representation.</p></li>
-<li><p><strong>TF</strong> (<em>t_float</em>) – fundamental normalization factor.</p></li>
+<li><p><strong>CA</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of adjoint representation.</p></li>
+<li><p><strong>CF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of fundamental representation.</p></li>
+<li><p><strong>TF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – fundamental normalization factor.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>beta_2</strong> – third coefficient of the QCD beta function <span class="math notranslate nohighlight">\(\beta_2^{n_f}\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>t_float</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
 </dd>
 </dl>
 </dd></dl>

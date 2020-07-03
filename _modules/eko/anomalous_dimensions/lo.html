@@ -180,13 +180,12 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
-<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">t_complex</span>
 <span class="kn">from</span> <span class="nn">eko.ekomath</span> <span class="kn">import</span> <span class="n">harmonic_S1</span> <span class="k">as</span> <span class="n">S1</span>
 
 
 <div class="viewcode-block" id="gamma_ns_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_ns_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">gamma_ns_0</span><span class="p">(</span>
-    <span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="n">t_float</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order non-singlet anomalous dimension.</span>
@@ -196,18 +195,18 @@
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
-<span class="sd">        N : t_complex</span>
+<span class="sd">        N : complex</span>
 <span class="sd">          Mellin moment</span>
 <span class="sd">        nf : int</span>
 <span class="sd">          Number of active flavours (which is actually not used here)</span>
-<span class="sd">        CA : t_float</span>
+<span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation (which is actually not used here)</span>
-<span class="sd">        CF : t_float</span>
+<span class="sd">        CF : float</span>
 <span class="sd">          Casimir constant of fundamental representation</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
-<span class="sd">        gamma_ns_0 : t_complex</span>
+<span class="sd">        gamma_ns_0 : complex</span>
 <span class="sd">          Leading-order non-singlet anomalous dimension :math:`\\gamma_{ns}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#gamma = 2 * (S1(N - 1) + S1(N + 1)) - 3</span>
@@ -218,7 +217,7 @@
 
 <div class="viewcode-block" id="gamma_qg_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_qg_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">gamma_qg_0</span><span class="p">(</span>
-    <span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="n">t_float</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order quark-gluon anomalous dimension</span>
@@ -228,18 +227,18 @@
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
-<span class="sd">        N : t_complex</span>
+<span class="sd">        N : complex</span>
 <span class="sd">          Mellin moment</span>
 <span class="sd">        nf : int</span>
 <span class="sd">          Number of active flavours</span>
-<span class="sd">        CA : t_float</span>
+<span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation (which is actually not used here)</span>
-<span class="sd">        CF : t_float</span>
+<span class="sd">        CF : float</span>
 <span class="sd">          Casimir constant of fundamental representation (which is actually not used here)</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
-<span class="sd">        gamma_qg_0 : t_complex</span>
+<span class="sd">        gamma_qg_0 : complex</span>
 <span class="sd">          Leading-order quark-gluon anomalous dimension :math:`\\gamma_{qg}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#gamma = S1(N - 1) + 4.0 * S1(N + 1) - 2.0 * S1(N + 2) - 3.0 * S1(N)</span>
@@ -250,7 +249,7 @@
 
 <div class="viewcode-block" id="gamma_gq_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_gq_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">gamma_gq_0</span><span class="p">(</span>
-    <span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="n">t_float</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order gluon-quark anomalous dimension</span>
@@ -260,18 +259,18 @@
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
-<span class="sd">        N : t_complex</span>
+<span class="sd">        N : complex</span>
 <span class="sd">          Mellin moment</span>
 <span class="sd">        nf : int</span>
 <span class="sd">          Number of active flavours (which is actually not used here)</span>
-<span class="sd">        CA : t_float</span>
+<span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation (which is actually not used here)</span>
-<span class="sd">        CF : t_float</span>
+<span class="sd">        CF : float</span>
 <span class="sd">          Casimir constant of fundamental representation</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
-<span class="sd">        gamma_qg_0 : t_complex</span>
+<span class="sd">        gamma_qg_0 : complex</span>
 <span class="sd">          Leading-order gluon-quark anomalous dimension :math:`\\gamma_{gq}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#gamma = 2.0 * S1(N - 2) - 4.0 * S1(N - 1) - S1(N + 1) + 3.0 * S1(N)</span>
@@ -282,7 +281,7 @@
 
 <div class="viewcode-block" id="gamma_gg_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_gg_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">gamma_gg_0</span><span class="p">(</span>
-    <span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="n">t_float</span>
+    <span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order gluon-gluon anomalous dimension</span>
@@ -292,18 +291,18 @@
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
-<span class="sd">        N : t_complex</span>
+<span class="sd">        N : complex</span>
 <span class="sd">          Mellin moment</span>
 <span class="sd">        nf : int</span>
 <span class="sd">          Number of active flavours</span>
-<span class="sd">        CA : t_float</span>
+<span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation</span>
-<span class="sd">        CF : t_float</span>
+<span class="sd">        CF : float</span>
 <span class="sd">          Casimir constant of fundamental representation (which is actually not used here)</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
-<span class="sd">        gamma_qg_0 : t_complex</span>
+<span class="sd">        gamma_qg_0 : complex</span>
 <span class="sd">          Leading-order gluon-gluon anomalous dimension :math:`\\gamma_{gg}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#gamma = S1(N - 2) - 2.0 * S1(N - 1) - 2.0 * S1(N + 1) + S1(N + 2) + 3.0 * S1(N)</span>
@@ -313,7 +312,7 @@
 
 
 <div class="viewcode-block" id="get_gamma_singlet_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.get_gamma_singlet_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">get_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="n">t_float</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order singlet anomalous dimension matrix</span>
 
@@ -325,18 +324,18 @@
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
-<span class="sd">        N : t_complex</span>
+<span class="sd">        N : complex</span>
 <span class="sd">          Mellin moment</span>
 <span class="sd">        nf : int</span>
 <span class="sd">          Number of active flavours</span>
-<span class="sd">        CA : t_float</span>
+<span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation</span>
-<span class="sd">        CF : t_float</span>
+<span class="sd">        CF : float</span>
 <span class="sd">          Casimir constant of fundamental representation (which is actually not used here)</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
-<span class="sd">        gamma_S_0 : np.array</span>
+<span class="sd">        gamma_S_0 : np.ndarray</span>
 <span class="sd">          Leading-order singlet anomalous dimension matrix :math:`\gamma_{S}^{(0)}(N)`</span>
 
 <span class="sd">      See Also</span>
@@ -355,27 +354,27 @@
 
 
 <div class="viewcode-block" id="get_Eigensystem_gamma_singlet_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.get_Eigensystem_gamma_singlet_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">get_Eigensystem_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="n">t_float</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_Eigensystem_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the Eigensystem of the leading-order singlet anomalous dimension matrix</span>
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
-<span class="sd">        N : t_complex</span>
+<span class="sd">        N : complex</span>
 <span class="sd">          Mellin moment</span>
 <span class="sd">        nf : int</span>
 <span class="sd">          Number of active flavours</span>
-<span class="sd">        CA : t_float</span>
+<span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation</span>
-<span class="sd">        CF : t_float</span>
+<span class="sd">        CF : float</span>
 <span class="sd">          Casimir constant of fundamental representation (which is actually not used here)</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
-<span class="sd">        lambda_p : t_complex</span>
+<span class="sd">        lambda_p : complex</span>
 <span class="sd">          positive eigenvalue of the Leading-order singlet anomalous dimension matrix</span>
 <span class="sd">          :math:`\gamma_{S}^{(0)}(N)`</span>
-<span class="sd">        lambda_m : t_complex</span>
+<span class="sd">        lambda_m : complex</span>
 <span class="sd">          negative eigenvalue of the Leading-order singlet anomalous dimension matrix</span>
 <span class="sd">          :math:`\gamma_{S}^{(0)}(N)`</span>
 <span class="sd">        e_p : np.array</span>

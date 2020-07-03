@@ -345,14 +345,14 @@
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
-<span class="sd">                x : t_float</span>
+<span class="sd">                x : float</span>
 <span class="sd">                    Evaluated point</span>
 <span class="sd">                conf : dict</span>
 <span class="sd">                    dictionary of values for the coefficients of the interpolator</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                p(x) : t_float</span>
+<span class="sd">                p(x) : float</span>
 <span class="sd">                    Evaluated polynom at x</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -387,12 +387,12 @@
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
-<span class="sd">                x : t_float</span>
+<span class="sd">                x : float</span>
 <span class="sd">                    evaluated point</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                res : t_float</span>
+<span class="sd">                res : float</span>
 <span class="sd">                    p(x)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode_N</span><span class="p">:</span>
@@ -421,14 +421,14 @@
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
-<span class="sd">                N : t_float</span>
+<span class="sd">                N : float</span>
 <span class="sd">                    Evaluated point in N-space</span>
-<span class="sd">                logx : t_float</span>
+<span class="sd">                logx : float</span>
 <span class="sd">                    Mellin-inversion point :math:`log(x)`</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                p(N)*x^{-N} : t_complex</span>
+<span class="sd">                p(N)*x^{-N} : complex</span>
 <span class="sd">                    Evaluated polynomial at N times x^{-N}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">area_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">areas_to_const</span><span class="p">()</span>

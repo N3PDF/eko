@@ -184,12 +184,11 @@
 
 <span class="sd">     - :math:`N_C` the number of colors - defaults to :math:`3`</span>
 <span class="sd">     - :math:`T_F` the normalization of fundamental generators - defaults to :math:`1/2`</span>
-<span class="sd">     - :math:`C_A` second Casimir constant in the adjoint representation - defaults to :math:`N_C = 3`</span>
-<span class="sd">     - :math:`C_F` second Casimir constant in the fundamental representation - defaults to :math:`\frac{N_C^2-1}{2N_C} = 4/3`</span>
-<span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=line-too-long</span>
-
-<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">t_float</span>
-
+<span class="sd">     - :math:`C_A` second Casimir constant in the adjoint representation - defaults to</span>
+<span class="sd">       :math:`N_C = 3`</span>
+<span class="sd">     - :math:`C_F` second Casimir constant in the fundamental representation - defaults to</span>
+<span class="sd">       :math:`\frac{N_C^2-1}{2N_C} = 4/3`</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="Constants"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.constants.Constants">[docs]</a><span class="k">class</span> <span class="nc">Constants</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -201,11 +200,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">            NC : int</span>
 <span class="sd">                Number of colors = 3</span>
-<span class="sd">            TF : t_float</span>
+<span class="sd">            TF : float</span>
 <span class="sd">                normalization of fundamental generators = 1/2</span>
-<span class="sd">            CA : t_float</span>
+<span class="sd">            CA : float</span>
 <span class="sd">                second Casimir constant in the adjoint representation = NC</span>
-<span class="sd">            CF : t_float</span>
+<span class="sd">            CF : float</span>
 <span class="sd">                second Casimir constant in the fundamental representation = (NC^2 - 1)/(2 NC)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -213,9 +212,9 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">NC</span> <span class="o">=</span> <span class="mi">3</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">TF</span> <span class="o">=</span> <span class="n">t_float</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CA</span> <span class="o">=</span> <span class="n">t_float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NC</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">CF</span> <span class="o">=</span> <span class="n">t_float</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">NC</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">NC</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">NC</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TF</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CA</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">NC</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CF</span> <span class="o">=</span> <span class="nb">float</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">NC</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">NC</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">NC</span><span class="p">))</span>
         <span class="c1"># Lock the class</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lock</span> <span class="o">=</span> <span class="kc">True</span>
 
