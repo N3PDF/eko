@@ -177,12 +177,15 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implements higher mathematical functions.</span>
 
-<span class="sd">    The functions are need in :doc:`Mellin space &lt;/Theory/Mellin&gt;`.</span>
+<span class="sd">    The functions are discribed in :doc:`Mellin space &lt;/Theory/Mellin&gt;`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">scipy.special</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+
+<span class="n">zeta2</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">zeta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">zeta3</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">zeta</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="cern_polygamma"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.cern_polygamma">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
@@ -190,25 +193,25 @@
     <span class="n">Z</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span>
 <span class="p">):</span>  <span class="c1"># pylint: disable=too-many-locals,too-many-branches,too-many-statements</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">      Computes the polygamma functions :math:`\\psi_k(z)`.</span>
+<span class="sd">        Computes the polygamma functions :math:`\\psi_k(z)`.</span>
 
-<span class="sd">      Reimplementation of ``WPSIPG`` (C317) in `CERNlib &lt;http://cernlib.web.cern.ch/cernlib/&gt;`_</span>
-<span class="sd">      :cite:`KOLBIG1972221`.</span>
+<span class="sd">        Reimplementation of ``WPSIPG`` (C317) in `CERNlib &lt;http://cernlib.web.cern.ch/cernlib/&gt;`_</span>
+<span class="sd">        :cite:`KOLBIG1972221`.</span>
 
-<span class="sd">      Note that the `SciPy implementation &lt;https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html&gt;`_</span>
-<span class="sd">      does not allow for complex inputs.</span>
+<span class="sd">        Note that the `SciPy implementation &lt;https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html&gt;`_</span>
+<span class="sd">        does not allow for complex inputs.</span>
 
-<span class="sd">      Parameters</span>
-<span class="sd">      ----------</span>
-<span class="sd">        Z : complex</span>
-<span class="sd">          argument of polygamma function</span>
-<span class="sd">        K : int</span>
-<span class="sd">          order of polygamma function</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">          Z : complex</span>
+<span class="sd">            argument of polygamma function</span>
+<span class="sd">          K : int</span>
+<span class="sd">            order of polygamma function</span>
 
-<span class="sd">      Returns</span>
-<span class="sd">      -------</span>
-<span class="sd">        H : complex</span>
-<span class="sd">          k-th polygamma function :math:`\\psi_k(z)`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">          H : complex</span>
+<span class="sd">            k-th polygamma function :math:`\\psi_k(z)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># fmt: off</span>
     <span class="n">DELTA</span> <span class="o">=</span> <span class="mf">5e-13</span>
@@ -307,83 +310,116 @@
 <div class="viewcode-block" id="harmonic_S1"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">harmonic_S1</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">      Computes the harmonic sum :math:`S_1(N)`.</span>
+<span class="sd">        Computes the harmonic sum :math:`S_1(N)`.</span>
 
-<span class="sd">      .. math::</span>
-<span class="sd">        S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E</span>
+<span class="sd">        .. math::</span>
+<span class="sd">          S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E</span>
 
-<span class="sd">      with :math:`\psi_0(N)` the digamma function and :math:`\gamma_E` the</span>
-<span class="sd">      Euler-Mascheroni constant.</span>
+<span class="sd">        with :math:`\psi_0(N)` the digamma function and :math:`\gamma_E` the</span>
+<span class="sd">        Euler-Mascheroni constant.</span>
 
-<span class="sd">      Parameters</span>
-<span class="sd">      ----------</span>
-<span class="sd">        N : complex</span>
-<span class="sd">          Mellin moment</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">          N : complex</span>
+<span class="sd">            Mellin moment</span>
 
-<span class="sd">      Returns</span>
-<span class="sd">      -------</span>
-<span class="sd">        S_1 : complex</span>
-<span class="sd">          (simple) Harmonic sum :math:`S_1(N)`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">          S_1 : complex</span>
+<span class="sd">            (simple) Harmonic sum :math:`S_1(N)`</span>
 
-<span class="sd">      See Also</span>
-<span class="sd">      --------</span>
-<span class="sd">        cern_polygamma :</span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">          cern_polygamma :</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">euler_gamma</span></div>
+
 
 <div class="viewcode-block" id="harmonic_S2"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S2">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">harmonic_S2</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">      Computes the harmonic sum :math:`S_2(N)`.</span>
+<span class="sd">        Computes the harmonic sum :math:`S_2(N)`.</span>
 
-<span class="sd">      .. math::</span>
-<span class="sd">        S_2(N) = \sum\limits_{j=1}^N \frac 1 {j^2} = -\psi_1(N+1)+\zeta(2)</span>
+<span class="sd">        .. math::</span>
+<span class="sd">          S_2(N) = \sum\limits_{j=1}^N \frac 1 {j^2} = -\psi_1(N+1)+\zeta(2)</span>
 
-<span class="sd">      with :math:`\psi_1(N)` the trigamma function and :math:`\zeta` the</span>
-<span class="sd">      Riemann zeta function.</span>
+<span class="sd">        with :math:`\psi_1(N)` the trigamma function and :math:`\zeta` the</span>
+<span class="sd">        Riemann zeta function.</span>
 
-<span class="sd">      Parameters</span>
-<span class="sd">      ----------</span>
-<span class="sd">        N : complex</span>
-<span class="sd">          Mellin moment</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">          N : complex</span>
+<span class="sd">            Mellin moment</span>
 
-<span class="sd">      Returns</span>
-<span class="sd">      -------</span>
-<span class="sd">        S_2 : complex</span>
-<span class="sd">          Harmonic sum :math:`S_2(N)`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">          S_2 : complex</span>
+<span class="sd">            Harmonic sum :math:`S_2(N)`</span>
 
-<span class="sd">      See Also</span>
-<span class="sd">      --------</span>
-<span class="sd">        cern_polygamma :</span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">          cern_polygamma :</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="o">-</span><span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">zeta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="o">-</span><span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">zeta2</span></div>
+
 
 <div class="viewcode-block" id="harmonic_S3"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S3">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">harmonic_S3</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">      Computes the harmonic sum :math:`S_3(N)`.</span>
+<span class="sd">        Computes the harmonic sum :math:`S_3(N)`.</span>
 
-<span class="sd">      .. math::</span>
-<span class="sd">        S_3(N) = \sum\limits_{j=1}^N \frac 1 {j^3} = \frac 1 2 \psi_2(N+1)+\zeta(3)</span>
+<span class="sd">        .. math::</span>
+<span class="sd">          S_3(N) = \sum\limits_{j=1}^N \frac 1 {j^3} = \frac 1 2 \psi_2(N+1)+\zeta(3)</span>
 
-<span class="sd">      with :math:`\psi_3(N)` the 3rd-polygamma function and :math:`\zeta` the</span>
-<span class="sd">      Riemann zeta function.</span>
+<span class="sd">        with :math:`\psi_3(N)` the 3rd-polygamma function and :math:`\zeta` the</span>
+<span class="sd">        Riemann zeta function.</span>
 
-<span class="sd">      Parameters</span>
-<span class="sd">      ----------</span>
-<span class="sd">        N : complex</span>
-<span class="sd">          Mellin moment</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">          N : complex</span>
+<span class="sd">            Mellin moment</span>
 
-<span class="sd">      Returns</span>
-<span class="sd">      -------</span>
-<span class="sd">        S_3 : complex</span>
-<span class="sd">          Harmonic sum :math:`S_3(N)`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">          S_3 : complex</span>
+<span class="sd">            Harmonic sum :math:`S_3(N)`</span>
 
-<span class="sd">      See Also</span>
-<span class="sd">      --------</span>
-<span class="sd">        cern_polygamma :</span>
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">          cern_polygamma :</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">zeta</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">zeta3</span></div>
+
+
+<div class="viewcode-block" id="mellin_g3"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.mellin_g3">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">mellin_g3</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the Mellin transform of :math:`\text{Li}_2(x)/(1+x)`.</span>
+
+<span class="sd">        This function appears in the analytic continuation of the harmonic sum</span>
+<span class="sd">        :math:`S_{-2,1}(N)` which appears in the NLO anomalous dimension.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">          N : complex</span>
+<span class="sd">            Mellin moment</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">          mellin_g3 : complex</span>
+<span class="sd">            Mellin transform :math:`\mathcal{M}[\text{Li}_2(x)/(1+x)](N)`</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">          We use the name from Muselli, but not his implementation - rather we use the Pegasus</span>
+<span class="sd">          implementation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0000e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9992e0</span><span class="p">,</span> <span class="mf">0.9851e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9005e0</span><span class="p">,</span> <span class="mf">0.6621e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3174e0</span><span class="p">,</span> <span class="mf">0.0699e0</span><span class="p">]</span>
+    <span class="n">g3</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cs</span><span class="p">):</span>
+        <span class="n">Nj</span> <span class="o">=</span> <span class="n">N</span> <span class="o">+</span> <span class="n">j</span>
+        <span class="n">g3</span> <span class="o">+=</span> <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">zeta2</span> <span class="o">-</span> <span class="n">harmonic_S1</span><span class="p">(</span><span class="n">Nj</span><span class="p">)</span> <span class="o">/</span> <span class="n">Nj</span><span class="p">)</span> <span class="o">/</span> <span class="n">Nj</span>
+    <span class="k">return</span> <span class="n">g3</span></div>
 </pre></div>
 
            </div>

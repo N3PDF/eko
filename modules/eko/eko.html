@@ -211,6 +211,7 @@
 <li class="toctree-l1"><a class="reference internal" href="eko.anomalous_dimensions.html">eko.anomalous_dimensions package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions.lo">eko.anomalous_dimensions.lo module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions.nlo">eko.anomalous_dimensions.nlo module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions">Module contents</a></li>
 </ul>
 </li>
@@ -316,7 +317,7 @@ protected variables</p>
 <div class="section" id="module-eko.ekomath">
 <span id="eko-ekomath-module"></span><h2>eko.ekomath module<a class="headerlink" href="#module-eko.ekomath" title="Permalink to this headline">¶</a></h2>
 <p>Implements higher mathematical functions.</p>
-<p>The functions are need in <a class="reference internal" href="../../Theory/Mellin.html"><span class="doc">Mellin space</span></a>.</p>
+<p>The functions are discribed in <a class="reference internal" href="../../Theory/Mellin.html"><span class="doc">Mellin space</span></a>.</p>
 <dl class="py function">
 <dt id="eko.ekomath.cern_polygamma">
 <code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">cern_polygamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Z</span></em>, <em class="sig-param"><span class="n">K</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#cern_polygamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.cern_polygamma" title="Permalink to this definition">¶</a></dt>
@@ -413,6 +414,30 @@ Riemann zeta function.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.ekomath.mellin_g3">
+<code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">mellin_g3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#mellin_g3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.mellin_g3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the Mellin transform of <span class="math notranslate nohighlight">\(\text{Li}_2(x)/(1+x)\)</span>.</p>
+<p>This function appears in the analytic continuation of the harmonic sum
+<span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> which appears in the NLO anomalous dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – Mellin moment</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mellin_g3</strong> – Mellin transform <span class="math notranslate nohighlight">\(\mathcal{M}[\text{Li}_2(x)/(1+x)](N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use the name from Muselli, but not his implementation - rather we use the Pegasus
+implementation</p>
 </div>
 </dd></dl>
 

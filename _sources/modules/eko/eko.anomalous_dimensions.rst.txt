@@ -12,6 +12,14 @@ eko.anomalous\_dimensions.lo module
    :undoc-members:
    :show-inheritance:
 
+eko.anomalous\_dimensions.nlo module
+------------------------------------
+
+.. automodule:: eko.anomalous_dimensions.nlo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 Module contents
 ---------------

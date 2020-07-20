@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.anomalous_dimensions.nlo &mdash; EKO v0.3.0 documentation</title>
+  <title>eko.anomalous_dimensions.nlo &mdash; EKO v0.4.1 documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.3
+                0.4
               </div>
             
           
@@ -101,6 +101,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../Code/Operators.html">Operator Hierachy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Code/Dependency.html">Dependency Graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/eko/modules.html">eko</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -173,70 +174,98 @@
             
   <h1>Source code for eko.anomalous_dimensions.nlo</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  This file contains the next-to-leading-order Altarelli-Parisi splitting kernels.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This file contains the next-to-leading-order Altarelli-Parisi splitting kernels.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="c1"># import numpy as np</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
-<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">t_complex</span>
-
-<span class="c1"># from eko.ekomath import harmonic_S1 as S1</span>
-
-
-<div class="viewcode-block" id="gamma_nsp_1"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.nlo.gamma_nsp_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">gamma_nsp_1</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="n">t_float</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">      Computes the next-to-leading-order non-singlet singlet-like anomalous dimension.</span>
-
-<span class="sd">      Implements Eq. (3.5) of :cite:`Moch:2004pa`.</span>
-
-<span class="sd">      Parameters</span>
-<span class="sd">      ----------</span>
-<span class="sd">        N : t_complex</span>
-<span class="sd">          Mellin moment</span>
-<span class="sd">        nf : int</span>
-<span class="sd">          Number of active flavours</span>
-<span class="sd">        CA : t_float</span>
-<span class="sd">          Casimir constant of adjoint representation</span>
-<span class="sd">        CF : t_float</span>
-<span class="sd">          Casimir constant of fundamental representation</span>
-
-<span class="sd">      Returns</span>
-<span class="sd">      -------</span>
-<span class="sd">        gamma_nsp_1 : t_complex</span>
-<span class="sd">          Leading-order non-singlet anomalous dimension :math:`\\gamma_{ns}^{(1)+}(N)`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO</span>
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span></div>
-
+<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">ekomath</span>
 
 <div class="viewcode-block" id="gamma_nsm_1"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.nlo.gamma_nsm_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">gamma_nsm_1</span><span class="p">(</span><span class="n">N</span><span class="p">:</span> <span class="n">t_complex</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="n">t_float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="n">t_float</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">gamma_nsm_1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">      Computes the next-to-leading-order non-singlet valence-like anomalous dimension.</span>
+<span class="sd">        Computes the next-to-leading-order valence-like non-singlet anomalous dimension.</span>
 
-<span class="sd">      Implements Eq. (3.6) of :cite:`Moch:2004pa`.</span>
+<span class="sd">        Implements Eq. (3.5) of :cite:`Moch:2004pa`.</span>
 
-<span class="sd">      Parameters</span>
-<span class="sd">      ----------</span>
-<span class="sd">        N : t_complex</span>
-<span class="sd">          Mellin moment</span>
-<span class="sd">        nf : int</span>
-<span class="sd">          Number of active flavours</span>
-<span class="sd">        CA : t_float</span>
-<span class="sd">          Casimir constant of adjoint representation</span>
-<span class="sd">        CF : t_float</span>
-<span class="sd">          Casimir constant of fundamental representation</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            n : complex</span>
+<span class="sd">                Mellin moment</span>
+<span class="sd">            nf : int</span>
+<span class="sd">                Number of active flavours</span>
+<span class="sd">            CA : float</span>
+<span class="sd">                Casimir constant of adjoint representation</span>
+<span class="sd">            CF : float</span>
+<span class="sd">                Casimir constant of fundamental representation</span>
 
-<span class="sd">      Returns</span>
-<span class="sd">      -------</span>
-<span class="sd">        gamma_nsp_1 : t_complex</span>
-<span class="sd">          Leading-order non-singlet anomalous dimension :math:`\\gamma_{ns}^{(1)-}(N)`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            gamma_nsm_1 : complex</span>
+<span class="sd">                Next-to-leading-order valence-like non-singlet anomalous dimension</span>
+<span class="sd">                :math:`\\gamma_{ns-}^{(1)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># TODO</span>
-    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;TODO&quot;</span><span class="p">)</span></div>
+    <span class="n">S1</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">S2</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="c1"># Here, Sp refers to S&#39; (&quot;s-prime&quot;) (german: &quot;s-strich&quot; or in Pegasus language: SSTR)</span>
+    <span class="c1"># of :cite:`Gluck:1989ze` and NOT to the Spence function a.k.a. dilogarithm</span>
+    <span class="n">Sp1m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S1</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp2m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp3m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S3</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">g3n</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">mellin_g3</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">zeta2</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">zeta2</span>
+    <span class="n">zeta3</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">zeta3</span>
+    <span class="c1"># fmt: off</span>
+    <span class="n">gqq1m_cfca</span> <span class="o">=</span> <span class="mi">16</span><span class="o">*</span><span class="n">g3n</span> <span class="o">-</span> <span class="p">(</span><span class="mi">144</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">156</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">340</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">655</span> <span class="o">+</span> <span class="mi">51</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">n</span><span class="p">)))))</span><span class="o">/</span><span class="p">(</span><span class="mf">18.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mf">14.666666666666666</span> <span class="o">+</span> <span class="mi">8</span><span class="o">/</span><span class="n">n</span> <span class="o">-</span> <span class="mi">8</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="n">S2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">Sp2m</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="n">S1</span><span class="o">*</span><span class="p">(</span><span class="mf">29.77777777777778</span> <span class="o">+</span> <span class="mi">16</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">S2</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">Sp2m</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Sp3m</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">zeta3</span> <span class="o">+</span> <span class="n">zeta2</span><span class="o">*</span><span class="p">(</span><span class="mi">16</span><span class="o">*</span><span class="n">S1</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">Sp1m</span> <span class="o">-</span> <span class="p">(</span><span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="c1"># pylint: disable=line-too-long</span>
+    <span class="n">gqq1m_cfcf</span> <span class="o">=</span> <span class="o">-</span><span class="mi">32</span><span class="o">*</span><span class="n">g3n</span> <span class="o">+</span> <span class="p">(</span><span class="mi">24</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">32</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)))))</span><span class="o">/</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mi">12</span> <span class="o">-</span> <span class="mi">8</span><span class="o">/</span><span class="n">n</span> <span class="o">+</span> <span class="mi">8</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="n">S2</span> <span class="o">+</span> <span class="n">S1</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">24</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">8</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">16</span><span class="o">*</span><span class="n">S2</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">Sp2m</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">Sp2m</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">Sp3m</span> <span class="o">-</span> <span class="mi">20</span><span class="o">*</span><span class="n">zeta3</span> <span class="o">+</span> <span class="n">zeta2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">32</span><span class="o">*</span><span class="n">S1</span> <span class="o">+</span> <span class="mi">32</span><span class="o">*</span><span class="n">Sp1m</span> <span class="o">+</span> <span class="mi">32</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span> <span class="c1"># pylint: disable=line-too-long</span>
+    <span class="n">gqq1m_cfnf</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">12</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">20</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">47</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">n</span><span class="p">))))</span><span class="o">/</span><span class="p">(</span><span class="mf">9.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="n">S1</span><span class="p">)</span><span class="o">/</span><span class="mf">9.</span> <span class="o">+</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">S2</span><span class="p">)</span><span class="o">/</span><span class="mf">3.</span> <span class="c1"># pylint: disable=line-too-long</span>
+    <span class="c1"># fmt: on</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">*</span> <span class="n">gqq1m_cfca</span> <span class="o">+</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">gqq1m_cfcf</span> <span class="o">+</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">nf</span> <span class="o">*</span> <span class="n">gqq1m_cfnf</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+<div class="viewcode-block" id="gamma_nsp_1"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.nlo.gamma_nsp_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">gamma_nsp_1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the next-to-leading-order singlet-like non-singlet anomalous dimension.</span>
+
+<span class="sd">        Implements Eq. (3.5) of :cite:`Moch:2004pa`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            n : complex</span>
+<span class="sd">                Mellin moment</span>
+<span class="sd">            nf : int</span>
+<span class="sd">                Number of active flavours</span>
+<span class="sd">            CA : float</span>
+<span class="sd">                Casimir constant of adjoint representation</span>
+<span class="sd">            CF : float</span>
+<span class="sd">                Casimir constant of fundamental representation</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            gamma_nsm_1 : complex</span>
+<span class="sd">                Next-to-leading-order singlet-like non-singlet anomalous dimension</span>
+<span class="sd">                :math:`\\gamma_{ns+}^{(1)}(N)`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">S1</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">S2</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="c1"># Here, Sp refers to S&#39; (&quot;s-prime&quot;) (german: &quot;s-strich&quot; or in Pegasus language: SSTR)</span>
+    <span class="c1"># of :cite:`Gluck:1989ze` and NOT to the Spence function a.k.a. dilogarithm</span>
+    <span class="n">Sp1p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S1</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp2p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp3p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S3</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">g3n</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">mellin_g3</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">zeta2</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">zeta2</span>
+    <span class="n">zeta3</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">zeta3</span>
+    <span class="c1"># fmt: off</span>
+    <span class="n">gqq1p_cfca</span> <span class="o">=</span> <span class="o">-</span><span class="mi">16</span><span class="o">*</span><span class="n">g3n</span> <span class="o">+</span> <span class="p">(</span><span class="mi">132</span> <span class="o">-</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">340</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">655</span> <span class="o">+</span> <span class="mi">51</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">n</span><span class="p">))))</span><span class="o">/</span><span class="p">(</span><span class="mf">18.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mf">14.666666666666666</span> <span class="o">+</span> <span class="mi">8</span><span class="o">/</span><span class="n">n</span> <span class="o">-</span> <span class="mi">8</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="n">S2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">Sp2p</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="n">S1</span><span class="o">*</span><span class="p">(</span><span class="mf">29.77777777777778</span> <span class="o">-</span> <span class="mi">16</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">S2</span> <span class="o">+</span> <span class="mi">8</span><span class="o">*</span><span class="n">Sp2p</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">Sp3p</span> <span class="o">+</span> <span class="mi">10</span><span class="o">*</span><span class="n">zeta3</span> <span class="o">+</span> <span class="n">zeta2</span><span class="o">*</span><span class="p">(</span><span class="mi">16</span><span class="o">*</span><span class="n">S1</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">Sp1p</span> <span class="o">+</span> <span class="mi">16</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span> <span class="c1"># pylint: disable=line-too-long</span>
+    <span class="n">gqq1p_cfcf</span> <span class="o">=</span> <span class="mi">32</span><span class="o">*</span><span class="n">g3n</span> <span class="o">-</span> <span class="p">(</span><span class="mi">8</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">32</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">40</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)))))</span><span class="o">/</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mi">12</span> <span class="o">-</span> <span class="mi">8</span><span class="o">/</span><span class="n">n</span> <span class="o">+</span> <span class="mi">8</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="n">S2</span> <span class="o">+</span> <span class="n">S1</span><span class="o">*</span><span class="p">(</span><span class="mi">40</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">8</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">16</span><span class="o">*</span><span class="n">S2</span> <span class="o">-</span> <span class="mi">16</span><span class="o">*</span><span class="n">Sp2p</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">Sp2p</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">Sp3p</span> <span class="o">-</span> <span class="mi">20</span><span class="o">*</span><span class="n">zeta3</span> <span class="o">+</span> <span class="n">zeta2</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">32</span><span class="o">*</span><span class="n">S1</span> <span class="o">+</span> <span class="mi">32</span><span class="o">*</span><span class="n">Sp1p</span> <span class="o">+</span> <span class="mi">32</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span> <span class="c1"># pylint: disable=line-too-long</span>
+    <span class="n">gqq1p_cfnf</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">12</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">20</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">47</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">n</span><span class="p">))))</span><span class="o">/</span><span class="p">(</span><span class="mf">9.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="mi">40</span><span class="o">*</span><span class="n">S1</span><span class="p">)</span><span class="o">/</span><span class="mf">9.</span> <span class="o">+</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">S2</span><span class="p">)</span><span class="o">/</span><span class="mf">3.</span> <span class="c1"># pylint: disable=line-too-long</span>
+    <span class="c1"># fmt: on</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">*</span> <span class="n">gqq1p_cfca</span> <span class="o">+</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">gqq1p_cfcf</span> <span class="o">+</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">nf</span> <span class="o">*</span> <span class="n">gqq1p_cfnf</span>
+    <span class="k">return</span> <span class="n">result</span></div>
 </pre></div>
 
            </div>
