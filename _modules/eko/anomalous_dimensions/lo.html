@@ -185,9 +185,7 @@
 
 
 <div class="viewcode-block" id="gamma_ns_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_ns_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">gamma_ns_0</span><span class="p">(</span>
-    <span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span>
-<span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
+<span class="k">def</span> <span class="nf">gamma_ns_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order non-singlet anomalous dimension.</span>
 
@@ -210,16 +208,13 @@
 <span class="sd">        gamma_ns_0 : complex</span>
 <span class="sd">          Leading-order non-singlet anomalous dimension :math:`\\gamma_{ns}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#gamma = 2 * (S1(N - 1) + S1(N + 1)) - 3</span>
-    <span class="n">gamma</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">S1</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">/</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">S1</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">gamma</span>
     <span class="k">return</span> <span class="n">result</span></div>
 
 
 <div class="viewcode-block" id="gamma_qg_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_qg_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">gamma_qg_0</span><span class="p">(</span>
-    <span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span>
-<span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
+<span class="k">def</span> <span class="nf">gamma_qg_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order quark-gluon anomalous dimension</span>
 
@@ -242,16 +237,13 @@
 <span class="sd">        gamma_qg_0 : complex</span>
 <span class="sd">          Leading-order quark-gluon anomalous dimension :math:`\\gamma_{qg}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#gamma = S1(N - 1) + 4.0 * S1(N + 1) - 2.0 * S1(N + 2) - 3.0 * S1(N)</span>
-    <span class="n">gamma</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">N</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">N</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">N</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
     <span class="n">result</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">nf</span> <span class="o">*</span> <span class="n">gamma</span>
     <span class="k">return</span> <span class="n">result</span></div>
 
 
 <div class="viewcode-block" id="gamma_gq_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_gq_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">gamma_gq_0</span><span class="p">(</span>
-    <span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span>
-<span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
+<span class="k">def</span> <span class="nf">gamma_gq_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order gluon-quark anomalous dimension</span>
 
@@ -274,16 +266,13 @@
 <span class="sd">        gamma_qg_0 : complex</span>
 <span class="sd">          Leading-order gluon-quark anomalous dimension :math:`\\gamma_{gq}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#gamma = 2.0 * S1(N - 2) - 4.0 * S1(N - 1) - S1(N + 1) + 3.0 * S1(N)</span>
-    <span class="n">gamma</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">N</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">N</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">N</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">))</span>
     <span class="n">result</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">gamma</span>
     <span class="k">return</span> <span class="n">result</span></div>
 
 
 <div class="viewcode-block" id="gamma_gg_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_gg_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">gamma_gg_0</span><span class="p">(</span>
-    <span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span>
-<span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
+<span class="k">def</span> <span class="nf">gamma_gg_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order gluon-gluon anomalous dimension</span>
 
@@ -306,8 +295,7 @@
 <span class="sd">        gamma_qg_0 : complex</span>
 <span class="sd">          Leading-order gluon-gluon anomalous dimension :math:`\\gamma_{gg}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#gamma = S1(N - 2) - 2.0 * S1(N - 1) - 2.0 * S1(N + 1) + S1(N + 2) + 3.0 * S1(N)</span>
-    <span class="n">gamma</span> <span class="o">=</span> <span class="n">S1</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="n">S1</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">CA</span> <span class="o">*</span> <span class="p">(</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">gamma</span> <span class="o">-</span> <span class="mf">11.0</span> <span class="o">/</span> <span class="mf">3.0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">nf</span>
     <span class="k">return</span> <span class="n">result</span></div>
 

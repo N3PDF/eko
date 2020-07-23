@@ -371,7 +371,7 @@
 <span class="sd">        .. math::</span>
 <span class="sd">          S_3(N) = \sum\limits_{j=1}^N \frac 1 {j^3} = \frac 1 2 \psi_2(N+1)+\zeta(3)</span>
 
-<span class="sd">        with :math:`\psi_3(N)` the 3rd-polygamma function and :math:`\zeta` the</span>
+<span class="sd">        with :math:`\psi_2(N)` the 2nd-polygamma function and :math:`\zeta` the</span>
 <span class="sd">        Riemann zeta function.</span>
 
 <span class="sd">        Parameters</span>
@@ -397,7 +397,8 @@
 <span class="sd">        Computes the Mellin transform of :math:`\text{Li}_2(x)/(1+x)`.</span>
 
 <span class="sd">        This function appears in the analytic continuation of the harmonic sum</span>
-<span class="sd">        :math:`S_{-2,1}(N)` which appears in the NLO anomalous dimension.</span>
+<span class="sd">        :math:`S_{-2,1}(N)` which in turn appears in the NLO anomalous dimension</span>
+<span class="sd">        (see :ref:`theory/mellin:harmonic sums`).</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -407,12 +408,12 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">          mellin_g3 : complex</span>
-<span class="sd">            Mellin transform :math:`\mathcal{M}[\text{Li}_2(x)/(1+x)](N)`</span>
+<span class="sd">            approximate Mellin transform :math:`\mathcal{M}[\text{Li}_2(x)/(1+x)](N)`</span>
 
 <span class="sd">        Note</span>
 <span class="sd">        ----</span>
-<span class="sd">          We use the name from Muselli, but not his implementation - rather we use the Pegasus</span>
-<span class="sd">          implementation</span>
+<span class="sd">          We use the name from :cite:`MuselliPhD`, but not his implementation - rather we use the</span>
+<span class="sd">          Pegasus :cite:`Vogt:2004ns` implementation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0000e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9992e0</span><span class="p">,</span> <span class="mf">0.9851e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9005e0</span><span class="p">,</span> <span class="mf">0.6621e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3174e0</span><span class="p">,</span> <span class="mf">0.0699e0</span><span class="p">]</span>
     <span class="n">g3</span> <span class="o">=</span> <span class="mi">0</span>

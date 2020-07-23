@@ -11,17 +11,17 @@ From Source Code
 
 `flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
 
-.. warning:: #65 this is just a hack because I'm not able to generalize this part
+.. warning:: #66 this is just a hack because I'm not able to generalize this part
 
-.. warning:: #112 can this be made more concise, or is this really the best that can be done?
+.. warning:: #113 can this be made more concise, or is this really the best that can be done?
 
 
 
 `strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
 
-.. warning:: #363 set up a cache system here
+.. warning:: #362 set up a cache system here
 
-.. warning:: #405 recover color constants
+.. warning:: #404 recover color constants
 
 
 

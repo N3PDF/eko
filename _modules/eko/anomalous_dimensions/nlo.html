@@ -183,6 +183,7 @@
 
 <span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">ekomath</span>
 
+
 <div class="viewcode-block" id="gamma_nsm_1"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.nlo.gamma_nsm_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">gamma_nsm_1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -211,9 +212,9 @@
     <span class="n">S2</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="c1"># Here, Sp refers to S&#39; (&quot;s-prime&quot;) (german: &quot;s-strich&quot; or in Pegasus language: SSTR)</span>
     <span class="c1"># of :cite:`Gluck:1989ze` and NOT to the Spence function a.k.a. dilogarithm</span>
-    <span class="n">Sp1m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S1</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">Sp2m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">Sp3m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S3</span><span class="p">((</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp1m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S1</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp2m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp3m</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S3</span><span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">g3n</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">mellin_g3</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="n">zeta2</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">zeta2</span>
     <span class="n">zeta3</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">zeta3</span>
@@ -224,6 +225,7 @@
     <span class="c1"># fmt: on</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">*</span> <span class="n">gqq1m_cfca</span> <span class="o">+</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">gqq1m_cfcf</span> <span class="o">+</span> <span class="n">CF</span> <span class="o">*</span> <span class="n">nf</span> <span class="o">*</span> <span class="n">gqq1m_cfnf</span>
     <span class="k">return</span> <span class="n">result</span></div>
+
 
 <div class="viewcode-block" id="gamma_nsp_1"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.nlo.gamma_nsp_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">gamma_nsp_1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
@@ -253,9 +255,9 @@
     <span class="n">S2</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="c1"># Here, Sp refers to S&#39; (&quot;s-prime&quot;) (german: &quot;s-strich&quot; or in Pegasus language: SSTR)</span>
     <span class="c1"># of :cite:`Gluck:1989ze` and NOT to the Spence function a.k.a. dilogarithm</span>
-    <span class="n">Sp1p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S1</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">Sp2p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">Sp3p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S3</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp1p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S1</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp2p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S2</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">Sp3p</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">harmonic_S3</span><span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
     <span class="n">g3n</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">mellin_g3</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="n">zeta2</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">zeta2</span>
     <span class="n">zeta3</span> <span class="o">=</span> <span class="n">ekomath</span><span class="o">.</span><span class="n">zeta3</span>

@@ -277,7 +277,7 @@ the Mellin inverse.</p>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}S_m(N) = \sum\limits_{j=1}^N \frac 1 {j^m} = \frac{(-1)^{m-1}}{(m-1)!} \psi_{m-1}(N+1)+c_m \quad
-\text{with}\, c_m = \left\{\begin{array}{ll} \gamma_E, &amp; m=0\\ \zeta(m), &amp; m&gt;0\end{array} \right.\end{split}\]</div>
+\text{with}\, c_m = \left\{\begin{array}{ll} \gamma_E, &amp; m=1\\ \zeta(m), &amp; m&gt;1\end{array} \right.\end{split}\]</div>
 <p>and where <span class="math notranslate nohighlight">\(\psi_k(N)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>-th polygamma function (implemented as <a class="reference internal" href="../modules/eko/eko.html#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eko.ekomath.cern_polygamma()</span></code></a>)
 and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta function (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.zeta.html#scipy.special.zeta" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.special.zeta()</span></code></a>).</p>
 <ul class="simple">
@@ -290,12 +290,12 @@ and with -1 elsewise.</p>
 <ul class="simple">
 <li><p>for the sums with greater depth we use the lists provided in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id3">[GRV90]</a><a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id4">[Mus17]</a><a class="bibtex reference internal" href="../zzz-refs.html#blumlein-1998if" id="id5">[BK99]</a>.</p></li>
 <li><p>Note, however, that the formula for <span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> is neither correct in <a class="bibtex reference internal" href="../zzz-refs.html#blumlein-1998if" id="id6">[BK99]</a>
-nor in <a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id7">[Mus17]</a> but in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id8">[GRV90]</a>:</p></li>
+nor in <a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id7">[Mus17]</a> but in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id8">[GRV90]</a> (where it is called <span class="math notranslate nohighlight">\(\tilde S\)</span>):</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}S_{-2,1}(N) &amp;= - \frac 5 8 \zeta(3) + \zeta(2)\left(S_{-1}(N) - \frac{\eta}{N} + \log(2)\right) + \eta\left(\frac{S_{1}(N)}{N^2} + g_3(N)\right)\\
 g_3(N) &amp;= \mathcal M \left[\frac{\text{Li}_2(x)}{1+x}\right](N)\end{split}\]</div>
-<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id9">[Vog05]</a>.</p>
+<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id9">[Vog05]</a> (implemented as <a class="reference internal" href="../modules/eko/eko.html#eko.ekomath.mellin_g3" title="eko.ekomath.mellin_g3"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eko.ekomath.mellin_g3()</span></code></a>).</p>
 </div>
 </div>
 

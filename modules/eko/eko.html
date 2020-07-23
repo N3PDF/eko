@@ -398,7 +398,7 @@ Riemann zeta function.</p>
 <dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_3(N)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[S_3(N) = \sum\limits_{j=1}^N \frac 1 {j^3} = \frac 1 2 \psi_2(N+1)+\zeta(3)\]</div>
-<p>with <span class="math notranslate nohighlight">\(\psi_3(N)\)</span> the 3rd-polygamma function and <span class="math notranslate nohighlight">\(\zeta\)</span> the
+<p>with <span class="math notranslate nohighlight">\(\psi_2(N)\)</span> the 2nd-polygamma function and <span class="math notranslate nohighlight">\(\zeta\)</span> the
 Riemann zeta function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -422,13 +422,14 @@ Riemann zeta function.</p>
 <code class="sig-prename descclassname">eko.ekomath.</code><code class="sig-name descname">mellin_g3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/ekomath.html#mellin_g3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.ekomath.mellin_g3" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the Mellin transform of <span class="math notranslate nohighlight">\(\text{Li}_2(x)/(1+x)\)</span>.</p>
 <p>This function appears in the analytic continuation of the harmonic sum
-<span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> which appears in the NLO anomalous dimension.</p>
+<span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> which in turn appears in the NLO anomalous dimension
+(see <a class="reference internal" href="../../Theory/Mellin.html#harmonic-sums"><span class="std std-ref">Harmonic Sums</span></a>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – Mellin moment</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>mellin_g3</strong> – Mellin transform <span class="math notranslate nohighlight">\(\mathcal{M}[\text{Li}_2(x)/(1+x)](N)\)</span></p>
+<dd class="field-even"><p><strong>mellin_g3</strong> – approximate Mellin transform <span class="math notranslate nohighlight">\(\mathcal{M}[\text{Li}_2(x)/(1+x)](N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
@@ -436,8 +437,8 @@ Riemann zeta function.</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We use the name from Muselli, but not his implementation - rather we use the Pegasus
-implementation</p>
+<p>We use the name from <a class="bibtex reference internal" href="../../zzz-refs.html#muselliphd" id="id2">[Mus17]</a>, but not his implementation - rather we use the
+Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004ns" id="id3">[Vog05]</a> implementation</p>
 </div>
 </dd></dl>
 
@@ -1113,7 +1114,7 @@ such as the definition of paths.</p>
 <h3>Integration Paths<a class="headerlink" href="#integration-paths" title="Permalink to this headline">¶</a></h3>
 <p>Although this module provides four different path implementations (<a class="reference internal" href="#eko.mellin.get_path_Talbot" title="eko.mellin.get_path_Talbot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Talbot()</span></code></a>,
 <a class="reference internal" href="#eko.mellin.get_path_line" title="eko.mellin.get_path_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_line()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_edge" title="eko.mellin.get_path_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_edge()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_Cauchy_tan" title="eko.mellin.get_path_Cauchy_tan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Cauchy_tan()</span></code></a>) in practice
-only the Talbot path <a class="bibtex reference internal" href="../../zzz-refs.html#abate" id="id2">[AV04]</a></p>
+only the Talbot path <a class="bibtex reference internal" href="../../zzz-refs.html#abate" id="id4">[AV04]</a></p>
 <div class="math notranslate nohighlight">
 \[p_{\text{Talbot}}(t) =  o + r \cdot ( \theta \cot(\theta) + i\theta)\quad
     \text{with}~\theta = \pi(2t-1)\]</div>
@@ -1632,7 +1633,7 @@ given in terms of <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)
 meas at 1-loop - so there is a natural mismatch between <cite>order</cite> and the
 number of loop by one unit</p></li>
 </ul>
-<p>Normalization is given by <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id3">[HRU+17]</a>:</p>
+<p>Normalization is given by <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id5">[HRU+17]</a>:</p>
 <div class="math notranslate nohighlight">
 \[\frac{da_s}{d\ln\mu^2} = \beta(a_s) \
 = - \sum\limits_{n=0} \beta_n a_s^{n+2} \quad
@@ -1741,7 +1742,7 @@ with <span class="math notranslate nohighlight">\(t(Q^2) = log(1/a_s(Q^2))\)</sp
 <dt id="eko.strong_coupling.beta_0">
 <code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the first coefficient of the QCD beta function.</p>
-<p>Implements Eq. (3.1) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id4">[HRU+17]</a>.
+<p>Implements Eq. (3.1) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id6">[HRU+17]</a>.
 For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1765,7 +1766,7 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 <dt id="eko.strong_coupling.beta_1">
 <code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the second coefficient of the QCD beta function.</p>
-<p>Implements Eq. (3.2) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id5">[HRU+17]</a>.</p>
+<p>Implements Eq. (3.2) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id7">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1788,7 +1789,7 @@ For the sake of unification we keep a unique function signature for <em>all</em>
 <dt id="eko.strong_coupling.beta_2">
 <code class="sig-prename descclassname">eko.strong_coupling.</code><code class="sig-name descname">beta_2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">TF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#beta_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.beta_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the third coefficient of the QCD beta function</p>
-<p>Implements Eq. (3.3) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id6">[HRU+17]</a>.</p>
+<p>Implements Eq. (3.3) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id8">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
