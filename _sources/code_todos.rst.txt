@@ -9,25 +9,11 @@ From Docstrings
 From Source Code
 ----------------
 
-`operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
-
-.. warning:: #246 everything in parallel
-
-
-
 `flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
 
 .. warning:: #65 this is just a hack because I'm not able to generalize this part
 
 .. warning:: #112 can this be made more concise, or is this really the best that can be done?
-
-
-
-`evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
-
-.. warning:: #224 check error propagation
-
-.. warning:: #492 make 'cut' external parameter?
 
 
 
@@ -44,6 +30,20 @@ From Source Code
 .. warning:: #39 rotation from the evolution basis to flavor basis? if yes, here!
 
 .. warning:: #110 explicitly silence yaml
+
+
+
+`operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
+
+.. warning:: #246 everything in parallel
+
+
+
+`evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
+
+.. warning:: #224 check error propagation
+
+.. warning:: #492 make 'cut' external parameter?
 
 
 

@@ -227,9 +227,7 @@ to be a holomorphic function along the path, we can rewrite the inversion integr
 <h3>Plus Distributions<a class="headerlink" href="#plus-distributions" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[\mathcal M[1/(1-x)_+](N) = S_1(N)\]</div>
-<p>whith the harmonic sum (implemented as <a class="reference internal" href="../modules/eko/eko.html#eko.ekomath.harmonic_S1" title="eko.ekomath.harmonic_S1"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eko.ekomath.harmonic_S1()</span></code></a>)</p>
-<div class="math notranslate nohighlight">
-\[S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E\]</div>
+<p>whith the harmonic sum <span class="math notranslate nohighlight">\(S_1\)</span> (see <a class="reference internal" href="#harmonic-sums"><span class="std std-ref">Harmonic Sums</span></a>).</p>
 </div>
 </div>
 <div class="section" id="inversion-of-factorizable-kernels">
@@ -267,7 +265,37 @@ are doing, are proportional to
 </div>
 <div class="section" id="harmonic-sums">
 <h2>Harmonic Sums<a class="headerlink" href="#harmonic-sums" title="Permalink to this headline">¶</a></h2>
-<p>A list of usefull relations can be found in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id1">[GRV90]</a><a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id2">[Mus17]</a><a class="bibtex reference internal" href="../zzz-refs.html#blumlein-1998if" id="id3">[BK99]</a>.</p>
+<p>In the computations of the anomalous dimensions (generalized) harmonic sums
+<a class="bibtex reference internal" href="../zzz-refs.html#ablinger-2013hcp" id="id1">[Abl12]</a> appear naturally:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_{m}(N) &amp;= \sum\limits_{j=1}^N \frac{(\text{sign}(m))^j}{j^{|m|}} \\
+S_{m_0,m_1\ldots}(N) &amp;= \sum\limits_{j=1}^N \frac{(\text{sign}(m_0))^j}{j^{|m_0|}} S_{m_1\ldots}(j)\end{split}\]</div>
+<p>We then need to find an analytical continuation of these sums into the complex plain to perform
+the Mellin inverse.</p>
+<ul class="simple">
+<li><p>the sums <span class="math notranslate nohighlight">\(S_{m}(N)\)</span> for <span class="math notranslate nohighlight">\(m &gt; 0\)</span> do have a straight continuation:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_m(N) = \sum\limits_{j=1}^N \frac 1 {j^m} = \frac{(-1)^{m-1}}{(m-1)!} \psi_{m-1}(N+1)+c_m \quad
+\text{with}\, c_m = \left\{\begin{array}{ll} \gamma_E, &amp; m=0\\ \zeta(m), &amp; m&gt;0\end{array} \right.\end{split}\]</div>
+<p>and where <span class="math notranslate nohighlight">\(\psi_k(N)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>-th polygamma function (implemented as <a class="reference internal" href="../modules/eko/eko.html#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eko.ekomath.cern_polygamma()</span></code></a>)
+and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta function (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.zeta.html#scipy.special.zeta" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.special.zeta()</span></code></a>).</p>
+<ul class="simple">
+<li><p>for the sums <span class="math notranslate nohighlight">\(S_{-m}(N)\)</span> and <span class="math notranslate nohighlight">\(m &gt; 0\)</span> we use <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id2">[GRV90]</a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[S_m'(N) = 2^{m-1}(S_m(N) + S_{-m}(N)) = \frac{1+\eta}{2} S_m(N/2) + \frac{1-\eta}{2}S_m((N-1)/2)\]</div>
+<p>where formally <span class="math notranslate nohighlight">\(\eta = (-1)^N\)</span> but in all singlet-like quantities it has to be analytically continued with 1
+and with -1 elsewise.</p>
+<ul class="simple">
+<li><p>for the sums with greater depth we use the lists provided in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id3">[GRV90]</a><a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id4">[Mus17]</a><a class="bibtex reference internal" href="../zzz-refs.html#blumlein-1998if" id="id5">[BK99]</a>.</p></li>
+<li><p>Note, however, that the formula for <span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> is neither correct in <a class="bibtex reference internal" href="../zzz-refs.html#blumlein-1998if" id="id6">[BK99]</a>
+nor in <a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id7">[Mus17]</a> but in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id8">[GRV90]</a>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_{-2,1}(N) &amp;= - \frac 5 8 \zeta(3) + \zeta(2)\left(S_{-1}(N) - \frac{\eta}{N} + \log(2)\right) + \eta\left(\frac{S_{1}(N)}{N^2} + g_3(N)\right)\\
+g_3(N) &amp;= \mathcal M \left[\frac{\text{Li}_2(x)}{1+x}\right](N)\end{split}\]</div>
+<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id9">[Vog05]</a>.</p>
 </div>
 </div>
 
