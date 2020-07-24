@@ -366,10 +366,58 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 <span id="eko-anomalous-dimensions-nlo-module"></span><h2>eko.anomalous_dimensions.nlo module<a class="headerlink" href="#module-eko.anomalous_dimensions.nlo" title="Permalink to this headline">¶</a></h2>
 <p>This file contains the next-to-leading-order Altarelli-Parisi splitting kernels.</p>
 <dl class="py function">
+<dt id="eko.anomalous_dimensions.nlo.gamma_gg_1">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_gg_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_gg_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_gg_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the next-to-leading-order gluon-gluon singlet anomalous dimension.</p>
+<p>Implements Eq. (3.9) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id5">[VMV04]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – Mellin moment</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>CA</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of adjoint representation</p></li>
+<li><p><strong>CF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of fundamental representation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>gamma_gg_1</strong> – Next-to-leading-order gluon-gluon singlet anomalous dimension
+<span class="math notranslate nohighlight">\(\gamma_{gg}^{(1)}(N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.anomalous_dimensions.nlo.gamma_gq_1">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_gq_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_gq_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_gq_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the next-to-leading-order gluon-quark singlet anomalous dimension.</p>
+<p>Implements Eq. (3.8) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id6">[VMV04]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – Mellin moment</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>CA</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of adjoint representation</p></li>
+<li><p><strong>CF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of fundamental representation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>gamma_gq_1</strong> – Next-to-leading-order gluon-quark singlet anomalous dimension
+<span class="math notranslate nohighlight">\(\gamma_{gq}^{(1)}(N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="eko.anomalous_dimensions.nlo.gamma_nsm_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_nsm_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_nsm_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_nsm_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order valence-like non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id5">[MVV04]</a>.</p>
+<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id7">[MVV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -393,7 +441,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 <dt id="eko.anomalous_dimensions.nlo.gamma_nsp_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_nsp_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_nsp_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_nsp_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order singlet-like non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id6">[MVV04]</a>.</p>
+<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id8">[MVV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -404,8 +452,32 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_nsm_1</strong> – Next-to-leading-order singlet-like non-singlet anomalous dimension
+<dd class="field-even"><p><strong>gamma_nsp_1</strong> – Next-to-leading-order singlet-like non-singlet anomalous dimension
 <span class="math notranslate nohighlight">\(\gamma_{ns+}^{(1)}(N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.anomalous_dimensions.nlo.gamma_ps_1">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_ps_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_ps_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_ps_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the next-to-leading-order pure-singlet quark-quark anomalous dimension.</p>
+<p>Implements Eq. (3.6) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id9">[VMV04]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)"><em>complex</em></a>) – Mellin moment</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>CA</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of adjoint representation</p></li>
+<li><p><strong>CF</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Casimir constant of fundamental representation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>gamma_ps_1</strong> – Next-to-leading-order pure-singlet quark-quark anomalous dimension
+<span class="math notranslate nohighlight">\(\gamma_{ps}^{(1)}(N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
@@ -416,8 +488,8 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 <dl class="py function">
 <dt id="eko.anomalous_dimensions.nlo.gamma_qg_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_qg_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_qg_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_qg_1" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the next-to-leading-order quark-gluon-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.7) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id7">[VMV04]</a>.</p>
+<dd><p>Computes the next-to-leading-order quark-gluon singlet anomalous dimension.</p>
+<p>Implements Eq. (3.7) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id10">[VMV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -428,7 +500,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_1</strong> – Next-to-leading-order squark-gluon-singlet anomalous dimension
+<dd class="field-even"><p><strong>gamma_qg_1</strong> – Next-to-leading-order quark-gluon singlet anomalous dimension
 <span class="math notranslate nohighlight">\(\gamma_{qg}^{(1)}(N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
@@ -445,8 +517,8 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 <div class="math notranslate nohighlight">
 \[\mathbf{P}(x) = \sum\limits_{j=0} a_s^{j+1} \mathbf P^{(j)}(x)\]</div>
 <p>with <span class="math notranslate nohighlight">\(a_s = \frac{\alpha_S(\mu^2)}{4\pi}\)</span>.
-The 3-loop references are given for the non-singlet <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id8">[MVV04]</a>
-and singlet <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id9">[VMV04]</a> case, which contain also the lower
+The 3-loop references are given for the non-singlet <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id11">[MVV04]</a>
+and singlet <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id12">[VMV04]</a> case, which contain also the lower
 order results. The results are also determined in Mellin space in
 terms of the anomalous dimensions (note the additional sign!)</p>
 <div class="math notranslate nohighlight">
