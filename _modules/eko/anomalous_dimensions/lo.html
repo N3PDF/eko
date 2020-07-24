@@ -176,6 +176,8 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">  This file contains the leading-order Altarelli-Parisi splitting kernels.</span>
+
+<span class="sd">  For the sake of unification we keep a unique function signature for *all* coefficients.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -190,16 +192,15 @@
 <span class="sd">      Computes the leading-order non-singlet anomalous dimension.</span>
 
 <span class="sd">      Implements Eq. (3.4) of :cite:`Moch:2004pa`.</span>
-<span class="sd">      For the sake of unification we keep a unique function signature for *all* coefficients.</span>
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
 <span class="sd">        N : complex</span>
 <span class="sd">          Mellin moment</span>
 <span class="sd">        nf : int</span>
-<span class="sd">          Number of active flavours (which is actually not used here)</span>
+<span class="sd">          Number of active flavours</span>
 <span class="sd">        CA : float</span>
-<span class="sd">          Casimir constant of adjoint representation (which is actually not used here)</span>
+<span class="sd">          Casimir constant of adjoint representation</span>
 <span class="sd">        CF : float</span>
 <span class="sd">          Casimir constant of fundamental representation</span>
 
@@ -219,7 +220,6 @@
 <span class="sd">      Computes the leading-order quark-gluon anomalous dimension</span>
 
 <span class="sd">      Implements Eq. (3.5) of :cite:`Vogt:2004mw`.</span>
-<span class="sd">      For the sake of unification we keep a unique function signature for *all* coefficients.</span>
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
@@ -228,9 +228,9 @@
 <span class="sd">        nf : int</span>
 <span class="sd">          Number of active flavours</span>
 <span class="sd">        CA : float</span>
-<span class="sd">          Casimir constant of adjoint representation (which is actually not used here)</span>
+<span class="sd">          Casimir constant of adjoint representation</span>
 <span class="sd">        CF : float</span>
-<span class="sd">          Casimir constant of fundamental representation (which is actually not used here)</span>
+<span class="sd">          Casimir constant of fundamental representation</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
@@ -248,16 +248,15 @@
 <span class="sd">      Computes the leading-order gluon-quark anomalous dimension</span>
 
 <span class="sd">      Implements Eq. (3.5) of :cite:`Vogt:2004mw`.</span>
-<span class="sd">      For the sake of unification we keep a unique function signature for *all* coefficients.</span>
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
 <span class="sd">        N : complex</span>
 <span class="sd">          Mellin moment</span>
 <span class="sd">        nf : int</span>
-<span class="sd">          Number of active flavours (which is actually not used here)</span>
+<span class="sd">          Number of active flavours</span>
 <span class="sd">        CA : float</span>
-<span class="sd">          Casimir constant of adjoint representation (which is actually not used here)</span>
+<span class="sd">          Casimir constant of adjoint representation</span>
 <span class="sd">        CF : float</span>
 <span class="sd">          Casimir constant of fundamental representation</span>
 
@@ -277,7 +276,6 @@
 <span class="sd">      Computes the leading-order gluon-gluon anomalous dimension</span>
 
 <span class="sd">      Implements Eq. (3.5) of :cite:`Vogt:2004mw`.</span>
-<span class="sd">      For the sake of unification we keep a unique function signature for *all* coefficients.</span>
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
@@ -288,7 +286,7 @@
 <span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation</span>
 <span class="sd">        CF : float</span>
-<span class="sd">          Casimir constant of fundamental representation (which is actually not used here)</span>
+<span class="sd">          Casimir constant of fundamental representation</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
@@ -306,7 +304,7 @@
 <span class="sd">      Computes the leading-order singlet anomalous dimension matrix</span>
 
 <span class="sd">      .. math::</span>
-<span class="sd">          \gamma_S^{(0)} = \left(\begin{array}</span>
+<span class="sd">          \gamma_S^{(0)} = \left(\begin{array}{cc}</span>
 <span class="sd">            \gamma_{qq}^{(0)} &amp; \gamma_{qg}^{(0)}\\</span>
 <span class="sd">            \gamma_{gq}^{(0)} &amp; \gamma_{gg}^{(0)}</span>
 <span class="sd">          \end{array}\right)</span>
@@ -320,7 +318,7 @@
 <span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation</span>
 <span class="sd">        CF : float</span>
-<span class="sd">          Casimir constant of fundamental representation (which is actually not used here)</span>
+<span class="sd">          Casimir constant of fundamental representation</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
@@ -356,7 +354,7 @@
 <span class="sd">        CA : float</span>
 <span class="sd">          Casimir constant of adjoint representation</span>
 <span class="sd">        CF : float</span>
-<span class="sd">          Casimir constant of fundamental representation (which is actually not used here)</span>
+<span class="sd">          Casimir constant of fundamental representation</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>

@@ -204,9 +204,9 @@
 <h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> instance will contain the following key-value pairs:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">xgrid</span></code> - <em>list(float)</em> : the interpolation grid</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">polynomial_degree</span></code> - <em>integer</em> : polynomial degree of the interpolating function</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">is_log_interpolation</span></code> - <em>boolean</em> : use logarithmic interpolation?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code> - <em>list(float)</em> : the interpolation grid</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code> - <em>integer</em> : polynomial degree of the interpolating function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code> - <em>boolean</em> : use logarithmic interpolation?</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">q2_ref</span></code> - <em>float</em> : starting scale</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Q2grid</span></code> - <em>dict</em> : all operators at the requested values of <span class="math notranslate nohighlight">\(Q^2\)</span> represented by the key</p></li>
 </ul>
@@ -219,9 +219,9 @@ the <code class="docutils literal notranslate"><span class="pre">operator</span>
 </ul>
 <div class="section" id="example-output-dump">
 <h3>Example Output dump<a class="headerlink" href="#example-output-dump" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">is_log_interpolation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">polynomial_degree</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
-<span class="nt">xgrid</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0.001 0.01 0.1 1.0</span><span class="p p-Indicator">]</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">interpolation_is_log</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">interpolation_polynomial_degree</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="nt">interpolation_xgrid</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0.001 0.01 0.1 1.0</span><span class="p p-Indicator">]</span>
 <span class="nt">q2_ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0</span>
 <span class="nt">Q2grid</span><span class="p">:</span>
   <span class="nt">1000.0</span><span class="p">:</span>
