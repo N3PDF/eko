@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -392,7 +393,7 @@
                     <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">&#39; of the two factors does not match: </span><span class="si">{</span><span class="bp">self</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">other</span><span class="p">[</span><span class="n">f</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
                 <span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">],</span> <span class="n">other</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">]):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;interpolation_xgrid&#39; of the two factors does not match&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;interpolation_xgrid&#39; of the two factors does not match&quot;</span><span class="p">)</span>
         <span class="c1"># check matching</span>
         <span class="n">mid_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">mid_scale</span> <span class="ow">in</span> <span class="n">other</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]:</span>

@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -283,7 +284,7 @@
 
 <div class="viewcode-block" id="StrongCoupling"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling">[docs]</a><span class="k">class</span> <span class="nc">StrongCoupling</span><span class="p">:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Computes strong coupling constant :math:`a_s`.</span>
+<span class="sd">        Computes the strong coupling constant :math:`a_s`.</span>
 
 <span class="sd">        Note that</span>
 
@@ -293,15 +294,15 @@
 <span class="sd">          :math:`a_s = \frac{\alpha_s(\mu^2)}{4\pi}` the reference value has to be</span>
 <span class="sd">          given in terms of :math:`\alpha_s(\mu_0^2)` due to legacy reasons</span>
 <span class="sd">        - the ``order`` refers to the perturbative order of the beta function, thus</span>
-<span class="sd">          ``0`` means leading order beta function means evolution with :math:`\beta_0`</span>
-<span class="sd">          meas at 1-loop - so there is a natural mismatch between `order` and the</span>
-<span class="sd">          number of loop by one unit</span>
+<span class="sd">          ``order=0`` means leading order beta function, means evolution with :math:`\beta_0`,</span>
+<span class="sd">          means running at 1-loop - so there is a natural mismatch between ``order`` and the</span>
+<span class="sd">          number of loops by one unit</span>
 
 <span class="sd">        Normalization is given by :cite:`Herzog:2017ohr`:</span>
 
 <span class="sd">        .. math::</span>
-<span class="sd">            \frac{da_s}{d\ln\mu^2} = \beta(a_s) \</span>
-<span class="sd">            = - \sum\limits_{n=0} \beta_n a_s^{n+2} \quad</span>
+<span class="sd">            \frac{da_s(\mu^2)}{d\ln\mu^2} = \beta(a_s) \</span>
+<span class="sd">            = - \sum\limits_{n=0} \beta_n a_s^{n+2}(\mu^2) \quad</span>
 <span class="sd">            \text{with}~ a_s = \frac{\alpha_s(\mu^2)}{4\pi}</span>
 
 <span class="sd">        See :doc:`pQCD ingredients &lt;/Theory/pQCD&gt;`.</span>
@@ -334,7 +335,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">consts</span><span class="p">,</span> <span class="n">alpha_s_ref</span><span class="p">,</span> <span class="n">scale_ref</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;expanded&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">consts</span><span class="p">,</span> <span class="n">alpha_s_ref</span><span class="p">,</span> <span class="n">scale_ref</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="c1"># Sanity checks</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">consts</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">Constants</span><span class="p">):</span>
@@ -379,7 +380,7 @@
 <span class="sd">                - alphas : required, reference value for  alpha_s (!)</span>
 <span class="sd">                - Qref : required, reference value in GeV (!)</span>
 <span class="sd">                - PTO : required, perturbative order</span>
-<span class="sd">                - ModEv : optional, method to solve RGE</span>
+<span class="sd">                - ModEv : optional, method to solve RGE, default=EXA</span>
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
@@ -587,43 +588,7 @@
                 <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
                     <span class="n">new_as</span> <span class="o">*=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">new_as</span> <span class="o">+</span> <span class="n">c2</span> <span class="o">*</span> <span class="n">new_as</span> <span class="o">**</span> <span class="mi">2</span>
             <span class="n">final_as</span> <span class="o">=</span> <span class="n">new_as</span>
-        <span class="k">return</span> <span class="n">final_as</span></div>
-
-    <span class="k">def</span> <span class="nf">_param_t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Computes evolution parameter :math:`t(Q^2) = \\log(1/a_s(Q^2))`.</span>
-
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                scale_to : float</span>
-<span class="sd">                    final scale to evolve to :math:`Q^2`</span>
-
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                t : float</span>
-<span class="sd">                    evolution parameter :math:`t(Q^2) = \\log(1/a_s(Q^2))`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">a_s</span><span class="p">(</span><span class="n">scale_to</span><span class="p">))</span>
-
-<div class="viewcode-block" id="StrongCoupling.delta_t"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.delta_t">[docs]</a>    <span class="k">def</span> <span class="nf">delta_t</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Compute evolution parameter :math:`\\Delta t(Q_0^2, Q_1^2) = t(Q_1^2)-t(Q_0^2)`</span>
-<span class="sd">            with :math:`t(Q^2) = log(1/a_s(Q^2))`.</span>
-
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                scale_from : float</span>
-<span class="sd">                    scale to evolve from :math:`Q_0^2`</span>
-<span class="sd">                scale_to : float</span>
-<span class="sd">                    final scale to evolve to :math:`Q_1^2`</span>
-
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                delta : float</span>
-<span class="sd">                    evolution parameter :math:`\\Delta t(Q_0^2, Q_1^2)`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">delta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_param_t</span><span class="p">(</span><span class="n">scale_to</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_param_t</span><span class="p">(</span><span class="n">scale_from</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">delta</span></div></div>
+        <span class="k">return</span> <span class="n">final_as</span></div></div>
 </pre></div>
 
            </div>

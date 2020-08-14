@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -189,105 +190,6 @@
 <span class="kn">import</span> <span class="nn">eko.mellin</span> <span class="k">as</span> <span class="nn">mellin</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">_get_kernel_integrands</span><span class="p">(</span>
-    <span class="n">singlet_integrands</span><span class="p">,</span> <span class="n">nonsinglet_integrands</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mf">1e-2</span>
-<span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Return actual integration kernels.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            singlet_integrands : list(list(callable))</span>
-<span class="sd">                kernels for singlet integrations</span>
-<span class="sd">            nonsinglet_integrands : list(callable)</span>
-<span class="sd">                kernels for non-singlet integrations</span>
-<span class="sd">            delta_t : float</span>
-<span class="sd">                evolution distance</span>
-<span class="sd">            xgrid : np.array</span>
-<span class="sd">                basis grid</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            run_singlet : function</span>
-<span class="sd">                singlet integration routine</span>
-<span class="sd">            run_nonsinglet : function</span>
-<span class="sd">                non-singlet integration routine</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># Generic parameters</span>
-    <span class="n">grid_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xgrid</span><span class="p">)</span>
-    <span class="n">grid_logx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">xgrid</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">run_singlet</span><span class="p">():</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting singlet&quot;</span><span class="p">)</span>
-        <span class="n">all_output</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1"># iterate output grid</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">logx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid_logx</span><span class="p">):</span>
-            <span class="n">extra_args</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">typed</span><span class="o">.</span><span class="n">List</span><span class="p">()</span>
-            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logx</span><span class="p">)</span>
-            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delta_t</span><span class="p">)</span>
-            <span class="c1"># Path parameters</span>
-            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.4</span> <span class="o">*</span> <span class="mi">16</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">logx</span><span class="p">))</span>
-            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
-            <span class="c1"># iterate (nested) kernels</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">integrand_set</span> <span class="ow">in</span> <span class="n">singlet_integrands</span><span class="p">:</span>
-                <span class="n">all_res</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="k">for</span> <span class="n">integrand</span> <span class="ow">in</span> <span class="n">integrand_set</span><span class="p">:</span>
-                    <span class="n">result</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">inverse_mellin_transform</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">cut</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
-                    <span class="n">all_res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">all_res</span><span class="p">)</span>
-            <span class="c1"># out = [[[0,0]]*4]*grid_size</span>
-            <span class="n">all_output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;computing Singlet operator - </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
-        <span class="n">output_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">all_output</span><span class="p">)</span>
-
-        <span class="c1"># resort result: key -&gt; op</span>
-        <span class="n">singlet_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;S_qq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_qg&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gg&quot;</span><span class="p">]</span>
-        <span class="n">op_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">singlet_names</span><span class="p">):</span>
-            <span class="n">op</span> <span class="o">=</span> <span class="n">output_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-            <span class="n">er</span> <span class="o">=</span> <span class="n">output_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-            <span class="n">new_op</span> <span class="o">=</span> <span class="n">OperatorMember</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">er</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-            <span class="n">op_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_op</span>
-
-        <span class="k">return</span> <span class="n">op_dict</span>
-
-    <span class="k">def</span> <span class="nf">run_nonsinglet</span><span class="p">():</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting non-singlet&quot;</span><span class="p">)</span>
-        <span class="n">operators</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">operator_errors</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1"># iterate output grid</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">logx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid_logx</span><span class="p">):</span>
-            <span class="n">extra_args</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">typed</span><span class="o">.</span><span class="n">List</span><span class="p">()</span>
-            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logx</span><span class="p">)</span>
-            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">delta_t</span><span class="p">)</span>
-            <span class="c1"># Path parameters</span>
-            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-            <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-            <span class="c1"># iterate kernels</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">integrand</span> <span class="ow">in</span> <span class="n">nonsinglet_integrands</span><span class="p">:</span>
-                <span class="n">result</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">inverse_mellin_transform</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">cut</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">)</span>
-                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-            <span class="n">operators</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">])</span>
-            <span class="n">operator_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;computing NS operator - </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
-
-        <span class="c1"># resort result: key -&gt; op</span>
-        <span class="c1"># in LO v=+=-</span>
-        <span class="n">ns_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NS_p&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_m&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_v&quot;</span><span class="p">]</span>
-        <span class="n">op_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ns_names</span><span class="p">):</span>
-            <span class="n">op</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">operators</span><span class="p">)</span>
-            <span class="n">op_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">operator_errors</span><span class="p">)</span>
-            <span class="n">new_op</span> <span class="o">=</span> <span class="n">OperatorMember</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">op_err</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-            <span class="n">op_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_op</span>
-
-        <span class="k">return</span> <span class="n">op_dict</span>
-
-    <span class="k">return</span> <span class="n">run_singlet</span><span class="p">,</span> <span class="n">run_nonsinglet</span>
 
 
 <div class="viewcode-block" id="OperatorMember"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.OperatorMember">[docs]</a><span class="k">class</span> <span class="nc">OperatorMember</span><span class="p">:</span>
@@ -643,34 +545,32 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">            delta_t : float</span>
-<span class="sd">                Evolution distance</span>
+<span class="sd">            a1 : float</span>
+<span class="sd">                a_s at evolution target</span>
+<span class="sd">            a0 : float</span>
+<span class="sd">                a_s at evolution source</span>
 <span class="sd">            xgrid : np.array</span>
 <span class="sd">                basis interpolation grid</span>
-<span class="sd">            integrands_ns : list(callable)</span>
-<span class="sd">                list of non-singlet kernels</span>
-<span class="sd">            integrands_s : list(list(callable))</span>
-<span class="sd">                list of singlet kernels</span>
+<span class="sd">            kernels : list(dict)</span>
+<span class="sd">                list of kernels</span>
 <span class="sd">            metadata : dict</span>
 <span class="sd">                metadata with keys `nf`, `q2ref` and `q2`</span>
+<span class="sd">            order : int</span>
+<span class="sd">                order in perturbation theory - ``0`` is leading order</span>
 <span class="sd">            mellin_cut : float</span>
 <span class="sd">                cut to the upper limit in the mellin inversion</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">integrands_ns</span><span class="p">,</span> <span class="n">integrands_s</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">mellin_cut</span><span class="o">=</span><span class="mf">1e-2</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">kernels</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">mellin_cut</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
         <span class="c1"># Save the metadata</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_a1</span> <span class="o">=</span> <span class="n">a1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_a0</span> <span class="o">=</span> <span class="n">a0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span> <span class="o">=</span> <span class="n">xgrid</span>
-        <span class="c1"># Get ready for the computation</span>
-        <span class="c1"># TODO make &#39;cut&#39; external parameter?</span>
-        <span class="n">singlet</span><span class="p">,</span> <span class="n">nons</span> <span class="o">=</span> <span class="n">_get_kernel_integrands</span><span class="p">(</span>
-            <span class="n">integrands_s</span><span class="p">,</span> <span class="n">integrands_ns</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="n">mellin_cut</span>
-        <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_singlet</span> <span class="o">=</span> <span class="n">singlet</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_compute_nonsinglet</span> <span class="o">=</span> <span class="n">nons</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_computed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span> <span class="o">=</span> <span class="n">kernels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">=</span> <span class="n">order</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="c1"># TODO make &#39;cut&#39; external parameter? - if so, attribute to KernelDispatcher</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mellin_cut</span> <span class="o">=</span> <span class="n">mellin_cut</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="nd">@property</span>
@@ -714,7 +614,7 @@
 <span class="sd">                    final operator</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># compute?</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_computed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
         <span class="c1"># prepare operators</span>
         <span class="n">op_to_compose</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">op_members</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">op_list</span><span class="p">)]</span>
@@ -731,11 +631,53 @@
 
 <div class="viewcode-block" id="Operator.compute"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.Operator.compute">[docs]</a>    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; compute the actual operators (i.e. run the integrations) &quot;&quot;&quot;</span>
-        <span class="n">op_members_ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_nonsinglet</span><span class="p">()</span>
-        <span class="n">op_members_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_singlet</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_computed</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">op_members_s</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">op_members_ns</span><span class="p">)</span></div></div>
+        <span class="c1"># Generic parameters</span>
+        <span class="n">grid_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xgrid</span><span class="p">)</span>
+        <span class="n">grid_logx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xgrid</span><span class="p">)</span>
+
+        <span class="c1"># init all ops with zeros</span>
+        <span class="n">singlet_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;S_qq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_qg&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gg&quot;</span><span class="p">]</span>
+        <span class="n">ns_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NS_p&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_m&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_v&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">singlet_names</span> <span class="o">+</span> <span class="n">ns_names</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">OperatorMember</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">grid_size</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">grid_size</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)),</span> <span class="n">n</span>
+            <span class="p">)</span>
+
+        <span class="c1"># iterate output grid</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;computing operators - 0/</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">logx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid_logx</span><span class="p">):</span>
+            <span class="c1"># iterate basis functions</span>
+            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">bf_kernels</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span><span class="p">):</span>
+                <span class="c1"># iterate sectors</span>
+                <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">ker</span> <span class="ow">in</span> <span class="n">bf_kernels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">extra_args</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">typed</span><span class="o">.</span><span class="n">List</span><span class="p">()</span>
+                    <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logx</span><span class="p">)</span>
+                    <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_a1</span><span class="p">)</span>
+                    <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_a0</span><span class="p">)</span>
+                    <span class="c1"># Path parameters</span>
+                    <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">singlet_names</span><span class="p">:</span>
+                        <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.4</span> <span class="o">*</span> <span class="mi">16</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">logx</span><span class="p">))</span>
+                        <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+                        <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+                    <span class="c1"># compute and set</span>
+                    <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">inverse_mellin_transform</span><span class="p">(</span>
+                        <span class="n">ker</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mellin_cut</span><span class="p">,</span> <span class="n">extra_args</span>
+                    <span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">err</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;computing operators - </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
+
+        <span class="c1"># copy non-singlet kernels, if necessary</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># in LO +=-=v</span>
+            <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;NS_v&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_m&quot;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_p&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_p&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># in NLO -=v</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_v&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_v&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div></div>
 </pre></div>
 
            </div>

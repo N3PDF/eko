@@ -210,7 +210,7 @@ and the equations to solve become</p>
 \tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0) &amp;= \exp\left[-\int\limits_{a_s^0}^{a_s^1} \frac{\gamma(N,a_s)}{\beta(a_s)} da_s \right]\end{split}\]</div>
 <p>Using <a class="reference internal" href="Interpolation.html"><span class="doc">Interpolation</span></a> on both the inital and final PDF, we can then discretize the
 EKO in x-space and define <span class="math notranslate nohighlight">\(\hat{\mathbf{E}}_{k,j}\)</span> (represented by
-<code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code>) by</p>
+<a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a>) by</p>
 <div class="math notranslate nohighlight">
 \[\hat{\mathbf{E}}_{k,j}(a_s^1 \leftarrow a_s^0) = \mathcal{M}^{-1}\left[\tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0)\tilde p_j(N)\right](x_k)\]</div>
 <p>Now, we can write the solution to DGLAP in a true matrix operator scheme and find</p>

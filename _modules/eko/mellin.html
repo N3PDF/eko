@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -231,11 +232,12 @@
     <span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
         <span class="c1"># Make the extra arguments explicit</span>
         <span class="n">logx</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">delta_t</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">path_param</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+        <span class="n">a1</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">a0</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">path_param</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
         <span class="n">N</span> <span class="o">=</span> <span class="n">path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">path_param</span><span class="p">)</span>
         <span class="n">prefactor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">prefactor</span> <span class="o">*</span> <span class="n">iker</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">delta_t</span><span class="p">)</span> <span class="o">*</span> <span class="n">jac</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">path_param</span><span class="p">))</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">prefactor</span> <span class="o">*</span> <span class="n">iker</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">)</span> <span class="o">*</span> <span class="n">jac</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">path_param</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">result</span>
 
     <span class="k">if</span> <span class="n">do_numba</span><span class="p">:</span>
@@ -272,7 +274,9 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            res : float</span>
-<span class="sd">                computed point</span>
+<span class="sd">                integral</span>
+<span class="sd">            err : float</span>
+<span class="sd">                error estimate</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">LIMIT</span> <span class="o">=</span> <span class="mi">100</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span>

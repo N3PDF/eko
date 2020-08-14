@@ -95,6 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -221,24 +222,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span> <span class="o">=</span> <span class="n">alpha_generator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span> <span class="o">=</span> <span class="n">xgrid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_nf</span> <span class="o">=</span> <span class="n">nf</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_ns</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_s</span> <span class="o">=</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">_compile</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; Compiles the kernels and make them become integrands &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_ns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_dispatcher</span><span class="o">.</span><span class="n">integrands_ns</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_nf</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_dispatcher</span><span class="o">.</span><span class="n">integrands_s</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_nf</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="OperatorMaster.get_op"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorMaster.get_op">[docs]</a>    <span class="k">def</span> <span class="nf">get_op</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">,</span> <span class="n">generate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Given a q2_from and a q2_to, returns a raw operator.</span>
 <span class="sd">            If the `generate` flag is set to True, the operator will also be computed</span>
 <span class="sd">            in place.</span>
-
-<span class="sd">            Note: this method is just for convenience and so this method cannot check</span>
-<span class="sd">            that no thresholds are crossed in order to go from q2_from to q2_to.</span>
-<span class="sd">            This is the responsability of the calling function.</span>
-
 
 <span class="sd">            Parameters</span>
 <span class="sd">            ----------</span>
@@ -254,14 +244,15 @@
 <span class="sd">                op: eko.operators.Operator</span>
 <span class="sd">                    operator to go from q2_from to q2_to</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_s</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_ns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_compile</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_dispatcher</span><span class="o">.</span><span class="n">kernels</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_nf</span><span class="p">]</span>
         <span class="c1"># Generate the metadata for this operator</span>
         <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;q2&quot;</span><span class="p">:</span> <span class="n">q2_to</span><span class="p">,</span> <span class="s2">&quot;q2ref&quot;</span><span class="p">:</span> <span class="n">q2_from</span><span class="p">,</span> <span class="s2">&quot;nf&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nf</span><span class="p">}</span>
         <span class="c1"># Generate the necessary parameters to compute the operator</span>
-        <span class="n">delta_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span><span class="o">.</span><span class="n">delta_t</span><span class="p">(</span><span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">)</span>
+        <span class="n">a0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span><span class="o">.</span><span class="n">a_s</span><span class="p">(</span><span class="n">q2_from</span><span class="p">)</span>
+        <span class="n">a1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha_gen</span><span class="o">.</span><span class="n">a_s</span><span class="p">(</span><span class="n">q2_to</span><span class="p">)</span>
         <span class="n">op</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span>
-            <span class="n">delta_t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_ns</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integrands_s</span><span class="p">,</span> <span class="n">metadata</span>
+            <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_dispatcher</span><span class="o">.</span><span class="n">order</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">generate</span><span class="p">:</span>
             <span class="n">op</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
