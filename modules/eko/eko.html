@@ -127,7 +127,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.runner">eko.runner module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.strong_coupling">eko.strong_coupling module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.thresholds">eko.thresholds module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -203,8 +202,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="eko-package">
-<h1>eko package<a class="headerlink" href="#eko-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-eko">
+<span id="eko-package"></span><h1>eko package<a class="headerlink" href="#module-eko" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="eko.run_dglap">
+<code class="sig-prename descclassname">eko.</code><code class="sig-name descname">run_dglap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko.html#run_dglap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.run_dglap" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes a DGLAP theory configuration dictionary
+and performs the solution of the DGLAP equations.</p>
+<p>The EKO <span class="math notranslate nohighlight">\(\hat E_{k,j}(a_s^1\leftarrow a_s^0)\)</span> is determined in order
+to fullfill the following evolution</p>
+<div class="math notranslate nohighlight">
+\[f(x_k,a_s^1) = \hat E_{k,j}(a_s^1\leftarrow a_s^0) f(x_j,a_s^0)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – input card - see <a class="reference internal" href="../../Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>output</strong> – output dictionary - see <a class="reference internal" href="../../Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="section" id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -213,7 +234,6 @@
 <li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions.lo">eko.anomalous_dimensions.lo module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions.nlo">eko.anomalous_dimensions.nlo module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eko.anomalous_dimensions.html#module-eko.anomalous_dimensions">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -325,7 +345,7 @@ protected variables</p>
 <dd><p>Computes the polygamma functions <span class="math notranslate nohighlight">\(\psi_k(z)\)</span>.</p>
 <p>Reimplementation of <code class="docutils literal notranslate"><span class="pre">WPSIPG</span></code> (C317) in <a class="reference external" href="http://cernlib.web.cern.ch/cernlib/">CERNlib</a>
 <a class="bibtex reference internal" href="../../zzz-refs.html#kolbig1972221" id="id1">[Kol72]</a>.</p>
-<p>Note that the SciPy implementation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html#scipy.special.digamma" title="(in SciPy v1.5.1)"><code class="xref py py-data docutils literal notranslate"><span class="pre">scipy.special.digamma</span></code></a>
+<p>Note that the SciPy implementation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html#scipy.special.digamma" title="(in SciPy v1.5.2)"><code class="xref py py-data docutils literal notranslate"><span class="pre">scipy.special.digamma</span></code></a>
 does not allow for complex inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -364,7 +384,10 @@ Euler-Mascheroni constant.</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+</dd>
+</dl>
 </div>
 </dd></dl>
 
@@ -389,7 +412,10 @@ Riemann zeta function.</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+</dd>
+</dl>
 </div>
 </dd></dl>
 
@@ -414,7 +440,10 @@ Riemann zeta function.</p>
 </dl>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+</dd>
+</dl>
 </div>
 </dd></dl>
 
@@ -439,7 +468,7 @@ Riemann zeta function.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We use the name from <a class="bibtex reference internal" href="../../zzz-refs.html#muselliphd" id="id2">[Mus17]</a>, but not his implementation - rather we use the
-Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004ns" id="id3">[Vog05]</a> implementation</p>
+Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004ns" id="id3">[Vog05]</a> implementation.</p>
 </div>
 </dd></dl>
 
@@ -1097,7 +1126,7 @@ actual Mellin implementation</p>
 <a class="reference external" href="https://en.wikipedia.org/wiki/Mellin_inversion_theorem">inverse Mellin transformation</a>.</p>
 <p>It contains the actual transformations itself, as well as the necessary tools
 such as the definition of paths.</p>
-<p>The integral routine is provided by <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html#scipy.integrate.quad" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.quad()</span></code></a>.</p>
+<p>The integral routine is provided by <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html#scipy.integrate.quad" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.quad()</span></code></a>.</p>
 <div class="section" id="integration-paths">
 <h3>Integration Paths<a class="headerlink" href="#integration-paths" title="Permalink to this headline">¶</a></h3>
 <p>Although this module provides four different path implementations (<a class="reference internal" href="#eko.mellin.get_path_Talbot" title="eko.mellin.get_path_Talbot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Talbot()</span></code></a>,
@@ -1925,31 +1954,6 @@ last one contains q2</p>
 <dd><p>Number of flavours in the reference area</p>
 </dd></dl>
 
-</dd></dl>
-
-</div>
-<div class="section" id="module-eko">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-eko" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="eko.run_dglap">
-<code class="sig-prename descclassname">eko.</code><code class="sig-name descname">run_dglap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko.html#run_dglap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.run_dglap" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function takes a DGLAP theory configuration dictionary
-and performs the solution of the DGLAP equations.</p>
-<p>The EKO <span class="math notranslate nohighlight">\(\hat E_{k,j}(t_1\leftarrow t_0)\)</span> is determined in order
-to fullfill the following evolution</p>
-<div class="math notranslate nohighlight">
-\[f(x_k,t_1) = \hat E_{k,j}(t_1\leftarrow t_0) f(x_j,t_0)\]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – input card - see <a class="reference internal" href="../../Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>output</strong> – output dictionary - see <a class="reference internal" href="../../Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
-</dd>
-</dl>
 </dd></dl>
 
 </div>

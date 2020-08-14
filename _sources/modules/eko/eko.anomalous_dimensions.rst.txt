@@ -1,6 +1,11 @@
 eko.anomalous\_dimensions package
 =================================
 
+.. automodule:: eko.anomalous_dimensions
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
@@ -16,14 +21,6 @@ eko.anomalous\_dimensions.nlo module
 ------------------------------------
 
 .. automodule:: eko.anomalous_dimensions.nlo
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: eko.anomalous_dimensions
    :members:
    :undoc-members:
    :show-inheritance:

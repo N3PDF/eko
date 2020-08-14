@@ -1,6 +1,11 @@
 eko package
 ===========
 
+.. automodule:: eko
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
@@ -104,14 +109,6 @@ eko.thresholds module
 ---------------------
 
 .. automodule:: eko.thresholds
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: eko
    :members:
    :undoc-members:
    :show-inheritance:

@@ -299,8 +299,8 @@
     <span class="k">return</span> <span class="n">result</span></div>
 
 
-<div class="viewcode-block" id="get_gamma_singlet_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.get_gamma_singlet_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">get_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<div class="viewcode-block" id="gamma_singlet_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_singlet_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the leading-order singlet anomalous dimension matrix</span>
 
@@ -323,15 +323,15 @@
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
-<span class="sd">        gamma_S_0 : np.ndarray</span>
+<span class="sd">        gamma_S_0 : numpy.ndarray</span>
 <span class="sd">          Leading-order singlet anomalous dimension matrix :math:`\gamma_{S}^{(0)}(N)`</span>
 
 <span class="sd">      See Also</span>
 <span class="sd">      --------</span>
-<span class="sd">        - gamma_ns_0</span>
-<span class="sd">        - gamma_qg_0</span>
-<span class="sd">        - gamma_gq_0</span>
-<span class="sd">        - gamma_gg_0</span>
+<span class="sd">        gamma_ns_0 : :math:`\gamma_{qq}^{(0)}`</span>
+<span class="sd">        gamma_qg_0 : :math:`\gamma_{qg}^{(0)}`</span>
+<span class="sd">        gamma_gq_0 : :math:`\gamma_{gq}^{(0)}`</span>
+<span class="sd">        gamma_gg_0 : :math:`\gamma_{gg}^{(0)}`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">gamma_qq</span> <span class="o">=</span> <span class="n">gamma_ns_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span>
     <span class="n">gamma_qg</span> <span class="o">=</span> <span class="n">gamma_qg_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span>
@@ -341,21 +341,15 @@
     <span class="k">return</span> <span class="n">gamma_S_0</span></div>
 
 
-<div class="viewcode-block" id="get_Eigensystem_gamma_singlet_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.get_Eigensystem_gamma_singlet_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">get_Eigensystem_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<div class="viewcode-block" id="eigensystem_gamma_singlet_0"><a class="viewcode-back" href="../../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.eigensystem_gamma_singlet_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">eigensystem_gamma_singlet_0</span><span class="p">(</span><span class="n">gamma_S_0</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">      Computes the Eigensystem of the leading-order singlet anomalous dimension matrix</span>
 
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
-<span class="sd">        N : complex</span>
-<span class="sd">          Mellin moment</span>
-<span class="sd">        nf : int</span>
-<span class="sd">          Number of active flavours</span>
-<span class="sd">        CA : float</span>
-<span class="sd">          Casimir constant of adjoint representation</span>
-<span class="sd">        CF : float</span>
-<span class="sd">          Casimir constant of fundamental representation</span>
+<span class="sd">        gamma_S_0 : numpy.ndarray</span>
+<span class="sd">          leading-order singlet anomalous dimension matrix</span>
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
@@ -371,13 +365,21 @@
 <span class="sd">        e_m : np.array</span>
 <span class="sd">          projector for the negative eigenvalue of the Leading-order singlet anomalous</span>
 <span class="sd">          dimension matrix :math:`\gamma_{S}^{(0)}(N)`</span>
+
+<span class="sd">      See Also</span>
+<span class="sd">      --------</span>
+<span class="sd">        gamma_singlet_0 : :math:`\gamma_{S}^{(0)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">gamma_S_0</span> <span class="o">=</span> <span class="n">get_gamma_singlet_0</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">CA</span><span class="p">,</span> <span class="n">CF</span><span class="p">)</span>
     <span class="c1"># compute eigenvalues</span>
-    <span class="n">lambda_m</span><span class="p">,</span> <span class="n">lambda_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">gamma_S_0</span><span class="p">)</span>
+    <span class="n">det</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">gamma_S_0</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">gamma_S_0</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="o">+</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">gamma_S_0</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">gamma_S_0</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">lambda_p</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S_0</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma_S_0</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">det</span><span class="p">)</span>
+    <span class="n">lambda_m</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S_0</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma_S_0</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">det</span><span class="p">)</span>
     <span class="c1"># compute projectors</span>
     <span class="n">identity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">lambda_p</span> <span class="o">-</span> <span class="n">lambda_m</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">det</span>
     <span class="n">e_p</span> <span class="o">=</span> <span class="o">+</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S_0</span> <span class="o">-</span> <span class="n">lambda_m</span> <span class="o">*</span> <span class="n">identity</span><span class="p">)</span>
     <span class="n">e_m</span> <span class="o">=</span> <span class="o">-</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S_0</span> <span class="o">-</span> <span class="n">lambda_p</span> <span class="o">*</span> <span class="n">identity</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">lambda_p</span><span class="p">,</span> <span class="n">lambda_m</span><span class="p">,</span> <span class="n">e_p</span><span class="p">,</span> <span class="n">e_m</span></div>

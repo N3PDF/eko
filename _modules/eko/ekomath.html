@@ -176,23 +176,22 @@
   <h1>Source code for eko.ekomath</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implements higher mathematical functions.</span>
+<span class="sd">  Implements higher mathematical functions.</span>
 
-<span class="sd">    The functions are discribed in :doc:`Mellin space &lt;/Theory/Mellin&gt;`.</span>
+<span class="sd">  The functions are discribed in :doc:`Mellin space &lt;/Theory/Mellin&gt;`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy.special</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
+<span class="c1"># compute constants only once</span>
 <span class="n">zeta2</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">zeta</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">zeta3</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">zeta</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="cern_polygamma"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.cern_polygamma">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">cern_polygamma</span><span class="p">(</span>
-    <span class="n">Z</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span>
-<span class="p">):</span>  <span class="c1"># pylint: disable=too-many-locals,too-many-branches,too-many-statements</span>
+<span class="k">def</span> <span class="nf">cern_polygamma</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>  <span class="c1"># pylint: disable=all</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the polygamma functions :math:`\\psi_k(z)`.</span>
 
@@ -331,7 +330,7 @@
 
 <span class="sd">        See Also</span>
 <span class="sd">        --------</span>
-<span class="sd">          cern_polygamma :</span>
+<span class="sd">          cern_polygamma : :math:`\psi_0(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">euler_gamma</span></div>
 
@@ -359,7 +358,7 @@
 
 <span class="sd">        See Also</span>
 <span class="sd">        --------</span>
-<span class="sd">          cern_polygamma :</span>
+<span class="sd">          cern_polygamma : :math:`\psi_0(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="o">-</span><span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">zeta2</span></div>
 
@@ -387,7 +386,7 @@
 
 <span class="sd">        See Also</span>
 <span class="sd">        --------</span>
-<span class="sd">          cern_polygamma :</span>
+<span class="sd">          cern_polygamma : :math:`\psi_0(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">zeta3</span></div>
 
@@ -414,7 +413,7 @@
 <span class="sd">        Note</span>
 <span class="sd">        ----</span>
 <span class="sd">          We use the name from :cite:`MuselliPhD`, but not his implementation - rather we use the</span>
-<span class="sd">          Pegasus :cite:`Vogt:2004ns` implementation</span>
+<span class="sd">          Pegasus :cite:`Vogt:2004ns` implementation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0000e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9992e0</span><span class="p">,</span> <span class="mf">0.9851e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.9005e0</span><span class="p">,</span> <span class="mf">0.6621e0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3174e0</span><span class="p">,</span> <span class="mf">0.0699e0</span><span class="p">]</span>
     <span class="n">g3</span> <span class="o">=</span> <span class="mi">0</span>
