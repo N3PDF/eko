@@ -97,6 +97,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Theory/DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Theory/FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -204,54 +205,54 @@
 dashed lines means “evolves into”</span><a class="headerlink" href="#operators" title="Permalink to this image">¶</a></p>
 </div>
 <ul>
-<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a></p>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></p>
 <blockquote>
 <div><ul class="simple">
 <li><p>this is the master class which administrates all evolution kernel operator tasks</p></li>
 <li><p>it is instantiated once for each run</p></li>
 <li><p>it divides the given range of <span class="math notranslate nohighlight">\(Q^2\)</span> into the necessary threshold crossings and
-creates a <a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> for each</p></li>
+creates a <code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code> for each</p></li>
 <li><p>it recollects all necessary operators in the end to create the
-<a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> following the instructions of
-<a class="reference internal" href="../modules/eko/eko.html#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a></p></li>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code> following the instructions of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></p>
 <blockquote>
 <div><ul class="simple">
 <li><p>this represents a configuration for a fixed number of flavours</p></li>
-<li><p>it creates an <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> for each final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
+<li><p>it creates an <code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code> for each final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a></p>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></p>
 <blockquote>
 <div><ul class="simple">
 <li><p>this represents a configuration for a fixed final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
 <li><p>this class is only used <em>internally</em></p></li>
-<li><p>its <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> are only valid in the current
+<li><p>its <code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code> are only valid in the current
 threshold area</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>this is the exposed equivalent of <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a>,
+<li><p>this is the exposed equivalent of <code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code>,
 i.e. it also lives at at fixed final scale</p></li>
-<li><p>its <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> are valid from the starting scale
+<li><p>its <code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code> are valid from the starting scale
 to the final scale</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p><a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a></p>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></p>
 <blockquote>
 <div><ul class="simple">
 <li><p>this represents a single evolution kernel operator</p></li>
-<li><p>inside <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> they are in “raw” evolution basis, i.e.
+<li><p>inside <code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code> they are in “raw” evolution basis, i.e.
 <span class="math notranslate nohighlight">\(\tilde{\mathbf{E}}_S, \tilde{E}_{ns}^{\pm,v}\)</span>, and they never cross a threshold</p></li>
-<li><p>inside <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> they are in “true” evolution
+<li><p>inside <code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code> they are in “true” evolution
 basis, i.e. they evolve e.g. <span class="math notranslate nohighlight">\(\tilde V, \tilde T_3\)</span> etc., so they are eventually
 a product of the “raw” basis (see <a class="reference internal" href="../Theory/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
 </ul>

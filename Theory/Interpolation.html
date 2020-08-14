@@ -101,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -188,14 +189,14 @@ Therefore, we define the basis grid</p>
 <div class="math notranslate nohighlight">
 \[f(x) \sim \bar f(x) \sum\limits_{j=0}^{N_{grid} - 1 } f(x_j) p_j(x)\]</div>
 <p>Thus each grid point <span class="math notranslate nohighlight">\(x_j\)</span> has an associated interpolation polynomial <span class="math notranslate nohighlight">\(p_j(x)\)</span>
-(represented by <a class="reference internal" href="../modules/eko/eko.html#eko.interpolation.BasisFunction" title="eko.interpolation.BasisFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.BasisFunction</span></code></a>).
+(represented by <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.BasisFunction</span></code>).
 We interpolate in <span class="math notranslate nohighlight">\(\ln(x)\)</span> using Lagrange interpolation among the nearest
 <span class="math notranslate nohighlight">\(N_{degree}+1\)</span> points, which renders the <span class="math notranslate nohighlight">\(p_j(x)\)</span>: polynomials of order
 <span class="math notranslate nohighlight">\(O(\ln^{N_{degree}}(x))\)</span>.</p>
 <div class="section" id="algorithm">
 <h2>Algorithm<a class="headerlink" href="#algorithm" title="Permalink to this headline">¶</a></h2>
 <p>First, we split the interpolation region into several areas (represented by
-<a class="reference internal" href="../modules/eko/eko.html#eko.interpolation.Area" title="eko.interpolation.Area"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.Area</span></code></a>), which are bound by the grid points:</p>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.Area</span></code>), which are bound by the grid points:</p>
 <div class="math notranslate nohighlight">
 \[A_j = (x_j,x_{j+1}], \quad \text{for}~j=0,\ldots,N_{grid}-2\]</div>
 <p>Note, that we include the right border point into the definition, but not the left which
@@ -207,7 +208,7 @@ and contain the needed amount of points:</p>
 \[B_j = \{x_j,\ldots,x_{j+N_{degree}+1}\} \quad \text{for}~j=0,\ldots,N_{grid}-N_{degree}-2\]</div>
 <p>Now, we construct the interpolation in a bottom-up approach for a given point
 <span class="math notranslate nohighlight">\(\bar x\)</span> for the interpolating function <span class="math notranslate nohighlight">\(\bar f(\bar x)\)</span>.
-(The actual implementation is done in <a class="reference internal" href="../modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher" title="eko.interpolation.InterpolatorDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.InterpolatorDispatcher</span></code></a>)</p>
+(The actual implementation is done in <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.InterpolatorDispatcher</span></code>)</p>
 <ol class="arabic simple">
 <li><p>Determine the relevant active area <span class="math notranslate nohighlight">\(\bar A(\bar x)\)</span> :</p></li>
 </ol>

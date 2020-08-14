@@ -20,7 +20,6 @@ eko.anomalous\_dimensions.nlo module
    :undoc-members:
    :show-inheritance:
 
-
 Module contents
 ---------------
 

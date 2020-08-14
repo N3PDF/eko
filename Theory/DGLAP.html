@@ -96,15 +96,20 @@
 <li class="toctree-l1"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Solving DGLAP</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#leading-order">Leading Order</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#non-singlet-evolution">Non-Singlet Evolution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#singlet-evolution">Singlet Evolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lo-non-singlet-evolution">LO Non-Singlet Evolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lo-singlet-evolution">LO Singlet Evolution</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-to-leading-order">Next-to-Leading Order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nlo-non-singlet-evolution">NLO Non-Singlet Evolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nlo-singlet-evolution">NLO Singlet Evolution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -187,78 +192,99 @@
 <p>We are solving the DGLAP equations given in x-space by</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{d\ln(\mu_F^2)} \mathbf{f}(x,\mu_F^2) =
-    \int\limits_x^1\!\frac{dy}{y}\, \mathbf{P}(x/y) \cdot \mathbf{f}(y,\mu_F^2)\]</div>
+    \int\limits_x^1\!\frac{dy}{y}\, \mathbf{P}(x/y,a_s) \cdot \mathbf{f}(y,\mu_F^2)\]</div>
 <p>with <span class="math notranslate nohighlight">\(\mathbf P\)</span> the Altarelli-Parisi splitting functions (see <a class="reference internal" href="pQCD.html"><span class="doc">pQCD ingredients</span></a>).
 In <a class="reference internal" href="Mellin.html"><span class="doc">Mellin space</span></a> the DGLAP equations are just differential equations:</p>
 <div class="math notranslate nohighlight">
-\[\frac{d}{d\ln(\mu_F^2)} \tilde{\mathbf{f}}(N,\mu_F^2) = -\gamma(N) \cdot \tilde{\mathbf{f}}(N,\mu_F^2)\]</div>
+\[\frac{d}{d\ln(\mu_F^2)} \tilde{\mathbf{f}}(N,\mu_F^2) = -\gamma(N,a_s) \cdot \tilde{\mathbf{f}}(N,\mu_F^2)\]</div>
 <p>(Note the additional minus in the definition for <span class="math notranslate nohighlight">\(\gamma\)</span>).</p>
-<p>We change the evolution variable to <span class="math notranslate nohighlight">\(t(\mu_F^2) = \ln(1/a_s(\mu_F^2))\)</span>
-and then the differential equations to solve are given by</p>
+<p>We change the evolution variable to (monotonic) <a class="reference internal" href="pQCD.html#strong-coupling"><span class="std std-ref">Strong Coupling</span></a> <span class="math notranslate nohighlight">\(a_s(\mu_F^2)\)</span>
+and the equations to solve become</p>
 <div class="math notranslate nohighlight">
-\[\frac{d}{dt} \tilde{\mathbf{f}}(N,t)
-    = \frac{d\ln(\mu_F^2)}{dt} \cdot \frac{d \tilde{\mathbf{f}}(N,\mu_F^2)}{d\ln(\mu_F^2)}
-    = \frac{a_s(\mu_F^2)}{\beta(a_s(\mu_F^2))} \cdot \gamma(N) \cdot \tilde{\mathbf{f}}(N,t)\]</div>
-<p>This transformation makes the equations explicitly independent of the <a class="reference internal" href="pQCD.html"><span class="doc">running coupling</span></a> at LO.</p>
-<p>The solution can be written in terms of an evolution kernel operator <span class="math notranslate nohighlight">\(\mathbf E\)</span> (represented by
-<a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a>)</p>
+\[\frac{d}{da_s} \tilde{\mathbf{f}}(N,a_s)
+    = \frac{d\ln(\mu_F^2)}{da_s} \cdot \frac{d \tilde{\mathbf{f}}(N,\mu_F^2)}{d\ln(\mu_F^2)}
+    = -\frac{1}{\beta(a_s)} \cdot \gamma(N,a_s) \cdot \tilde{\mathbf{f}}(N,a_s)\]</div>
+<p>The (formal) solution can then be written in terms of an evolution kernel operator (EKO) <span class="math notranslate nohighlight">\(\mathbf E\)</span></p>
 <div class="math notranslate nohighlight">
-\[\tilde{\mathbf{f}}(N,t_1) = \tilde{\mathbf{E}}(t_1 \leftarrow t_0) \cdot \tilde{\mathbf{f}}(N,t_0)\]</div>
+\[\begin{split}\tilde{\mathbf{f}}(N,a_s^1) &amp;= \tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0) \cdot \tilde{\mathbf{f}}(N,a_s^0)\\
+\tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0) &amp;= \exp\left[-\int\limits_{a_s^0}^{a_s^1} \frac{\gamma(N,a_s)}{\beta(a_s)} da_s \right]\end{split}\]</div>
 <p>Using <a class="reference internal" href="Interpolation.html"><span class="doc">Interpolation</span></a> on both the inital and final PDF, we can then discretize the
-evolution kernel operator and define <span class="math notranslate nohighlight">\(\hat{\mathbf{E}}_{k,j}\)</span> by</p>
+EKO in x-space and define <span class="math notranslate nohighlight">\(\hat{\mathbf{E}}_{k,j}\)</span> (represented by
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code>) by</p>
 <div class="math notranslate nohighlight">
-\[\hat{\mathbf{E}}_{k,j}(t_1\leftarrow t_0) = \mathcal{M}^{-1}\left[\tilde{\mathbf{E}}(t_1 \leftarrow t_0)\tilde p_j(N)\right](x_k)\]</div>
+\[\hat{\mathbf{E}}_{k,j}(a_s^1 \leftarrow a_s^0) = \mathcal{M}^{-1}\left[\tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0)\tilde p_j(N)\right](x_k)\]</div>
 <p>Now, we can write the solution to DGLAP in a true matrix operator scheme and find</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{f}(x_k,t_1) = \hat{\mathbf{E}}_{k,j}(t_1\leftarrow t_0) \mathbf{f}(x_j,t_0)\]</div>
+\[\mathbf{f}(x_k,a_s^1) = \hat{\mathbf{E}}_{k,j}(a_s^1 \leftarrow a_s^0) \mathbf{f}(x_j,a_s^0)\]</div>
 <p>In the non-singlet sector the equations decouple and we do not need to worry about matrices.</p>
 <p>The issue of matching conditions when crossing flavor thresholds is dicussed in a seperate <a class="reference internal" href="Matching.html"><span class="doc">document</span></a></p>
 <div class="section" id="leading-order">
 <h2>Leading Order<a class="headerlink" href="#leading-order" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="non-singlet-evolution">
-<h3>Non-Singlet Evolution<a class="headerlink" href="#non-singlet-evolution" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="lo-non-singlet-evolution">
+<h3>LO Non-Singlet Evolution<a class="headerlink" href="#lo-non-singlet-evolution" title="Permalink to this headline">¶</a></h3>
 <p>We find</p>
 <div class="math notranslate nohighlight">
-\[\frac{d}{dt} \tilde f_{ns}^{(0)}(t) = -\frac{1}{\beta_0} \cdot \gamma_{ns}^{(0)}(N) \cdot \tilde f_{ns}^{(0)}(t)\]</div>
+\[\frac{d}{da_s} \tilde f_{ns}^{(0)}(a_s) = \frac{\gamma_{ns}^{(0)}}{\beta_0 a_s}  \cdot \tilde f_{ns}^{(0)}(a_s)\]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma_{ns}^{(0)} = \gamma_{ns,+}^{(0)} = \gamma_{ns,-}^{(0)} = \gamma_{ns,v}^{(0)} = \gamma_{qq}^{(0)}\)</span>.</p>
-<p>The evolution kernel operator is then given by a simple exponential <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id1">[Vog05]</a></p>
+<p>The EKO is then given by a simple exponential <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id1">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
-\[\tilde E^{(0)}_{ns}(t_1\leftarrow t_0) = \exp(-(t_1-t_0) \gamma_{ns}^{(0)}(N)/\beta_0 )\]</div>
+\[\tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) = \exp\left[\ln(a_s^1/a_s^0) \gamma_{ns}^{(0)}/\beta_0 \right]\]</div>
 </div>
-<div class="section" id="singlet-evolution">
-<h3>Singlet Evolution<a class="headerlink" href="#singlet-evolution" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="lo-singlet-evolution">
+<h3>LO Singlet Evolution<a class="headerlink" href="#lo-singlet-evolution" title="Permalink to this headline">¶</a></h3>
 <p>We find</p>
 <div class="math notranslate nohighlight">
-\[\frac{d}{dt} \dSV{0}{t} = -\frac{1}{\beta_0} \cdot \gamma_S^{(0)} \cdot \dSV{0}{t}\]</div>
+\[\frac{d}{da_s} \dSV{0}{a_s} = \frac{\gamma_S^{(0)}}{\beta_0 a_s} \cdot \dSV{0}{a_s}\]</div>
 <p>with</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\gamma_S^{(0)} = \begin{pmatrix}
                             \gamma_{qq}^{(0)} &amp; \gamma_{qg}^{(0)}\\
                             \gamma_{gq}^{(0)} &amp; \gamma_{gg}^{(0)}
                         \end{pmatrix}\end{split}\]</div>
-<p>In order to expontiate this matrix, we decompose it
-<span class="math notranslate nohighlight">\(\gamma_S^{(0)} = \lambda_+ {\bf e}_+ + \lambda_- {\bf e}_-\)</span> with
-the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</span> and the projectors <span class="math notranslate nohighlight">\(e_{\pm}\)</span> given by <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id2">[Vog05]</a></p>
+<p>In order to exponentiate this matrix, we decompose it
+<span class="math notranslate nohighlight">\(\gamma_S^{(0)} = \lambda_+ {\mathbf e}_+ + \lambda_- {\mathbf e}_-\)</span> with
+the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</span> and the projectors <span class="math notranslate nohighlight">\(\mathbf e_{\pm}\)</span> given by <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id2">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\lambda_{\pm} &amp;= \frac 1 2 \left( \gamma_{qq}^{(0)} + \gamma_{gg}^{(0)} + \pm \sqrt{(\gamma_{qq}^{(0)}-\gamma_{gg}^{(0)})^2 + 4\gamma_{qg}^{(0)}\gamma_{gq}^{(0)}} \right)\\
-{\bf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \gamma_S^{(0)}  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
+{\mathbf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \gamma_S^{(0)}  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the 2x2 identity matrix in flavour space.
 The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
-\[{\bf e}_{\pm} \cdot {\bf e}_{\pm} = {\bf e}_{\pm} \qquad {\bf e}_{\pm} \cdot {\bf e}_{\mp} = 0\]</div>
-<p>and thus the expontiation becomes easier again.</p>
-<p>The evolution kernel operator is then given by</p>
+\[{\mathbf e}_{\pm} \cdot {\mathbf e}_{\pm} = {\mathbf e}_{\pm} \qquad {\mathbf e}_{\pm} \cdot {\mathbf e}_{\mp} = 0\]</div>
+<p>and thus the exponentiation becomes easier again.</p>
+<p>The EKO is then given by</p>
 <div class="math notranslate nohighlight">
-\[\tilde {\mathbf{E}}^{(0)}_{S}(t_1\leftarrow t_0) = {\mathbf{e}}_-\exp(-(t_1-t_0) \lambda_{-}(N)/\beta_0 ) + {\mathbf{e}}_+\exp(-(t_1-t_0) \lambda_{+}(N)/\beta_0 )\]</div>
+\[\tilde {\mathbf{E}}^{(0)}_{S}(a_s^1 \leftarrow a_s^0) = {\mathbf{e}}_-\exp\left[\ln(a_s^1/a_s^0) \lambda_{-}/\beta_0 \right] + {\mathbf{e}}_+\exp\left[\ln(a_s^1/a_s^0) \lambda_{+}/\beta_0 \right]\]</div>
 </div>
 </div>
-<div class="section" id="benchmarks">
-<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Permalink to this headline">¶</a></h2>
-<p>The benchmarking LHA reference is given by <a class="bibtex reference internal" href="../zzz-refs.html#giele-2002hx" id="id3">[G+02]</a>
-and <a class="bibtex reference internal" href="../zzz-refs.html#dittmar-2005ed" id="id4">[D+05]</a>.</p>
-<div class="admonition-todo admonition" id="id5">
-<p class="admonition-title">Todo</p>
-<p>do we want to comment about benchmarks?</p>
+<div class="section" id="next-to-leading-order">
+<h2>Next-to-Leading Order<a class="headerlink" href="#next-to-leading-order" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nlo-non-singlet-evolution">
+<h3>NLO Non-Singlet Evolution<a class="headerlink" href="#nlo-non-singlet-evolution" title="Permalink to this headline">¶</a></h3>
+<p>We find</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{da_s} \tilde f_{ns}^{(1)}(a_s) = \frac{\gamma_{ns}^{(0)} a_s + \gamma_{ns}^{(1)} a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} \cdot \tilde f_{ns}^{(1)}(a_s)\]</div>
+<p>with <span class="math notranslate nohighlight">\(\gamma_{ns} \in \{\gamma_{ns,+},\gamma_{ns,-}=\gamma_{ns,v}\}\)</span>.</p>
+<p>To solve this equation we provide the same strategies as <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id3">[Vog05]</a> :</p>
+<ul class="simple">
+<li><p>the <em>exact</em> solution to the EKO is given by the exponentials: <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id4">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\tilde E^{(1),\text{exact}}_{ns}(a_s^1 \leftarrow a_s^0) &amp;= \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \exp\left[\ln\left(\frac{1+a_s^1 b_1}{1 + a_s^0 b_1}\right)\bar \gamma_{ns}^{(1)} \right] \\
+\bar \gamma_{ns}^{(1)} &amp;= \frac{\gamma_{ns}^{(1)}}{\beta_1} - \frac{\gamma_{ns}^{(0)}}{\beta_0}\end{split}\]</div>
+<ul class="simple">
+<li><p>expanding the <em>argument</em> of the exponential of the new term we obtain:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\tilde E^{(1),\text{LL}}_{ns}(a_s^1 \leftarrow a_s^0) = \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \exp\left[(a_s^1 - a_s^0) b_1 \bar \gamma_{ns}^{(1)} \right]\]</div>
+<ul class="simple">
+<li><p>expanding the <em>whole</em> exponential of the new term we obtain:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\tilde E^{(1),\text{truncated}}_{ns}(a_s^1 \leftarrow a_s^0) = \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \left[1 + (a_s^1 - a_s^0) b_1 \bar \gamma_{ns}^{(1)} \right]\]</div>
+</div>
+<div class="section" id="nlo-singlet-evolution">
+<h3>NLO Singlet Evolution<a class="headerlink" href="#nlo-singlet-evolution" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>

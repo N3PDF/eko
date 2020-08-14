@@ -9,22 +9,6 @@ From Docstrings
 From Source Code
 ----------------
 
-`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
-
-.. warning:: #66 this is just a hack because I'm not able to generalize this part
-
-.. warning:: #113 can this be made more concise, or is this really the best that can be done?
-
-
-
-`strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
-
-.. warning:: #362 set up a cache system here
-
-.. warning:: #404 recover color constants
-
-
-
 `output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
 
 .. warning:: #39 rotation from the evolution basis to flavor basis? if yes, here!
@@ -33,17 +17,33 @@ From Source Code
 
 
 
+`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
+
+.. warning:: #66 this is just a hack because I'm not able to generalize this part
+
+.. warning:: #113 can this be made more concise, or is this really the best that can be done?
+
+
+
 `operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
 
-.. warning:: #246 everything in parallel
+.. warning:: #236 everything in parallel
 
 
 
 `evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
 
-.. warning:: #224 check error propagation
+.. warning:: #125 check error propagation
 
-.. warning:: #492 make 'cut' external parameter?
+.. warning:: #396 make 'cut' external parameter? - if so, attribute to KernelDispatcher
+
+
+
+`strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
+
+.. warning:: #362 set up a cache system here
+
+.. warning:: #404 recover color constants
 
 
 

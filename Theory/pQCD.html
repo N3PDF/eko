@@ -94,13 +94,14 @@
 <li class="toctree-l1"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pQCD ingredients</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#running-coupling">Running Coupling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#strong-coupling">Strong Coupling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#splitting-functions">Splitting Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -180,15 +181,16 @@
             
   <div class="section" id="pqcd-ingredients">
 <h1>pQCD ingredients<a class="headerlink" href="#pqcd-ingredients" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="running-coupling">
-<h2>Running Coupling<a class="headerlink" href="#running-coupling" title="Permalink to this headline">¶</a></h2>
-<p>Implementation: <a class="reference internal" href="../modules/eko/eko.html#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a>.</p>
+<div class="section" id="strong-coupling">
+<h2>Strong Coupling<a class="headerlink" href="#strong-coupling" title="Permalink to this headline">¶</a></h2>
+<p>Implementation: <code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code>.</p>
 <p>We use perturbative QCD with the running coupling
 <span class="math notranslate nohighlight">\(a_s(\mu_R^2) = \alpha_s(\mu_R^2)/(4\pi)\)</span> given at 5-loop by
 <a class="bibtex reference internal" href="../zzz-refs.html#herzog-2017ohr" id="id1">[HRU+17]</a> <a class="bibtex reference internal" href="../zzz-refs.html#luthe-2016ima" id="id2">[LMMS16]</a> <a class="bibtex reference internal" href="../zzz-refs.html#baikov-2016tgj" id="id3">[BCK17]</a></p>
 <div class="math notranslate nohighlight">
-\[\frac{da_s}{d\ln\mu_R^2} = \beta(a_s(\mu_R^2)) \
+\[\frac{da_s(\mu_R^2)}{d\ln\mu_R^2} = \beta(a_s(\mu_R^2)) \
 = - \sum\limits_{n=0} \beta_n a_s^{n+2}(\mu_R^2)\]</div>
+<p>It is usefull to define in addition <span class="math notranslate nohighlight">\(b_k = \beta_k/\beta_0, k&gt;0\)</span>.</p>
 <p>We implement two different strategies to solve the renormalization group equation (RGE):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;exact&quot;</span></code>: Solve using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp" title="(in SciPy v1.5.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code></a>.
@@ -199,8 +201,7 @@ In LO we fall back to the expanded solution as this is already the true solution
 \[\begin{split}a^{\text{LO}}_s(\mu_R^2)  &amp;= \frac{a_s(\mu_0^2)}{1 + a_s(\mu_0^2) \beta_0 \ln(\mu_R^2/\mu_0^2)} \\
 a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) &amp;= a^{\text{LO}}_s(\mu_R^2)-b_1 \left[a^{\text{LO}}_s(\mu_R^2)\right]^2 \ln\left(1+a_s(\mu_0^2) \beta_0 \ln(\mu_R^2/\mu_0^2)\right) \\
 a^{\text{NNLO}}_{s,\text{exp}}(\mu_R^2) &amp;= a^{\text{LO}}_s(\mu_R^2)\left[1 + a^{\text{LO}}_s(\mu_R^2)\left(a^{\text{LO}}_s(\mu_R^2) - a_s(\mu_0^2)\right)(b_2 - b_1^2) \right.\\
-                                      &amp; \hspace{60pt} \left. + a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) b_1 \ln\left(a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2)/a_s(\mu_0^2)\right)\right] \\\end{split}\]</div>
-<p>with <span class="math notranslate nohighlight">\(b_1 = \beta_1/\beta_0, b_2=\beta_2/\beta_0\)</span>.</p>
+                                      &amp; \hspace{60pt} \left. + a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) b_1 \ln\left(a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2)/a_s(\mu_0^2)\right)\right]\end{split}\]</div>
 <p>When the renormalization scale crosses a flavor threshold matching conditions have to be
 applied <a class="bibtex reference internal" href="../zzz-refs.html#schroder-2005hy" id="id4">[SS06]</a> <a class="bibtex reference internal" href="../zzz-refs.html#chetyrkin-2005ia" id="id5">[CKS06]</a>.</p>
 </div>
@@ -209,8 +210,8 @@ applied <a class="bibtex reference internal" href="../zzz-refs.html#schroder-200
 <p>The Altarelli-Parisi splitting kernels can be expanded in powers of the strong
 coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and are given by <a class="bibtex reference internal" href="../zzz-refs.html#moch-2004pa" id="id6">[MVV04]</a> <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004mw" id="id7">[VMV04]</a></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\mathbf{P}(x,\mu^2) &amp;= \sum\limits_{j=0} a_s^{j+1}(\mu^2) \mathbf{P}^{(j)}(x) \\
-{\gamma}^{(j)}(N) &amp;= -\mathcal{M}[\mathbf{P}^{(j)}(x)](N)\end{split}\]</div>
+\[\begin{split}\mathbf{P}(x,a_s(\mu^2)) &amp;= \sum\limits_{j=0} a_s^{j+1}(\mu^2) \mathbf{P}^{(j)}(x) \\
+{\gamma}^{(j)}(N,a_s) &amp;= -\mathcal{M}[\mathbf{P}^{(j)}(x,a_s)](N)\end{split}\]</div>
 <p>Note the additional minus in the definition of <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
 </div>
 </div>
