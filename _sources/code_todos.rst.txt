@@ -25,25 +25,19 @@ From Source Code
 
 
 
-`operator_grid.py <file:///home/runner/work/eko/eko/src/eko/operator_grid.py>`_
-
-.. warning:: #236 everything in parallel
-
-
-
 `evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
 
 .. warning:: #125 check error propagation
 
-.. warning:: #396 make 'cut' external parameter? - if so, attribute to KernelDispatcher
+.. warning:: #369 make 'cut' external parameter?
 
 
 
 `strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
 
-.. warning:: #362 set up a cache system here
+.. warning:: #369 set up a cache system here
 
-.. warning:: #404 recover color constants
+.. warning:: #411 recover color constants
 
 
 

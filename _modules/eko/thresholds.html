@@ -281,7 +281,7 @@
 <span class="sd">            threshold_list: list</span>
 <span class="sd">                List of q^2 thresholds should the scheme accept it</span>
 <span class="sd">            nf: int</span>
-<span class="sd">                Number of flavour for the FFNS</span>
+<span class="sd">                Number of flavors for the FFNS</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2_ref</span><span class="p">,</span> <span class="n">scheme</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">threshold_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -306,6 +306,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">max_nf</span> <span class="o">=</span> <span class="n">nf</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">min_nf</span> <span class="o">=</span> <span class="n">nf</span>
             <span class="n">protection</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Thresholds: Fixed flavor number scheme with </span><span class="si">%d</span><span class="s2"> flavors&quot;</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">scheme</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ZM-VFNS&quot;</span><span class="p">,</span> <span class="s2">&quot;FONLL-A&quot;</span><span class="p">,</span> <span class="s2">&quot;FONLL-A&#39;&quot;</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">nf</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
@@ -317,6 +318,7 @@
                     <span class="s2">&quot;The ZM-VFN scheme was selected but no thresholds were given&quot;</span>
                 <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_setup_vfns</span><span class="p">(</span><span class="n">threshold_list</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Thresholds: Variable flavor number scheme (</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">scheme</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The scheme </span><span class="si">{</span><span class="n">scheme</span><span class="si">}</span><span class="s2"> is not implemented&quot;</span><span class="p">)</span>
 

@@ -182,12 +182,16 @@
 <span class="sd">    See :doc:`pQCD ingredients &lt;/Theory/pQCD&gt;`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">logging</span>
+
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
 <span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">constants</span>
 <span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">thresholds</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="beta_0"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.beta_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
@@ -364,6 +368,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsConfig</span><span class="p">(</span>
                 <span class="n">scale_ref</span><span class="p">,</span> <span class="n">thresh</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">threshold_list</span><span class="o">=</span><span class="n">thresh</span><span class="o">.</span><span class="n">_area_walls</span>
             <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;Strong Coupling: Reference a_s(Q^2=</span><span class="si">%f</span><span class="s2">)=</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_ref</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_ref</span>
+        <span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">q2_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

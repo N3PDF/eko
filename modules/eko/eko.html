@@ -479,7 +479,7 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <p>See <a class="reference internal" href="../../Code/Operators.html"><span class="doc">Operator overview</span></a>.</p>
 <dl class="py class">
 <dt id="eko.evolution_operator.Operator">
-<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">kernels</span></em>, <em class="sig-param"><span class="n">metadata</span></em>, <em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">mellin_cut</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">master</span></em>, <em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">mellin_cut</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Internal representation of a single EKO.</p>
 <p>The actual matrices are computed only upon calling <a class="reference internal" href="#eko.evolution_operator.Operator.compute" title="eko.evolution_operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.
@@ -488,12 +488,9 @@ If not computed yet, <a class="reference internal" href="#eko.evolution_operator
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – a_s at evolution target</p></li>
-<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – a_s at evolution source</p></li>
-<li><p><strong>xgrid</strong> (<em>np.array</em>) – basis interpolation grid</p></li>
-<li><p><strong>kernels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>)</em>) – list of kernels</p></li>
-<li><p><strong>metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – metadata with keys <cite>nf</cite>, <cite>q2ref</cite> and <cite>q2</cite></p></li>
-<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – order in perturbation theory - <code class="docutils literal notranslate"><span class="pre">0</span></code> is leading order</p></li>
+<li><p><strong>master</strong> (<a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><em>eko.operator_grid.OperatorMaster</em></a>) – the master instance</p></li>
+<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – evolution source</p></li>
+<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – evolution target</p></li>
 <li><p><strong>mellin_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – cut to the upper limit in the mellin inversion</p></li>
 </ul>
 </dd>
@@ -524,24 +521,6 @@ If not computed yet, <a class="reference internal" href="#eko.evolution_operator
 <dt id="eko.evolution_operator.Operator.compute">
 <code class="sig-name descname">compute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.compute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.compute" title="Permalink to this definition">¶</a></dt>
 <dd><p>compute the actual operators (i.e. run the integrations)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.Operator.nf">
-<em class="property">property </em><code class="sig-name descname">nf</code><a class="headerlink" href="#eko.evolution_operator.Operator.nf" title="Permalink to this definition">¶</a></dt>
-<dd><p>number of active flavours</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.Operator.q2">
-<em class="property">property </em><code class="sig-name descname">q2</code><a class="headerlink" href="#eko.evolution_operator.Operator.q2" title="Permalink to this definition">¶</a></dt>
-<dd><p>actual scale</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.Operator.q2ref">
-<em class="property">property </em><code class="sig-name descname">q2ref</code><a class="headerlink" href="#eko.evolution_operator.Operator.q2ref" title="Permalink to this definition">¶</a></dt>
-<dd><p>scale reference point</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1085,6 +1064,12 @@ actual Mellin implementation</p>
 <li><p><strong>numba_it</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>  (</em><em>default: True</em><em>)</em>) – If true, the functions will be <cite>numba</cite> compiled</p></li>
 </ul>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>obj</strong> – created object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>cls</p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -1317,13 +1302,11 @@ determied by <span class="math notranslate nohighlight">\(t\in [c : 1-c]\)</span
 <p>This module contains the <a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a>  and the
 <a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> class.</p>
 <p>The first is the driver class of eko as it is the one that collects all the
-previously instantiated information and does the actual computation of the Qs</p>
-<p>The classes, however, have no knowledge about _what_ it does compute as
-everything must always come in externally.</p>
+previously instantiated information and does the actual computation of the Q2s.</p>
 <p>See <a class="reference internal" href="../../Code/Operators.html"><span class="doc">Operator overview</span></a>.</p>
 <dl class="py class">
 <dt id="eko.operator_grid.OperatorGrid">
-<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorGrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">threshold_holder</span></em>, <em class="sig-param"><span class="n">alpha_generator</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em>, <em class="sig-param"><span class="n">xgrid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorGrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_grid</span></em>, <em class="sig-param"><span class="n">thresholds_config</span></em>, <em class="sig-param"><span class="n">strong_coupling</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The operator grid is the driver class of the evolution.</p>
 <p>It receives as input a threshold holder and a generator of a_s.
@@ -1331,19 +1314,20 @@ From that point onwards it can compute any operator at any q2.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>threshold_holder</strong> (<em>eko.thresholds.Threshold</em>) – Instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Threshold</span></code> containing information about the
+<li><p><strong>q2_grid</strong> (<em>array</em>) – Grid in Q2 on where to to compute the operators</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – order in perturbation theory</p></li>
+<li><p><strong>thresholds_config</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – Instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Threshold</span></code> containing information about the
 thresholds</p></li>
-<li><p><strong>alpha_generator</strong> (<a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><em>eko.strong_coupling.StrongCoupling</em></a>) – Instance of <a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a> able to generate a_s for
+<li><p><strong>strong_coupling</strong> (<a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><em>eko.strong_coupling.StrongCoupling</em></a>) – Instance of <a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a> able to generate a_s for
 any q</p></li>
 <li><p><strong>kernel_dispatcher</strong> (<a class="reference internal" href="#eko.kernel_generation.KernelDispatcher" title="eko.kernel_generation.KernelDispatcher"><em>eko.kernel_generation.KernelDispatcher</em></a>) – Instance of the <a class="reference internal" href="#eko.kernel_generation.KernelDispatcher" title="eko.kernel_generation.KernelDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">KernelDispatcher</span></code></a> with the
 information about the kernels</p></li>
-<li><p><strong>xgrid</strong> (<em>np.array</em>) – Grid in x used to compute the operators</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="eko.operator_grid.OperatorGrid.compute_q2grid">
-<code class="sig-name descname">compute_q2grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2grid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.compute_q2grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.compute_q2grid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">compute_q2grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2grid</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.compute_q2grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.compute_q2grid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Receives a grid in q^2 and computes all operations necessary
 to return any operator at any given q for the evolution between q2ref and q2grid</p>
 <dl class="field-list simple">
@@ -1360,6 +1344,34 @@ to return any operator at any given q for the evolution between q2ref and q2grid
 </dd></dl>
 
 <dl class="py method">
+<dt id="eko.operator_grid.OperatorGrid.from_dict">
+<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em>, <em class="sig-param"><span class="n">thresholds_config</span></em>, <em class="sig-param"><span class="n">strong_coupling</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the object from the theory dictionary.</p>
+<p>Read keys:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Q2grid : required, target grid</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – theory dictionary</p></li>
+<li><p><strong>thresholds_config</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – An instance of the ThresholdsConfig class</p></li>
+<li><p><strong>strong_coupling</strong> (<a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><em>eko.strong_coupling.StrongCoupling</em></a>) – An instance of the StrongCoupling class</p></li>
+<li><p><strong>kernel_dispatcher</strong> (<a class="reference internal" href="#eko.kernel_generation.KernelDispatcher" title="eko.kernel_generation.KernelDispatcher"><em>eko.kernel_generation.KernelDispatcher</em></a>) – An instance of the KernelDispatcher class</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>obj</strong> – created object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>cls</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="eko.operator_grid.OperatorGrid.get_op_at_q2">
 <code class="sig-name descname">get_op_at_q2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">qsq</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.get_op_at_q2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.get_op_at_q2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a value of q^2, returns the PhysicalOperator to get
@@ -1369,10 +1381,10 @@ to q^2 from q0^2</p>
 <dd class="field-odd"><p><strong>qsq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Target value of q^2</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>final_op</strong> – Op(q_0^2 -&gt; q^2)</p>
+<dd class="field-even"><p><strong>final_op</strong> – Op(q^2 &lt;- q_0^2)</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>eko.operators.PhysicalOperator</p>
+<dd class="field-odd"><p><a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator">eko.evolution_operator.PhysicalOperator</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1396,20 +1408,16 @@ to q^2 from q0^2</p>
 
 <dl class="py class">
 <dt id="eko.operator_grid.OperatorMaster">
-<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorMaster</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">alpha_generator</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em>, <em class="sig-param"><span class="n">xgrid</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorMaster</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">kernels</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The <a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> is instantiated for a given set of parameters
-And informs the generation of operators.</p>
-<p>This class is just a convenience wrapper.</p>
+and informs the generation of operators.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>alpha_generator</strong> (<a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><em>eko.strong_coupling.StrongCoupling</em></a>) – Instance of the <a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a> class able to
-generate a_s for any q</p></li>
-<li><p><strong>kernel_dispatcher</strong> (<em>eko.kernels.KernelDispatcher</em>) – Instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">KernelDispatcher</span></code> with the information
-about the kernels</p></li>
-<li><p><strong>xgrid</strong> (<em>np.array</em>) – Grid in x used to compute the operators</p></li>
+<li><p><strong>grid</strong> (<a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><em>OperatorGrid</em></a>) – Instance of <a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a></p></li>
 <li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Value of nf for this <a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p></li>
+<li><p><strong>kernels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>)</em>) – list over basis functions containing all kernels</p></li>
 </ul>
 </dd>
 </dl>
@@ -1431,7 +1439,7 @@ in place.</p>
 <dd class="field-even"><p><strong>op</strong> – operator to go from q2_from to q2_to</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>eko.operators.Operator</p>
+<dd class="field-odd"><p>eko.evolution_operators.Operator</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1855,7 +1863,7 @@ Q2 has to pass in order to get there from a given q2_ref and scheme.</p>
 <li><p><strong>q2_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Reference q^2</p></li>
 <li><p><strong>scheme</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – Choice of scheme</p></li>
 <li><p><strong>threshold_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – List of q^2 thresholds should the scheme accept it</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of flavour for the FFNS</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Number of flavors for the FFNS</p></li>
 </ul>
 </dd>
 </dl>

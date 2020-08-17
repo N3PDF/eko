@@ -401,24 +401,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span> <span class="o">=</span> <span class="n">op_members</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">q2_final</span> <span class="o">=</span> <span class="n">q2_final</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pdf_lists</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Apply PDFs to the EKOs.</span>
-
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                pdf_lists : dict</span>
-<span class="sd">                    PDFs in evolution basis as list on the corresponding xgrid</span>
-
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                out : dict</span>
-<span class="sd">                    evolved PDFs</span>
-<span class="sd">                out_errors : dict</span>
-<span class="sd">                    associated errors of the evolved PDFs</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_pdf</span><span class="p">(</span><span class="n">pdf_lists</span><span class="p">)</span>
-
     <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Multiply ``other`` to self.</span>
@@ -545,53 +527,31 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">            a1 : float</span>
-<span class="sd">                a_s at evolution target</span>
-<span class="sd">            a0 : float</span>
-<span class="sd">                a_s at evolution source</span>
-<span class="sd">            xgrid : np.array</span>
-<span class="sd">                basis interpolation grid</span>
-<span class="sd">            kernels : list(dict)</span>
-<span class="sd">                list of kernels</span>
-<span class="sd">            metadata : dict</span>
-<span class="sd">                metadata with keys `nf`, `q2ref` and `q2`</span>
-<span class="sd">            order : int</span>
-<span class="sd">                order in perturbation theory - ``0`` is leading order</span>
+<span class="sd">            master : eko.operator_grid.OperatorMaster</span>
+<span class="sd">                the master instance</span>
+<span class="sd">            q2_from : float</span>
+<span class="sd">                evolution source</span>
+<span class="sd">            q2_to : float</span>
+<span class="sd">                evolution target</span>
 <span class="sd">            mellin_cut : float</span>
 <span class="sd">                cut to the upper limit in the mellin inversion</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">kernels</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">mellin_cut</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">,</span> <span class="n">mellin_cut</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
         <span class="c1"># Save the metadata</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_a1</span> <span class="o">=</span> <span class="n">a1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_a0</span> <span class="o">=</span> <span class="n">a0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span> <span class="o">=</span> <span class="n">xgrid</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span> <span class="o">=</span> <span class="n">kernels</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">=</span> <span class="n">order</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span> <span class="o">=</span> <span class="n">metadata</span>
-        <span class="c1"># TODO make &#39;cut&#39; external parameter? - if so, attribute to KernelDispatcher</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master</span> <span class="o">=</span> <span class="n">master</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q2_from</span> <span class="o">=</span> <span class="n">q2_from</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q2_to</span> <span class="o">=</span> <span class="n">q2_to</span>
+        <span class="c1"># TODO make &#39;cut&#39; external parameter?</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mellin_cut</span> <span class="o">=</span> <span class="n">mellin_cut</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">nf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; number of active flavours &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s2">&quot;nf&quot;</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">q2ref</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; scale reference point &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s2">&quot;q2ref&quot;</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">q2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; actual scale &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metadata</span><span class="p">[</span><span class="s2">&quot;q2&quot;</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">xgrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; underlying basis grid &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xgrid</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">managers</span><span class="p">[</span>
+            <span class="s2">&quot;kernel_dispatcher&quot;</span>
+        <span class="p">]</span><span class="o">.</span><span class="n">interpol_dispatcher</span><span class="o">.</span><span class="n">xgrid_raw</span>
 
 <div class="viewcode-block" id="Operator.compose"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.Operator.compose">[docs]</a>    <span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op_list</span><span class="p">,</span> <span class="n">instruction_set</span><span class="p">,</span> <span class="n">q2_final</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -633,7 +593,6 @@
         <span class="sd">&quot;&quot;&quot; compute the actual operators (i.e. run the integrations) &quot;&quot;&quot;</span>
         <span class="c1"># Generic parameters</span>
         <span class="n">grid_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xgrid</span><span class="p">)</span>
-        <span class="n">grid_logx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xgrid</span><span class="p">)</span>
 
         <span class="c1"># init all ops with zeros</span>
         <span class="n">singlet_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;S_qq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_qg&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gg&quot;</span><span class="p">]</span>
@@ -645,15 +604,18 @@
 
         <span class="c1"># iterate output grid</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;computing operators - 0/</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">logx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">grid_logx</span><span class="p">):</span>
+        <span class="n">sc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">managers</span><span class="p">[</span><span class="s2">&quot;strong_coupling&quot;</span><span class="p">]</span>
+        <span class="n">a1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">a_s</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q2_to</span><span class="p">)</span>
+        <span class="n">a0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">a_s</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q2_from</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">logx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xgrid</span><span class="p">)):</span>
             <span class="c1"># iterate basis functions</span>
-            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">bf_kernels</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_kernels</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">l</span><span class="p">,</span> <span class="n">bf_kernels</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">kernels</span><span class="p">):</span>
                 <span class="c1"># iterate sectors</span>
                 <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">ker</span> <span class="ow">in</span> <span class="n">bf_kernels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                     <span class="n">extra_args</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">typed</span><span class="o">.</span><span class="n">List</span><span class="p">()</span>
                     <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">logx</span><span class="p">)</span>
-                    <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_a1</span><span class="p">)</span>
-                    <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_a0</span><span class="p">)</span>
+                    <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+                    <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
                     <span class="c1"># Path parameters</span>
                     <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">singlet_names</span><span class="p">:</span>
                         <span class="n">extra_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.4</span> <span class="o">*</span> <span class="mi">16</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">logx</span><span class="p">))</span>
@@ -671,11 +633,12 @@
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;computing operators - </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
 
         <span class="c1"># copy non-singlet kernels, if necessary</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># in LO +=-=v</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">managers</span><span class="p">[</span><span class="s2">&quot;kernel_dispatcher&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">order</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># in LO +=-=v</span>
             <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;NS_v&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_m&quot;</span><span class="p">]:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_p&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_p&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># in NLO -=v</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># in NLO -=v</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_v&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_v&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="s2">&quot;NS_m&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></div></div>
 </pre></div>
