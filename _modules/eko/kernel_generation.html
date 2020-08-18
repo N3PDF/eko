@@ -32,7 +32,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -322,12 +322,6 @@
                         <span class="o">+</span> <span class="p">((</span><span class="n">e_m</span> <span class="o">@</span> <span class="n">r1</span> <span class="o">@</span> <span class="n">e_p</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">r_p</span> <span class="o">-</span> <span class="n">r_m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
                     <span class="p">)</span>
                     <span class="n">e</span> <span class="o">+=</span> <span class="n">a1</span> <span class="o">*</span> <span class="p">(</span><span class="n">u1</span> <span class="o">@</span> <span class="n">e</span><span class="p">)</span> <span class="o">-</span> <span class="n">a0</span> <span class="o">*</span> <span class="p">(</span><span class="n">e</span> <span class="o">@</span> <span class="n">u1</span><span class="p">)</span>
-                    <span class="c1"># e += exp_m * (a0 - a1) * (e_m @ r1 @ e_m)</span>
-                    <span class="c1"># e += exp_p * (a0 - a1) * (e_p @ r1 @ e_p)</span>
-                    <span class="c1"># fmt: off</span>
-                    <span class="c1"># e -= exp_m * (a0 - a1 * np.exp(ln_a * (r_m - r_p))) * (e_m @ r1 @ e_p)/(r_p - r_m - 1)</span>
-                    <span class="c1"># e -= exp_p * (a0 - a1 * np.exp(ln_a * (r_p - r_m))) * (e_p @ r1 @ e_m)/(r_m - r_p - 1)</span>
-                    <span class="c1"># fmt: on</span>
                 <span class="n">pdf</span> <span class="o">=</span> <span class="n">basis_function</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">lnx</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">e</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">pdf</span>
 

@@ -32,7 +32,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -207,17 +207,17 @@ Here all distributions simply evolve with their associated operator.
 The singlet sector and the full valence distributions are given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\dSV{n_f}{Q_1^2} &amp;= \ES{Q^2_1}{Q_0^2} \dSV{n_f}{Q_0^2}\\
-\dVf{n_f}{Q_1^2} &amp;= \Ev{Q^2_1}{Q_0^2} \dVf{n_f}{Q_0^2}\end{split}\]</div>
+\dVf{n_f}{Q_1^2} &amp;= \Ensv{Q^2_1}{Q_0^2} \dVf{n_f}{Q_0^2}\end{split}\]</div>
 <p>If the valence-like/singlet-like non-singlet distributions are already active,
 they keep evolving from themselves</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{j}{n_f}{Q_1^2} &amp;= \Em{Q^2_1}{Q_0^2} \dVj{j}{n_f}{Q_0^2} \\
-\dTj{j}{n_f}{Q_1^2} &amp;= \Ep{Q^2_1}{Q_0^2} \dTj{j}{n_f}{Q_0^2} \\
+\[\begin{split}\dVj{j}{n_f}{Q_1^2} &amp;= \Ensm{Q^2_1}{Q_0^2} \dVj{j}{n_f}{Q_0^2} \\
+\dTj{j}{n_f}{Q_1^2} &amp;= \Ensp{Q^2_1}{Q_0^2} \dTj{j}{n_f}{Q_0^2} \\
  &amp;\text{for }j=3,\ldots, n_f^2-1\end{split}\]</div>
 <p>Otherwise, they are generated dynamically by the full valence distribution or the singlet
 sector respectively</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{k}{n_f}{Q_1^2} &amp;= \Ev{Q^2_1}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\[\begin{split}\dVj{k}{n_f}{Q_1^2} &amp;= \Ensv{Q^2_1}{Q_0^2} \dVf{n_f}{Q_0^2} \\
 \dTj{k}{n_f}{Q_1^2} &amp;= \left(1, 0\right)\ES{Q_1^2}{Q_0^2}\dSV{n_f}{Q_0^2} \\
  &amp;\text{for }k=(n_f+1)^2-1, \ldots, 35\end{split}\]</div>
 <p>and making the distributions thus linearly dependent <span class="math notranslate nohighlight">\(V_k = V, T_k = \Sigma\)</span>
@@ -230,22 +230,22 @@ sector respectively</p>
 The singlet sector and the full valence distributions are given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\dSV{n_f+1}{Q_1^2}    &amp;= \ES{Q^2_1}{m_{q+1}^2} \ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
-\dVj{j}{n_f+1}{Q_1^2} &amp;= \Ev{Q^2_1}{m_{q+1}^2} \Ev{m_{q+1}^2}{Q^2_0} \dVf{n_f}{Q_0^2}\end{split}\]</div>
+\dVj{j}{n_f+1}{Q_1^2} &amp;= \Ensv{Q^2_1}{m_{q+1}^2} \Ensv{m_{q+1}^2}{Q^2_0} \dVf{n_f}{Q_0^2}\end{split}\]</div>
 <p>If the valence-like/singlet-like non-singlet distributions have already been active before
 the threshold, they keep evolving from themselves</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{j}{n_f+1}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+1}^2}\Em{m_{q+1}^2}{Q_0^2} \dVj{j}{n_f}{Q_0^2}\\
-\dTj{j}{n_f+1}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+1}^2}\Ep{m_{q+1}^2}{Q_0^2} \dTj{j}{n_f}{Q_0^2}\\
+\[\begin{split}\dVj{j}{n_f+1}{Q_1^2} &amp;= \Ensm{Q^2_1}{m_{q+1}^2}\Ensm{m_{q+1}^2}{Q_0^2} \dVj{j}{n_f}{Q_0^2}\\
+\dTj{j}{n_f+1}{Q_1^2} &amp;= \Ensp{Q^2_1}{m_{q+1}^2}\Ensp{m_{q+1}^2}{Q_0^2} \dTj{j}{n_f}{Q_0^2}\\
  &amp;\text{for }j=3,\ldots, n_f^2-1\end{split}\]</div>
 <p>The two distributions which become active after crossing the threshold are generated
 dynamically up to the threshold and then set themselves apart:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{j'}{n_f+1}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
-\dTj{j'}{n_f+1}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+1}^2}\left(1,0\right)\ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
+\[\begin{split}\dVj{j'}{n_f+1}{Q_1^2} &amp;= \Ensm{Q^2_1}{m_{q+1}^2}\Ensv{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{j'}{n_f+1}{Q_1^2} &amp;= \Ensp{Q^2_1}{m_{q+1}^2}\left(1,0\right)\ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
  &amp; \text{for }j'=(n_f+1)^2-1\end{split}\]</div>
 <p>The remaining distributions are generated again purely dynamically:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{k}{n_f+1}{Q_1^2} &amp;= \Ev{Q^2_1}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\[\begin{split}\dVj{k}{n_f+1}{Q_1^2} &amp;= \Ensv{Q^2_1}{m_{q+1}^2}\Ensv{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
 \dTj{k}{n_f+1}{Q_1^2} &amp;= \left(1, 0\right)\ES{Q_1^2}{m_{q+1}^2}\ES{m_{q+1}^2}{Q_0^2}\dSV{n_f}{Q_0^2} \\
  &amp; \text{for }k=(n_f+2)^2-1, \ldots, 35\end{split}\]</div>
 </div>
@@ -256,28 +256,28 @@ dynamically up to the threshold and then set themselves apart:</p>
 The singlet sector and the full valence distributions are given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\dSV{n_f+2}{Q_1^2}    &amp;= \ES{Q^2_1}{m_{q+2}^2} \ES{m_{q+2}^2}{m_{q+1}^2} \ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
-\dVj{j}{n_f+2}{Q_1^2} &amp;= \Ev{Q^2_1}{m_{q+2}^2} \Ev{m_{q+2}^2}{m_{q+1}^2} \Ev{m_{q+1}^2}{Q^2_0} \dVf{n_f}{Q_0^2}\end{split}\]</div>
+\dVj{j}{n_f+2}{Q_1^2} &amp;= \Ensv{Q^2_1}{m_{q+2}^2} \Ensv{m_{q+2}^2}{m_{q+1}^2} \Ensv{m_{q+1}^2}{Q^2_0} \dVf{n_f}{Q_0^2}\end{split}\]</div>
 <p>If the valence-like/singlet-like non-singlet distributions have already been active before
 the threshold, they keep evolving from themselves</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{j}{n_f+2}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+2}^2}\Em{m_{q+2}^2}{m_{q+1}^2}\Em{m_{q+1}^2}{Q_0^2} \dVj{j}{n_f}{Q_0^2}\\
-\dTj{j}{n_f+2}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+2}^2}\Ep{m_{q+2}^2}{m_{q+1}^2}\Ep{m_{q+1}^2}{Q_0^2} \dTj{j}{n_f}{Q_0^2}\\
+\[\begin{split}\dVj{j}{n_f+2}{Q_1^2} &amp;= \Ensm{Q^2_1}{m_{q+2}^2}\Ensm{m_{q+2}^2}{m_{q+1}^2}\Ensm{m_{q+1}^2}{Q_0^2} \dVj{j}{n_f}{Q_0^2}\\
+\dTj{j}{n_f+2}{Q_1^2} &amp;= \Ensp{Q^2_1}{m_{q+2}^2}\Ensp{m_{q+2}^2}{m_{q+1}^2}\Ensp{m_{q+1}^2}{Q_0^2} \dTj{j}{n_f}{Q_0^2}\\
  &amp;\text{for }j=3,\ldots, n_f^2-1\end{split}\]</div>
 <p>The two distributions which become active after crossing the <em>first</em> threshold are generated
 dynamically up to the first threshold and then set themselves apart:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{j'}{n_f+2}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+2}^2}\Em{m_{q+2}^2}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
-\dTj{j'}{n_f+2}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+2}^2}\Ep{m_{q+2}^2}{m_{q+1}^2}\left(1,0\right)\ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
+\[\begin{split}\dVj{j'}{n_f+2}{Q_1^2} &amp;= \Ensm{Q^2_1}{m_{q+2}^2}\Ensm{m_{q+2}^2}{m_{q+1}^2}\Ensv{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{j'}{n_f+2}{Q_1^2} &amp;= \Ensp{Q^2_1}{m_{q+2}^2}\Ensp{m_{q+2}^2}{m_{q+1}^2}\left(1,0\right)\ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
  &amp; \text{for }j'=(n_f+1)^2-1\end{split}\]</div>
 <p>The two distributions which become active after crossing the <em>second</em> threshold are generated
 dynamically up to the second threshold and then set themselves apart:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{j''}{n_f+2}{Q_1^2} &amp;= \Em{Q^2_1}{m_{q+2}^2}\Ev{m_{q+2}^2}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
-\dTj{j''}{n_f+2}{Q_1^2} &amp;= \Ep{Q^2_1}{m_{q+2}^2}\left(1,0\right)\ES{m_{q+2}^2}{m_{q+1}^2} \ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
+\[\begin{split}\dVj{j''}{n_f+2}{Q_1^2} &amp;= \Ensm{Q^2_1}{m_{q+2}^2}\Ensv{m_{q+2}^2}{m_{q+1}^2}\Ensv{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\dTj{j''}{n_f+2}{Q_1^2} &amp;= \Ensp{Q^2_1}{m_{q+2}^2}\left(1,0\right)\ES{m_{q+2}^2}{m_{q+1}^2} \ES{m_{q+1}^2}{Q_0^2} \dSV{n_f}{Q_0^2} \\
  &amp; \text{for }j''=(n_f+2)^2-1\end{split}\]</div>
 <p>If there is a distributions remaining it is generated again purely dynamically:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{k}{n_f+2}{Q_1^2} &amp;= \Ev{Q^2_1}{m_{q+2}^2}\Ev{m_{q+2}^2}{m_{q+1}^2}\Ev{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
+\[\begin{split}\dVj{k}{n_f+2}{Q_1^2} &amp;= \Ensv{Q^2_1}{m_{q+2}^2}\Ensv{m_{q+2}^2}{m_{q+1}^2}\Ensv{m_{q+1}^2}{Q_0^2} \dVf{n_f}{Q_0^2} \\
 \dTj{k}{n_f+2}{Q_1^2} &amp;= \left(1, 0\right)\ES{Q_1^2}{m_{q+2}^2}\ES{m_{q+2}^2}{m_{q+1}^2}\ES{m_{q+1}^2}{Q_0^2}\dSV{n_f}{Q_0^2} \\
  &amp; \text{for }k=(n_f+3)^2-1\end{split}\]</div>
 </div>
@@ -288,36 +288,36 @@ The singlet sector and the full valence distributions are given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\dSV{6}{Q_1^2} &amp;=       \ES{Q^2_1}{m_{t}^2} \ES{m_t^2}{m_{b}^2} \\
                &amp; \quad  \ES{m_b^2}{m_{c}^2} \ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2} \\
-\dVj{j}{6}{Q_1^2} &amp;=      \Ev{Q^2_1}{m_{t}^2}   \Ev{m_{t}^2}{m_{b}^2} \\
-                  &amp; \quad \Ev{m_{b}^2}{m_{c}^2} \Ev{m_{c}^2}{Q^2_0} \dVf{3}{Q_0^2}\end{split}\]</div>
+\dVj{j}{6}{Q_1^2} &amp;=      \Ensv{Q^2_1}{m_{t}^2}   \Ensv{m_{t}^2}{m_{b}^2} \\
+                  &amp; \quad \Ensv{m_{b}^2}{m_{c}^2} \Ensv{m_{c}^2}{Q^2_0} \dVf{3}{Q_0^2}\end{split}\]</div>
 <p>The valence-like/singlet-like non-singlet distributions containing flavours up to strange,
 they keep evolving from themselves</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{j}{6}{Q_1^2} &amp;=      \Em{Q^2_1}{m_{t}^2}   \Em{m_{t}^2}{m_{b}^2} \\
-                  &amp; \quad \Em{m_{b}^2}{m_{c}^2} \Em{m_{c}^2}{Q_0^2} \dVj{j}{3}{Q_0^2} \\
-\dTj{j}{6}{Q_1^2} &amp;=      \Ep{Q^2_1}{m_{t}^2}   \Ep{m_t^2}{m_{qb}^2} \\
-                  &amp; \quad \Ep{m_{b}^2}{m_{c}^2} \Ep{m_{c}^2}{Q_0^2} \dTj{j}{3}{Q_0^2} \\
+\[\begin{split}\dVj{j}{6}{Q_1^2} &amp;=      \Ensm{Q^2_1}{m_{t}^2}   \Ensm{m_{t}^2}{m_{b}^2} \\
+                  &amp; \quad \Ensm{m_{b}^2}{m_{c}^2} \Ensm{m_{c}^2}{Q_0^2} \dVj{j}{3}{Q_0^2} \\
+\dTj{j}{6}{Q_1^2} &amp;=      \Ensp{Q^2_1}{m_{t}^2}   \Ensp{m_t^2}{m_{qb}^2} \\
+                  &amp; \quad \Ensp{m_{b}^2}{m_{c}^2} \Ensp{m_{c}^2}{Q_0^2} \dTj{j}{3}{Q_0^2} \\
  &amp;\text{for }j=3,8\end{split}\]</div>
 <p>The two distributions containing charm are generated dynamically up to the first threshold
 and then set themselves apart:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{15}{6}{Q_1^2} &amp;=      \Em{Q^2_1}{m_{t}^2}   \Em{m_{t}^2}{m_{b}^2} \\
-                   &amp; \quad \Em{m_{b}^2}{m_{c}^2} \Ev{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
-\dTj{15}{6}{Q_1^2} &amp;=      \Ep{Q^2_1}{m_{t}^2} \Ep{m_{t}^2}{m_{b}^2} \\
-                   &amp; \quad \Ep{m_{b}^2}{m_{c}^2} \left(1,0\right)\ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2}\end{split}\]</div>
+\[\begin{split}\dVj{15}{6}{Q_1^2} &amp;=      \Ensm{Q^2_1}{m_{t}^2}   \Ensm{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \Ensm{m_{b}^2}{m_{c}^2} \Ensv{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
+\dTj{15}{6}{Q_1^2} &amp;=      \Ensp{Q^2_1}{m_{t}^2} \Ensp{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \Ensp{m_{b}^2}{m_{c}^2} \left(1,0\right)\ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2}\end{split}\]</div>
 <p>The two distributions containing bottom are generated dynamically up to the second threshold
 and then set themselves apart:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{24}{6}{Q_1^2} &amp;=      \Em{Q^2_1}{m_{t}^2}   \Em{m_{t}^2}{m_{b}^2} \\
-                   &amp; \quad \Ev{m_{b}^2}{m_{c}^2} \Ev{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
-\dTj{24}{6}{Q_1^2} &amp;=      \Ep{Q^2_1}{m_{t}^2} \Ep{m_{t}^2}{m_{b}^2} \\
+\[\begin{split}\dVj{24}{6}{Q_1^2} &amp;=      \Ensm{Q^2_1}{m_{t}^2}   \Ensm{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \Ensv{m_{b}^2}{m_{c}^2} \Ensv{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
+\dTj{24}{6}{Q_1^2} &amp;=      \Ensp{Q^2_1}{m_{t}^2} \Ensp{m_{t}^2}{m_{b}^2} \\
                    &amp; \quad \left(1,0\right) \ES{m_{b}^2}{m_{c}^2} \ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2}\end{split}\]</div>
 <p>The two distributions containing top are generated dynamically up to the third threshold
 and then set themselves apart:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\dVj{35}{6}{Q_1^2} &amp;=      \Em{Q^2_1}{m_{t}^2}   \Ev{m_{t}^2}{m_{b}^2} \\
-                   &amp; \quad \Ev{m_{b}^2}{m_{c}^2} \Ev{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
-\dTj{35}{6}{Q_1^2} &amp;=      \Ep{Q^2_1}{m_{t}^2} \left(1,0\right) \ES{m_{t}^2}{m_{b}^2} \\
+\[\begin{split}\dVj{35}{6}{Q_1^2} &amp;=      \Ensm{Q^2_1}{m_{t}^2}   \Ensv{m_{t}^2}{m_{b}^2} \\
+                   &amp; \quad \Ensv{m_{b}^2}{m_{c}^2} \Ensv{m_{c}^2}{Q_0^2} \dVf{3}{Q_0^2} \\
+\dTj{35}{6}{Q_1^2} &amp;=      \Ensp{Q^2_1}{m_{t}^2} \left(1,0\right) \ES{m_{t}^2}{m_{b}^2} \\
                    &amp; \quad \ES{m_{b}^2}{m_{c}^2} \ES{m_{c}^2}{Q_0^2} \dSV{3}{Q_0^2}\end{split}\]</div>
 </div>
 </div>

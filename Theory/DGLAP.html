@@ -32,7 +32,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\bf{E}}_S({#1}\\leftarrow {#2})}", 2], "Ev": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ep": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Em": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2]}}})</script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -234,19 +234,20 @@ EKO in x-space and define <span class="math notranslate nohighlight">\(\hat{\mat
 <h3>LO Singlet Evolution<a class="headerlink" href="#lo-singlet-evolution" title="Permalink to this headline">¶</a></h3>
 <p>We find</p>
 <div class="math notranslate nohighlight">
-\[\frac{d}{da_s} \dSV{0}{a_s} = \frac{\gamma_S^{(0)}}{\beta_0 a_s} \cdot \dSV{0}{a_s}\]</div>
+\[\frac{d}{da_s} \dSV{0}{a_s} = \frac{\mathbf R_0{a_s} \cdot \dSV{0}{a_s}\]</div>
 <p>with</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\gamma_S^{(0)} = \begin{pmatrix}
+\[\begin{split}\mathbf R_0 = \frac{\gamma_S^{(0)}}{\beta_0}\,, \qquad
+\gamma_S^{(0)} = \begin{pmatrix}
                             \gamma_{qq}^{(0)} &amp; \gamma_{qg}^{(0)}\\
                             \gamma_{gq}^{(0)} &amp; \gamma_{gg}^{(0)}
                         \end{pmatrix}\end{split}\]</div>
 <p>In order to exponentiate this matrix, we decompose it
-<span class="math notranslate nohighlight">\(\gamma_S^{(0)} = \lambda_+ {\mathbf e}_+ + \lambda_- {\mathbf e}_-\)</span> with
+<span class="math notranslate nohighlight">\(\mathbf R_0 = \lambda_+ {\mathbf e}_+ + \lambda_- {\mathbf e}_-\)</span> with
 the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</span> and the projectors <span class="math notranslate nohighlight">\(\mathbf e_{\pm}\)</span> given by <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id2">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\lambda_{\pm} &amp;= \frac 1 2 \left( \gamma_{qq}^{(0)} + \gamma_{gg}^{(0)} + \pm \sqrt{(\gamma_{qq}^{(0)}-\gamma_{gg}^{(0)})^2 + 4\gamma_{qg}^{(0)}\gamma_{gq}^{(0)}} \right)\\
-{\mathbf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \gamma_S^{(0)}  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
+\[\begin{split}\lambda_{\pm} &amp;= \frac 1 {2\beta_0} \left( \gamma_{qq}^{(0)} + \gamma_{gg}^{(0)} \pm \sqrt{(\gamma_{qq}^{(0)}-\gamma_{gg}^{(0)})^2 + 4\gamma_{qg}^{(0)}\gamma_{gq}^{(0)}} \right)\\
+{\mathbf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \mathbf R_0  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the 2x2 identity matrix in flavour space.
 The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
@@ -254,7 +255,7 @@ The projectors obey the usual properties, i.e.</p>
 <p>and thus the exponentiation becomes easier again.</p>
 <p>The EKO is then given by</p>
 <div class="math notranslate nohighlight">
-\[\tilde {\mathbf{E}}^{(0)}_{S}(a_s^1 \leftarrow a_s^0) = {\mathbf{e}}_-\exp\left[\ln(a_s^1/a_s^0) \lambda_{-}/\beta_0 \right] + {\mathbf{e}}_+\exp\left[\ln(a_s^1/a_s^0) \lambda_{+}/\beta_0 \right]\]</div>
+\[\ESk{0}{a_s^1}{a_s^0} = \em \exp\left[\ln(a_s^1/a_s^0) \lambda_{-} \right] + \ep \exp\left[\ln(a_s^1/a_s^0) \lambda_{+} \right]\]</div>
 </div>
 </div>
 <div class="section" id="next-to-leading-order">
@@ -265,7 +266,7 @@ The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \tilde f_{ns}^{(1)}(a_s) = \frac{\gamma_{ns}^{(0)} a_s + \gamma_{ns}^{(1)} a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} \cdot \tilde f_{ns}^{(1)}(a_s)\]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma_{ns} \in \{\gamma_{ns,+},\gamma_{ns,-}=\gamma_{ns,v}\}\)</span>.</p>
-<p>To solve this equation we provide the same strategies as <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id3">[Vog05]</a> :</p>
+<p>To solve this equation we provide the same 4 strategies as <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id3">[Vog05]</a> :</p>
 <ul class="simple">
 <li><p>the <em>exact</em> solution to the EKO is given by the exponentials: <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id4">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a></p></li>
 </ul>
@@ -290,6 +291,27 @@ The projectors obey the usual properties, i.e.</p>
 </div>
 <div class="section" id="nlo-singlet-evolution">
 <h3>NLO Singlet Evolution<a class="headerlink" href="#nlo-singlet-evolution" title="Permalink to this headline">¶</a></h3>
+<p>We find</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{da_s} \dSV{1}{a_s} = \frac{\gamma_{S}^{(0)} a_s + \gamma_{S}^{(1)} a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} \cdot \dSV{1}{a_s}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)} \gamma_{S}^{(1)} \neq \gamma_{S}^{(1)} \gamma_{S}^{(0)}\)</span>.</p>
+<p>We are seeking for an perturbative solution around the (exact) leading order operator: <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id6">[Vog05]</a></p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{da_s} \dSV{1}{a_s} = \frac{\mathbf R (a_s)}{a_s} \cdot \dSV{1}{a_s}\,, \quad
+\mathbf R (a_s) = \sum\limits_{k=0} a_s^k \mathbf R_{k}\]</div>
+<p>where in NLO we find (in addition to the LO operator)</p>
+<div class="math notranslate nohighlight">
+\[\mathbf R_1 = \gamma_{S}^{(1)}/\beta_0 - b_1 \gamma_{S}^{(0)}
+\quad \text{and} \quad
+\mathbf R_k = - b_1 \mathbf R_{k-1}\,\text{for}\,k&gt;1\]</div>
+<p>Likewise for the solution we set</p>
+<div class="math notranslate nohighlight">
+\[\dSV{1}{a_s^1} = \mathbf U (a_s^1) \ESk{1}{a_s^1}{a_s^0} {\mathbf U}^{-1} (a_s^0) \dSV{1}{a_s^0}\,, \quad
+\mathbf U (a_s) = \mathbf I + \sum\limits_{k=1} a_s^k \mathbf U_k\]</div>
+<p>Using the LO projectors we can make an ansatz for the evolution operator coefficients <span class="math notranslate nohighlight">\(\mathbf U_k\)</span></p>
+<div class="math notranslate nohighlight">
+\[\mathbf U_k = \em \mathbf U_k \em + \em \mathbf U_k \ep + \ep \mathbf U_k \em + \ep \mathbf U_k \ep\]</div>
+<p>and find:</p>
 </div>
 </div>
 </div>
