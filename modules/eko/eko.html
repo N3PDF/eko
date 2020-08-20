@@ -32,7 +32,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -105,7 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Code/Operators.html">Operator Hierachy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">eko</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">API</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">eko package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="eko.anomalous_dimensions.html">eko.anomalous_dimensions package</a></li>
@@ -209,10 +209,10 @@
 <code class="sig-prename descclassname">eko.</code><code class="sig-name descname">run_dglap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko.html#run_dglap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.run_dglap" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function takes a DGLAP theory configuration dictionary
 and performs the solution of the DGLAP equations.</p>
-<p>The EKO <span class="math notranslate nohighlight">\(\hat E_{k,j}(a_s^1\leftarrow a_s^0)\)</span> is determined in order
+<p>The EKO <span class="math notranslate nohighlight">\(\mathbf E_{k,j}(a_s^1\leftarrow a_s^0)\)</span> is determined in order
 to fullfill the following evolution</p>
 <div class="math notranslate nohighlight">
-\[f(x_k,a_s^1) = \hat E_{k,j}(a_s^1\leftarrow a_s^0) f(x_j,a_s^0)\]</div>
+\[\mathbf f(x_k,a_s^1) = \mathbf E_{k,j}(a_s^1\leftarrow a_s^0) \mathbf f(x_j,a_s^0)\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – input card - see <a class="reference internal" href="../../Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>

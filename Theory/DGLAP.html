@@ -32,7 +32,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -117,7 +117,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Code/Operators.html">Operator Hierachy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">API</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
@@ -196,30 +196,36 @@
 <p>with <span class="math notranslate nohighlight">\(\mathbf P\)</span> the Altarelli-Parisi splitting functions (see <a class="reference internal" href="pQCD.html"><span class="doc">pQCD ingredients</span></a>).
 In <a class="reference internal" href="Mellin.html"><span class="doc">Mellin space</span></a> the DGLAP equations are just differential equations:</p>
 <div class="math notranslate nohighlight">
-\[\frac{d}{d\ln(\mu_F^2)} \tilde{\mathbf{f}}(N,\mu_F^2) = -\gamma(N,a_s) \cdot \tilde{\mathbf{f}}(N,\mu_F^2)\]</div>
+\[\frac{d}{d\ln(\mu_F^2)} \tilde{\mathbf{f}}(\mu_F^2) = -\gamma(a_s) \cdot \tilde{\mathbf{f}}(\mu_F^2)\]</div>
 <p>(Note the additional minus in the definition for <span class="math notranslate nohighlight">\(\gamma\)</span>).</p>
-<p>We change the evolution variable to (monotonic) <a class="reference internal" href="pQCD.html#strong-coupling"><span class="std std-ref">Strong Coupling</span></a> <span class="math notranslate nohighlight">\(a_s(\mu_F^2)\)</span>
+<p>We change the evolution variable to the (monotonic) <a class="reference internal" href="pQCD.html#strong-coupling"><span class="std std-ref">Strong Coupling</span></a> <span class="math notranslate nohighlight">\(a_s(\mu_F^2)\)</span>
 and the equations to solve become</p>
 <div class="math notranslate nohighlight">
-\[\frac{d}{da_s} \tilde{\mathbf{f}}(N,a_s)
-    = \frac{d\ln(\mu_F^2)}{da_s} \cdot \frac{d \tilde{\mathbf{f}}(N,\mu_F^2)}{d\ln(\mu_F^2)}
-    = -\frac{1}{\beta(a_s)} \cdot \gamma(N,a_s) \cdot \tilde{\mathbf{f}}(N,a_s)\]</div>
+\[\frac{d}{da_s} \tilde{\mathbf{f}}(a_s)
+    = \frac{d\ln(\mu_F^2)}{da_s} \cdot \frac{d \tilde{\mathbf{f}}(\mu_F^2)}{d\ln(\mu_F^2)}
+    = -\frac{1}{\beta(a_s)} \cdot \gamma(a_s) \cdot \tilde{\mathbf{f}}(a_s)\]</div>
 <p>The (formal) solution can then be written in terms of an evolution kernel operator (EKO) <span class="math notranslate nohighlight">\(\mathbf E\)</span></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\tilde{\mathbf{f}}(N,a_s^1) &amp;= \tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0) \cdot \tilde{\mathbf{f}}(N,a_s^0)\\
-\tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0) &amp;= \exp\left[-\int\limits_{a_s^0}^{a_s^1} \frac{\gamma(N,a_s)}{\beta(a_s)} da_s \right]\end{split}\]</div>
+\[\begin{split}\tilde{\mathbf{f}}(a_s^1) &amp;= \tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0) \cdot \tilde{\mathbf{f}}(a_s^0)\\
+\tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0) &amp;= \exp\left[-\int\limits_{a_s^0}^{a_s^1} \frac{\gamma(a_s)}{\beta(a_s)} da_s \right]\end{split}\]</div>
 <p>Using <a class="reference internal" href="Interpolation.html"><span class="doc">Interpolation</span></a> on both the inital and final PDF, we can then discretize the
-EKO in x-space and define <span class="math notranslate nohighlight">\(\hat{\mathbf{E}}_{k,j}\)</span> (represented by
+EKO in x-space and define <span class="math notranslate nohighlight">\({\mathbf{E}}_{k,j}\)</span> (represented by
 <a class="reference internal" href="../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a>) by</p>
 <div class="math notranslate nohighlight">
-\[\hat{\mathbf{E}}_{k,j}(a_s^1 \leftarrow a_s^0) = \mathcal{M}^{-1}\left[\tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0)\tilde p_j(N)\right](x_k)\]</div>
+\[{\mathbf{E}}_{k,j}(a_s^1 \leftarrow a_s^0) = \mathcal{M}^{-1}\left[\tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0)\tilde p_j\right](x_k)\]</div>
 <p>Now, we can write the solution to DGLAP in a true matrix operator scheme and find</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{f}(x_k,a_s^1) = \hat{\mathbf{E}}_{k,j}(a_s^1 \leftarrow a_s^0) \mathbf{f}(x_j,a_s^0)\]</div>
+\[\mathbf{f}(x_k,a_s^1) = {\mathbf{E}}_{k,j}(a_s^1 \leftarrow a_s^0) \mathbf{f}(x_j,a_s^0)\]</div>
 <p>In the non-singlet sector the equations decouple and we do not need to worry about matrices.</p>
 <p>The issue of matching conditions when crossing flavor thresholds is dicussed in a seperate <a class="reference internal" href="Matching.html"><span class="doc">document</span></a></p>
 <div class="section" id="leading-order">
 <h2>Leading Order<a class="headerlink" href="#leading-order" title="Permalink to this headline">¶</a></h2>
+<p>Expanding the anomalous dimension <span class="math notranslate nohighlight">\(\gamma(a_s)\)</span> and the beta function <span class="math notranslate nohighlight">\(\beta(a_s)\)</span>
+to LO we obtain the (exact) EKO:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ln \tilde {\mathbf E}^{(0)}(a_s^1 \leftarrow a_s^0) &amp;= \gamma^{(0)}\int\limits_{a_s^0}^{a_s^1} \frac{1}{\beta_0 a_s} da_s = \gamma^{(0)} \cdot j^{(0,0)}(a_s^1,a_s^0)\\
+j^{(0,0)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{1}{\beta_0 a_s} = \frac{\ln(a_s^1/a_s^0)}{\beta_0}\end{split}\]</div>
+<p>In LO we always use the <em>exact</em> solution.</p>
 <div class="section" id="lo-non-singlet-evolution">
 <h3>LO Non-Singlet Evolution<a class="headerlink" href="#lo-non-singlet-evolution" title="Permalink to this headline">¶</a></h3>
 <p>We find</p>
@@ -228,26 +234,23 @@ EKO in x-space and define <span class="math notranslate nohighlight">\(\hat{\mat
 <p>with <span class="math notranslate nohighlight">\(\gamma_{ns}^{(0)} = \gamma_{ns,+}^{(0)} = \gamma_{ns,-}^{(0)} = \gamma_{ns,v}^{(0)} = \gamma_{qq}^{(0)}\)</span>.</p>
 <p>The EKO is then given by a simple exponential <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id1">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
-\[\tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) = \exp\left[\ln(a_s^1/a_s^0) \gamma_{ns}^{(0)}/\beta_0 \right]\]</div>
+\[\tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) = \exp\left[\gamma_{ns}^{(0)} \ln(a_s^1/a_s^0)/\beta_0 \right]\]</div>
 </div>
 <div class="section" id="lo-singlet-evolution">
 <h3>LO Singlet Evolution<a class="headerlink" href="#lo-singlet-evolution" title="Permalink to this headline">¶</a></h3>
 <p>We find</p>
 <div class="math notranslate nohighlight">
-\[\frac{d}{da_s} \dSV{0}{a_s} = \frac{\mathbf R_0}{a_s} \cdot \dSV{0}{a_s}\]</div>
-<p>with</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\mathbf R_0 = \frac{\gamma_S^{(0)}}{\beta_0}\,, \qquad
+\[\begin{split}\frac{d}{da_s} \dSV{0}{a_s} = \frac{\gamma_S^{(0)}}{\beta_0 a_s} \cdot \dSV{0}{a_s}\,, \qquad
 \gamma_S^{(0)} = \begin{pmatrix}
                             \gamma_{qq}^{(0)} &amp; \gamma_{qg}^{(0)}\\
                             \gamma_{gq}^{(0)} &amp; \gamma_{gg}^{(0)}
                         \end{pmatrix}\end{split}\]</div>
-<p>In order to exponentiate this matrix, we decompose it
-<span class="math notranslate nohighlight">\(\mathbf R_0 = \lambda_+ {\mathbf e}_+ + \lambda_- {\mathbf e}_-\)</span> with
+<p>In order to exponentiate the EKO, we decompose it
+<span class="math notranslate nohighlight">\(\ln \mathbf{\tilde E}^{(0)}_S = \lambda_+ {\mathbf e}_+ + \lambda_- {\mathbf e}_-\)</span> with
 the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</span> and the projectors <span class="math notranslate nohighlight">\(\mathbf e_{\pm}\)</span> given by <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id2">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\lambda_{\pm} &amp;= \frac 1 {2\beta_0} \left( \gamma_{qq}^{(0)} + \gamma_{gg}^{(0)} \pm \sqrt{(\gamma_{qq}^{(0)}-\gamma_{gg}^{(0)})^2 + 4\gamma_{qg}^{(0)}\gamma_{gq}^{(0)}} \right)\\
-{\mathbf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \mathbf R_0  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
+\[\begin{split}\lambda_{\pm} &amp;= \frac 1 {2} \left( \ln \tilde E_{qq}^{(0)} + \ln \tilde E_{gg}^{(0)} \pm \sqrt{(\ln \tilde E_{qq}^{(0)}-\ln \tilde E_{gg}^{(0)})^2 + 4\ln \tilde E_{qg}^{(0)}\ln \tilde E_{gq}^{(0)}} \right)\\
+{\mathbf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \ln \mathbf{\tilde E}^{(0)}_S  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the 2x2 identity matrix in flavour space.
 The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
@@ -255,29 +258,32 @@ The projectors obey the usual properties, i.e.</p>
 <p>and thus the exponentiation becomes easier again.</p>
 <p>The EKO is then given by</p>
 <div class="math notranslate nohighlight">
-\[\ESk{0}{a_s^1}{a_s^0} = \em \exp\left[\ln(a_s^1/a_s^0) \lambda_{-} \right] + \ep \exp\left[\ln(a_s^1/a_s^0) \lambda_{+} \right]\]</div>
+\[\ESk{0}{a_s^1}{a_s^0} = \em \exp(\lambda_{-}) + \ep \exp(\lambda_{+})\]</div>
 </div>
 </div>
 <div class="section" id="next-to-leading-order">
 <h2>Next-to-Leading Order<a class="headerlink" href="#next-to-leading-order" title="Permalink to this headline">¶</a></h2>
+<p>Expanding the anomalous dimension <span class="math notranslate nohighlight">\(\gamma(a_s)\)</span> and the beta function <span class="math notranslate nohighlight">\(\beta(a_s)\)</span>
+to NLO we obtain the (exact) EKO <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id3">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id4">[Vog05]</a>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ln \tilde{\mathbf E}^{(1)}(a_s^1 \leftarrow a_s^0) &amp;= \gamma^{(0)} \cdot j^{(0,1)}(a_s^1,a_s^0) + \gamma^{(1)} \cdot j^{(1,1)}(a_s^1,a_s^0)\\
+j^{(1,1)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} = \frac{1}{\beta_1}\ln\left(\frac{1+b_1 a_s^1}{1+b_1 a_s^0}\right)\\
+j^{(0,1)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{a_s}{\beta_0 a_s^2 + \beta_1 a_s^3} = j^{(0,0)}(a_s^1,a_s^0) - b_1 j^{(1,1)}(a_s^1,a_s^0)\end{split}\]</div>
+<p>In NLO we employ 4 different strategies to define the EKO:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">method='exact'</span></code>: use the <em>exact</em> solution as defined above</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">method='LL'</span></code>: use the leading logarithmic approximation, i.e. use the <em>exact</em> LO solution and substitute
+<span class="math notranslate nohighlight">\(j^{(1,1)}(a_s^1,a_s^0) \to j^{(1,1)}_{\tLL}(a_s^1,a_s^0) = \frac 1 {\beta_0}(a_s^1 - a_s^0)\)</span>
+and <span class="math notranslate nohighlight">\(j^{(0,1)}(a_s^1,a_s^0) \to j^{(0,1)}_{\tLL}(a_s^1,a_s^0) = j^{(0,0)}(a_s^1,a_s^0) - b_1 j^{(1,1)}_{\tLL}(a_s^1,a_s^0)\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">method='truncated'</span></code>: here the implementation depends on the sector</p></li>
+</ul>
 <div class="section" id="nlo-non-singlet-evolution">
 <h3>NLO Non-Singlet Evolution<a class="headerlink" href="#nlo-non-singlet-evolution" title="Permalink to this headline">¶</a></h3>
 <p>We find</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \tilde f_{ns}^{(1)}(a_s) = \frac{\gamma_{ns}^{(0)} a_s + \gamma_{ns}^{(1)} a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} \cdot \tilde f_{ns}^{(1)}(a_s)\]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma_{ns} \in \{\gamma_{ns,+},\gamma_{ns,-}=\gamma_{ns,v}\}\)</span>.</p>
-<p>To solve this equation we provide the same 4 strategies as <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id3">[Vog05]</a> :</p>
-<ul class="simple">
-<li><p>the <em>exact</em> solution to the EKO is given by the exponentials: <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id4">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\begin{split}\tilde E^{(1),\text{exact}}_{ns}(a_s^1 \leftarrow a_s^0) &amp;= \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \exp\left[\ln\left(\frac{1+a_s^1 b_1}{1 + a_s^0 b_1}\right)\bar \gamma_{ns}^{(1)} \right] \\
-\bar \gamma_{ns}^{(1)} &amp;= \frac{\gamma_{ns}^{(1)}}{\beta_1} - \frac{\gamma_{ns}^{(0)}}{\beta_0}\end{split}\]</div>
-<ul class="simple">
-<li><p>expanding the <em>argument</em> of the exponential of the new term we obtain:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\tilde E^{(1),\text{LL}}_{ns}(a_s^1 \leftarrow a_s^0) = \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \exp\left[(a_s^1 - a_s^0) b_1 \bar \gamma_{ns}^{(1)} \right]\]</div>
+<p>In addition to the exact and the LL solution we define the truncated solutions <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a> :</p>
 <ul class="simple">
 <li><p>expanding the <em>argument</em> of the exponential of the new term we obtain, but keeping the order:</p></li>
 </ul>
@@ -295,30 +301,38 @@ The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \dSV{1}{a_s} = \frac{\gamma_{S}^{(0)} a_s + \gamma_{S}^{(1)} a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} \cdot \dSV{1}{a_s}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)} \gamma_{S}^{(1)} \neq \gamma_{S}^{(1)} \gamma_{S}^{(0)}\)</span>.</p>
-<p>We are seeking for an perturbative solution around the (exact) leading order operator: <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id6">[Vog05]</a></p>
+<p>For the exact and the LL solution we use again the decomposition defined in LO (now using
+<span class="math notranslate nohighlight">\(\ln \tilde{\mathbf E}^{(1)}\)</span> of course).</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">method='truncated'</span></code> we seek for an perturbative solution around the
+(exact) leading order operator: We set <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id6">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \dSV{1}{a_s} = \frac{\mathbf R (a_s)}{a_s} \cdot \dSV{1}{a_s}\,, \quad
 \mathbf R (a_s) = \sum\limits_{k=0} a_s^k \mathbf R_{k}\]</div>
-<p>where in NLO we find (in addition to the LO operator)</p>
+<p>where in NLO we find</p>
 <div class="math notranslate nohighlight">
-\[\mathbf R_1 = \gamma_{S}^{(1)}/\beta_0 - b_1 \gamma_{S}^{(0)}
+\[\mathbf R_0 = \gamma_{S}^{(0)}/\beta_0\,,\quad
+\mathbf R_1 = \gamma_{S}^{(1)}/\beta_0 - b_1 \gamma_{S}^{(0)}
 \quad \text{and} \quad
 \mathbf R_k = - b_1 \mathbf R_{k-1}\,\text{for}\,k&gt;1\]</div>
-<p>Likewise for the solution we set</p>
+<p>We make an ansatz for the solution</p>
 <div class="math notranslate nohighlight">
-\[\dSV{1}{a_s^1} = \mathbf U (a_s^1) \ESk{1}{a_s^1}{a_s^0} {\mathbf U}^{-1} (a_s^0) \dSV{1}{a_s^0}\,, \quad
+\[\ESk{1}{a_s^1}{a_s^0} = \mathbf U (a_s^1) \ESk{0}{a_s^1}{a_s^0} {\mathbf U}^{-1} (a_s^0), \quad
 \mathbf U (a_s) = \mathbf I + \sum\limits_{k=1} a_s^k \mathbf U_k\]</div>
 <p>Inserting this ansatz into the differential equation and sorting by powers of <span class="math notranslate nohighlight">\(a_s\)</span>, we
-obtain a recursive set of commutator relations:</p>
+obtain a recursive set of commutator relations for the evolution operator coefficients
+<span class="math notranslate nohighlight">\(\mathbf U_k\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}[\mathbf U_1, \mathbf R_0] &amp;= \mathbf R_1 - \mathbf U_1\\
-[\mathbf U_k, \mathbf R_0] &amp;= \mathbf R_k + \sum\limits_{j=1}^{k-1} \mathbf R_{k-j} \mathbf U_j - k \mathbf U_k = \mathbf{\tilde{R}}_k - k \mathbf U_k\,,k&gt;1\end{split}\]</div>
+[\mathbf U_k, \mathbf R_0] &amp;= \mathbf R_k + \sum\limits_{j=1}^{k-1} \mathbf R_{k-j} \mathbf U_j - k \mathbf U_k = \mathbf{R}_k' - k \mathbf U_k\,,k&gt;1\end{split}\]</div>
 <p>Multiplying these equations with <span class="math notranslate nohighlight">\(\mathbf e_{\pm}\)</span> from left and right and using the identity</p>
 <div class="math notranslate nohighlight">
 \[\mathbf U_k = \em \mathbf U_k \em + \em \mathbf U_k \ep + \ep \mathbf U_k \em + \ep \mathbf U_k \ep\]</div>
-<p>one can obtain the evolution operator coefficients <span class="math notranslate nohighlight">\(\mathbf U_k\)</span> and find:</p>
+<p>we obtain the <span class="math notranslate nohighlight">\(\mathbf U_k\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf U_k = \frac{ \em \mathbf{\tilde{R}}_k \em + \em \mathbf{\tilde{R}}_k \ep } k + \frac{\ep \mathbf{\tilde{R}}_k \em}{r_- - r_+ - k} + \frac{\ep \mathbf{\tilde{R}}_k \ep}{r_+ - r_- -k}\]</div>
+\[\mathbf U_k = \frac{ \em \mathbf{R}_k' \em + \em \mathbf{R}_k' \ep } k + \frac{\ep \mathbf{R}_k' \em}{r_- - r_+ - k} + \frac{\em \mathbf{R}_k' \ep}{r_+ - r_- -k}\]</div>
+<p>Now, we can define the truncated solution:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf {\tilde E}^{(1),\text{truncated}}_{S}(a_s^1 \leftarrow a_s^0) = \mathbf{\tilde E}^{(0)}_{S}(a_s^1 \leftarrow a_s^0) + a_s^1 \mathbf U_1 \mathbf{\tilde E}^{(0)}_{S}(a_s^1 \leftarrow a_s^0) - a_s^0 \mathbf{\tilde E}^{(0)}_{S}(a_s^1 \leftarrow a_s^0) \mathbf U_1\]</div>
 </div>
 </div>
 </div>

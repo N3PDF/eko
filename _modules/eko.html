@@ -32,7 +32,7 @@
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../Code/Operators.html">Operator Hierachy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">eko</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">API</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
@@ -182,11 +182,11 @@
 <span class="sd">        This function takes a DGLAP theory configuration dictionary</span>
 <span class="sd">        and performs the solution of the DGLAP equations.</span>
 
-<span class="sd">        The EKO :math:`\hat E_{k,j}(a_s^1\leftarrow a_s^0)` is determined in order</span>
+<span class="sd">        The EKO :math:`\mathbf E_{k,j}(a_s^1\leftarrow a_s^0)` is determined in order</span>
 <span class="sd">        to fullfill the following evolution</span>
 
 <span class="sd">        .. math::</span>
-<span class="sd">            f(x_k,a_s^1) = \hat E_{k,j}(a_s^1\leftarrow a_s^0) f(x_j,a_s^0)</span>
+<span class="sd">            \mathbf f(x_k,a_s^1) = \mathbf E_{k,j}(a_s^1\leftarrow a_s^0) \mathbf f(x_j,a_s^0)</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

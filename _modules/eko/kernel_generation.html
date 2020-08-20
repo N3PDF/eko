@@ -32,7 +32,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Code/Operators.html">Operator Hierachy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">eko</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">API</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
@@ -220,6 +220,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interpol_dispatcher</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">numba_it</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="c1"># check</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">order</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;exact&quot;</span><span class="p">,</span> <span class="s2">&quot;LL&quot;</span><span class="p">,</span> <span class="s2">&quot;truncated&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown evolution mode </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;exact&quot;</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Kernels: In LO we use the exact solution always!&quot;</span><span class="p">)</span>
+        <span class="c1"># set</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interpol_dispatcher</span> <span class="o">=</span> <span class="n">interpol_dispatcher</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">constants</span> <span class="o">=</span> <span class="n">constants</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
@@ -262,7 +269,7 @@
         <span class="k">elif</span> <span class="n">mod_ev</span> <span class="o">==</span> <span class="s2">&quot;TRN&quot;</span><span class="p">:</span>
             <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;truncated&quot;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown evolution mode </span><span class="si">{</span><span class="n">mod_ev</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">interpol_dispatcher</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">numba_it</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="KernelDispatcher.collect_kers"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.kernel_generation.KernelDispatcher.collect_kers">[docs]</a>    <span class="k">def</span> <span class="nf">collect_kers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">basis_function</span><span class="p">):</span>
@@ -296,9 +303,14 @@
                 <span class="n">nf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">CA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">CF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">TF</span>
             <span class="p">)</span>
             <span class="n">b1</span> <span class="o">=</span> <span class="n">beta_1</span> <span class="o">/</span> <span class="n">beta_0</span>
-            <span class="n">j11</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span>
-                <span class="k">lambda</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">b1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a0</span> <span class="o">*</span> <span class="n">b1</span><span class="p">))</span>
-            <span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;LL&quot;</span><span class="p">:</span>
+                <span class="n">j11</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span>
+                    <span class="k">lambda</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">beta_0</span> <span class="o">*</span> <span class="p">(</span><span class="n">a1</span> <span class="o">-</span> <span class="n">a0</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">j11</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span>
+                    <span class="k">lambda</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">:</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">b1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">a0</span> <span class="o">*</span> <span class="n">b1</span><span class="p">))</span>
+                <span class="p">)</span>
             <span class="n">j01</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">:</span> <span class="n">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">)</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">j11</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">))</span>
 
         <span class="c1"># singlet kernels</span>
