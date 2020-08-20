@@ -251,7 +251,7 @@ the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</sp
 <p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the 2x2 identity matrix in flavour space.
 The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
-\[{\mathbf e}_{\pm} \cdot {\mathbf e}_{\pm} = {\mathbf e}_{\pm} \qquad {\mathbf e}_{\pm} \cdot {\mathbf e}_{\mp} = 0\]</div>
+\[{\mathbf e}_{\pm} \cdot {\mathbf e}_{\pm} = {\mathbf e}_{\pm}\,,\quad {\mathbf e}_{\pm} \cdot {\mathbf e}_{\mp} = 0\,,\quad \ep + \em = \mathbf I\]</div>
 <p>and thus the exponentiation becomes easier again.</p>
 <p>The EKO is then given by</p>
 <div class="math notranslate nohighlight">
@@ -308,10 +308,17 @@ The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
 \[\dSV{1}{a_s^1} = \mathbf U (a_s^1) \ESk{1}{a_s^1}{a_s^0} {\mathbf U}^{-1} (a_s^0) \dSV{1}{a_s^0}\,, \quad
 \mathbf U (a_s) = \mathbf I + \sum\limits_{k=1} a_s^k \mathbf U_k\]</div>
-<p>Using the LO projectors we can make an ansatz for the evolution operator coefficients <span class="math notranslate nohighlight">\(\mathbf U_k\)</span></p>
+<p>Inserting this ansatz into the differential equation and sorting by powers of <span class="math notranslate nohighlight">\(a_s\)</span>, we
+obtain a recursive set of commutator relations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}[\mathbf U_1, \mathbf R_0] &amp;= \mathbf R_1 - \mathbf U_1\\
+[\mathbf U_k, \mathbf R_0] &amp;= \mathbf R_k + \sum\limits_{j=1}^{k-1} \mathbf R_{k-j} \mathbf U_j - k \mathbf U_k = \mathbf{\tilde{R}}_k - k \mathbf U_k\,,k&gt;1\end{split}\]</div>
+<p>Multiplying these equations with <span class="math notranslate nohighlight">\(\mathbf e_{\pm}\)</span> from left and right and using the identity</p>
 <div class="math notranslate nohighlight">
 \[\mathbf U_k = \em \mathbf U_k \em + \em \mathbf U_k \ep + \ep \mathbf U_k \em + \ep \mathbf U_k \ep\]</div>
-<p>and find:</p>
+<p>one can obtain the evolution operator coefficients <span class="math notranslate nohighlight">\(\mathbf U_k\)</span> and find:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf U_k = \frac{ \em \mathbf{\tilde{R}}_k \em + \em \mathbf{\tilde{R}}_k \ep } k + \frac{\ep \mathbf{\tilde{R}}_k \em}{r_- - r_+ - k} + \frac{\ep \mathbf{\tilde{R}}_k \ep}{r_+ - r_- -k}\]</div>
 </div>
 </div>
 </div>
