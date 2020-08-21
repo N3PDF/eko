@@ -223,8 +223,8 @@ EKO in x-space and define <span class="math notranslate nohighlight">\({\mathbf{
 <p>Expanding the anomalous dimension <span class="math notranslate nohighlight">\(\gamma(a_s)\)</span> and the beta function <span class="math notranslate nohighlight">\(\beta(a_s)\)</span>
 to LO we obtain the (exact) EKO:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\ln \tilde {\mathbf E}^{(0)}(a_s^1 \leftarrow a_s^0) &amp;= \gamma^{(0)}\int\limits_{a_s^0}^{a_s^1} \frac{1}{\beta_0 a_s} da_s = \gamma^{(0)} \cdot j^{(0,0)}(a_s^1,a_s^0)\\
-j^{(0,0)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{1}{\beta_0 a_s} = \frac{\ln(a_s^1/a_s^0)}{\beta_0}\end{split}\]</div>
+\[\begin{split}\ln \tilde {\mathbf E}^{(0)}(a_s^1 \leftarrow a_s^0) &amp;= \gamma^{(0)}\int\limits_{a_s^0}^{a_s^1} \frac{da_s}{\beta_0 a_s} = \gamma^{(0)} \cdot j^{(0,0)}(a_s^1,a_s^0)\\
+j^{(0,0)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{d a_s}{\beta_0 a_s} = \frac{\ln(a_s^1/a_s^0)}{\beta_0}\end{split}\]</div>
 <p>In LO we always use the <em>exact</em> solution.</p>
 <div class="section" id="lo-non-singlet-evolution">
 <h3>LO Non-Singlet Evolution<a class="headerlink" href="#lo-non-singlet-evolution" title="Permalink to this headline">¶</a></h3>
@@ -267,8 +267,8 @@ The projectors obey the usual properties, i.e.</p>
 to NLO we obtain the (exact) EKO <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id3">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id4">[Vog05]</a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\ln \mathbf{\tilde E}^{(1)}(a_s^1 \leftarrow a_s^0) &amp;= \gamma^{(0)} \cdot j^{(0,1)}(a_s^1,a_s^0) + \gamma^{(1)} \cdot j^{(1,1)}(a_s^1,a_s^0)\\
-j^{(1,1)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} = \frac{1}{\beta_1}\ln\left(\frac{1+b_1 a_s^1}{1+b_1 a_s^0}\right)\\
-j^{(0,1)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{a_s}{\beta_0 a_s^2 + \beta_1 a_s^3} = j^{(0,0)}(a_s^1,a_s^0) - b_1 j^{(1,1)}(a_s^1,a_s^0)\end{split}\]</div>
+j^{(1,1)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1}\!da_s\,\frac{a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} = \frac{1}{\beta_1}\ln\left(\frac{1+b_1 a_s^1}{1+b_1 a_s^0}\right)\\
+j^{(0,1)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1}\!da_s\,\frac{a_s}{\beta_0 a_s^2 + \beta_1 a_s^3} = j^{(0,0)}(a_s^1,a_s^0) - b_1 j^{(1,1)}(a_s^1,a_s^0)\end{split}\]</div>
 <p>Note that we recover the LO solution:</p>
 <div class="math notranslate nohighlight">
 \[\ln \mathbf{\tilde E}^{(1)}(a_s^1 \leftarrow a_s^0) = \ln \mathbf{\tilde E}^{(0)}(a_s^1 \leftarrow a_s^0) + j^{(1,1)}(a_s^1,a_s^0)(\gamma^{(1)} - b_1 \gamma^{(0)})\]</div>
