@@ -203,7 +203,7 @@ and the equations to solve become</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \tilde{\mathbf{f}}(a_s)
     = \frac{d\ln(\mu_F^2)}{da_s} \cdot \frac{d \tilde{\mathbf{f}}(\mu_F^2)}{d\ln(\mu_F^2)}
-    = -\frac{1}{\beta(a_s)} \cdot \gamma(a_s) \cdot \tilde{\mathbf{f}}(a_s)\]</div>
+    = -\frac{\gamma(a_s)}{\beta(a_s)} \cdot \tilde{\mathbf{f}}(a_s)\]</div>
 <p>The (formal) solution can then be written in terms of an evolution kernel operator (EKO) <span class="math notranslate nohighlight">\(\mathbf E\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\tilde{\mathbf{f}}(a_s^1) &amp;= \tilde{\mathbf{E}}(a_s^1 \leftarrow a_s^0) \cdot \tilde{\mathbf{f}}(a_s^0)\\
@@ -266,10 +266,13 @@ The projectors obey the usual properties, i.e.</p>
 <p>Expanding the anomalous dimension <span class="math notranslate nohighlight">\(\gamma(a_s)\)</span> and the beta function <span class="math notranslate nohighlight">\(\beta(a_s)\)</span>
 to NLO we obtain the (exact) EKO <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id3">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id4">[Vog05]</a>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\ln \tilde{\mathbf E}^{(1)}(a_s^1 \leftarrow a_s^0) &amp;= \gamma^{(0)} \cdot j^{(0,1)}(a_s^1,a_s^0) + \gamma^{(1)} \cdot j^{(1,1)}(a_s^1,a_s^0)\\
+\[\begin{split}\ln \mathbf{\tilde E}^{(1)}(a_s^1 \leftarrow a_s^0) &amp;= \gamma^{(0)} \cdot j^{(0,1)}(a_s^1,a_s^0) + \gamma^{(1)} \cdot j^{(1,1)}(a_s^1,a_s^0)\\
 j^{(1,1)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} = \frac{1}{\beta_1}\ln\left(\frac{1+b_1 a_s^1}{1+b_1 a_s^0}\right)\\
 j^{(0,1)}(a_s^1,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s^1} \frac{a_s}{\beta_0 a_s^2 + \beta_1 a_s^3} = j^{(0,0)}(a_s^1,a_s^0) - b_1 j^{(1,1)}(a_s^1,a_s^0)\end{split}\]</div>
-<p>In NLO we employ 4 different strategies to define the EKO:</p>
+<p>Note that we recover the LO solution:</p>
+<div class="math notranslate nohighlight">
+\[\ln \mathbf{\tilde E}^{(1)}(a_s^1 \leftarrow a_s^0) = \ln \mathbf{\tilde E}^{(0)}(a_s^1 \leftarrow a_s^0) + j^{(1,1)}(a_s^1,a_s^0)(\gamma^{(1)} - b_1 \gamma^{(0)})\]</div>
+<p>In NLO we employ 3 different strategies to define the EKO:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">method='exact'</span></code>: use the <em>exact</em> solution as defined above</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">method='LL'</span></code>: use the leading logarithmic approximation, i.e. use the <em>exact</em> LO solution and substitute
@@ -285,15 +288,15 @@ and <span class="math notranslate nohighlight">\(j^{(0,1)}(a_s^1,a_s^0) \to j^{(
 <p>with <span class="math notranslate nohighlight">\(\gamma_{ns} \in \{\gamma_{ns,+},\gamma_{ns,-}=\gamma_{ns,v}\}\)</span>.</p>
 <p>In addition to the exact and the LL solution we define the truncated solutions <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a> :</p>
 <ul class="simple">
-<li><p>expanding the <em>argument</em> of the exponential of the new term we obtain, but keeping the order:</p></li>
+<li><p>expanding the <em>argument</em> of the exponential of the new term but keeping the order we obtain:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\tilde E^{(1),\text{truncated'}}_{ns}(a_s^1 \leftarrow a_s^0) = \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \frac{1 + a_s^1 b_1 \bar \gamma_{ns}^{(1)}}{1 + a_s^0 b_1 \bar \gamma_{ns}^{(1)}}\]</div>
+\[\tilde E^{(1),\text{truncated'}}_{ns}(a_s^1 \leftarrow a_s^0) = \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \frac{1 + a_s^1/\beta_0 (\gamma_{ns}^{(1)} - b_1 \gamma_{ns}^{(0)})}{1 + a_s^0/\beta_0 (\gamma_{ns}^{(1)} - b_1 \gamma_{ns}^{(0)})}\]</div>
 <ul class="simple">
-<li><p>expanding the <em>whole</em> exponential of the new term we obtain:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">method='truncated'</span></code>: expanding the <em>whole</em> exponential of the new term we obtain:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\tilde E^{(1),\text{truncated}}_{ns}(a_s^1 \leftarrow a_s^0) = \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \left[1 + (a_s^1 - a_s^0) b_1 \bar \gamma_{ns}^{(1)} \right]\]</div>
+\[\tilde E^{(1),\text{truncated}}_{ns}(a_s^1 \leftarrow a_s^0) = \tilde E^{(0)}_{ns}(a_s^1 \leftarrow a_s^0) \left[1 + (a_s^1 - a_s^0)/\beta_0 (\gamma_{ns}^{(1)} - b_1 \gamma_{ns}^{(0)}) \right]\]</div>
 </div>
 <div class="section" id="nlo-singlet-evolution">
 <h3>NLO Singlet Evolution<a class="headerlink" href="#nlo-singlet-evolution" title="Permalink to this headline">¶</a></h3>
