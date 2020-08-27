@@ -214,31 +214,25 @@ order results. The results are also determined in Mellin space in
 terms of the anomalous dimensions (note the additional sign!)</p>
 <div class="math notranslate nohighlight">
 \[\gamma(N) = - \mathcal{M}[\mathbf{P}(x)](N)\]</div>
-<div class="section" id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="module-eko.anomalous_dimensions.lo">
-<span id="eko-anomalous-dimensions-lo-module"></span><h2>eko.anomalous_dimensions.lo module<a class="headerlink" href="#module-eko.anomalous_dimensions.lo" title="Permalink to this headline">¶</a></h2>
-<p>This file contains the leading-order Altarelli-Parisi splitting kernels.</p>
-<p>For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
 <dl class="py function">
-<dt id="eko.anomalous_dimensions.lo.eigensystem_gamma_singlet_0">
-<code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">eigensystem_gamma_singlet_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gamma_S_0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#eigensystem_gamma_singlet_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.eigensystem_gamma_singlet_0" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the Eigensystem of the leading-order singlet anomalous dimension matrix</p>
+<dt id="eko.anomalous_dimensions.exp_singlet">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.</code><code class="sig-name descname">exp_singlet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gamma_S</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions.html#exp_singlet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.exp_singlet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the exponential and the eigensystem of the anomalous dimension matrix</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_S_0</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – leading-order singlet anomalous dimension matrix</p>
+<dd class="field-odd"><p><strong>gamma_S</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimension matrix</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>lambda_p</strong> (<em>complex</em>) – positive eigenvalue of the Leading-order singlet anomalous dimension matrix
-<span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>lambda_m</strong> (<em>complex</em>) – negative eigenvalue of the Leading-order singlet anomalous dimension matrix
-<span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>e_p</strong> (<em>np.array</em>) – projector for the positive eigenvalue of the Leading-order singlet anomalous
-dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
-<li><p><strong>e_m</strong> (<em>np.array</em>) – projector for the negative eigenvalue of the Leading-order singlet anomalous
-dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p></li>
+<li><p><strong>exp</strong> (<em>np.ndarray</em>) – exponential of the singlet anomalous dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</span></p></li>
+<li><p><strong>lambda_p</strong> (<em>complex</em>) – positive eigenvalue of the singlet anomalous dimension matrix
+<span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</span></p></li>
+<li><p><strong>lambda_m</strong> (<em>complex</em>) – negative eigenvalue of the singlet anomalous dimension matrix
+<span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</span></p></li>
+<li><p><strong>e_p</strong> (<em>np.ndarray</em>) – projector for the positive eigenvalue of the singlet anomalous
+dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</span></p></li>
+<li><p><strong>e_m</strong> (<em>np.ndarray</em>) – projector for the negative eigenvalue of the singlet anomalous
+dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</span></p></li>
 </ul>
 </p>
 </dd>
@@ -246,12 +240,21 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_singlet_0" title="eko.anomalous_dimensions.lo.gamma_singlet_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_singlet_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_singlet_0" title="eko.anomalous_dimensions.lo.gamma_singlet_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.lo.gamma_singlet_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p>
+</dd>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_singlet_1" title="eko.anomalous_dimensions.nlo.gamma_singlet_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_singlet_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(1)}(N)\)</span></p>
 </dd>
 </dl>
 </div>
 </dd></dl>
 
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-eko.anomalous_dimensions.lo">
+<span id="eko-anomalous-dimensions-lo-module"></span><h2>eko.anomalous_dimensions.lo module<a class="headerlink" href="#module-eko.anomalous_dimensions.lo" title="Permalink to this headline">¶</a></h2>
+<p>This file contains the leading-order Altarelli-Parisi splitting kernels.</p>
+<p>For the sake of unification we keep a unique function signature for <em>all</em> coefficients.</p>
 <dl class="py function">
 <dt id="eko.anomalous_dimensions.lo.gamma_gg_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_gg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)">int</a></span></em>, <em class="sig-param"><span class="n">CA</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em>, <em class="sig-param"><span class="n">CF</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_gg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_gg_0" title="Permalink to this definition">¶</a></dt>
@@ -267,7 +270,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_0</strong> – Leading-order gluon-gluon anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{gg}^{(0)}(N)\)</span></p>
+<dd class="field-even"><p><strong>gamma_gg_0</strong> – Leading-order gluon-gluon anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{gg}^{(0)}(N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
@@ -290,7 +293,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma_qg_0</strong> – Leading-order gluon-quark anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{gq}^{(0)}(N)\)</span></p>
+<dd class="field-even"><p><strong>gamma_gq_0</strong> – Leading-order gluon-quark anomalous dimension <span class="math notranslate nohighlight">\(\gamma_{gq}^{(0)}(N)\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
