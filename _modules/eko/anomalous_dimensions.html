@@ -209,7 +209,7 @@
 
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
-<span class="sd">        exp : np.ndarray</span>
+<span class="sd">        exp : numpy.ndarray</span>
 <span class="sd">          exponential of the singlet anomalous dimension matrix :math:`\gamma_{S}(N)`</span>
 <span class="sd">        lambda_p : complex</span>
 <span class="sd">          positive eigenvalue of the singlet anomalous dimension matrix</span>
@@ -217,10 +217,10 @@
 <span class="sd">        lambda_m : complex</span>
 <span class="sd">          negative eigenvalue of the singlet anomalous dimension matrix</span>
 <span class="sd">          :math:`\gamma_{S}(N)`</span>
-<span class="sd">        e_p : np.ndarray</span>
+<span class="sd">        e_p : numpy.ndarray</span>
 <span class="sd">          projector for the positive eigenvalue of the singlet anomalous</span>
 <span class="sd">          dimension matrix :math:`\gamma_{S}(N)`</span>
-<span class="sd">        e_m : np.ndarray</span>
+<span class="sd">        e_m : numpy.ndarray</span>
 <span class="sd">          projector for the negative eigenvalue of the singlet anomalous</span>
 <span class="sd">          dimension matrix :math:`\gamma_{S}(N)`</span>
 
@@ -237,7 +237,7 @@
     <span class="n">lambda_p</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">det</span><span class="p">)</span>
     <span class="n">lambda_m</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">det</span><span class="p">)</span>
     <span class="c1"># compute projectors</span>
-    <span class="n">identity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">identity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
     <span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">det</span>
     <span class="n">e_p</span> <span class="o">=</span> <span class="o">+</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S</span> <span class="o">-</span> <span class="n">lambda_m</span> <span class="o">*</span> <span class="n">identity</span><span class="p">)</span>
     <span class="n">e_m</span> <span class="o">=</span> <span class="o">-</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S</span> <span class="o">-</span> <span class="n">lambda_p</span> <span class="o">*</span> <span class="n">identity</span><span class="p">)</span>
