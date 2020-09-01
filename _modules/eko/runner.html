@@ -179,6 +179,7 @@
 <span class="sd">    This file contains the main application class of eko</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">copy</span>
 
 <span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">interpolation</span>
 <span class="kn">from</span> <span class="nn">eko.kernel_generation</span> <span class="kn">import</span> <span class="n">KernelDispatcher</span>
@@ -206,23 +207,24 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">setup</span><span class="p">):</span>
         <span class="c1"># Print theory id setup</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;init Runner with </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">setup</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;keep_input&quot;</span><span class="p">,</span><span class="kc">False</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
 
         <span class="c1"># Load constants and compute parameters</span>
         <span class="n">constants</span> <span class="o">=</span> <span class="n">Constants</span><span class="p">()</span>
         <span class="c1"># setup basis grid</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_basis_function_dispatcher</span> <span class="o">=</span> <span class="n">interpolation</span><span class="o">.</span><span class="n">InterpolatorDispatcher</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
-            <span class="n">setup</span>
-        <span class="p">)</span>
+        <span class="n">bfd</span> <span class="o">=</span> <span class="n">interpolation</span><span class="o">.</span><span class="n">InterpolatorDispatcher</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">bfd</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
         <span class="c1"># Generate the dispatcher for the kernels</span>
-        <span class="n">kd</span> <span class="o">=</span> <span class="n">KernelDispatcher</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
-            <span class="n">setup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basis_function_dispatcher</span><span class="p">,</span> <span class="n">constants</span>
-        <span class="p">)</span>
+        <span class="n">kd</span> <span class="o">=</span> <span class="n">KernelDispatcher</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">bfd</span><span class="p">,</span> <span class="n">constants</span><span class="p">)</span>
         <span class="c1"># FNS</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span> <span class="o">=</span> <span class="n">ThresholdsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
+        <span class="n">tc</span> <span class="o">=</span> <span class="n">ThresholdsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">q2_ref</span><span class="p">)</span>
         <span class="c1"># strong coupling</span>
-        <span class="n">sc</span> <span class="o">=</span> <span class="n">StrongCoupling</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="p">,</span> <span class="n">constants</span><span class="p">)</span>
+        <span class="n">sc</span> <span class="o">=</span> <span class="n">StrongCoupling</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">constants</span><span class="p">)</span>
         <span class="c1"># setup operator grid</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span> <span class="o">=</span> <span class="n">OperatorGrid</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">kd</span><span class="p">,)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span> <span class="o">=</span> <span class="n">OperatorGrid</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">kd</span><span class="p">,)</span>
 
 <div class="viewcode-block" id="Runner.get_operators"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner.get_operators">[docs]</a>    <span class="k">def</span> <span class="nf">get_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; compute the actual operators &quot;&quot;&quot;</span>
@@ -238,17 +240,13 @@
 <span class="sd">                ret : eko.output.Output</span>
 <span class="sd">                    output instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># propagate grid</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_basis_function_dispatcher</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
-        <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">q2_ref</span><span class="p">)</span>
         <span class="c1"># add all operators</span>
         <span class="n">Q2grid</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_operators</span><span class="p">():</span>
             <span class="n">final_scale</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">q2_final</span>
             <span class="n">Q2grid</span><span class="p">[</span><span class="n">final_scale</span><span class="p">]</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">get_raw_operators</span><span class="p">()</span>
-        <span class="n">ret</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q2grid</span>
-        <span class="k">return</span> <span class="n">ret</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q2grid</span>
+        <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

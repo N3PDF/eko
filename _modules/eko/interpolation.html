@@ -694,6 +694,17 @@
             <span class="s2">&quot;interpolation_is_log&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">ret</span></div></div>
+
+<div class="viewcode-block" id="make_grid"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.make_grid">[docs]</a><span class="k">def</span> <span class="nf">make_grid</span><span class="p">(</span><span class="n">n_low</span><span class="p">,</span> <span class="n">n_mid</span><span class="p">,</span> <span class="n">n_high</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span><span class="n">x_low</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">x_high</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1e-4</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n_mid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">x_low</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">xgrid_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_low</span><span class="p">,</span> <span class="n">n_low</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n_high</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">x_high</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">xgrid_mid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_low</span><span class="p">,</span> <span class="n">x_high</span><span class="p">,</span> <span class="n">n_mid</span><span class="p">)</span>
+    <span class="n">xgrid_high</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span> <span class="n">x_high</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">n_high</span><span class="p">)</span>
+    <span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xgrid_low</span><span class="p">,</span> <span class="n">xgrid_mid</span><span class="p">,</span> <span class="n">xgrid_high</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">xgrid</span></div>
 </pre></div>
 
            </div>

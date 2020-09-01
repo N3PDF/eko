@@ -270,7 +270,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
             <span class="n">q2_grid</span><span class="o">=</span><span class="n">q2_grid</span><span class="p">,</span>
             <span class="n">xgrid</span><span class="o">=</span><span class="n">kernel_dispatcher</span><span class="o">.</span><span class="n">interpol_dispatcher</span><span class="o">.</span><span class="n">xgrid_raw</span><span class="p">,</span>
-            <span class="n">order</span><span class="o">=</span><span class="n">kernel_dispatcher</span><span class="o">.</span><span class="n">order</span><span class="p">,</span>
+            <span class="n">order</span><span class="o">=</span><span class="n">kernel_dispatcher</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">],</span>
             <span class="c1"># debug options</span>
             <span class="n">debug_skip_singlet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
             <span class="n">debug_skip_non_singlet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -313,7 +313,7 @@
 <span class="sd">                obj : cls</span>
 <span class="sd">                    created object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">q2_grid</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]</span>
+        <span class="n">q2_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float_</span><span class="p">)</span>
         <span class="n">obj</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">q2_grid</span><span class="p">,</span> <span class="n">thresholds_config</span><span class="p">,</span> <span class="n">strong_coupling</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">)</span>
         <span class="c1"># set debug options</span>
         <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;debug_skip_singlet&quot;</span><span class="p">,</span> <span class="s2">&quot;debug_skip_non_singlet&quot;</span><span class="p">]:</span>

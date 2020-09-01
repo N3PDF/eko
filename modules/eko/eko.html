@@ -991,6 +991,11 @@ be created again).</p>
 
 </dd></dl>
 
+<dl class="py function">
+<dt id="eko.interpolation.make_grid">
+<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">make_grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_low</span></em>, <em class="sig-param"><span class="n">n_mid</span></em>, <em class="sig-param"><span class="n">n_high</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">x_min</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">x_low</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">x_high</span><span class="o">=</span><span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">x_max</span><span class="o">=</span><span class="default_value">0.9999</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#make_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.make_grid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 <div class="section" id="module-eko.kernel_generation">
 <span id="eko-kernel-generation-module"></span><h2>eko.kernel_generation module<a class="headerlink" href="#module-eko.kernel_generation" title="Permalink to this headline">¶</a></h2>
@@ -1008,7 +1013,7 @@ the following parameters:</p>
 </div></blockquote>
 <dl class="py class">
 <dt id="eko.kernel_generation.KernelDispatcher">
-<em class="property">class </em><code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">KernelDispatcher</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">interpol_dispatcher</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">method</span></em>, <em class="sig-param"><span class="n">numba_it</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.kernel_generation.</code><code class="sig-name descname">KernelDispatcher</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">interpol_dispatcher</span></em>, <em class="sig-param"><span class="n">constants</span></em>, <em class="sig-param"><span class="n">numba_it</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernel_generation.html#KernelDispatcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernel_generation.KernelDispatcher" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Does the common preparation for the kernel functions.</p>
 <dl class="field-list simple">
@@ -1052,7 +1057,7 @@ actual Mellin implementation</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>PTO : required, perturbative order</p></li>
-<li><p>ModEv : optional, method to solve RGE, default=EXA</p></li>
+<li><p>ModEv : optional, method to solve RGE, default=EXA=iterate-exact</p></li>
 </ul>
 </div></blockquote>
 <dl class="field-list simple">
