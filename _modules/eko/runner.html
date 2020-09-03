@@ -194,21 +194,21 @@
 
 <div class="viewcode-block" id="Runner"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner">[docs]</a><span class="k">class</span> <span class="nc">Runner</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Represents a single input configuration.</span>
+<span class="sd">    Represents a single input configuration.</span>
 
-<span class="sd">        For details about the configuration, see :doc:`here &lt;/Code/IO&gt;`</span>
+<span class="sd">    For details about the configuration, see :doc:`here &lt;/Code/IO&gt;`</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            setup : dict</span>
-<span class="sd">                input configurations</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        setup : dict</span>
+<span class="sd">            input configurations</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">setup</span><span class="p">):</span>
         <span class="c1"># Print theory id setup</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;init Runner with </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">setup</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;keep_input&quot;</span><span class="p">,</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;keep_input&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
 
         <span class="c1"># Load constants and compute parameters</span>
@@ -224,7 +224,12 @@
         <span class="c1"># strong coupling</span>
         <span class="n">sc</span> <span class="o">=</span> <span class="n">StrongCoupling</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">constants</span><span class="p">)</span>
         <span class="c1"># setup operator grid</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span> <span class="o">=</span> <span class="n">OperatorGrid</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">tc</span><span class="p">,</span> <span class="n">sc</span><span class="p">,</span> <span class="n">kd</span><span class="p">,)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span> <span class="o">=</span> <span class="n">OperatorGrid</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+            <span class="n">setup</span><span class="p">,</span>
+            <span class="n">tc</span><span class="p">,</span>
+            <span class="n">sc</span><span class="p">,</span>
+            <span class="n">kd</span><span class="p">,</span>
+        <span class="p">)</span>
 
 <div class="viewcode-block" id="Runner.get_operators"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner.get_operators">[docs]</a>    <span class="k">def</span> <span class="nf">get_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; compute the actual operators &quot;&quot;&quot;</span>
@@ -233,12 +238,12 @@
 
 <div class="viewcode-block" id="Runner.get_output"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner.get_output">[docs]</a>    <span class="k">def</span> <span class="nf">get_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Collects all data for output (to run the evolution)</span>
+<span class="sd">        Collects all data for output (to run the evolution)</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                ret : eko.output.Output</span>
-<span class="sd">                    output instance</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            ret : eko.output.Output</span>
+<span class="sd">                output instance</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># add all operators</span>
         <span class="n">Q2grid</span> <span class="o">=</span> <span class="p">{}</span>

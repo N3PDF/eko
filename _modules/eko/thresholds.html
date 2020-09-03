@@ -191,18 +191,18 @@
 
 <div class="viewcode-block" id="Area"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.Area">[docs]</a><span class="k">class</span> <span class="nc">Area</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Sets up a single threhold area with a fixed configuration.</span>
+<span class="sd">    Sets up a single threhold area with a fixed configuration.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            q2_min : float</span>
-<span class="sd">                lower bound of the area</span>
-<span class="sd">            q2_max : float</span>
-<span class="sd">                upper bound of the area</span>
-<span class="sd">            q2_0 : float</span>
-<span class="sd">                reference point of the area (can be anywhere in the area)</span>
-<span class="sd">            nf : float</span>
-<span class="sd">                number of flavours in the area</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        q2_min : float</span>
+<span class="sd">            lower bound of the area</span>
+<span class="sd">        q2_max : float</span>
+<span class="sd">            upper bound of the area</span>
+<span class="sd">        q2_0 : float</span>
+<span class="sd">            reference point of the area (can be anywhere in the area)</span>
+<span class="sd">        nf : float</span>
+<span class="sd">            number of flavours in the area</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2_min</span><span class="p">,</span> <span class="n">q2_max</span><span class="p">,</span> <span class="n">q2_0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
@@ -221,19 +221,19 @@
 
 <div class="viewcode-block" id="Area.q2_towards"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.Area.q2_towards">[docs]</a>    <span class="k">def</span> <span class="nf">q2_towards</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Return q2_min or q2_max depending on whether</span>
-<span class="sd">            we are going towards the max or the min or q2</span>
-<span class="sd">            if we are alreay in the correct area</span>
+<span class="sd">        Return q2_min or q2_max depending on whether</span>
+<span class="sd">        we are going towards the max or the min or q2</span>
+<span class="sd">        if we are alreay in the correct area</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                q2 : float</span>
-<span class="sd">                    reference point</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            q2 : float</span>
+<span class="sd">                reference point</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                q2_next : float</span>
-<span class="sd">                    the closest point to q2 that is within the area</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            q2_next : float</span>
+<span class="sd">                the closest point to q2 that is within the area</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">q2</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_max</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_max</span>
@@ -252,36 +252,36 @@
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Checks whether q2 is contained in the area</span>
+<span class="sd">        Checks whether q2 is contained in the area</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                q2 : float</span>
-<span class="sd">                    testing point</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            q2 : float</span>
+<span class="sd">                testing point</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                contained : bool</span>
-<span class="sd">                    is point contained?</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            contained : bool</span>
+<span class="sd">                is point contained?</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_min</span> <span class="o">&lt;=</span> <span class="n">q2</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_max</span></div>
 
 
 <div class="viewcode-block" id="ThresholdsConfig"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig">[docs]</a><span class="k">class</span> <span class="nc">ThresholdsConfig</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The threshold class holds information about the thresholds any</span>
-<span class="sd">        Q2 has to pass in order to get there from a given q2_ref and scheme.</span>
+<span class="sd">    The threshold class holds information about the thresholds any</span>
+<span class="sd">    Q2 has to pass in order to get there from a given q2_ref and scheme.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            q2_ref : float</span>
-<span class="sd">                Reference q^2</span>
-<span class="sd">            scheme: str</span>
-<span class="sd">                Choice of scheme</span>
-<span class="sd">            threshold_list: list</span>
-<span class="sd">                List of q^2 thresholds should the scheme accept it</span>
-<span class="sd">            nf: int</span>
-<span class="sd">                Number of flavors for the FFNS</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        q2_ref : float</span>
+<span class="sd">            Reference q^2</span>
+<span class="sd">        scheme: str</span>
+<span class="sd">            Choice of scheme</span>
+<span class="sd">        threshold_list: list</span>
+<span class="sd">            List of q^2 thresholds should the scheme accept it</span>
+<span class="sd">        nf: int</span>
+<span class="sd">            Number of flavors for the FFNS</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2_ref</span><span class="p">,</span> <span class="n">scheme</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">threshold_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -350,23 +350,23 @@
 
 <div class="viewcode-block" id="ThresholdsConfig.nf_range"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.nf_range">[docs]</a>    <span class="k">def</span> <span class="nf">nf_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Iterate number of flavours, including min_nf *and* max_nf</span>
+<span class="sd">        Iterate number of flavours, including min_nf *and* max_nf</span>
 
-<span class="sd">            Yields</span>
-<span class="sd">            ------</span>
-<span class="sd">                nf : int</span>
-<span class="sd">                    number of flavour</span>
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">            nf : int</span>
+<span class="sd">                number of flavour</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_nf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_nf</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_setup_vfns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold_list</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Receives a list of thresholds and sets up the vfns scheme</span>
+<span class="sd">        Receives a list of thresholds and sets up the vfns scheme</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                threshold_list: list</span>
-<span class="sd">                    List of q^2 thresholds</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            threshold_list: list</span>
+<span class="sd">                List of q^2 thresholds</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">nf</span> <span class="o">=</span> <span class="mi">3</span>
         <span class="c1"># Force sorting</span>
@@ -387,19 +387,19 @@
 
 <div class="viewcode-block" id="ThresholdsConfig.get_path_from_q2_ref"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_path_from_q2_ref">[docs]</a>    <span class="k">def</span> <span class="nf">get_path_from_q2_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the Area path from q2_ref to q2.</span>
+<span class="sd">        Get the Area path from q2_ref to q2.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                q2: float</span>
-<span class="sd">                    Target value of q2</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            q2: float</span>
+<span class="sd">                Target value of q2</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                area_path: list</span>
-<span class="sd">                    List of Areas to go through in order to get from q2_ref</span>
-<span class="sd">                    to q2. The first one is the one containg q2_ref while the</span>
-<span class="sd">                    last one contains q2</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            area_path: list</span>
+<span class="sd">                List of Areas to go through in order to get from q2_ref</span>
+<span class="sd">                to q2. The first one is the one containg q2_ref while the</span>
+<span class="sd">                last one contains q2</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">current_area</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_areas_idx</span><span class="p">(</span><span class="n">q2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">current_area</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_area_ref</span><span class="p">:</span>
@@ -413,38 +413,38 @@
 
 <div class="viewcode-block" id="ThresholdsConfig.get_composition_path"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_composition_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_composition_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">n_thres</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Iterates all flavour targets.</span>
+<span class="sd">        Iterates all flavour targets.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                nf: int</span>
-<span class="sd">                    nf value of the target flavour</span>
-<span class="sd">                n_thres: int</span>
-<span class="sd">                    number of thresholds which are going to be crossed</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            nf: int</span>
+<span class="sd">                nf value of the target flavour</span>
+<span class="sd">            n_thres: int</span>
+<span class="sd">                number of thresholds which are going to be crossed</span>
 
-<span class="sd">            Yields</span>
-<span class="sd">            ------</span>
-<span class="sd">                name : string</span>
-<span class="sd">                    flavour name</span>
-<span class="sd">                path : list</span>
-<span class="sd">                    flavour path</span>
+<span class="sd">        Yields</span>
+<span class="sd">        ------</span>
+<span class="sd">            name : string</span>
+<span class="sd">                flavour name</span>
+<span class="sd">            path : list</span>
+<span class="sd">                flavour path</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">flavour</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_operator_paths</span><span class="p">:</span>
             <span class="k">yield</span> <span class="n">flavour</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">flavour</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="n">nf</span><span class="p">,</span> <span class="n">n_thres</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ThresholdsConfig.get_areas_idx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_areas_idx">[docs]</a>    <span class="k">def</span> <span class="nf">get_areas_idx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2arr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns the index of the area in which each value of q2arr falls.</span>
+<span class="sd">        Returns the index of the area in which each value of q2arr falls.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                q2arr: np.array</span>
-<span class="sd">                    array of values of q2</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            q2arr: np.array</span>
+<span class="sd">                array of values of q2</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                areas_idx: list</span>
-<span class="sd">                    list with the indices of the corresponding areas for q2arr</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            areas_idx: list</span>
+<span class="sd">                list with the indices of the corresponding areas for q2arr</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Ensure q2arr is an array</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">q2arr</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Number</span><span class="p">):</span>
@@ -455,17 +455,17 @@
 
 <div class="viewcode-block" id="ThresholdsConfig.get_areas"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_areas">[docs]</a>    <span class="k">def</span> <span class="nf">get_areas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2arr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns the Areas in which each value of q2arr falls</span>
+<span class="sd">        Returns the Areas in which each value of q2arr falls</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                q2arr: np.array</span>
-<span class="sd">                    array of values of q2</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            q2arr: np.array</span>
+<span class="sd">                array of values of q2</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                areas: list</span>
-<span class="sd">                    list with the areas for q2arr</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            areas: list</span>
+<span class="sd">                list with the areas for q2arr</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_areas_idx</span><span class="p">(</span><span class="n">q2arr</span><span class="p">)</span>
         <span class="n">area_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_areas</span><span class="p">)[</span><span class="n">idx</span><span class="p">]</span>

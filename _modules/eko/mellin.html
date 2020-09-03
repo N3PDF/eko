@@ -210,23 +210,23 @@
 
 <div class="viewcode-block" id="compile_integrand"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.compile_integrand">[docs]</a><span class="k">def</span> <span class="nf">compile_integrand</span><span class="p">(</span><span class="n">iker</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">do_numba</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Prepares the integration kernel `iker` to be integrated by the</span>
-<span class="sd">        inverse mellin transform wrapper.</span>
+<span class="sd">    Prepares the integration kernel `iker` to be integrated by the</span>
+<span class="sd">    inverse mellin transform wrapper.</span>
 
-<span class="sd">        It adds the correct prefactor, resolves the path, adds the jacobian</span>
-<span class="sd">        and applies the real part.</span>
+<span class="sd">    It adds the correct prefactor, resolves the path, adds the jacobian</span>
+<span class="sd">    and applies the real part.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            iker : function</span>
-<span class="sd">                Integration kernel including :math:`x^(-N)`</span>
-<span class="sd">            path : function</span>
-<span class="sd">                Integration path as a function</span>
-<span class="sd">                :math:`p : [0:1] \to \mathbb C : t \to p(t)`</span>
-<span class="sd">            jac : function</span>
-<span class="sd">                Jacobian of integration path :math:`j(t) = \frac{dp(t)}{dt}`</span>
-<span class="sd">            do_numba: bool</span>
-<span class="sd">                Boolean flag to return a numba compiled function (default: true)</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        iker : function</span>
+<span class="sd">            Integration kernel including :math:`x^(-N)`</span>
+<span class="sd">        path : function</span>
+<span class="sd">            Integration path as a function</span>
+<span class="sd">            :math:`p : [0:1] \to \mathbb C : t \to p(t)`</span>
+<span class="sd">        jac : function</span>
+<span class="sd">            Jacobian of integration path :math:`j(t) = \frac{dp(t)}{dt}`</span>
+<span class="sd">        do_numba: bool</span>
+<span class="sd">            Boolean flag to return a numba compiled function (default: true)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
@@ -248,35 +248,35 @@
 
 <div class="viewcode-block" id="inverse_mellin_transform"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.inverse_mellin_transform">[docs]</a><span class="k">def</span> <span class="nf">inverse_mellin_transform</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">cut</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">,</span> <span class="n">epsabs</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">epsrel</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Inverse Mellin transformation.</span>
+<span class="sd">    Inverse Mellin transformation.</span>
 
-<span class="sd">        Note that the inversion factor :math:`x^{-N}` has already to be *included* in f(N).</span>
-<span class="sd">        This convention usually improves the convergence of the integral. Typical kernels</span>
-<span class="sd">        will naturally develop similar factors to which the conversion factor can</span>
-<span class="sd">        be joined.</span>
+<span class="sd">    Note that the inversion factor :math:`x^{-N}` has already to be *included* in f(N).</span>
+<span class="sd">    This convention usually improves the convergence of the integral. Typical kernels</span>
+<span class="sd">    will naturally develop similar factors to which the conversion factor can</span>
+<span class="sd">    be joined.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            integrand: function</span>
-<span class="sd">                Integrand to be passed to the integration routine.</span>
-<span class="sd">                The integrand can be generated with the `compile_integrand` function.</span>
-<span class="sd">            cut : float</span>
-<span class="sd">                Numeric cut-off parameter to the integration, the actual integration borders are</span>
-<span class="sd">                determied by :math:`t\\in [c : 1-c]`</span>
-<span class="sd">            extra_args: any</span>
-<span class="sd">                Extra arguments to be passed to the integrand beyond the integration variable</span>
-<span class="sd">            epsabs: float</span>
-<span class="sd">                absolute error tolerance of the integration</span>
-<span class="sd">            epsrel: float</span>
-<span class="sd">                relative error tolerance of the integration</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        integrand: function</span>
+<span class="sd">            Integrand to be passed to the integration routine.</span>
+<span class="sd">            The integrand can be generated with the `compile_integrand` function.</span>
+<span class="sd">        cut : float</span>
+<span class="sd">            Numeric cut-off parameter to the integration, the actual integration borders are</span>
+<span class="sd">            determied by :math:`t\\in [c : 1-c]`</span>
+<span class="sd">        extra_args: any</span>
+<span class="sd">            Extra arguments to be passed to the integrand beyond the integration variable</span>
+<span class="sd">        epsabs: float</span>
+<span class="sd">            absolute error tolerance of the integration</span>
+<span class="sd">        epsrel: float</span>
+<span class="sd">            relative error tolerance of the integration</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            res : float</span>
-<span class="sd">                integral</span>
-<span class="sd">            err : float</span>
-<span class="sd">                error estimate</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        res : float</span>
+<span class="sd">            integral</span>
+<span class="sd">        err : float</span>
+<span class="sd">            error estimate</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">LIMIT</span> <span class="o">=</span> <span class="mi">100</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span>
@@ -289,8 +289,8 @@
         <span class="n">limit</span><span class="o">=</span><span class="n">LIMIT</span><span class="p">,</span>
         <span class="n">full_output</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="c1">#print(result[:2],result[2][&quot;neval&quot;])</span>
-    <span class="c1">#for n in [5,10,20,40,63]:</span>
+    <span class="c1"># print(result[:2],result[2][&quot;neval&quot;])</span>
+    <span class="c1"># for n in [5,10,20,40,63]:</span>
     <span class="c1">#    dt = (.5-cut)/n</span>
     <span class="c1">#    ts = np.array([.5 + k*dt for k in range(n)])</span>
     <span class="c1">#    res = np.sum([integrand(t,extra_args) for t in ts])*dt</span>
@@ -302,29 +302,29 @@
 
 <div class="viewcode-block" id="get_path_Talbot"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_Talbot">[docs]</a><span class="k">def</span> <span class="nf">get_path_Talbot</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Talbot path.</span>
+<span class="sd">    Talbot path.</span>
 
-<span class="sd">        .. math::</span>
-<span class="sd">            p_{\\text{Talbot}}(t) =  o + r \\cdot ( \\theta \\cot(\\theta) + i\\theta ),</span>
-<span class="sd">            \\theta = \\pi(2t-1)</span>
+<span class="sd">    .. math::</span>
+<span class="sd">        p_{\\text{Talbot}}(t) =  o + r \\cdot ( \\theta \\cot(\\theta) + i\\theta ),</span>
+<span class="sd">        \\theta = \\pi(2t-1)</span>
 
-<span class="sd">        Returns the path and its derivative which then have to be called with the arguments</span>
-<span class="sd">        listed under `Other Parameters`.</span>
+<span class="sd">    Returns the path and its derivative which then have to be called with the arguments</span>
+<span class="sd">    listed under `Other Parameters`.</span>
 
-<span class="sd">        Other Parameters</span>
-<span class="sd">        -----------------</span>
-<span class="sd">            r : float</span>
-<span class="sd">                scaling parameter - effectivly corresponds to the intersection of the path with the</span>
-<span class="sd">                real axis</span>
-<span class="sd">            o : float</span>
-<span class="sd">                offset on real axis</span>
+<span class="sd">    Other Parameters</span>
+<span class="sd">    -----------------</span>
+<span class="sd">        r : float</span>
+<span class="sd">            scaling parameter - effectivly corresponds to the intersection of the path with the</span>
+<span class="sd">            real axis</span>
+<span class="sd">        o : float</span>
+<span class="sd">            offset on real axis</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            path : function</span>
-<span class="sd">                Talbot path function</span>
-<span class="sd">            jac : function</span>
-<span class="sd">                derivative of Talbot path</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        path : function</span>
+<span class="sd">            Talbot path function</span>
+<span class="sd">        jac : function</span>
+<span class="sd">            derivative of Talbot path</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
@@ -357,27 +357,27 @@
 
 <div class="viewcode-block" id="get_path_line"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_line">[docs]</a><span class="k">def</span> <span class="nf">get_path_line</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Textbook path, i.e. a straight line parallel to the imaginary axis.</span>
+<span class="sd">    Textbook path, i.e. a straight line parallel to the imaginary axis.</span>
 
-<span class="sd">        .. math::</span>
-<span class="sd">            p_{\\text{line}}(t) = c + m \\cdot (2t - 1)</span>
+<span class="sd">    .. math::</span>
+<span class="sd">        p_{\\text{line}}(t) = c + m \\cdot (2t - 1)</span>
 
-<span class="sd">        Returns the path and its derivative which then have to be called with the arguments</span>
-<span class="sd">        listed under `Other Parameters`.</span>
+<span class="sd">    Returns the path and its derivative which then have to be called with the arguments</span>
+<span class="sd">    listed under `Other Parameters`.</span>
 
-<span class="sd">        Other Parameters</span>
-<span class="sd">        ----------------</span>
-<span class="sd">            m : float</span>
-<span class="sd">                half length of the path</span>
-<span class="sd">            c : float</span>
-<span class="sd">                intersection of path with real axis</span>
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">        m : float</span>
+<span class="sd">            half length of the path</span>
+<span class="sd">        c : float</span>
+<span class="sd">            intersection of path with real axis</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            path : function</span>
-<span class="sd">                textbook path</span>
-<span class="sd">            jac : function</span>
-<span class="sd">                derivative of textbook path</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        path : function</span>
+<span class="sd">            textbook path</span>
+<span class="sd">        jac : function</span>
+<span class="sd">            derivative of textbook path</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
@@ -395,28 +395,28 @@
 
 <div class="viewcode-block" id="get_path_edge"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_edge">[docs]</a><span class="k">def</span> <span class="nf">get_path_edge</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Edged path with a given angle.</span>
+<span class="sd">    Edged path with a given angle.</span>
 
-<span class="sd">        .. math::</span>
-<span class="sd">            p_{\\text{edge}}(t) = c + m\\left|t - \\frac 1 2\\right|\\exp(i\\phi)</span>
+<span class="sd">    .. math::</span>
+<span class="sd">        p_{\\text{edge}}(t) = c + m\\left|t - \\frac 1 2\\right|\\exp(i\\phi)</span>
 
-<span class="sd">        Returns the path and its derivative which then have to be called with the arguments</span>
-<span class="sd">        listed under `Other Parameters`.</span>
+<span class="sd">    Returns the path and its derivative which then have to be called with the arguments</span>
+<span class="sd">    listed under `Other Parameters`.</span>
 
-<span class="sd">        Other Parameters</span>
-<span class="sd">        ----------------</span>
-<span class="sd">            m : float</span>
-<span class="sd">                length of the path</span>
-<span class="sd">            c : float, optional</span>
-<span class="sd">                intersection of path with real axis - defaults to 1</span>
-<span class="sd">            phi : complex, optional</span>
-<span class="sd">                bended angle - defaults to +135° with respect to positive x axis</span>
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            path : function</span>
-<span class="sd">                Edged path</span>
-<span class="sd">            jac : function</span>
-<span class="sd">                derivative of edged path</span>
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">        m : float</span>
+<span class="sd">            length of the path</span>
+<span class="sd">        c : float, optional</span>
+<span class="sd">            intersection of path with real axis - defaults to 1</span>
+<span class="sd">        phi : complex, optional</span>
+<span class="sd">            bended angle - defaults to +135° with respect to positive x axis</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        path : function</span>
+<span class="sd">            Edged path</span>
+<span class="sd">        jac : function</span>
+<span class="sd">            derivative of edged path</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
@@ -440,25 +440,25 @@
 
 <div class="viewcode-block" id="get_path_Cauchy_tan"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_Cauchy_tan">[docs]</a><span class="k">def</span> <span class="nf">get_path_Cauchy_tan</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Cauchy-distribution like path, extended with tan to infinity.</span>
+<span class="sd">    Cauchy-distribution like path, extended with tan to infinity.</span>
 
-<span class="sd">        .. math::</span>
-<span class="sd">            p_{\\text{Cauchy}}(t) = \\frac{\\gamma}{u^2 + \\gamma^2} + i u, u = \\tan(\\pi(2t-1)/2)</span>
+<span class="sd">    .. math::</span>
+<span class="sd">        p_{\\text{Cauchy}}(t) = \\frac{\\gamma}{u^2 + \\gamma^2} + i u, u = \\tan(\\pi(2t-1)/2)</span>
 
-<span class="sd">        Returns the path and its derivative which then have to be called with the arguments</span>
-<span class="sd">        listed under `Other Parameters`.</span>
+<span class="sd">    Returns the path and its derivative which then have to be called with the arguments</span>
+<span class="sd">    listed under `Other Parameters`.</span>
 
-<span class="sd">        Other Parameters</span>
-<span class="sd">        ---------------</span>
-<span class="sd">            gamma : float</span>
-<span class="sd">                intersection of path with real axis</span>
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ---------------</span>
+<span class="sd">        gamma : float</span>
+<span class="sd">            intersection of path with real axis</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            path : function</span>
-<span class="sd">                Cauchy path</span>
-<span class="sd">            jac : function</span>
-<span class="sd">                derivative of Cauchy path</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        path : function</span>
+<span class="sd">            Cauchy path</span>
+<span class="sd">        jac : function</span>
+<span class="sd">            derivative of Cauchy path</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
@@ -482,19 +482,19 @@
 
 <div class="viewcode-block" id="mellin_transform"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.mellin_transform">[docs]</a><span class="k">def</span> <span class="nf">mellin_transform</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Mellin transformation</span>
+<span class="sd">    Mellin transformation</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            f : function</span>
-<span class="sd">                integration kernel :math:`f(x)`</span>
-<span class="sd">            N : complex</span>
-<span class="sd">                transformation point</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        f : function</span>
+<span class="sd">            integration kernel :math:`f(x)`</span>
+<span class="sd">        N : complex</span>
+<span class="sd">            transformation point</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            res : complex</span>
-<span class="sd">                computed point</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        res : complex</span>
+<span class="sd">            computed point</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@nb</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">forceobj</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># due to the integration kernel not being necessarily numba</span>

@@ -197,26 +197,26 @@
 <div class="viewcode-block" id="beta_0"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.beta_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">beta_0</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">TF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Computes the first coefficient of the QCD beta function.</span>
+<span class="sd">    Computes the first coefficient of the QCD beta function.</span>
 
-<span class="sd">        Implements Eq. (3.1) of :cite:`Herzog:2017ohr`.</span>
-<span class="sd">        For the sake of unification we keep a unique function signature for *all* coefficients.</span>
+<span class="sd">    Implements Eq. (3.1) of :cite:`Herzog:2017ohr`.</span>
+<span class="sd">    For the sake of unification we keep a unique function signature for *all* coefficients.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            nf : int</span>
-<span class="sd">                number of active flavours</span>
-<span class="sd">            CA : float</span>
-<span class="sd">                Casimir constant of adjoint representation</span>
-<span class="sd">            CF : float</span>
-<span class="sd">                Casimir constant of fundamental representation (which is actually not used here)</span>
-<span class="sd">            TF : float</span>
-<span class="sd">                fundamental normalization factor</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavours</span>
+<span class="sd">        CA : float</span>
+<span class="sd">            Casimir constant of adjoint representation</span>
+<span class="sd">        CF : float</span>
+<span class="sd">            Casimir constant of fundamental representation (which is actually not used here)</span>
+<span class="sd">        TF : float</span>
+<span class="sd">            fundamental normalization factor</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            beta_0 : float</span>
-<span class="sd">                first coefficient of the QCD beta function :math:`\\beta_0^{n_f}`</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        beta_0 : float</span>
+<span class="sd">            first coefficient of the QCD beta function :math:`\\beta_0^{n_f}`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">beta_0</span> <span class="o">=</span> <span class="mf">11.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">-</span> <span class="mf">4.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">TF</span> <span class="o">*</span> <span class="n">nf</span>
     <span class="k">return</span> <span class="n">beta_0</span></div>
@@ -225,25 +225,25 @@
 <div class="viewcode-block" id="beta_1"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.beta_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">beta_1</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">TF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Computes the second coefficient of the QCD beta function.</span>
+<span class="sd">    Computes the second coefficient of the QCD beta function.</span>
 
-<span class="sd">        Implements Eq. (3.2) of :cite:`Herzog:2017ohr`.</span>
+<span class="sd">    Implements Eq. (3.2) of :cite:`Herzog:2017ohr`.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            nf : int</span>
-<span class="sd">                number of active flavours</span>
-<span class="sd">            CA : float</span>
-<span class="sd">                Casimir constant of adjoint representation</span>
-<span class="sd">            CF : float</span>
-<span class="sd">                Casimir constant of fundamental representation</span>
-<span class="sd">            TF : float</span>
-<span class="sd">                fundamental normalization factor</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavours</span>
+<span class="sd">        CA : float</span>
+<span class="sd">            Casimir constant of adjoint representation</span>
+<span class="sd">        CF : float</span>
+<span class="sd">            Casimir constant of fundamental representation</span>
+<span class="sd">        TF : float</span>
+<span class="sd">            fundamental normalization factor</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            beta_1 : float</span>
-<span class="sd">                second coefficient of the QCD beta function :math:`\\beta_1^{n_f}`</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        beta_1 : float</span>
+<span class="sd">            second coefficient of the QCD beta function :math:`\\beta_1^{n_f}`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">b_ca2</span> <span class="o">=</span> <span class="mf">34.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">*</span> <span class="n">CA</span>
     <span class="n">b_ca</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">*</span> <span class="n">TF</span> <span class="o">*</span> <span class="n">nf</span>
@@ -255,25 +255,25 @@
 <div class="viewcode-block" id="beta_2"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.beta_2">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">beta_2</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CF</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">TF</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Computes the third coefficient of the QCD beta function</span>
+<span class="sd">    Computes the third coefficient of the QCD beta function</span>
 
-<span class="sd">        Implements Eq. (3.3) of :cite:`Herzog:2017ohr`.</span>
+<span class="sd">    Implements Eq. (3.3) of :cite:`Herzog:2017ohr`.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            nf : int</span>
-<span class="sd">                number of active flavours.</span>
-<span class="sd">            CA : float</span>
-<span class="sd">                Casimir constant of adjoint representation.</span>
-<span class="sd">            CF : float</span>
-<span class="sd">                Casimir constant of fundamental representation.</span>
-<span class="sd">            TF : float</span>
-<span class="sd">                fundamental normalization factor.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavours.</span>
+<span class="sd">        CA : float</span>
+<span class="sd">            Casimir constant of adjoint representation.</span>
+<span class="sd">        CF : float</span>
+<span class="sd">            Casimir constant of fundamental representation.</span>
+<span class="sd">        TF : float</span>
+<span class="sd">            fundamental normalization factor.</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            beta_2 : float</span>
-<span class="sd">                third coefficient of the QCD beta function :math:`\\beta_2^{n_f}`</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        beta_2 : float</span>
+<span class="sd">            third coefficient of the QCD beta function :math:`\\beta_2^{n_f}`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">beta_2</span> <span class="o">=</span> <span class="p">(</span>
         <span class="mf">2857.0</span> <span class="o">/</span> <span class="mf">54.0</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">*</span> <span class="n">CA</span>
@@ -339,7 +339,13 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">consts</span><span class="p">,</span> <span class="n">alpha_s_ref</span><span class="p">,</span> <span class="n">scale_ref</span><span class="p">,</span> <span class="n">thresh</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">consts</span><span class="p">,</span>
+        <span class="n">alpha_s_ref</span><span class="p">,</span>
+        <span class="n">scale_ref</span><span class="p">,</span>
+        <span class="n">thresh</span><span class="p">,</span>
+        <span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="c1"># Sanity checks</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">consts</span><span class="p">,</span> <span class="n">constants</span><span class="o">.</span><span class="n">Constants</span><span class="p">):</span>
@@ -380,28 +386,28 @@
 <div class="viewcode-block" id="StrongCoupling.from_dict"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">setup</span><span class="p">,</span> <span class="n">thresholds_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">consts</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Create object from theory dictionary.</span>
+<span class="sd">        Create object from theory dictionary.</span>
 
-<span class="sd">            Read keys:</span>
+<span class="sd">        Read keys:</span>
 
-<span class="sd">                - alphas : required, reference value for  alpha_s (!)</span>
-<span class="sd">                - Qref : required, reference value in GeV (!)</span>
-<span class="sd">                - PTO : required, perturbative order</span>
-<span class="sd">                - ModEv : optional, method to solve RGE, default=EXA</span>
+<span class="sd">            - alphas : required, reference value for  alpha_s (!)</span>
+<span class="sd">            - Qref : required, reference value in GeV (!)</span>
+<span class="sd">            - PTO : required, perturbative order</span>
+<span class="sd">            - ModEv : optional, method to solve RGE, default=EXA</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                setup : dict</span>
-<span class="sd">                    theory dictionary</span>
-<span class="sd">                constants : eko.constants.Constants</span>
-<span class="sd">                    Color constants</span>
-<span class="sd">                thresholds_config : eko.thresholds.ThresholdsConfig</span>
-<span class="sd">                    threshold configuration</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            setup : dict</span>
+<span class="sd">                theory dictionary</span>
+<span class="sd">            constants : eko.constants.Constants</span>
+<span class="sd">                Color constants</span>
+<span class="sd">            thresholds_config : eko.thresholds.ThresholdsConfig</span>
+<span class="sd">                threshold configuration</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                cls : StrongCoupling</span>
-<span class="sd">                    created object</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            cls : StrongCoupling</span>
+<span class="sd">                created object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># read my values</span>
         <span class="n">alpha_ref</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;alphas&quot;</span><span class="p">]</span>
@@ -424,23 +430,23 @@
     <span class="c1"># Hidden computation functions</span>
     <span class="k">def</span> <span class="nf">_compute_expanded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Compute via expanded expression.</span>
+<span class="sd">        Compute via expanded expression.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                as_ref: float</span>
-<span class="sd">                    reference alpha_s</span>
-<span class="sd">                nf: int</span>
-<span class="sd">                    value of nf for computing alpha_s</span>
-<span class="sd">                scale_from: float</span>
-<span class="sd">                    reference scale</span>
-<span class="sd">                scale_to : float</span>
-<span class="sd">                    target scale</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            as_ref: float</span>
+<span class="sd">                reference alpha_s</span>
+<span class="sd">            nf: int</span>
+<span class="sd">                value of nf for computing alpha_s</span>
+<span class="sd">            scale_from: float</span>
+<span class="sd">                reference scale</span>
+<span class="sd">            scale_to : float</span>
+<span class="sd">                target scale</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                a_s : float</span>
-<span class="sd">                    coupling at target scale :math:`a_s(Q^2)`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            a_s : float</span>
+<span class="sd">                coupling at target scale :math:`a_s(Q^2)`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># common vars</span>
         <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta_0</span><span class="p">(</span><span class="n">nf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CA</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">CF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constants</span><span class="o">.</span><span class="n">TF</span><span class="p">)</span>
@@ -473,23 +479,23 @@
 
     <span class="k">def</span> <span class="nf">_compute_exact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Compute via RGE.</span>
+<span class="sd">        Compute via RGE.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                as_ref: float</span>
-<span class="sd">                    reference alpha_s</span>
-<span class="sd">                nf: int</span>
-<span class="sd">                    value of nf for computing alpha_s</span>
-<span class="sd">                scale_from: float</span>
-<span class="sd">                    reference scale</span>
-<span class="sd">                scale_to : float</span>
-<span class="sd">                    target scale</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            as_ref: float</span>
+<span class="sd">                reference alpha_s</span>
+<span class="sd">            nf: int</span>
+<span class="sd">                value of nf for computing alpha_s</span>
+<span class="sd">            scale_from: float</span>
+<span class="sd">                reference scale</span>
+<span class="sd">            scale_to : float</span>
+<span class="sd">                target scale</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                a_s : float</span>
-<span class="sd">                    strong coupling at target scale :math:`a_s(Q^2)`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            a_s : float</span>
+<span class="sd">                strong coupling at target scale :math:`a_s(Q^2)`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># in LO fallback to expanded, as this is the full solution</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -523,24 +529,24 @@
 
     <span class="k">def</span> <span class="nf">_compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Wrapper in order to pass the computation to the corresponding</span>
-<span class="sd">            method (depending on the calculation method).</span>
+<span class="sd">        Wrapper in order to pass the computation to the corresponding</span>
+<span class="sd">        method (depending on the calculation method).</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                as_ref: float</span>
-<span class="sd">                    reference alpha_s</span>
-<span class="sd">                nf: int</span>
-<span class="sd">                    value of nf for computing alpha_s</span>
-<span class="sd">                scale_from: float</span>
-<span class="sd">                    reference scale</span>
-<span class="sd">                scale_to : float</span>
-<span class="sd">                    target scale</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            as_ref: float</span>
+<span class="sd">                reference alpha_s</span>
+<span class="sd">            nf: int</span>
+<span class="sd">                value of nf for computing alpha_s</span>
+<span class="sd">            scale_from: float</span>
+<span class="sd">                reference scale</span>
+<span class="sd">            scale_to : float</span>
+<span class="sd">                target scale</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                a_s : float</span>
-<span class="sd">                    strong coupling at target scale :math:`a_s(Q^2)`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            a_s : float</span>
+<span class="sd">                strong coupling at target scale :math:`a_s(Q^2)`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO set up a cache system here</span>
         <span class="c1"># at the moment everything is expanded - and type has been checked in the constructor</span>
@@ -552,17 +558,17 @@
 
 <div class="viewcode-block" id="StrongCoupling.a_s"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.a_s">[docs]</a>    <span class="k">def</span> <span class="nf">a_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">,</span> <span class="n">fact_scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Computes strong coupling :math:`a_s(Q^2) = \\frac{\\alpha_s(Q^2)}{4\\pi}`.</span>
+<span class="sd">        Computes strong coupling :math:`a_s(Q^2) = \\frac{\\alpha_s(Q^2)}{4\\pi}`.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                scale_to : float</span>
-<span class="sd">                    final scale to evolve to :math:`Q^2`</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            scale_to : float</span>
+<span class="sd">                final scale to evolve to :math:`Q^2`</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                a_s : float</span>
-<span class="sd">                    strong coupling :math:`a_s(Q^2) = \\frac{\\alpha_s(Q^2)}{4\\pi}`</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            a_s : float</span>
+<span class="sd">                strong coupling :math:`a_s(Q^2) = \\frac{\\alpha_s(Q^2)}{4\\pi}`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Set up the path to follow in order to go from q2_0 to q2_ref</span>
         <span class="n">final_as</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_ref</span>

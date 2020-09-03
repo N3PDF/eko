@@ -195,20 +195,20 @@
 
 <div class="viewcode-block" id="Constants"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.constants.Constants">[docs]</a><span class="k">class</span> <span class="nc">Constants</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Upon initialization all constants are set and a `lock` variable is put is place.</span>
-<span class="sd">        As long as the `lock` variable is active, setting attributes of this class will result</span>
-<span class="sd">        in an :class:`AttributeError`.</span>
+<span class="sd">    Upon initialization all constants are set and a `lock` variable is put is place.</span>
+<span class="sd">    As long as the `lock` variable is active, setting attributes of this class will result</span>
+<span class="sd">    in an :class:`AttributeError`.</span>
 
-<span class="sd">        Attributes</span>
-<span class="sd">        ----------</span>
-<span class="sd">            NC : int</span>
-<span class="sd">                Number of colors = 3</span>
-<span class="sd">            TF : float</span>
-<span class="sd">                normalization of fundamental generators = 1/2</span>
-<span class="sd">            CA : float</span>
-<span class="sd">                second Casimir constant in the adjoint representation = NC</span>
-<span class="sd">            CF : float</span>
-<span class="sd">                second Casimir constant in the fundamental representation = (NC^2 - 1)/(2 NC)</span>
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">        NC : int</span>
+<span class="sd">            Number of colors = 3</span>
+<span class="sd">        TF : float</span>
+<span class="sd">            normalization of fundamental generators = 1/2</span>
+<span class="sd">        CA : float</span>
+<span class="sd">            second Casimir constant in the adjoint representation = NC</span>
+<span class="sd">        CF : float</span>
+<span class="sd">            second Casimir constant in the fundamental representation = (NC^2 - 1)/(2 NC)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">_lock</span> <span class="o">=</span> <span class="kc">False</span>
@@ -237,14 +237,14 @@
 
 <div class="viewcode-block" id="Constants.dict"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.constants.Constants.dict">[docs]</a>    <span class="k">def</span> <span class="nf">dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns the constants class in the form of a dictionary.</span>
-<span class="sd">            In practicse: returns the `__dict__` attribute of the class without the</span>
-<span class="sd">            protected variables</span>
+<span class="sd">        Returns the constants class in the form of a dictionary.</span>
+<span class="sd">        In practicse: returns the `__dict__` attribute of the class without the</span>
+<span class="sd">        protected variables</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                out_dict : dictionary</span>
-<span class="sd">                    dictionary with the attributes of the class</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            out_dict : dictionary</span>
+<span class="sd">                dictionary with the attributes of the class</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">out_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">k</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)}</span>
         <span class="k">return</span> <span class="n">out_dict</span></div>

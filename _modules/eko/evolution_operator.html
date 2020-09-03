@@ -194,21 +194,21 @@
 
 <div class="viewcode-block" id="OperatorMember"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.OperatorMember">[docs]</a><span class="k">class</span> <span class="nc">OperatorMember</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        A single operator for a specific element in evolution basis.</span>
+<span class="sd">    A single operator for a specific element in evolution basis.</span>
 
-<span class="sd">        The :class:`OperatorMember` provide some basic mathematical operations such as products.</span>
-<span class="sd">        It can also be applied to a pdf vector by the `__call__` method.</span>
-<span class="sd">        This class will never be exposed to the outside, but will be an internal member</span>
-<span class="sd">        of the :class:`Operator` and :class:`PhysicalOperator` instances.</span>
+<span class="sd">    The :class:`OperatorMember` provide some basic mathematical operations such as products.</span>
+<span class="sd">    It can also be applied to a pdf vector by the `__call__` method.</span>
+<span class="sd">    This class will never be exposed to the outside, but will be an internal member</span>
+<span class="sd">    of the :class:`Operator` and :class:`PhysicalOperator` instances.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            value : np.array</span>
-<span class="sd">                operator matrix</span>
-<span class="sd">            error : np.array</span>
-<span class="sd">                operator error matrix</span>
-<span class="sd">            name : str</span>
-<span class="sd">                operator name</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        value : np.array</span>
+<span class="sd">            operator matrix</span>
+<span class="sd">        error : np.array</span>
+<span class="sd">            operator error matrix</span>
+<span class="sd">        name : str</span>
+<span class="sd">            operator name</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
@@ -248,19 +248,19 @@
 
 <div class="viewcode-block" id="OperatorMember.apply_pdf"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.OperatorMember.apply_pdf">[docs]</a>    <span class="k">def</span> <span class="nf">apply_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            The operator member can act on a pdf member.</span>
+<span class="sd">        The operator member can act on a pdf member.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                pdf_member : np.array</span>
-<span class="sd">                    pdf vector</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            pdf_member : np.array</span>
+<span class="sd">                pdf vector</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                result : float</span>
-<span class="sd">                    higher scale pdf</span>
-<span class="sd">                error : float</span>
-<span class="sd">                    evolution uncertainty to pdf at higher scale</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            result : float</span>
+<span class="sd">                higher scale pdf</span>
+<span class="sd">            error : float</span>
+<span class="sd">                evolution uncertainty to pdf at higher scale</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">)</span>
         <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">)</span>
@@ -352,19 +352,19 @@
 <div class="viewcode-block" id="OperatorMember.join"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.OperatorMember.join">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">list_of_paths</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Multiply a list of :class:`OperatorMember` using the given paths.</span>
+<span class="sd">        Multiply a list of :class:`OperatorMember` using the given paths.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                steps : list(list(OperatorMember))</span>
-<span class="sd">                    list of raw operators, with the lowest scale to the right</span>
-<span class="sd">                list_of_paths : list(list(str))</span>
-<span class="sd">                    list of paths</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            steps : list(list(OperatorMember))</span>
+<span class="sd">                list of raw operators, with the lowest scale to the right</span>
+<span class="sd">            list_of_paths : list(list(str))</span>
+<span class="sd">                list of paths</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                final_op : OperatorMember</span>
-<span class="sd">                    joined operator</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            final_op : OperatorMember</span>
+<span class="sd">                joined operator</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">final_op</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">list_of_paths</span><span class="p">:</span>
@@ -381,20 +381,20 @@
 
 <div class="viewcode-block" id="PhysicalOperator"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator">[docs]</a><span class="k">class</span> <span class="nc">PhysicalOperator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This is exposed to the outside world.</span>
+<span class="sd">    This is exposed to the outside world.</span>
 
-<span class="sd">        This operator is computed via the composition method of the</span>
-<span class="sd">        :class:`Operator` class.</span>
+<span class="sd">    This operator is computed via the composition method of the</span>
+<span class="sd">    :class:`Operator` class.</span>
 
-<span class="sd">        This operator can act on PDFs through the `__call__` method.</span>
+<span class="sd">    This operator can act on PDFs through the `__call__` method.</span>
 
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            op_members : dict</span>
-<span class="sd">                list of all members</span>
-<span class="sd">            q2_final : float</span>
-<span class="sd">                final scale</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        op_members : dict</span>
+<span class="sd">            list of all members</span>
+<span class="sd">        q2_final : float</span>
+<span class="sd">            final scale</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op_members</span><span class="p">,</span> <span class="n">q2_final</span><span class="p">):</span>
@@ -403,17 +403,17 @@
 
     <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Multiply ``other`` to self.</span>
+<span class="sd">        Multiply ``other`` to self.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                other : PhysicalOperator</span>
-<span class="sd">                    second factor with a lower initial scale</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            other : PhysicalOperator</span>
+<span class="sd">                second factor with a lower initial scale</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                p : PhysicalOperator</span>
-<span class="sd">                    self * other</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            p : PhysicalOperator</span>
+<span class="sd">                self * other</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">PhysicalOperator</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can only multiply with another PhysicalOperator&quot;</span><span class="p">)</span>
@@ -442,14 +442,14 @@
 
 <div class="viewcode-block" id="PhysicalOperator.get_raw_operators"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator.get_raw_operators">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns serializable matrix representation of all members and their errors</span>
+<span class="sd">        Returns serializable matrix representation of all members and their errors</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                ret : dict</span>
-<span class="sd">                    the members are stored under the ``operators`` key and their</span>
-<span class="sd">                    errors under the ``operator_errors`` key. They are labeled as</span>
-<span class="sd">                    ``{outputPDF}.{inputPDF}``.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            ret : dict</span>
+<span class="sd">                the members are stored under the ``operators`` key and their</span>
+<span class="sd">                errors under the ``operator_errors`` key. They are labeled as</span>
+<span class="sd">                ``{outputPDF}.{inputPDF}``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># map matrices</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;operators&quot;</span><span class="p">:</span> <span class="p">{},</span> <span class="s2">&quot;operator_errors&quot;</span><span class="p">:</span> <span class="p">{}}</span>
@@ -460,35 +460,35 @@
 
 <div class="viewcode-block" id="PhysicalOperator.apply_pdf"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.PhysicalOperator.apply_pdf">[docs]</a>    <span class="k">def</span> <span class="nf">apply_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pdf_lists</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Apply PDFs to the EKOs.</span>
+<span class="sd">        Apply PDFs to the EKOs.</span>
 
-<span class="sd">            It assumes as input the PDFs as dictionary in evolution basis with:</span>
+<span class="sd">        It assumes as input the PDFs as dictionary in evolution basis with:</span>
 
-<span class="sd">            .. code-block:: python</span>
+<span class="sd">        .. code-block:: python</span>
 
-<span class="sd">                pdf_lists = {</span>
-<span class="sd">                    &#39;V&#39; : list,</span>
-<span class="sd">                    &#39;g&#39; : list,</span>
-<span class="sd">                    # ...</span>
-<span class="sd">                }</span>
+<span class="sd">            pdf_lists = {</span>
+<span class="sd">                &#39;V&#39; : list,</span>
+<span class="sd">                &#39;g&#39; : list,</span>
+<span class="sd">                # ...</span>
+<span class="sd">            }</span>
 
-<span class="sd">            Each member has to be evaluated on the corresponding xgrid (which</span>
-<span class="sd">            is tracked by :class:`~eko.operator_grid.OperatorGrid` and not</span>
-<span class="sd">            :class:`PhysicalOperator`)</span>
+<span class="sd">        Each member has to be evaluated on the corresponding xgrid (which</span>
+<span class="sd">        is tracked by :class:`~eko.operator_grid.OperatorGrid` and not</span>
+<span class="sd">        :class:`PhysicalOperator`)</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                ret : dict</span>
-<span class="sd">                    operator matrices of :class:`PhysicalOperator`</span>
-<span class="sd">                pdf_lists : dict</span>
-<span class="sd">                    PDFs in evolution basis as list on the corresponding xgrid</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            ret : dict</span>
+<span class="sd">                operator matrices of :class:`PhysicalOperator`</span>
+<span class="sd">            pdf_lists : dict</span>
+<span class="sd">                PDFs in evolution basis as list on the corresponding xgrid</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                out : dict</span>
-<span class="sd">                    evolved PDFs</span>
-<span class="sd">                out_errors : dict</span>
-<span class="sd">                    associated errors of the evolved PDFs</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            out : dict</span>
+<span class="sd">                evolved PDFs</span>
+<span class="sd">            out_errors : dict</span>
+<span class="sd">                associated errors of the evolved PDFs</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># build output</span>
         <span class="n">outs</span> <span class="o">=</span> <span class="p">{}</span>
@@ -519,22 +519,22 @@
 
 <div class="viewcode-block" id="Operator"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.Operator">[docs]</a><span class="k">class</span> <span class="nc">Operator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Internal representation of a single EKO.</span>
+<span class="sd">    Internal representation of a single EKO.</span>
 
-<span class="sd">        The actual matrices are computed only upon calling :meth:`compute`.</span>
-<span class="sd">        :meth:`compose` will generate the :class:`PhysicalOperator` for the outside world.</span>
-<span class="sd">        If not computed yet, :meth:`compose` will call :meth:`compute`.</span>
+<span class="sd">    The actual matrices are computed only upon calling :meth:`compute`.</span>
+<span class="sd">    :meth:`compose` will generate the :class:`PhysicalOperator` for the outside world.</span>
+<span class="sd">    If not computed yet, :meth:`compose` will call :meth:`compute`.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            master : eko.operator_grid.OperatorMaster</span>
-<span class="sd">                the master instance</span>
-<span class="sd">            q2_from : float</span>
-<span class="sd">                evolution source</span>
-<span class="sd">            q2_to : float</span>
-<span class="sd">                evolution target</span>
-<span class="sd">            mellin_cut : float</span>
-<span class="sd">                cut to the upper limit in the mellin inversion</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        master : eko.operator_grid.OperatorMaster</span>
+<span class="sd">            the master instance</span>
+<span class="sd">        q2_from : float</span>
+<span class="sd">            evolution source</span>
+<span class="sd">        q2_to : float</span>
+<span class="sd">            evolution target</span>
+<span class="sd">        mellin_cut : float</span>
+<span class="sd">            cut to the upper limit in the mellin inversion</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">,</span> <span class="n">mellin_cut</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
@@ -555,23 +555,23 @@
 
 <div class="viewcode-block" id="Operator.compose"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.evolution_operator.Operator.compose">[docs]</a>    <span class="k">def</span> <span class="nf">compose</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op_list</span><span class="p">,</span> <span class="n">instruction_set</span><span class="p">,</span> <span class="n">q2_final</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Compose all :class:`Operator` together.</span>
+<span class="sd">        Compose all :class:`Operator` together.</span>
 
-<span class="sd">            Calls :meth:`compute`, if necessary.</span>
+<span class="sd">        Calls :meth:`compute`, if necessary.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                op_list : list(Operator)</span>
-<span class="sd">                    list of operators to merge</span>
-<span class="sd">                instruction_set : dict</span>
-<span class="sd">                    list of instructions (generated by :class:`eko.thresholds.FlavourTarget`)</span>
-<span class="sd">                q2_final : float</span>
-<span class="sd">                    final scale</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            op_list : list(Operator)</span>
+<span class="sd">                list of operators to merge</span>
+<span class="sd">            instruction_set : dict</span>
+<span class="sd">                list of instructions (generated by :class:`eko.thresholds.FlavourTarget`)</span>
+<span class="sd">            q2_final : float</span>
+<span class="sd">                final scale</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                op : PhysicalOperator</span>
-<span class="sd">                    final operator</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            op : PhysicalOperator</span>
+<span class="sd">                final operator</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># compute?</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>

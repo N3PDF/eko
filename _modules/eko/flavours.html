@@ -211,20 +211,20 @@
 
 <div class="viewcode-block" id="FlavourTarget"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.flavours.FlavourTarget">[docs]</a><span class="k">class</span> <span class="nc">FlavourTarget</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Defines the path across the quark thresholds.</span>
+<span class="sd">    Defines the path across the quark thresholds.</span>
 
-<span class="sd">        See :doc:`Matching Conditions &lt;/Theory/Matching&gt;`.</span>
+<span class="sd">    See :doc:`Matching Conditions &lt;/Theory/Matching&gt;`.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            name: str</span>
-<span class="sd">                name of the flavour target (T8, V8, etc)</span>
-<span class="sd">            path: list(str)</span>
-<span class="sd">                path to get to the target from the origin at the minimum possible nf</span>
-<span class="sd">            original: str or list(str)</span>
-<span class="sd">                original flavour name (or names if the result is a combination)</span>
-<span class="sd">            nf_min: int</span>
-<span class="sd">                minimal nf for which this flavour is active</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">            name of the flavour target (T8, V8, etc)</span>
+<span class="sd">        path: list(str)</span>
+<span class="sd">            path to get to the target from the origin at the minimum possible nf</span>
+<span class="sd">        original: str or list(str)</span>
+<span class="sd">            original flavour name (or names if the result is a combination)</span>
+<span class="sd">        nf_min: int</span>
+<span class="sd">            minimal nf for which this flavour is active</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">original</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nf_min</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -247,21 +247,21 @@
 
     <span class="k">def</span> <span class="nf">_path_from_nf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf_target</span><span class="p">,</span> <span class="n">n_thres</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Generate the path array from the known nf target</span>
-<span class="sd">            taking into account nf target == self.nf_0 would be</span>
-<span class="sd">            the last member of the array</span>
+<span class="sd">        Generate the path array from the known nf target</span>
+<span class="sd">        taking into account nf target == self.nf_0 would be</span>
+<span class="sd">        the last member of the array</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                nf_target : int</span>
-<span class="sd">                    number of flavours at target scale</span>
-<span class="sd">                n_thres : int</span>
-<span class="sd">                    numbers of thresholds to cross</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            nf_target : int</span>
+<span class="sd">                number of flavours at target scale</span>
+<span class="sd">            n_thres : int</span>
+<span class="sd">                numbers of thresholds to cross</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                path : list</span>
-<span class="sd">                    path to get there</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            path : list</span>
+<span class="sd">                path to get there</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">max_nns</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">nf_0</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="n">idx_ini</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_nns</span> <span class="o">-</span> <span class="n">nf_target</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -270,21 +270,21 @@
 
 <div class="viewcode-block" id="FlavourTarget.get_path"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.flavours.FlavourTarget.get_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf_target</span><span class="p">,</span> <span class="n">n_thresholds</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Get the path to a given value of nf</span>
-<span class="sd">            given a number of thresholds to be crossed</span>
+<span class="sd">        Get the path to a given value of nf</span>
+<span class="sd">        given a number of thresholds to be crossed</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                nf_target : int</span>
-<span class="sd">                    nf value of the target flavour</span>
-<span class="sd">                n_thresholds : int</span>
-<span class="sd">                    number of thresholds which are going to be crossed</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            nf_target : int</span>
+<span class="sd">                nf value of the target flavour</span>
+<span class="sd">            n_thresholds : int</span>
+<span class="sd">                number of thresholds which are going to be crossed</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                instructions : dict</span>
-<span class="sd">                    a dictonary whose keys are the incoming flavour</span>
-<span class="sd">                    and whose items are the corresponding path</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            instructions : dict</span>
+<span class="sd">                a dictonary whose keys are the incoming flavour</span>
+<span class="sd">                and whose items are the corresponding path</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># TODO can this be made more concise, or is this really the best that can be done?</span>
         <span class="c1"># Check from what nf we are coming from</span>
@@ -335,22 +335,22 @@
 
 <div class="viewcode-block" id="get_singlet_paths"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.flavours.get_singlet_paths">[docs]</a><span class="k">def</span> <span class="nf">get_singlet_paths</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">fromm</span><span class="p">,</span> <span class="n">depth</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute all possible path in the singlet sector to reach `to` starting from  `fromm`.</span>
+<span class="sd">    Compute all possible path in the singlet sector to reach `to` starting from  `fromm`.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            to : &#39;q&#39; or &#39;g&#39;</span>
-<span class="sd">                final point</span>
-<span class="sd">            fromm : &#39;q&#39; or &#39;g&#39;</span>
-<span class="sd">                starting point</span>
-<span class="sd">            depth : int</span>
-<span class="sd">                nesting level; 1 corresponds to the trivial first step</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        to : &#39;q&#39; or &#39;g&#39;</span>
+<span class="sd">            final point</span>
+<span class="sd">        fromm : &#39;q&#39; or &#39;g&#39;</span>
+<span class="sd">            starting point</span>
+<span class="sd">        depth : int</span>
+<span class="sd">            nesting level; 1 corresponds to the trivial first step</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            ls : list(list(str))</span>
-<span class="sd">                list of all possible paths, where each path is in increasing order, e.g.</span>
-<span class="sd">                [P1(c &lt;- a), P2(c &lt;- a), ...] and P1(c &lt;- a) = [(c &lt;- b), (b &lt;- a)]</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        ls : list(list(str))</span>
+<span class="sd">            list of all possible paths, where each path is in increasing order, e.g.</span>
+<span class="sd">            [P1(c &lt;- a), P2(c &lt;- a), ...] and P1(c &lt;- a) = [(c &lt;- b), (b &lt;- a)]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">depth</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid arguments: depth &gt;= 1, but got </span><span class="si">{</span><span class="n">depth</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -373,17 +373,17 @@
 
 <div class="viewcode-block" id="get_all_flavour_paths"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.flavours.get_all_flavour_paths">[docs]</a><span class="k">def</span> <span class="nf">get_all_flavour_paths</span><span class="p">(</span><span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Builds all :class:`FlavourTarget` - see :doc:`Matching Conditions &lt;/Theory/Matching&gt;`.</span>
+<span class="sd">    Builds all :class:`FlavourTarget` - see :doc:`Matching Conditions &lt;/Theory/Matching&gt;`.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            nf : None | int</span>
-<span class="sd">                if given, paths are filtered by beeing active for at least `nf` flavours</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        nf : None | int</span>
+<span class="sd">            if given, paths are filtered by beeing active for at least `nf` flavours</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            ls : list(FlavourTarget)</span>
-<span class="sd">                all instructions</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        ls : list(FlavourTarget)</span>
+<span class="sd">            all instructions</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ls</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># build flavour targets</span>

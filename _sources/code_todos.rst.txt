@@ -35,9 +35,9 @@ From Source Code
 
 `strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
 
-.. warning:: #369 set up a cache system here
+.. warning:: #375 set up a cache system here
 
-.. warning:: #411 recover color constants
+.. warning:: #417 recover color constants
 
 
 

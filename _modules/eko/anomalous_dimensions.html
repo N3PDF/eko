@@ -197,42 +197,42 @@
 
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
+
 <div class="viewcode-block" id="exp_singlet"><a class="viewcode-back" href="../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.exp_singlet">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">exp_singlet</span><span class="p">(</span><span class="n">gamma_S</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">      Computes the exponential and the eigensystem of the anomalous dimension matrix</span>
+<span class="sd">    Computes the exponential and the eigensystem of the singlet anomalous dimension matrix</span>
 
-<span class="sd">      Parameters</span>
-<span class="sd">      ----------</span>
-<span class="sd">        gamma_S : numpy.ndarray</span>
-<span class="sd">          singlet anomalous dimension matrix</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">      gamma_S : numpy.ndarray</span>
+<span class="sd">        singlet anomalous dimension matrix</span>
 
-<span class="sd">      Returns</span>
-<span class="sd">      -------</span>
-<span class="sd">        exp : numpy.ndarray</span>
-<span class="sd">          exponential of the singlet anomalous dimension matrix :math:`\gamma_{S}(N)`</span>
-<span class="sd">        lambda_p : complex</span>
-<span class="sd">          positive eigenvalue of the singlet anomalous dimension matrix</span>
-<span class="sd">          :math:`\gamma_{S}(N)`</span>
-<span class="sd">        lambda_m : complex</span>
-<span class="sd">          negative eigenvalue of the singlet anomalous dimension matrix</span>
-<span class="sd">          :math:`\gamma_{S}(N)`</span>
-<span class="sd">        e_p : numpy.ndarray</span>
-<span class="sd">          projector for the positive eigenvalue of the singlet anomalous</span>
-<span class="sd">          dimension matrix :math:`\gamma_{S}(N)`</span>
-<span class="sd">        e_m : numpy.ndarray</span>
-<span class="sd">          projector for the negative eigenvalue of the singlet anomalous</span>
-<span class="sd">          dimension matrix :math:`\gamma_{S}(N)`</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">      exp : numpy.ndarray</span>
+<span class="sd">        exponential of the singlet anomalous dimension matrix :math:`\gamma_{S}(N)`</span>
+<span class="sd">      lambda_p : complex</span>
+<span class="sd">        positive eigenvalue of the singlet anomalous dimension matrix</span>
+<span class="sd">        :math:`\gamma_{S}(N)`</span>
+<span class="sd">      lambda_m : complex</span>
+<span class="sd">        negative eigenvalue of the singlet anomalous dimension matrix</span>
+<span class="sd">        :math:`\gamma_{S}(N)`</span>
+<span class="sd">      e_p : numpy.ndarray</span>
+<span class="sd">        projector for the positive eigenvalue of the singlet anomalous</span>
+<span class="sd">        dimension matrix :math:`\gamma_{S}(N)`</span>
+<span class="sd">      e_m : numpy.ndarray</span>
+<span class="sd">        projector for the negative eigenvalue of the singlet anomalous</span>
+<span class="sd">        dimension matrix :math:`\gamma_{S}(N)`</span>
 
-<span class="sd">      See Also</span>
-<span class="sd">      --------</span>
-<span class="sd">        eko.anomalous_dimensions.lo.gamma_singlet_0 : :math:`\gamma_{S}^{(0)}(N)`</span>
-<span class="sd">        eko.anomalous_dimensions.nlo.gamma_singlet_1 : :math:`\gamma_{S}^{(1)}(N)`</span>
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">      eko.anomalous_dimensions.lo.gamma_singlet_0 : :math:`\gamma_{S}^{(0)}(N)`</span>
+<span class="sd">      eko.anomalous_dimensions.nlo.gamma_singlet_1 : :math:`\gamma_{S}^{(1)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># compute eigenvalues</span>
     <span class="n">det</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">gamma_S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="o">+</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">gamma_S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">4.0</span> <span class="o">*</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
     <span class="p">)</span>
     <span class="n">lambda_p</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">det</span><span class="p">)</span>
     <span class="n">lambda_m</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">gamma_S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">det</span><span class="p">)</span>

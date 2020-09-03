@@ -179,24 +179,24 @@
 
 <div class="viewcode-block" id="run_dglap"><a class="viewcode-back" href="../modules/eko/eko.html#eko.run_dglap">[docs]</a><span class="k">def</span> <span class="nf">run_dglap</span><span class="p">(</span><span class="n">setup</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        This function takes a DGLAP theory configuration dictionary</span>
-<span class="sd">        and performs the solution of the DGLAP equations.</span>
+<span class="sd">    This function takes a DGLAP theory configuration dictionary</span>
+<span class="sd">    and performs the solution of the DGLAP equations.</span>
 
-<span class="sd">        The EKO :math:`\mathbf E_{k,j}(a_s^1\leftarrow a_s^0)` is determined in order</span>
-<span class="sd">        to fullfill the following evolution</span>
+<span class="sd">    The EKO :math:`\mathbf E_{k,j}(a_s^1\leftarrow a_s^0)` is determined in order</span>
+<span class="sd">    to fullfill the following evolution</span>
 
-<span class="sd">        .. math::</span>
-<span class="sd">            \mathbf f(x_k,a_s^1) = \mathbf E_{k,j}(a_s^1\leftarrow a_s^0) \mathbf f(x_j,a_s^0)</span>
+<span class="sd">    .. math::</span>
+<span class="sd">        \mathbf f(x_k,a_s^1) = \mathbf E_{k,j}(a_s^1\leftarrow a_s^0) \mathbf f(x_j,a_s^0)</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            setup : dict</span>
-<span class="sd">                input card - see :doc:`/Code/IO`</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        setup : dict</span>
+<span class="sd">            input card - see :doc:`/Code/IO`</span>
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            output : dict</span>
-<span class="sd">                output dictionary - see :doc:`/Code/IO`</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        output : dict</span>
+<span class="sd">            output dictionary - see :doc:`/Code/IO`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">eko</span><span class="o">.</span><span class="n">runner</span><span class="o">.</span><span class="n">Runner</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_output</span><span class="p">()</span>
