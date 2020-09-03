@@ -21,7 +21,7 @@ From Source Code
 
 .. warning:: #125 check error propagation
 
-.. warning:: #369 make 'cut' external parameter?
+.. warning:: #368 make 'cut' external parameter?
 
 
 
