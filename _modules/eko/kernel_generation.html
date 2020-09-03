@@ -231,6 +231,8 @@
             <span class="s2">&quot;ordered-truncated&quot;</span><span class="p">,</span>
             <span class="s2">&quot;decompose-exact&quot;</span><span class="p">,</span>
             <span class="s2">&quot;decompose-expanded&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;perturbative-expanded&quot;</span><span class="p">,</span>
         <span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown evolution mode </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;iterate-exact&quot;</span><span class="p">:</span>
@@ -270,13 +272,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;PTO&quot;</span><span class="p">])</span>
-        <span class="n">mod_ev</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ModEv&quot;</span><span class="p">,</span> <span class="s2">&quot;EXA&quot;</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ModEv&quot;</span><span class="p">,</span> <span class="s2">&quot;EXA&quot;</span><span class="p">)</span>
         <span class="n">mod_ev2method</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;EXA&quot;</span><span class="p">:</span> <span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span>
             <span class="s2">&quot;EXP&quot;</span><span class="p">:</span> <span class="s2">&quot;iterate-expanded&quot;</span><span class="p">,</span>
             <span class="s2">&quot;TRN&quot;</span><span class="p">:</span> <span class="s2">&quot;truncated&quot;</span><span class="p">,</span>
         <span class="p">}</span>
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mod_ev2method</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">mod_ev</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">mod_ev2method</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">method</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">interpol_dispatcher</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="n">numba_it</span><span class="p">)</span></div>
@@ -364,7 +367,7 @@
                         <span class="n">r_k</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r1</span>
                         <span class="n">u_k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
                         <span class="c1"># fill R_k</span>
-                        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;exact&quot;</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">:</span>
                             <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ev_op_max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
                                 <span class="n">r_k</span><span class="p">[</span><span class="n">kk</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">b1</span> <span class="o">*</span> <span class="n">r1</span>
                         <span class="c1"># compute R&#39;_k and U_k (simultaneously)</span>
