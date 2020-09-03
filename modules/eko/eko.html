@@ -815,8 +815,8 @@ each containing
 </dd></dl>
 
 <dl class="py method">
-<dt id="eko.interpolation.BasisFunction.compile_N">
-<code class="sig-name descname">compile_N</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.compile_N"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.compile_N" title="Permalink to this definition">¶</a></dt>
+<dt id="eko.interpolation.BasisFunction.compile_n">
+<code class="sig-name descname">compile_n</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.compile_n"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.compile_n" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles the function to evaluate the interpolator in N space.</p>
 <p>Generates a function <cite>evaluate_Nx</cite> with a (N, x) signature <cite>evaluate_Nx(N, logx)</cite>.</p>
 <div class="math notranslate nohighlight">
@@ -840,8 +840,8 @@ which can be joined with the Mellin inversion factor.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="eko.interpolation.BasisFunction.compile_X">
-<code class="sig-name descname">compile_X</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.compile_X"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.compile_X" title="Permalink to this definition">¶</a></dt>
+<dt id="eko.interpolation.BasisFunction.compile_x">
+<code class="sig-name descname">compile_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.compile_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.compile_x" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles the function to evaluate the interpolator
 in x space</p>
 <div class="math notranslate nohighlight">
@@ -864,8 +864,8 @@ in x space</p>
 
 <dl class="py method">
 <dt id="eko.interpolation.BasisFunction.evaluate_x">
-<code class="sig-name descname">evaluate_x</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.evaluate_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.evaluate_x" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate basis function in x-space.</p>
+<code class="sig-name descname">evaluate_x</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">numba_it</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#BasisFunction.evaluate_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.BasisFunction.evaluate_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate basis function in x-space (regardless of the true space).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – evaluated point</p>
@@ -993,8 +993,29 @@ be created again).</p>
 
 <dl class="py function">
 <dt id="eko.interpolation.make_grid">
-<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">make_grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_low</span></em>, <em class="sig-param"><span class="n">n_mid</span></em>, <em class="sig-param"><span class="n">n_high</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">x_min</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">x_low</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">x_high</span><span class="o">=</span><span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">x_max</span><span class="o">=</span><span class="default_value">0.9999</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#make_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.make_grid" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">eko.interpolation.</code><code class="sig-name descname">make_grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_low</span></em>, <em class="sig-param"><span class="n">n_mid</span></em>, <em class="sig-param"><span class="n">n_high</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">x_min</span><span class="o">=</span><span class="default_value">1e-07</span></em>, <em class="sig-param"><span class="n">x_low</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">x_high</span><span class="o">=</span><span class="default_value">0.9</span></em>, <em class="sig-param"><span class="n">x_high_max</span><span class="o">=</span><span class="default_value">0.9999</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/interpolation.html#make_grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.interpolation.make_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a log-lin-log-spaced grid.</p>
+<p>1.0 is always part of the grid and the final grid is unified, i.e. esp. points that might
+appear twice at the borders of the regions are unified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_low</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – points in the small-x region</p></li>
+<li><p><strong>n_mid</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – points in the mediun-x region</p></li>
+<li><p><strong>n_high</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – points in the large-x region</p></li>
+<li><p><strong>x_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – minimum x (included)</p></li>
+<li><p><strong>x_low</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – seperation point between small and medium</p></li>
+<li><p><strong>x_high_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – closest point before 1</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>xgrid</strong> – generated grid</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-eko.kernel_generation">

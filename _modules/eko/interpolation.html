@@ -193,22 +193,22 @@
 <span class="c1">#### Interpolation</span>
 <div class="viewcode-block" id="Area"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.Area">[docs]</a><span class="k">class</span> <span class="nc">Area</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Class that define each of the area</span>
-<span class="sd">        of each of the subgrid interpolators.</span>
+<span class="sd">    Class that define each of the area</span>
+<span class="sd">    of each of the subgrid interpolators.</span>
 
-<span class="sd">        Upon construction an array of coefficients</span>
-<span class="sd">        is generated.</span>
+<span class="sd">    Upon construction an array of coefficients</span>
+<span class="sd">    is generated.</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            lower_index: int</span>
-<span class="sd">                lower index of the area</span>
-<span class="sd">            poly_number: int</span>
-<span class="sd">                number of polynomial</span>
-<span class="sd">            block: tuple(int, int)</span>
-<span class="sd">                kmin and kmax</span>
-<span class="sd">            xgrid: array(float)</span>
-<span class="sd">                Grid in x-space from which the interpolators are constructed</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        lower_index: int</span>
+<span class="sd">            lower index of the area</span>
+<span class="sd">        poly_number: int</span>
+<span class="sd">            number of polynomial</span>
+<span class="sd">        block: tuple(int, int)</span>
+<span class="sd">            kmin and kmax</span>
+<span class="sd">        xgrid: array(float)</span>
+<span class="sd">            Grid in x-space from which the interpolators are constructed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lower_index</span><span class="p">,</span> <span class="n">poly_number</span><span class="p">,</span> <span class="n">block</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">):</span>
@@ -253,26 +253,26 @@
 
 <div class="viewcode-block" id="BasisFunction"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction">[docs]</a><span class="k">class</span> <span class="nc">BasisFunction</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Object containing a list of areas for a given polynomial number</span>
-<span class="sd">        defined by (xmin-xmax) and containing a list of coefficients.</span>
+<span class="sd">    Object containing a list of areas for a given polynomial number</span>
+<span class="sd">    defined by (xmin-xmax) and containing a list of coefficients.</span>
 
-<span class="sd">        Upon construction will generate all areas and generate and compile</span>
-<span class="sd">        a function to evaluate in N (or x) the iterpolator</span>
+<span class="sd">    Upon construction will generate all areas and generate and compile</span>
+<span class="sd">    a function to evaluate in N (or x) the iterpolator</span>
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            xgrid : array</span>
-<span class="sd">                Grid in x-space from which the interpolators are constructed</span>
-<span class="sd">            poly_number : int</span>
-<span class="sd">                number of polynomial</span>
-<span class="sd">            list_of_blocks: list(tuple(int, int))</span>
-<span class="sd">                list of tuples with the (kmin, kmax) values for each area</span>
-<span class="sd">            mode_log: bool (default: True)</span>
-<span class="sd">                use logarithmic interpolation?</span>
-<span class="sd">            mode_N: bool (default: True)</span>
-<span class="sd">                if true compiles the function on N, otherwise compiles x</span>
-<span class="sd">            numba_it: bool (default: True)</span>
-<span class="sd">                if true, the functions are passed through `numba.njit`</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        xgrid : array</span>
+<span class="sd">            Grid in x-space from which the interpolators are constructed</span>
+<span class="sd">        poly_number : int</span>
+<span class="sd">            number of polynomial</span>
+<span class="sd">        list_of_blocks: list(tuple(int, int))</span>
+<span class="sd">            list of tuples with the (kmin, kmax) values for each area</span>
+<span class="sd">        mode_log: bool (default: True)</span>
+<span class="sd">            use logarithmic interpolation?</span>
+<span class="sd">        mode_N: bool (default: True)</span>
+<span class="sd">            if true compiles the function on N, otherwise compiles x</span>
+<span class="sd">        numba_it: bool (default: True)</span>
+<span class="sd">            if true, the functions are passed through `numba.njit`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -301,22 +301,22 @@
         <span class="c1"># compile</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">callable</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode_N</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">compile_N</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compile_n</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">compile_X</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compile_x</span><span class="p">()</span>
 
 <div class="viewcode-block" id="BasisFunction.is_below_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.is_below_x">[docs]</a>    <span class="k">def</span> <span class="nf">is_below_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Are all areas below x?</span>
+<span class="sd">        Are all areas below x?</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                x : float</span>
-<span class="sd">                    reference value</span>
-<span class="sd">            Returns</span>
-<span class="sd">            --------</span>
-<span class="sd">                is_below_x : bool</span>
-<span class="sd">                    xmax of highest area &lt;= x?</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            x : float</span>
+<span class="sd">                reference value</span>
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">            is_below_x : bool</span>
+<span class="sd">                xmax of highest area &lt;= x?</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Log if needed</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mode_log</span><span class="p">:</span>
@@ -326,9 +326,9 @@
 
 <div class="viewcode-block" id="BasisFunction.areas_to_const"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.areas_to_const">[docs]</a>    <span class="k">def</span> <span class="nf">areas_to_const</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Retruns a tuple of tuples, one for each area</span>
-<span class="sd">            each containing</span>
-<span class="sd">            (`xmin`, `xmax`, `numpy.array` of coefficients)</span>
+<span class="sd">        Retruns a tuple of tuples, one for each area</span>
+<span class="sd">        each containing</span>
+<span class="sd">        (`xmin`, `xmax`, `numpy.array` of coefficients)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># This is necessary as numba will ask for everything</span>
         <span class="c1"># to be inmutable</span>
@@ -337,25 +337,25 @@
             <span class="n">area_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">area</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="n">area</span><span class="o">.</span><span class="n">xmax</span><span class="p">,</span> <span class="n">area</span><span class="o">.</span><span class="n">coefs</span><span class="p">))</span>
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">area_list</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BasisFunction.compile_X"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.compile_X">[docs]</a>    <span class="k">def</span> <span class="nf">compile_X</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BasisFunction.compile_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.compile_x">[docs]</a>    <span class="k">def</span> <span class="nf">compile_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Compiles the function to evaluate the interpolator</span>
-<span class="sd">            in x space</span>
+<span class="sd">        Compiles the function to evaluate the interpolator</span>
+<span class="sd">        in x space</span>
 
-<span class="sd">            .. math::</span>
-<span class="sd">                p(x)</span>
+<span class="sd">        .. math::</span>
+<span class="sd">            p(x)</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                x : float</span>
-<span class="sd">                    Evaluated point</span>
-<span class="sd">                conf : dict</span>
-<span class="sd">                    dictionary of values for the coefficients of the interpolator</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            x : float</span>
+<span class="sd">                Evaluated point</span>
+<span class="sd">            conf : dict</span>
+<span class="sd">                dictionary of values for the coefficients of the interpolator</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                p(x) : float</span>
-<span class="sd">                    Evaluated polynom at x</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            p(x) : float</span>
+<span class="sd">                Evaluated polynom at x</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">area_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">areas_to_const</span><span class="p">()</span>
@@ -383,25 +383,25 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">callable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="n">evaluate_x</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="BasisFunction.evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.evaluate_x">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<div class="viewcode-block" id="BasisFunction.evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.evaluate_x">[docs]</a>    <span class="k">def</span> <span class="nf">evaluate_x</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">numba_it</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Evaluate basis function in x-space.</span>
+<span class="sd">        Evaluate basis function in x-space (regardless of the true space).</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                x : float</span>
-<span class="sd">                    evaluated point</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            x : float</span>
+<span class="sd">                evaluated point</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                res : float</span>
-<span class="sd">                    p(x)</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            res : float</span>
+<span class="sd">                p(x)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode_N</span><span class="p">:</span>
             <span class="n">old_call</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callable</span>
             <span class="n">old_numba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numba_it</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">numba_it</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">compile_X</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">numba_it</span> <span class="o">=</span> <span class="n">numba_it</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">compile_x</span><span class="p">()</span>
             <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callable</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">callable</span> <span class="o">=</span> <span class="n">old_call</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">numba_it</span> <span class="o">=</span> <span class="n">old_numba</span>
@@ -409,35 +409,35 @@
             <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callable</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">res</span></div>
 
-<div class="viewcode-block" id="BasisFunction.compile_N"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.compile_N">[docs]</a>    <span class="k">def</span> <span class="nf">compile_N</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="BasisFunction.compile_n"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.compile_n">[docs]</a>    <span class="k">def</span> <span class="nf">compile_n</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Compiles the function to evaluate the interpolator in N space.</span>
+<span class="sd">        Compiles the function to evaluate the interpolator in N space.</span>
 
-<span class="sd">            Generates a function `evaluate_Nx` with a (N, x) signature `evaluate_Nx(N, logx)`.</span>
+<span class="sd">        Generates a function `evaluate_Nx` with a (N, x) signature `evaluate_Nx(N, logx)`.</span>
 
-<span class="sd">            .. math::</span>
-<span class="sd">                \\tilde p(N)*exp(- N * log(x))</span>
+<span class="sd">        .. math::</span>
+<span class="sd">            \\tilde p(N)*exp(- N * log(x))</span>
 
-<span class="sd">            The polynomials contain naturally factors of :math:`exp(N * j * log(x_{min/max}))`</span>
-<span class="sd">            which can be joined with the Mellin inversion factor.</span>
+<span class="sd">        The polynomials contain naturally factors of :math:`exp(N * j * log(x_{min/max}))`</span>
+<span class="sd">        which can be joined with the Mellin inversion factor.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                N : float</span>
-<span class="sd">                    Evaluated point in N-space</span>
-<span class="sd">                logx : float</span>
-<span class="sd">                    Mellin-inversion point :math:`log(x)`</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            N : float</span>
+<span class="sd">                Evaluated point in N-space</span>
+<span class="sd">            logx : float</span>
+<span class="sd">                Mellin-inversion point :math:`log(x)`</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                p(N)*x^{-N} : complex</span>
-<span class="sd">                    Evaluated polynomial at N times x^{-N}</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            p(N)*x^{-N} : complex</span>
+<span class="sd">                Evaluated polynomial at N times x^{-N}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">area_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">areas_to_const</span><span class="p">()</span>
 
         <span class="k">def</span> <span class="nf">log_evaluate_Nx</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Get a single Lagrange interpolator in N-space multiplied</span>
-<span class="sd">            by the Mellin-inversion factor. &quot;&quot;&quot;</span>
+<span class="sd">            by the Mellin-inversion factor.&quot;&quot;&quot;</span>
             <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="k">for</span> <span class="n">logxmin</span><span class="p">,</span> <span class="n">logxmax</span><span class="p">,</span> <span class="n">coefs</span> <span class="ow">in</span> <span class="n">area_list</span><span class="p">:</span>
                 <span class="c1"># skip area completely?</span>
@@ -464,7 +464,7 @@
 
         <span class="k">def</span> <span class="nf">evaluate_Nx</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">):</span>
             <span class="sd">&quot;&quot;&quot;Get a single Lagrange interpolator in N-space multiplied</span>
-<span class="sd">            by the Mellin-inversion factor. &quot;&quot;&quot;</span>
+<span class="sd">            by the Mellin-inversion factor.&quot;&quot;&quot;</span>
             <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="k">for</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">coefs</span> <span class="ow">in</span> <span class="n">area_list</span><span class="p">:</span>
                 <span class="n">lnxmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">xmax</span><span class="p">)</span>
@@ -488,17 +488,17 @@
 
 <div class="viewcode-block" id="BasisFunction.njit"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.njit">[docs]</a>    <span class="k">def</span> <span class="nf">njit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Compiles the function to Numba, if necessary.</span>
+<span class="sd">        Compiles the function to Numba, if necessary.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            -----------</span>
-<span class="sd">                function : function</span>
-<span class="sd">                    function to compile</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">            function : function</span>
+<span class="sd">                function to compile</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                function : function</span>
-<span class="sd">                    compiled function, if needed</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            function : function</span>
+<span class="sd">                compiled function, if needed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">numba_it</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
@@ -515,26 +515,26 @@
 
 <div class="viewcode-block" id="InterpolatorDispatcher"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher">[docs]</a><span class="k">class</span> <span class="nc">InterpolatorDispatcher</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Setups the interpolator.</span>
+<span class="sd">    Setups the interpolator.</span>
 
-<span class="sd">        Upon construction will generate a list of `BasisFunction` objects.</span>
-<span class="sd">        Each of these `BasisFunction` objects exponses a `callable`</span>
-<span class="sd">        method (also accessible as the `__call__` method of the class)</span>
-<span class="sd">        which will be numba-compiled.</span>
+<span class="sd">    Upon construction will generate a list of `BasisFunction` objects.</span>
+<span class="sd">    Each of these `BasisFunction` objects exponses a `callable`</span>
+<span class="sd">    method (also accessible as the `__call__` method of the class)</span>
+<span class="sd">    which will be numba-compiled.</span>
 
 
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            xgrid_in : array</span>
-<span class="sd">                Grid in x-space from which the interpolators are constructed</span>
-<span class="sd">            polynomial_degree : int</span>
-<span class="sd">                degree of the interpolation polynomial</span>
-<span class="sd">            log: bool  (default: True)</span>
-<span class="sd">                Whether it is a log or linear interpolator</span>
-<span class="sd">            mode_N: bool (default: True)</span>
-<span class="sd">                if true compiles the function on N, otherwise compiles x</span>
-<span class="sd">            numba_it : bool (default: True)</span>
-<span class="sd">                compile with numba?</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        xgrid_in : array</span>
+<span class="sd">            Grid in x-space from which the interpolators are constructed</span>
+<span class="sd">        polynomial_degree : int</span>
+<span class="sd">            degree of the interpolation polynomial</span>
+<span class="sd">        log: bool  (default: True)</span>
+<span class="sd">            Whether it is a log or linear interpolator</span>
+<span class="sd">        mode_N: bool (default: True)</span>
+<span class="sd">            if true compiles the function on N, otherwise compiles x</span>
+<span class="sd">        numba_it : bool (default: True)</span>
+<span class="sd">            compile with numba?</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xgrid</span><span class="p">,</span> <span class="n">polynomial_degree</span><span class="p">,</span> <span class="n">log</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">mode_N</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">numba_it</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -601,24 +601,25 @@
 <div class="viewcode-block" id="InterpolatorDispatcher.from_dict"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">setup</span><span class="p">,</span> <span class="n">mode_N</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">numba_it</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Create object from dictionary.</span>
+<span class="sd">        Create object from dictionary.</span>
 
-<span class="sd">            Read keys:</span>
+<span class="sd">        Read keys:</span>
 
-<span class="sd">                - interpolation_xgrid : required, basis grid</span>
-<span class="sd">                - interpolation_is_log : default=True, use logarithmic interpolation?</span>
-<span class="sd">                - interpolation_polynomial_degree : default=4, polynomial degree of interpolation</span>
+<span class="sd">            - interpolation_xgrid : required, basis grid</span>
+<span class="sd">            - interpolation_is_log : default=True, use logarithmic interpolation?</span>
+<span class="sd">            - interpolation_polynomial_degree : default=4, polynomial degree of interpolation</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                setup : dict</span>
-<span class="sd">                    input configurations</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            setup : dict</span>
+<span class="sd">                input configurations</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># load xgrid</span>
         <span class="n">xgrid</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">xgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;make_grid&quot;</span><span class="p">:</span>
+            <span class="n">xgrid</span> <span class="o">=</span> <span class="n">make_grid</span><span class="p">(</span><span class="o">*</span><span class="n">xgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
         <span class="n">is_log_interpolation</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;interpolation_is_log&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
         <span class="n">polynom_rank</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;interpolation_polynomial_degree&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-
-        <span class="c1"># Generate the dispatcher for the basis functions</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">xgrid</span><span class="p">,</span>
             <span class="n">polynom_rank</span><span class="p">,</span>
@@ -647,20 +648,20 @@
 
 <div class="viewcode-block" id="InterpolatorDispatcher.get_interpolation"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher.get_interpolation">[docs]</a>    <span class="k">def</span> <span class="nf">get_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targetgrid</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Computes interpolation matrix between `targetgrid` and `xgrid`.</span>
+<span class="sd">        Computes interpolation matrix between `targetgrid` and `xgrid`.</span>
 
-<span class="sd">            .. math::</span>
-<span class="sd">                f(targetgrid) = R \\cdot f(xgrid)</span>
+<span class="sd">        .. math::</span>
+<span class="sd">            f(targetgrid) = R \\cdot f(xgrid)</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">                targetgrid : array</span>
-<span class="sd">                    grid to interpolate to</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            targetgrid : array</span>
+<span class="sd">                grid to interpolate to</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                R : array</span>
-<span class="sd">                    interpolation matrix, do be multiplied from the left(!)</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            R : array</span>
+<span class="sd">                interpolation matrix, do be multiplied from the left(!)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># trivial?</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">targetgrid</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xgrid_raw</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span>
@@ -678,15 +679,15 @@
 
 <div class="viewcode-block" id="InterpolatorDispatcher.to_dict"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Returns the configuration for the underlying xgrid (from which the instance can</span>
-<span class="sd">            be created again).</span>
+<span class="sd">        Returns the configuration for the underlying xgrid (from which the instance can</span>
+<span class="sd">        be created again).</span>
 
-<span class="sd">            The output dictionary contains a numpy array.</span>
+<span class="sd">        The output dictionary contains a numpy array.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                ret : dict</span>
-<span class="sd">                    full grid configuration</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            ret : dict</span>
+<span class="sd">                full grid configuration</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">xgrid_raw</span><span class="p">,</span>
@@ -695,15 +696,50 @@
         <span class="p">}</span>
         <span class="k">return</span> <span class="n">ret</span></div></div>
 
-<div class="viewcode-block" id="make_grid"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.make_grid">[docs]</a><span class="k">def</span> <span class="nf">make_grid</span><span class="p">(</span><span class="n">n_low</span><span class="p">,</span> <span class="n">n_mid</span><span class="p">,</span> <span class="n">n_high</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span><span class="n">x_low</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">x_high</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">x_max</span><span class="o">=</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1e-4</span><span class="p">):</span>
+
+<div class="viewcode-block" id="make_grid"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.make_grid">[docs]</a><span class="k">def</span> <span class="nf">make_grid</span><span class="p">(</span>
+    <span class="n">n_low</span><span class="p">,</span> <span class="n">n_mid</span><span class="p">,</span> <span class="n">n_high</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_min</span><span class="o">=</span><span class="mf">1e-7</span><span class="p">,</span> <span class="n">x_low</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">x_high</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">x_high_max</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">-</span> <span class="mf">1e-4</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a log-lin-log-spaced grid.</span>
+
+<span class="sd">    1.0 is always part of the grid and the final grid is unified, i.e. esp. points that might</span>
+<span class="sd">    appear twice at the borders of the regions are unified.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        n_low : int</span>
+<span class="sd">            points in the small-x region</span>
+<span class="sd">        n_mid : int</span>
+<span class="sd">            points in the mediun-x region</span>
+<span class="sd">        n_high : int</span>
+<span class="sd">            points in the large-x region</span>
+<span class="sd">        x_min : float</span>
+<span class="sd">            minimum x (included)</span>
+<span class="sd">        x_low : float</span>
+<span class="sd">            seperation point between small and medium</span>
+<span class="sd">        x_high_max : float</span>
+<span class="sd">            closest point before 1</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        xgrid : numpy.ndarray</span>
+<span class="sd">            generated grid</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># low</span>
     <span class="k">if</span> <span class="n">n_mid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">x_low</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="n">xgrid_low</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_low</span><span class="p">,</span> <span class="n">n_low</span><span class="p">)</span>
+    <span class="c1"># high</span>
     <span class="k">if</span> <span class="n">n_high</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">x_high</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">xgrid_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">xgrid_high</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x_high</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x_high_max</span><span class="p">,</span> <span class="n">n_high</span><span class="p">)</span>
+    <span class="c1"># mid</span>
     <span class="n">xgrid_mid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x_low</span><span class="p">,</span> <span class="n">x_high</span><span class="p">,</span> <span class="n">n_mid</span><span class="p">)</span>
-    <span class="n">xgrid_high</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span> <span class="n">x_high</span><span class="p">,</span> <span class="mi">1</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">n_high</span><span class="p">)</span>
-    <span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xgrid_low</span><span class="p">,</span> <span class="n">xgrid_mid</span><span class="p">,</span> <span class="n">xgrid_high</span><span class="p">)))</span>
+    <span class="c1"># join</span>
+    <span class="n">xgrid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xgrid_low</span><span class="p">,</span> <span class="n">xgrid_mid</span><span class="p">,</span> <span class="n">xgrid_high</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]))))</span>
     <span class="k">return</span> <span class="n">xgrid</span></div>
 </pre></div>
 
