@@ -17,6 +17,14 @@ Subpackages
 Submodules
 ----------
 
+eko.basis\_rotation module
+--------------------------
+
+.. automodule:: eko.basis_rotation
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 eko.constants module
 --------------------
 

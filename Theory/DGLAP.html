@@ -252,14 +252,14 @@ the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</sp
 <div class="math notranslate nohighlight">
 \[\begin{split}\lambda_{\pm} &amp;= \frac 1 {2} \left( \ln \tilde E_{qq}^{(0)} + \ln \tilde E_{gg}^{(0)} \pm \sqrt{(\ln \tilde E_{qq}^{(0)}-\ln \tilde E_{gg}^{(0)})^2 + 4\ln \tilde E_{qg}^{(0)}\ln \tilde E_{gq}^{(0)}} \right)\\
 {\mathbf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \ln \mathbf{\tilde E}^{(0)}_S  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
-<p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the 2x2 identity matrix in flavour space.
-The projectors obey the usual properties, i.e.</p>
+<p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the 2x2 identity matrix in flavour space and, e.g., <span class="math notranslate nohighlight">\(\ln \tilde E_{qq}^{(0)} = \gamma_{qq}^{(0)}j^{(0,0)}(a_s,a_s^0)\)</span>.</p>
+<p>The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
 \[{\mathbf e}_{\pm} \cdot {\mathbf e}_{\pm} = {\mathbf e}_{\pm}\,,\quad {\mathbf e}_{\pm} \cdot {\mathbf e}_{\mp} = 0\,,\quad \ep + \em = \mathbf I\]</div>
 <p>and thus the exponentiation becomes easier again.</p>
 <p>The EKO is then given by</p>
 <div class="math notranslate nohighlight">
-\[\ESk{0}{a_s}{a_s^0} = \em \exp(\lambda_{-}) + \ep \exp(\lambda_{+})\]</div>
+\[\ESk{0}{a_s}{a_s^0} = \ep \exp(\lambda_{+}) + \em \exp(\lambda_{-})\]</div>
 </div>
 </div>
 <div class="section" id="next-to-leading-order">
@@ -272,12 +272,12 @@ The projectors obey the usual properties, i.e.</p>
 <p>with <span class="math notranslate nohighlight">\(\gamma_{ns} \in \{\gamma_{ns,+},\gamma_{ns,-}=\gamma_{ns,v}\}\)</span>.</p>
 <p>We obtain the (exact) EKO <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id4">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a><a class="bibtex reference internal" href="../zzz-refs.html#bonvini-2012sh" id="id6">[Bon12]</a>:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\tilde E^{(1)}_{ns}(a_s \leftarrow a_s^0) &amp;= \gamma^{(0)} \cdot j^{(0,1)}(a_s,a_s^0) + \gamma^{(1)} \cdot j^{(1,1)}(a_s,a_s^0)\\
+\[\begin{split}\ln \tilde E^{(1)}_{ns}(a_s \leftarrow a_s^0) &amp;= \gamma^{(0)} \cdot j^{(0,1)}(a_s,a_s^0) + \gamma^{(1)} \cdot j^{(1,1)}(a_s,a_s^0)\\
 j^{(1,1)}(a_s,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s}\!da_s'\,\frac{a_s'^2}{\beta_0 a_s'^2 + \beta_1 a_s'^3} = \frac{1}{\beta_1}\ln\left(\frac{1+b_1 a_s}{1+b_1 a_s^0}\right)\\
 j^{(0,1)}(a_s,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s}\!da_s'\,\frac{a_s'}{\beta_0 a_s'^2 + \beta_1 a_s'^3} = j^{(0,0)}(a_s,a_s^0) - b_1 j^{(1,1)}(a_s,a_s^0)\end{split}\]</div>
 <p>Note that we recover the LO solution:</p>
 <div class="math notranslate nohighlight">
-\[\tilde E^{(1)}_{ns}(a_s \leftarrow a_s^0) = \ln \tilde E^{(0)}_{ns}(a_s \leftarrow a_s^0) + j^{(1,1)}(a_s,a_s^0)(\gamma^{(1)} - b_1 \gamma^{(0)})\]</div>
+\[\ln \tilde E^{(1)}_{ns}(a_s \leftarrow a_s^0) = \ln \tilde E^{(0)}_{ns}(a_s \leftarrow a_s^0) + j^{(1,1)}(a_s,a_s^0)(\gamma^{(1)} - b_1 \gamma^{(0)})\]</div>
 <p>In NLO we provide different strategies to define the EKO:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['iterate-exact',</span> <span class="pre">'decompose-exact',</span> <span class="pre">'perturbative-exact']</span></code>: use the <em>exact</em> solution as defined above</p></li>
@@ -343,12 +343,12 @@ obtain a recursive set of commutator relations for the evolution operator coeffi
 \[\mathbf U_k = \em \mathbf U_k \em + \em \mathbf U_k \ep + \ep \mathbf U_k \em + \ep \mathbf U_k \ep\]</div>
 <p>we obtain the <span class="math notranslate nohighlight">\(\mathbf U_k\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf U_k = \frac{ \em \mathbf{R}_k' \em + \em \mathbf{R}_k' \ep } k + \frac{\ep \mathbf{R}_k' \em}{r_- - r_+ - k} + \frac{\em \mathbf{R}_k' \ep}{r_+ - r_- -k}\]</div>
+\[\mathbf U_k = \frac{ \em \mathbf{R}_k' \em + \ep \mathbf{R}_k' \ep } k + \frac{\ep \mathbf{R}_k' \em}{r_- - r_+ - k} + \frac{\em \mathbf{R}_k' \ep}{r_+ - r_- -k}\]</div>
 <p>So the strategies are</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['perturbative-exact',</span> <span class="pre">'perturbative-expanded']</span></code>: approximate the full evolution
-operator <span class="math notranslate nohighlight">\(U(a_s)\)</span> with an expansion up to <code class="docutils literal notranslate"><span class="pre">ev_op_max_order</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['ordered-truncated',</span> <span class="pre">'truncated']</span></code>: truncate the evolution operator <span class="math notranslate nohighlight">\(U(a_s)\)</span> and use</p></li>
+operator <span class="math notranslate nohighlight">\(\mathbf U(a_s)\)</span> with an expansion up to <code class="docutils literal notranslate"><span class="pre">ev_op_max_order</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['ordered-truncated',</span> <span class="pre">'truncated']</span></code>: truncate the evolution operator <span class="math notranslate nohighlight">\(\mathbf U(a_s)\)</span> and use</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\ESk{1}{a_s}{a_s^0} = \ESk{0}{a_s}{a_s^0} + a_s \mathbf U_1 \ESk{0}{a_s}{a_s^0} - a_s^0 \ESk{0}{a_s}{a_s^0} \mathbf U_1\]</div>
