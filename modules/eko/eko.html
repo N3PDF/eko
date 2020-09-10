@@ -280,12 +280,13 @@ to fullfill the following evolution</p>
 
 <dl class="py function">
 <dt id="eko.basis_rotation.generate_input_from_lhapdf">
-<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">generate_input_from_lhapdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lhapdf</span></em>, <em class="sig-param"><span class="n">Q2init</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/basis_rotation.html#generate_input_from_lhapdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.basis_rotation.generate_input_from_lhapdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">generate_input_from_lhapdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lhapdf</span></em>, <em class="sig-param"><span class="n">xs</span></em>, <em class="sig-param"><span class="n">Q2init</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/basis_rotation.html#generate_input_from_lhapdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.basis_rotation.generate_input_from_lhapdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rotate lhapdf-like input object from flavor space to evolution space</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lhapdf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><em>object</em></a>) – lhapdf-like input object (i.e. an object with xfxQ2)</p></li>
+<li><p><strong>xs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – input x values</p></li>
 <li><p><strong>Q2init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – input scale</p></li>
 </ul>
 </dd>
@@ -1559,13 +1560,15 @@ in place.</p>
 to PDFs and dumping to file.</p>
 <dl class="py method">
 <dt id="eko.output.Output.apply_pdf">
-<code class="sig-name descname">apply_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_pdfs</span></em>, <em class="sig-param"><span class="n">targetgrid</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.apply_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.apply_pdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">apply_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lhapdf_like</span></em>, <em class="sig-param"><span class="n">targetgrid</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rotate_to_flavor_basis</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.apply_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.apply_pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply all available operators to the input PDFs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>input_pdfs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – input PDFs as dictionary {name: callable PDF}</p></li>
+<li><p><strong>lhapdf_like</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><em>object</em></a>) – object that provides an xfxQ2 callable (as lhapdf, ToyLH does) (and thus is
+in flavor basis)</p></li>
 <li><p><strong>targetgrid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – if given, interpolates to the pdfs given at targetgrid (instead of xgrid)</p></li>
+<li><p><strong>rotate_to_flavor_basis</strong> (<em>boolean</em>) – rotate output back to flavor basis</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1691,6 +1694,23 @@ Null, if self is written sucessfully to stream</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>output</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eko.output.Output.rotate_pdfs_to_flavor_basis">
+<em class="property">static </em><code class="sig-name descname">rotate_pdfs_to_flavor_basis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_grid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.rotate_pdfs_to_flavor_basis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.rotate_pdfs_to_flavor_basis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotate all PDFs from evolution basis to flavor basis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>in_grid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – a map q2 to pdfs and their errors in evolution basis</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>out_grid</strong> – updated map</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>

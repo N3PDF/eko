@@ -27,9 +27,7 @@ From Source Code
 
 `output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
 
-.. warning:: #39 rotation from the evolution basis to flavor basis? if yes, here!
-
-.. warning:: #110 explicitly silence yaml
+.. warning:: #130 explicitly silence yaml
 
 
 
