@@ -217,7 +217,9 @@
 <span class="sd">                output PDFs and their associated errors for the computed Q2grid</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># turn lhapdf_like into list</span>
-        <span class="n">input_lists</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="n">generate_input_from_lhapdf</span><span class="p">(</span><span class="n">lhapdf_like</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">])</span>
+        <span class="n">input_lists</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="n">generate_input_from_lhapdf</span><span class="p">(</span>
+            <span class="n">lhapdf_like</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
 
         <span class="c1"># build output</span>
         <span class="n">out_grid</span> <span class="o">=</span> <span class="p">{}</span>

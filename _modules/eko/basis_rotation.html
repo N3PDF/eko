@@ -311,6 +311,8 @@
             <span class="k">continue</span>
         <span class="c1"># insert empty photon</span>
         <span class="k">if</span> <span class="n">evol</span> <span class="o">==</span> <span class="s2">&quot;ph&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;S&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">evols</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;No S distribution available&quot;</span><span class="p">)</span>
             <span class="n">evols</span><span class="p">[</span><span class="n">evol</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">evols</span><span class="p">[</span><span class="s2">&quot;S&quot;</span><span class="p">]))</span>
         <span class="c1"># insert trivial value</span>
         <span class="k">elif</span> <span class="n">evol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;V&quot;</span><span class="p">:</span>

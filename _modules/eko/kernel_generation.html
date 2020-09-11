@@ -371,18 +371,18 @@
                         <span class="c1"># fill R_k</span>
                         <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">:</span>
                             <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">):</span>
-                                <span class="n">r_k</span><span class="p">[</span><span class="n">kk</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">b1</span> <span class="o">*</span> <span class="n">r_k</span><span class="p">[</span><span class="n">kk</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                                <span class="n">r_k</span><span class="p">[</span><span class="n">kk</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">b1</span> <span class="o">*</span> <span class="n">r_k</span><span class="p">[</span><span class="n">kk</span> <span class="o">-</span> <span class="mi">2</span><span class="p">]</span>
                         <span class="c1"># compute R&#39;_k and U_k (simultaneously)</span>
                         <span class="n">max_order</span> <span class="o">=</span> <span class="n">ev_op_max_order</span>
                         <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;truncated&quot;</span><span class="p">,</span> <span class="s2">&quot;ordered-truncated&quot;</span><span class="p">]:</span>
                             <span class="n">max_order</span> <span class="o">=</span> <span class="mi">1</span>
                         <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-                            <span class="c1">#rp_k_elems = np.zeros((kk, 2, 2), np.complex_)</span>
-                            <span class="c1">#for ll in range(kk, 0, -1):</span>
-                            <span class="n">rp_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
+                            <span class="c1"># rp_k_elems = np.zeros((kk, 2, 2), np.complex_)</span>
+                            <span class="c1"># for ll in range(kk, 0, -1):</span>
+                            <span class="n">rp_k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
                             <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">kk</span><span class="p">):</span>
                                 <span class="n">rp_k</span> <span class="o">+=</span> <span class="n">r_k</span><span class="p">[</span><span class="n">kk</span> <span class="o">-</span> <span class="n">jj</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">u_k</span><span class="p">[</span><span class="n">jj</span><span class="p">]</span>
-                            <span class="c1">#rp_k = np.sum(rp_k_elems, 0)</span>
+                            <span class="c1"># rp_k = np.sum(rp_k_elems, 0)</span>
                             <span class="n">u_k</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
                                 <span class="c1"># (e_m @ rp_k @ e_m + e_p @ rp_k @ e_p) / kk</span>
                                 <span class="c1"># + ((e_p @ rp_k @ e_m) / ((l_m - l_p)/lo_j - kk))</span>
