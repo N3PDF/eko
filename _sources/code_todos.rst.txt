@@ -9,11 +9,17 @@ From Docstrings
 From Source Code
 ----------------
 
-`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
+`strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
 
-.. warning:: #66 this is just a hack because I'm not able to generalize this part
+.. warning:: #375 set up a cache system here
 
-.. warning:: #113 can this be made more concise, or is this really the best that can be done?
+.. warning:: #417 recover color constants
+
+
+
+`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
+
+.. warning:: #132 explicitly silence yaml
 
 
 
@@ -25,17 +31,11 @@ From Source Code
 
 
 
-`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
+`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
 
-.. warning:: #132 explicitly silence yaml
+.. warning:: #66 this is just a hack because I'm not able to generalize this part
 
-
-
-`strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
-
-.. warning:: #375 set up a cache system here
-
-.. warning:: #417 recover color constants
+.. warning:: #113 can this be made more concise, or is this really the best that can be done?
 
 
 
