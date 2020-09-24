@@ -11,9 +11,17 @@ From Source Code
 
 `strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
 
-.. warning:: #375 set up a cache system here
+.. warning:: #260 cast to a_s here
 
-.. warning:: #417 recover color constants
+.. warning:: #397 set up a cache system here
+
+.. warning:: #439 recover color constants
+
+
+
+`interpolation.py <file:///home/runner/work/eko/eko/src/eko/interpolation.py>`_
+
+.. warning:: #272 move this to InterpolatorDispatcher
 
 
 

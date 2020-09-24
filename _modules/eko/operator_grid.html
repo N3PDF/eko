@@ -205,14 +205,11 @@
 <span class="sd">            Instance of :class:`OperatorGrid`</span>
 <span class="sd">        nf: int</span>
 <span class="sd">            Value of nf for this :class:`OperatorMaster`</span>
-<span class="sd">        kernels: list(dict)</span>
-<span class="sd">            list over basis functions containing all kernels</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">kernels</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nf</span> <span class="o">=</span> <span class="n">nf</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">kernels</span> <span class="o">=</span> <span class="n">kernels</span>
 
 <div class="viewcode-block" id="OperatorMaster.get_op"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.operator_grid.OperatorMaster.get_op">[docs]</a>    <span class="k">def</span> <span class="nf">get_op</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">,</span> <span class="n">generate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -333,12 +330,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Creates all :class:`OperatorMaster` instances.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">kd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">managers</span><span class="p">[</span><span class="s2">&quot;kernel_dispatcher&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">nf</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">managers</span><span class="p">[</span><span class="s2">&quot;thresholds_config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nf_range</span><span class="p">():</span>
-            <span class="c1"># Compile the kernels for each nf</span>
-            <span class="n">kd</span><span class="o">.</span><span class="n">set_up_all_integrands</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
             <span class="c1"># Set up the OperatorMaster for each nf</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_op_masters</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span> <span class="o">=</span> <span class="n">OperatorMaster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">kd</span><span class="o">.</span><span class="n">kernels</span><span class="p">[</span><span class="n">nf</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_op_masters</span><span class="p">[</span><span class="n">nf</span><span class="p">]</span> <span class="o">=</span> <span class="n">OperatorMaster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_generate_thresholds_op</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_q2</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

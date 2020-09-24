@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eko.kernels.non_singlet &mdash; EKO v0.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Theory:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../zzz-refs.html">References</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Code/Dependency.html">Dependency Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/eko/modules.html">API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../eko.html">eko</a> &raquo;</li>
+        
+          <li><a href="../kernels.html">eko.kernels</a> &raquo;</li>
+        
+      <li>eko.kernels.non_singlet</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eko.kernels.non_singlet</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">strong_coupling</span> <span class="k">as</span> <span class="n">sc</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">evolution_integrals</span> <span class="k">as</span> <span class="n">ei</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
+
+
+<div class="viewcode-block" id="lo_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.lo_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">lo_exact</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Non-singlet leading order exact EKO</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        gamma_ns : numpy.ndarray</span>
+<span class="sd">            non-singlet anomalous dimensions</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        e_ns^0 : complex</span>
+<span class="sd">            non-singlet leading order exact EKO</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ei</span><span class="o">.</span><span class="n">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="nlo_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">nlo_exact</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Non-singlet next-to-leading order exact EKO</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        gamma_ns : numpy.ndarray</span>
+<span class="sd">            non-singlet anomalous dimensions</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        e_ns^1 : complex</span>
+<span class="sd">            non-singlet next-to-leading order exact EKO</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
+        <span class="n">gamma_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ei</span><span class="o">.</span><span class="n">j01_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">+</span> <span class="n">gamma_ns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="nlo_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">nlo_expanded</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Non-singlet next-to-leading order expanded EKO</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        gamma_ns : numpy.ndarray</span>
+<span class="sd">            non-singlet anomalous dimensions</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        e_ns^1 : complex</span>
+<span class="sd">            non-singlet next-to-leading order expanded EKO</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
+        <span class="n">gamma_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ei</span><span class="o">.</span><span class="n">j01_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+        <span class="o">+</span> <span class="n">gamma_ns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="nlo_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_truncated">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">nlo_truncated</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Non-singlet next-to-leading order truncated EKO</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        gamma_ns : numpy.ndarray</span>
+<span class="sd">            non-singlet anomalous dimensions</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        e_ns^1 : complex</span>
+<span class="sd">            non-singlet next-to-leading order truncated EKO</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a_steps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">al</span> <span class="o">=</span> <span class="n">a_steps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">ah</span> <span class="ow">in</span> <span class="n">a_steps</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">e0</span> <span class="o">=</span> <span class="n">lo_exact</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">ah</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">*=</span> <span class="n">e0</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_expanded</span><span class="p">(</span><span class="n">ah</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_ns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">gamma_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">al</span> <span class="o">=</span> <span class="n">ah</span>
+    <span class="k">return</span> <span class="n">e</span></div>
+
+
+<div class="viewcode-block" id="nlo_ordered_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_ordered_truncated">[docs]</a><span class="k">def</span> <span class="nf">nlo_ordered_truncated</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Non-singlet next-to-leading order ordered-truncated EKO</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        gamma_ns : numpy.ndarray</span>
+<span class="sd">            non-singlet anomalous dimensions</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        e_ns^1 : complex</span>
+<span class="sd">            non-singlet next-to-leading order ordered-truncated EKO</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">a_steps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>
+    <span class="n">beta0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">al</span> <span class="o">=</span> <span class="n">a_steps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">ah</span> <span class="ow">in</span> <span class="n">a_steps</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">e0</span> <span class="o">=</span> <span class="n">lo_exact</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">ah</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">*=</span> <span class="p">(</span>
+            <span class="n">e0</span>
+            <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">ah</span> <span class="o">/</span> <span class="n">beta0</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_ns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">gamma_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">al</span> <span class="o">/</span> <span class="n">beta0</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_ns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">gamma_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="p">)</span>
+        <span class="n">al</span> <span class="o">=</span> <span class="n">ah</span>
+    <span class="k">return</span> <span class="n">e</span></div>
+
+
+<div class="viewcode-block" id="dispatcher_lo"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.dispatcher_lo">[docs]</a><span class="k">def</span> <span class="nf">dispatcher_lo</span><span class="p">(</span><span class="n">_method</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">lo_exact</span></div>
+
+
+<div class="viewcode-block" id="dispatcher_nlo"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.dispatcher_nlo">[docs]</a><span class="k">def</span> <span class="nf">dispatcher_nlo</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span> <span class="s2">&quot;decompose-exact&quot;</span><span class="p">,</span> <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">nlo_exact</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;iterate-expanded&quot;</span><span class="p">,</span> <span class="s2">&quot;decompose-expanded&quot;</span><span class="p">,</span> <span class="s2">&quot;perturbative-expanded&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">nlo_expanded</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;truncated&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">nlo_truncated</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;ordered-truncated&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">nlo_ordered_truncated</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

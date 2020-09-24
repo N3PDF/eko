@@ -176,26 +176,31 @@
   <h1>Source code for eko.anomalous_dimensions</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  This module contains the Altarelli-Parisi splitting kernels.</span>
+<span class="sd">This module contains the Altarelli-Parisi splitting kernels.</span>
 
-<span class="sd">  Normalization is given by</span>
+<span class="sd">Normalization is given by</span>
 
-<span class="sd">  .. math::</span>
+<span class="sd">.. math::</span>
 <span class="sd">    \mathbf{P}(x) = \sum\limits_{j=0} a_s^{j+1} \mathbf P^{(j)}(x)</span>
 
-<span class="sd">  with :math:`a_s = \frac{\alpha_S(\mu^2)}{4\pi}`.</span>
-<span class="sd">  The 3-loop references for the non-singlet :cite:`Moch:2004pa`</span>
-<span class="sd">  and singlet :cite:`Vogt:2004mw` case contain also the lower</span>
-<span class="sd">  order results. The results are also determined in Mellin space in</span>
-<span class="sd">  terms of the anomalous dimensions (note the additional sign!)</span>
+<span class="sd">with :math:`a_s = \frac{\alpha_S(\mu^2)}{4\pi}`.</span>
+<span class="sd">The 3-loop references for the non-singlet :cite:`Moch:2004pa`</span>
+<span class="sd">and singlet :cite:`Vogt:2004mw` case contain also the lower</span>
+<span class="sd">order results. The results are also determined in Mellin space in</span>
+<span class="sd">terms of the anomalous dimensions (note the additional sign!)</span>
 
-<span class="sd">  .. math::</span>
+<span class="sd">.. math::</span>
 <span class="sd">    \gamma(N) = - \mathcal{M}[\mathbf{P}(x)](N)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+
+<span class="kn">from</span> <span class="nn">eko.ekomath</span> <span class="kn">import</span> <span class="n">harmonic_S1</span> <span class="k">as</span> <span class="n">S1</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">lo</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">nlo</span>
 
 
 <div class="viewcode-block" id="exp_singlet"><a class="viewcode-back" href="../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.exp_singlet">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
@@ -205,30 +210,30 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">      gamma_S : numpy.ndarray</span>
-<span class="sd">        singlet anomalous dimension matrix</span>
+<span class="sd">        gamma_S : numpy.ndarray</span>
+<span class="sd">            singlet anomalous dimension matrix</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">      exp : numpy.ndarray</span>
-<span class="sd">        exponential of the singlet anomalous dimension matrix :math:`\gamma_{S}(N)`</span>
-<span class="sd">      lambda_p : complex</span>
-<span class="sd">        positive eigenvalue of the singlet anomalous dimension matrix</span>
-<span class="sd">        :math:`\gamma_{S}(N)`</span>
-<span class="sd">      lambda_m : complex</span>
-<span class="sd">        negative eigenvalue of the singlet anomalous dimension matrix</span>
-<span class="sd">        :math:`\gamma_{S}(N)`</span>
-<span class="sd">      e_p : numpy.ndarray</span>
-<span class="sd">        projector for the positive eigenvalue of the singlet anomalous</span>
-<span class="sd">        dimension matrix :math:`\gamma_{S}(N)`</span>
-<span class="sd">      e_m : numpy.ndarray</span>
-<span class="sd">        projector for the negative eigenvalue of the singlet anomalous</span>
-<span class="sd">        dimension matrix :math:`\gamma_{S}(N)`</span>
+<span class="sd">        exp : numpy.ndarray</span>
+<span class="sd">            exponential of the singlet anomalous dimension matrix :math:`\gamma_{S}(N)`</span>
+<span class="sd">        lambda_p : complex</span>
+<span class="sd">            positive eigenvalue of the singlet anomalous dimension matrix</span>
+<span class="sd">            :math:`\gamma_{S}(N)`</span>
+<span class="sd">        lambda_m : complex</span>
+<span class="sd">            negative eigenvalue of the singlet anomalous dimension matrix</span>
+<span class="sd">            :math:`\gamma_{S}(N)`</span>
+<span class="sd">        e_p : numpy.ndarray</span>
+<span class="sd">            projector for the positive eigenvalue of the singlet anomalous</span>
+<span class="sd">            dimension matrix :math:`\gamma_{S}(N)`</span>
+<span class="sd">        e_m : numpy.ndarray</span>
+<span class="sd">            projector for the negative eigenvalue of the singlet anomalous</span>
+<span class="sd">            dimension matrix :math:`\gamma_{S}(N)`</span>
 
 <span class="sd">    See Also</span>
 <span class="sd">    --------</span>
-<span class="sd">      eko.anomalous_dimensions.lo.gamma_singlet_0 : :math:`\gamma_{S}^{(0)}(N)`</span>
-<span class="sd">      eko.anomalous_dimensions.nlo.gamma_singlet_1 : :math:`\gamma_{S}^{(1)}(N)`</span>
+<span class="sd">        eko.anomalous_dimensions.lo.gamma_singlet_0 : :math:`\gamma_{S}^{(0)}(N)`</span>
+<span class="sd">        eko.anomalous_dimensions.nlo.gamma_singlet_1 : :math:`\gamma_{S}^{(1)}(N)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># compute eigenvalues</span>
     <span class="n">det</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
@@ -243,6 +248,66 @@
     <span class="n">e_m</span> <span class="o">=</span> <span class="o">-</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma_S</span> <span class="o">-</span> <span class="n">lambda_p</span> <span class="o">*</span> <span class="n">identity</span><span class="p">)</span>
     <span class="n">exp</span> <span class="o">=</span> <span class="n">e_m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lambda_m</span><span class="p">)</span> <span class="o">+</span> <span class="n">e_p</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lambda_p</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">exp</span><span class="p">,</span> <span class="n">lambda_p</span><span class="p">,</span> <span class="n">lambda_m</span><span class="p">,</span> <span class="n">e_p</span><span class="p">,</span> <span class="n">e_m</span></div>
+
+
+<div class="viewcode-block" id="gamma_ns"><a class="viewcode-back" href="../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.gamma_ns">[docs]</a><span class="k">def</span> <span class="nf">gamma_ns</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the tower of the non-singlet anomalous dimensions</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        order : int</span>
+<span class="sd">            perturbative order</span>
+<span class="sd">        mode : &quot;m&quot; | &quot;p&quot; | &quot;v&quot;</span>
+<span class="sd">            sector identifier</span>
+<span class="sd">        n : complex</span>
+<span class="sd">            Mellin variable</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            Number of active flavours</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        gamma_ns : list(float)</span>
+<span class="sd">            non-singlet anomalous dimensions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># cache the s-es</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">S1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">gamma_ns</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">gamma_ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lo</span><span class="o">.</span><span class="n">gamma_ns_0</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">s1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;p&quot;</span><span class="p">:</span>
+            <span class="n">gamma_ns_1</span> <span class="o">=</span> <span class="n">nlo</span><span class="o">.</span><span class="n">gamma_nsp_1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;m&quot;</span><span class="p">:</span>
+            <span class="n">gamma_ns_1</span> <span class="o">=</span> <span class="n">nlo</span><span class="o">.</span><span class="n">gamma_nsm_1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+        <span class="n">gamma_ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gamma_ns_1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="gamma_singlet"><a class="viewcode-back" href="../../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.gamma_singlet">[docs]</a><span class="k">def</span> <span class="nf">gamma_singlet</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the tower of the singlet anomalous dimensions matrices</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        order : int</span>
+<span class="sd">            perturbative order</span>
+<span class="sd">        n : complex</span>
+<span class="sd">            Mellin variable</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            Number of active flavours</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        gamma_singlet : list(float)</span>
+<span class="sd">            non-singlet anomalous dimensions matrices</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># cache the s-es</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">S1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">gamma_singlet</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">gamma_singlet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lo</span><span class="o">.</span><span class="n">gamma_singlet_0</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">nf</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">gamma_singlet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nlo</span><span class="o">.</span><span class="n">gamma_singlet_1</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">nf</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

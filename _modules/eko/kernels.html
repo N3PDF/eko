@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eko.kernels &mdash; EKO v0.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Theory:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Code/Dependency.html">Dependency Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../eko.html">eko</a> &raquo;</li>
+        
+      <li>eko.kernels</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eko.kernels</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module defines the actual evolution kernels as they appear under the Mellin inversion interal</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">eko.strong_coupling</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="kn">import</span> <span class="nn">eko.anomalous_dimensions</span> <span class="k">as</span> <span class="nn">ad</span>
+<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">mellin</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">non_singlet</span> <span class="k">as</span> <span class="n">ns</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">singlet</span> <span class="k">as</span> <span class="n">s</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="IntegrationKernelObject"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.IntegrationKernelObject">[docs]</a><span class="k">class</span> <span class="nc">IntegrationKernelObject</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Actual integration kernel.</span>
+
+<span class="sd">    The object gets adjusted for each inversion point, basis function or sector.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        kernel_dispatcher : eko.kernel_generation.KernelDispatcher</span>
+<span class="sd">            parent dispatcher</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel_dispatcher</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_dispatcher</span> <span class="o">=</span> <span class="n">kernel_dispatcher</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_dispatcher</span><span class="o">.</span><span class="n">interpol_dispatcher</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">callable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_singlet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Are we currently in the singlet sector?&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;S&quot;</span>
+
+<div class="viewcode-block" id="IntegrationKernelObject.get_path_params"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.IntegrationKernelObject.get_path_params">[docs]</a>    <span class="k">def</span> <span class="nf">get_path_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine the Talbot parameters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            r,o : tuple(float)</span>
+<span class="sd">                Talbot parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_singlet</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="mf">16.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;logx&quot;</span><span class="p">)),</span> <span class="mf">1.0</span>
+        <span class="k">return</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span></div>
+
+<div class="viewcode-block" id="IntegrationKernelObject.var"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.IntegrationKernelObject.var">[docs]</a>    <span class="k">def</span> <span class="nf">var</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;shortcut to the parent variables&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_dispatcher</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="IntegrationKernelObject.config"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.IntegrationKernelObject.config">[docs]</a>    <span class="k">def</span> <span class="nf">config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;shortcut to the parent config&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_dispatcher</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="IntegrationKernelObject.extra_args_ns"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.IntegrationKernelObject.extra_args_ns">[docs]</a>    <span class="k">def</span> <span class="nf">extra_args_ns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;order&quot;</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;truncated&quot;</span><span class="p">,</span> <span class="s2">&quot;ordered-truncated&quot;</span><span class="p">]:</span>
+            <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">args</span></div>
+
+<div class="viewcode-block" id="IntegrationKernelObject.extra_args_s"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.IntegrationKernelObject.extra_args_s">[docs]</a>    <span class="k">def</span> <span class="nf">extra_args_s</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;order&quot;</span><span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="s2">&quot;truncated&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ordered-truncated&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;iterate-expanded&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;perturbative-expanded&quot;</span><span class="p">,</span>
+            <span class="p">]:</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span>
+                <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;perturbative-expanded&quot;</span><span class="p">,</span>
+            <span class="p">]:</span>
+                <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">args</span></div>
+
+<div class="viewcode-block" id="IntegrationKernelObject.compute_ns"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.IntegrationKernelObject.compute_ns">[docs]</a>    <span class="k">def</span> <span class="nf">compute_ns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the non-singlet EKO</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            n : complex</span>
+<span class="sd">                Mellin moment</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            e_ns : complex</span>
+<span class="sd">                non-singlet EKO</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;order&quot;</span><span class="p">)</span>
+        <span class="c1"># load data</span>
+        <span class="n">gamma_ns</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">gamma_ns</span><span class="p">(</span>
+            <span class="n">order</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">n</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;nf&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="c1"># switch order and method</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">fnc</span> <span class="o">=</span> <span class="n">ns</span><span class="o">.</span><span class="n">dispatcher_lo</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">fnc</span> <span class="o">=</span> <span class="n">ns</span><span class="o">.</span><span class="n">dispatcher_nlo</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fnc</span><span class="p">(</span>
+            <span class="n">gamma_ns</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;a1&quot;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;a0&quot;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;nf&quot;</span><span class="p">),</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_args_ns</span><span class="p">(),</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="IntegrationKernelObject.compute_singlet"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.IntegrationKernelObject.compute_singlet">[docs]</a>    <span class="k">def</span> <span class="nf">compute_singlet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the singlet EKO</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            n : complex</span>
+<span class="sd">                Mellin moment</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            e_s : numpy.ndarray</span>
+<span class="sd">                singlet EKO</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;order&quot;</span><span class="p">)</span>
+        <span class="n">gamma_singlet</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">gamma_singlet</span><span class="p">(</span>
+            <span class="n">order</span><span class="p">,</span>
+            <span class="n">n</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;nf&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">fnc</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dispatcher_lo</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">fnc</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dispatcher_nlo</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fnc</span><span class="p">(</span>
+            <span class="n">gamma_singlet</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;a1&quot;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;a0&quot;</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;nf&quot;</span><span class="p">),</span>
+            <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">extra_args_s</span><span class="p">(),</span>
+        <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called function under the integral.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            u : float</span>
+<span class="sd">                integration variable</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            ker : float</span>
+<span class="sd">                kernel evaluated at `u`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># get transformation to N integral</span>
+        <span class="n">path_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_params</span><span class="p">()</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">Talbot_path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">*</span><span class="n">path_params</span><span class="p">)</span>
+        <span class="n">jac</span> <span class="o">=</span> <span class="n">mellin</span><span class="o">.</span><span class="n">Talbot_jac</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="o">*</span><span class="n">path_params</span><span class="p">)</span>
+        <span class="c1"># check PDF is active</span>
+        <span class="n">pj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;logx&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="s2">&quot;areas&quot;</span><span class="p">))</span>
+        <span class="c1"># print(self.pdf.inspect_types())</span>
+        <span class="k">if</span> <span class="n">pj</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+        <span class="c1"># compute the actual evolution kernel</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_singlet</span><span class="p">:</span>
+            <span class="n">ker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_singlet</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+            <span class="c1"># select element of matrix</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;q&quot;</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;q&quot;</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="n">ker</span> <span class="o">=</span> <span class="n">ker</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="n">l</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_ns</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="c1"># recombine everthing</span>
+        <span class="n">mellin_prefactor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">mellin_prefactor</span> <span class="o">*</span> <span class="n">ker</span> <span class="o">*</span> <span class="n">pj</span> <span class="o">*</span> <span class="n">jac</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="KernelDispatcher"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.KernelDispatcher">[docs]</a><span class="k">class</span> <span class="nc">KernelDispatcher</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Does the common preparation for the kernel functions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        config : dict</span>
+<span class="sd">            configuration</span>
+<span class="sd">        interpol_dispatcher : eko.interpolation.InterpolatorDispatcher</span>
+<span class="sd">            An instance of the InterpolatorDispatcher class</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">interpol_dispatcher</span><span class="p">):</span>
+        <span class="c1"># check</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">])</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span>
+            <span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;iterate-expanded&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;truncated&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ordered-truncated&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;decompose-exact&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;decompose-expanded&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;perturbative-expanded&quot;</span><span class="p">,</span>
+        <span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown evolution mode </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;iterate-exact&quot;</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Kernels: In LO we use the exact solution always!&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="c1"># set managers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interpol_dispatcher</span> <span class="o">=</span> <span class="n">interpol_dispatcher</span>
+        <span class="c1"># init objects</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">IntegrationKernelObject</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="KernelDispatcher.from_dict"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.KernelDispatcher.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">setup</span><span class="p">,</span> <span class="n">interpol_dispatcher</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create the object from the theory dictionary.</span>
+
+<span class="sd">        Read keys:</span>
+
+<span class="sd">            - PTO : required, perturbative order</span>
+<span class="sd">            - ModEv : optional, method to solve RGE, default=EXA=iterate-exact</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            setup : dict</span>
+<span class="sd">                theory dictionary</span>
+<span class="sd">            interpol_dispatcher : InterpolatorDispatcher</span>
+<span class="sd">                An instance of the InterpolatorDispatcher class</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            obj : cls</span>
+<span class="sd">                created object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;PTO&quot;</span><span class="p">])</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ModEv&quot;</span><span class="p">,</span> <span class="s2">&quot;iterate-exact&quot;</span><span class="p">)</span>
+        <span class="n">mod_ev2method</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;EXA&quot;</span><span class="p">:</span> <span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;EXP&quot;</span><span class="p">:</span> <span class="s2">&quot;iterate-expanded&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;TRN&quot;</span><span class="p">:</span> <span class="s2">&quot;truncated&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">mod_ev2method</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">interpol_dispatcher</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="KernelDispatcher.init_loops"><a class="viewcode-back" href="../../modules/eko/eko.kernels.html#eko.kernels.KernelDispatcher.init_loops">[docs]</a>    <span class="k">def</span> <span class="nf">init_loops</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called before the heavy grid-basis-functions-sectors loops.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            nf : int</span>
+<span class="sd">                number of flavors</span>
+<span class="sd">            a1 : float</span>
+<span class="sd">                strong coupling at target scale</span>
+<span class="sd">            a0 : float</span>
+<span class="sd">                strong coupling at initial scale</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">&quot;nf&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">&quot;a1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">&quot;a0&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">a0</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

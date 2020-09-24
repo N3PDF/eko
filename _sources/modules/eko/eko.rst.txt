@@ -13,6 +13,7 @@ Subpackages
    :maxdepth: 4
 
    eko.anomalous_dimensions
+   eko.kernels
 
 Submodules
 ----------
@@ -61,14 +62,6 @@ eko.interpolation module
 ------------------------
 
 .. automodule:: eko.interpolation
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-eko.kernel\_generation module
------------------------------
-
-.. automodule:: eko.kernel_generation
    :members:
    :undoc-members:
    :show-inheritance:

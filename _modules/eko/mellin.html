@@ -208,45 +208,7 @@
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
 
-<div class="viewcode-block" id="compile_integrand"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.compile_integrand">[docs]</a><span class="k">def</span> <span class="nf">compile_integrand</span><span class="p">(</span><span class="n">iker</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span><span class="p">,</span> <span class="n">do_numba</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Prepares the integration kernel `iker` to be integrated by the</span>
-<span class="sd">    inverse mellin transform wrapper.</span>
-
-<span class="sd">    It adds the correct prefactor, resolves the path, adds the jacobian</span>
-<span class="sd">    and applies the real part.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        iker : function</span>
-<span class="sd">            Integration kernel including :math:`x^(-N)`</span>
-<span class="sd">        path : function</span>
-<span class="sd">            Integration path as a function</span>
-<span class="sd">            :math:`p : [0:1] \to \mathbb C : t \to p(t)`</span>
-<span class="sd">        jac : function</span>
-<span class="sd">            Jacobian of integration path :math:`j(t) = \frac{dp(t)}{dt}`</span>
-<span class="sd">        do_numba: bool</span>
-<span class="sd">            Boolean flag to return a numba compiled function (default: true)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
-        <span class="c1"># Make the extra arguments explicit</span>
-        <span class="n">logx</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">a1</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">a0</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">path_param</span> <span class="o">=</span> <span class="n">extra_args</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
-        <span class="n">N</span> <span class="o">=</span> <span class="n">path</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">path_param</span><span class="p">)</span>
-        <span class="n">prefactor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">prefactor</span> <span class="o">*</span> <span class="n">iker</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">)</span> <span class="o">*</span> <span class="n">jac</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">path_param</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">result</span>
-
-    <span class="k">if</span> <span class="n">do_numba</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="n">integrand</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">integrand</span></div>
-
-
-<div class="viewcode-block" id="inverse_mellin_transform"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.inverse_mellin_transform">[docs]</a><span class="k">def</span> <span class="nf">inverse_mellin_transform</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">cut</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">,</span> <span class="n">epsabs</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">epsrel</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+<div class="viewcode-block" id="inverse_mellin_transform"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.inverse_mellin_transform">[docs]</a><span class="k">def</span> <span class="nf">inverse_mellin_transform</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="n">cut</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">,</span> <span class="n">epsabs</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">epsrel</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Inverse Mellin transformation.</span>
 
@@ -283,13 +245,13 @@
         <span class="n">integrand</span><span class="p">,</span>
         <span class="mf">0.5</span><span class="p">,</span>
         <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cut</span><span class="p">,</span>
-        <span class="n">args</span><span class="o">=</span><span class="n">extra_args</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">extra_args</span><span class="p">),</span>
         <span class="n">epsabs</span><span class="o">=</span><span class="n">epsabs</span><span class="p">,</span>
         <span class="n">epsrel</span><span class="o">=</span><span class="n">epsrel</span><span class="p">,</span>
         <span class="n">limit</span><span class="o">=</span><span class="n">LIMIT</span><span class="p">,</span>
         <span class="n">full_output</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="c1"># print(result[:2],result[2][&quot;neval&quot;])</span>
+    <span class="c1"># print(result[2][&#39;last&#39;])</span>
     <span class="c1"># for n in [5,10,20,40,63]:</span>
     <span class="c1">#    dt = (.5-cut)/n</span>
     <span class="c1">#    ts = np.array([.5 + k*dt for k in range(n)])</span>
@@ -298,6 +260,31 @@
     <span class="c1"># if len(result) &gt; 3:</span>
     <span class="c1">#    print(result)</span>
     <span class="k">return</span> <span class="n">result</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Talbot_path"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.Talbot_path">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">Talbot_path</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># treat singular point seperately</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">theta</span>
+    <span class="k">return</span> <span class="n">o</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Talbot_jac"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.Talbot_jac">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">Talbot_jac</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>  <span class="c1"># pylint: disable=unused-argument</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># treat singular point seperately</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">re</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+        <span class="n">re</span> <span class="o">-=</span> <span class="n">theta</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="get_path_Talbot"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_Talbot">[docs]</a><span class="k">def</span> <span class="nf">get_path_Talbot</span><span class="p">():</span>
@@ -327,32 +314,7 @@
 <span class="sd">            derivative of Talbot path</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
-        <span class="n">r</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="n">extra_args</span>
-        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># treat singular point seperately</span>
-            <span class="n">re</span> <span class="o">=</span> <span class="mf">1.0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">re</span> <span class="o">=</span> <span class="n">theta</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-        <span class="n">im</span> <span class="o">=</span> <span class="n">theta</span>
-        <span class="k">return</span> <span class="n">o</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
-
-    <span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-    <span class="k">def</span> <span class="nf">jac</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">extra_args</span><span class="p">):</span>
-        <span class="n">r</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="n">extra_args</span>  <span class="c1"># pylint: disable=unused-variable</span>
-        <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span>
-        <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="mf">0.5</span><span class="p">:</span>  <span class="c1"># treat singular point seperately</span>
-            <span class="n">re</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">re</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-            <span class="n">re</span> <span class="o">-=</span> <span class="n">theta</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
-        <span class="n">im</span> <span class="o">=</span> <span class="mf">1.0</span>
-        <span class="k">return</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">im</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span></div>
+    <span class="k">return</span> <span class="n">Talbot_path</span><span class="p">,</span> <span class="n">Talbot_jac</span></div>
 
 
 <div class="viewcode-block" id="get_path_line"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.get_path_line">[docs]</a><span class="k">def</span> <span class="nf">get_path_line</span><span class="p">():</span>
@@ -478,36 +440,6 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">dre</span> <span class="o">*</span> <span class="n">du</span><span class="p">,</span> <span class="n">du</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">path</span><span class="p">,</span> <span class="n">jac</span></div>
-
-
-<div class="viewcode-block" id="mellin_transform"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.mellin.mellin_transform">[docs]</a><span class="k">def</span> <span class="nf">mellin_transform</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Mellin transformation</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        f : function</span>
-<span class="sd">            integration kernel :math:`f(x)`</span>
-<span class="sd">        N : complex</span>
-<span class="sd">            transformation point</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        res : complex</span>
-<span class="sd">            computed point</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="nd">@nb</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">forceobj</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># due to the integration kernel not being necessarily numba</span>
-    <span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="n">xToN</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">xToN</span>
-
-    <span class="c1"># do real + imaginary part seperately</span>
-    <span class="n">r</span><span class="p">,</span> <span class="n">re</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">integrand</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">i</span><span class="p">,</span> <span class="n">ie</span> <span class="o">=</span> <span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">integrand</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-    <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span> <span class="n">ie</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">error</span></div>
 </pre></div>
 
            </div>

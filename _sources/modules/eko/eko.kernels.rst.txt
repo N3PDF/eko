@@ -1,0 +1,42 @@
+eko.kernels package
+===================
+
+.. automodule:: eko.kernels
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+eko.kernels.evolution\_integrals module
+---------------------------------------
+
+.. automodule:: eko.kernels.evolution_integrals
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.kernels.non\_singlet module
+-------------------------------
+
+.. automodule:: eko.kernels.non_singlet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.kernels.singlet module
+--------------------------
+
+.. automodule:: eko.kernels.singlet
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.kernels.utils module
+------------------------
+
+.. automodule:: eko.kernels.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
