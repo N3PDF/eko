@@ -304,10 +304,38 @@
 
 
 <div class="viewcode-block" id="dispatcher_lo"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.dispatcher_lo">[docs]</a><span class="k">def</span> <span class="nf">dispatcher_lo</span><span class="p">(</span><span class="n">_method</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine used kernel in LO.</span>
+
+<span class="sd">    In LO we will always use the exact solution.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        method : str</span>
+<span class="sd">            method</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        ker : callable</span>
+<span class="sd">            kernel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">lo_exact</span></div>
 
 
 <div class="viewcode-block" id="dispatcher_nlo"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.dispatcher_nlo">[docs]</a><span class="k">def</span> <span class="nf">dispatcher_nlo</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine used kernel in NLO.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        method : str</span>
+<span class="sd">            method</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        ker : callable</span>
+<span class="sd">            kernel</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span> <span class="s2">&quot;decompose-exact&quot;</span><span class="p">,</span> <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">]:</span>
         <span class="k">return</span> <span class="n">nlo_exact</span>
     <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;iterate-expanded&quot;</span><span class="p">,</span> <span class="s2">&quot;decompose-expanded&quot;</span><span class="p">,</span> <span class="s2">&quot;perturbative-expanded&quot;</span><span class="p">]:</span>

@@ -1114,7 +1114,7 @@ such as the definition of paths.</p>
 <div class="section" id="integration-paths">
 <h3>Integration Paths<a class="headerlink" href="#integration-paths" title="Permalink to this headline">¶</a></h3>
 <p>Although this module provides four different path implementations (<a class="reference internal" href="#eko.mellin.get_path_Talbot" title="eko.mellin.get_path_Talbot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Talbot()</span></code></a>,
-<a class="reference internal" href="#eko.mellin.get_path_line" title="eko.mellin.get_path_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_line()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_edge" title="eko.mellin.get_path_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_edge()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_Cauchy_tan" title="eko.mellin.get_path_Cauchy_tan"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Cauchy_tan()</span></code></a>) in practice
+<a class="reference internal" href="#eko.mellin.get_path_line" title="eko.mellin.get_path_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_line()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_edge" title="eko.mellin.get_path_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_edge()</span></code></a>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Cauchy_tan()</span></code>) in practice
 only the Talbot path <a class="bibtex reference internal" href="../../zzz-refs.html#abate" id="id4">[AV04]</a></p>
 <div class="math notranslate nohighlight">
 \[p_{\text{Talbot}}(t) =  o + r \cdot ( \theta \cot(\theta) + i\theta)\quad
@@ -1133,28 +1133,6 @@ for the singlet sector. Note that the non-singlet kernels evolve poles only up t
 <dt id="eko.mellin.Talbot_path">
 <code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">Talbot_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">o</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#Talbot_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.Talbot_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py function">
-<dt id="eko.mellin.get_path_Cauchy_tan">
-<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">get_path_Cauchy_tan</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#get_path_Cauchy_tan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.get_path_Cauchy_tan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cauchy-distribution like path, extended with tan to infinity.</p>
-<div class="math notranslate nohighlight">
-\[p_{\text{Cauchy}}(t) = \frac{\gamma}{u^2 + \gamma^2} + i u, u = \tan(\pi(2t-1)/2)\]</div>
-<p>Returns the path and its derivative which then have to be called with the arguments
-listed under <cite>Other Parameters</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><p><strong>gamma</strong> (<em>float</em>) – intersection of path with real axis</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>path</strong> (<em>function</em>) – Cauchy path</p></li>
-<li><p><strong>jac</strong> (<em>function</em>) – derivative of Cauchy path</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
 
 <dl class="py function">
 <dt id="eko.mellin.get_path_Talbot">
