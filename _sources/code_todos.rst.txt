@@ -11,11 +11,11 @@ From Source Code
 
 `strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
 
-.. warning:: #260 cast to a_s here
+.. warning:: #184 cast to a_s here
 
-.. warning:: #397 set up a cache system here
+.. warning:: #275 set up a cache system here
 
-.. warning:: #439 recover color constants
+.. warning:: #317 recover color constants
 
 
 

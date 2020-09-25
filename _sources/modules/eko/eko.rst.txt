@@ -26,6 +26,14 @@ eko.basis\_rotation module
    :undoc-members:
    :show-inheritance:
 
+eko.beta module
+---------------
+
+.. automodule:: eko.beta
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 eko.constants module
 --------------------
 

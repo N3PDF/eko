@@ -188,136 +188,60 @@
 <span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
-<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">constants</span>
-<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">thresholds</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">constants</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">thresholds</span>
+<span class="kn">from</span> <span class="nn">.beta</span> <span class="kn">import</span> <span class="n">beta</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="beta_0"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.beta_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">beta_0</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="as_expanded"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.as_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">as_expanded</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Computes the first coefficient of the QCD beta function.</span>
-
-<span class="sd">    Implements Eq. (3.1) of :cite:`Herzog:2017ohr`.</span>
+<span class="sd">    Compute expanded expression.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        nf : int</span>
-<span class="sd">            number of active flavours</span>
+<span class="sd">        order: int</span>
+<span class="sd">            perturbation order</span>
+<span class="sd">        as_ref: float</span>
+<span class="sd">            reference alpha_s</span>
+<span class="sd">        nf: int</span>
+<span class="sd">            value of nf for computing alpha_s</span>
+<span class="sd">        scale_from: float</span>
+<span class="sd">            reference scale</span>
+<span class="sd">        scale_to : float</span>
+<span class="sd">            target scale</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        beta_0 : float</span>
-<span class="sd">            first coefficient of the QCD beta function :math:`\\beta_0^{n_f}`</span>
+<span class="sd">        a_s : float</span>
+<span class="sd">            coupling at target scale :math:`a_s(Q^2)`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">beta_0</span> <span class="o">=</span> <span class="mf">11.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">-</span> <span class="mf">4.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">TR</span> <span class="o">*</span> <span class="n">nf</span>
-    <span class="k">return</span> <span class="n">beta_0</span></div>
+    <span class="c1"># common vars</span>
+    <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="n">lmu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale_to</span> <span class="o">/</span> <span class="n">scale_from</span><span class="p">)</span>
+    <span class="n">den</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">beta0</span> <span class="o">*</span> <span class="n">as_ref</span> <span class="o">*</span> <span class="n">lmu</span>
+    <span class="c1"># LO</span>
+    <span class="n">as_LO</span> <span class="o">=</span> <span class="n">as_ref</span> <span class="o">/</span> <span class="n">den</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">as_LO</span>
+    <span class="c1"># NLO</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">beta1</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+        <span class="n">b1</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">/</span> <span class="n">beta0</span>
+        <span class="n">as_NLO</span> <span class="o">=</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">den</span><span class="p">))</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">as_NLO</span>
+        <span class="c1"># NNLO</span>
+        <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">beta2</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+            <span class="n">b2</span> <span class="o">=</span> <span class="n">beta2</span> <span class="o">/</span> <span class="n">beta0</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="mf">1.0</span>
+                <span class="o">+</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="p">(</span><span class="n">as_LO</span> <span class="o">-</span> <span class="n">as_ref</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">b2</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="o">+</span> <span class="n">as_NLO</span> <span class="o">*</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">as_NLO</span> <span class="o">/</span> <span class="n">as_ref</span><span class="p">)</span>
+            <span class="p">)</span>
 
-
-<div class="viewcode-block" id="beta_1"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.beta_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">beta_1</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Computes the second coefficient of the QCD beta function.</span>
-
-<span class="sd">    Implements Eq. (3.2) of :cite:`Herzog:2017ohr`.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        nf : int</span>
-<span class="sd">            number of active flavours</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        beta_1 : float</span>
-<span class="sd">            second coefficient of the QCD beta function :math:`\\beta_1^{n_f}`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">TF</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">TR</span> <span class="o">*</span> <span class="n">nf</span>
-    <span class="n">b_ca2</span> <span class="o">=</span> <span class="mf">34.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span>
-    <span class="n">b_ca</span> <span class="o">=</span> <span class="o">-</span><span class="mf">20.0</span> <span class="o">/</span> <span class="mf">3.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">*</span> <span class="n">TF</span>
-    <span class="n">b_cf</span> <span class="o">=</span> <span class="o">-</span><span class="mf">4.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CF</span> <span class="o">*</span> <span class="n">TF</span>
-    <span class="n">beta_1</span> <span class="o">=</span> <span class="n">b_ca2</span> <span class="o">+</span> <span class="n">b_ca</span> <span class="o">+</span> <span class="n">b_cf</span>
-    <span class="k">return</span> <span class="n">beta_1</span></div>
-
-
-<div class="viewcode-block" id="beta_2"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.beta_2">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">beta_2</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Computes the third coefficient of the QCD beta function</span>
-
-<span class="sd">    Implements Eq. (3.3) of :cite:`Herzog:2017ohr`.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        nf : int</span>
-<span class="sd">            number of active flavours</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        beta_2 : float</span>
-<span class="sd">            third coefficient of the QCD beta function :math:`\\beta_2^{n_f}`</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">TF</span> <span class="o">=</span> <span class="n">constants</span><span class="o">.</span><span class="n">TR</span> <span class="o">*</span> <span class="n">nf</span>
-    <span class="n">beta_2</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="mf">2857.0</span> <span class="o">/</span> <span class="mf">54.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span>
-        <span class="o">-</span> <span class="mf">1415.0</span> <span class="o">/</span> <span class="mf">27.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">*</span> <span class="n">TF</span>
-        <span class="o">-</span> <span class="mf">205.0</span> <span class="o">/</span> <span class="mf">9.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CF</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">*</span> <span class="n">TF</span>
-        <span class="o">+</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CF</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CF</span> <span class="o">*</span> <span class="n">TF</span>
-        <span class="o">+</span> <span class="mf">44.0</span> <span class="o">/</span> <span class="mf">9.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CF</span> <span class="o">*</span> <span class="n">TF</span> <span class="o">*</span> <span class="n">TF</span>
-        <span class="o">+</span> <span class="mf">158.0</span> <span class="o">/</span> <span class="mf">27.0</span> <span class="o">*</span> <span class="n">constants</span><span class="o">.</span><span class="n">CA</span> <span class="o">*</span> <span class="n">TF</span> <span class="o">*</span> <span class="n">TF</span>
-    <span class="p">)</span>
-    <span class="k">return</span> <span class="n">beta_2</span></div>
-
-
-<div class="viewcode-block" id="beta"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.beta">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">beta</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute value of a beta coefficients</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        k : int</span>
-<span class="sd">            perturbative orde</span>
-<span class="sd">        nf : int</span>
-<span class="sd">            number of active flavours</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        beta : float</span>
-<span class="sd">            beta_k(nf)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">beta_</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">beta_</span> <span class="o">=</span> <span class="n">beta_0</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">beta_</span> <span class="o">=</span> <span class="n">beta_1</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="n">beta_</span> <span class="o">=</span> <span class="n">beta_2</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Beta coefficients beyond NNLO are not implemented!&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">beta_</span></div>
-
-
-<div class="viewcode-block" id="b"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.b">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">b</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Compute b coefficient.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        k : int</span>
-<span class="sd">            perturbative orde</span>
-<span class="sd">        nf : int</span>
-<span class="sd">            number of active flavours</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        b : float</span>
-<span class="sd">            b_k(nf)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">beta</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span></div>
-
-
+    <span class="k">return</span> <span class="n">res</span></div>
 <div class="viewcode-block" id="StrongCoupling"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling">[docs]</a><span class="k">class</span> <span class="nc">StrongCoupling</span><span class="p">:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the strong coupling constant :math:`a_s`.</span>
@@ -457,52 +381,6 @@
             <span class="n">thresholds_config</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">alpha_ref</span><span class="p">,</span> <span class="n">q2_alpha</span><span class="p">,</span> <span class="n">thresholds_config</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span></div>
 
-    <span class="c1"># Hidden computation functions</span>
-    <span class="k">def</span> <span class="nf">_compute_expanded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute via expanded expression.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            as_ref: float</span>
-<span class="sd">                reference alpha_s</span>
-<span class="sd">            nf: int</span>
-<span class="sd">                value of nf for computing alpha_s</span>
-<span class="sd">            scale_from: float</span>
-<span class="sd">                reference scale</span>
-<span class="sd">            scale_to : float</span>
-<span class="sd">                target scale</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            a_s : float</span>
-<span class="sd">                coupling at target scale :math:`a_s(Q^2)`</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># common vars</span>
-        <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
-        <span class="n">lmu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale_to</span> <span class="o">/</span> <span class="n">scale_from</span><span class="p">)</span>
-        <span class="n">den</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="n">beta0</span> <span class="o">*</span> <span class="n">as_ref</span> <span class="o">*</span> <span class="n">lmu</span>
-        <span class="c1"># LO</span>
-        <span class="n">as_LO</span> <span class="o">=</span> <span class="n">as_ref</span> <span class="o">/</span> <span class="n">den</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="n">as_LO</span>
-        <span class="c1"># NLO</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="n">beta1</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
-            <span class="n">b1</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">/</span> <span class="n">beta0</span>
-            <span class="n">as_NLO</span> <span class="o">=</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">den</span><span class="p">))</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="n">as_NLO</span>
-            <span class="c1"># NNLO</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                <span class="n">beta2</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
-                <span class="n">b2</span> <span class="o">=</span> <span class="n">beta2</span> <span class="o">/</span> <span class="n">beta0</span>
-                <span class="n">res</span> <span class="o">=</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="p">(</span>
-                    <span class="mf">1.0</span>
-                    <span class="o">+</span> <span class="n">as_LO</span> <span class="o">*</span> <span class="p">(</span><span class="n">as_LO</span> <span class="o">-</span> <span class="n">as_ref</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">b2</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-                    <span class="o">+</span> <span class="n">as_NLO</span> <span class="o">*</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">as_NLO</span> <span class="o">/</span> <span class="n">as_ref</span><span class="p">)</span>
-                <span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">res</span>
-
     <span class="k">def</span> <span class="nf">_compute_exact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute via RGE.</span>
@@ -525,7 +403,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># in LO fallback to expanded, as this is the full solution</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_expanded</span><span class="p">(</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">as_expanded</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
         <span class="c1"># otherwise rescale the RGE to run in terms of</span>
         <span class="c1"># u = beta0 * ln(scale_to/scale_from)</span>
         <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
@@ -575,7 +453,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method</span> <span class="o">==</span> <span class="s2">&quot;exact&quot;</span><span class="p">:</span>
             <span class="n">as_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_exact</span><span class="p">(</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">as_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_expanded</span><span class="p">(</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
+            <span class="n">as_new</span> <span class="o">=</span> <span class="n">as_expanded</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">as_new</span>
 
 <div class="viewcode-block" id="StrongCoupling.a_s"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.a_s">[docs]</a>    <span class="k">def</span> <span class="nf">a_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">,</span> <span class="n">fact_scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

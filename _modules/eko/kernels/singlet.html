@@ -182,7 +182,7 @@
 
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
-<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">strong_coupling</span> <span class="k">as</span> <span class="n">sc</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">beta</span>
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">anomalous_dimensions</span> <span class="k">as</span> <span class="n">ad</span>
 
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">evolution_integrals</span> <span class="k">as</span> <span class="n">ei</span>
@@ -279,8 +279,8 @@
 <span class="sd">            non-singlet next-to-leading order iterated (exact) EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">a_steps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>
-    <span class="n">beta0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
-    <span class="n">beta1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="n">beta1</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
     <span class="n">al</span> <span class="o">=</span> <span class="n">a_steps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">ah</span> <span class="ow">in</span> <span class="n">a_steps</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
@@ -313,8 +313,8 @@
 <span class="sd">            R vector</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ev_op_max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>  <span class="c1"># k = 0 .. max_order</span>
-    <span class="n">beta0</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
-    <span class="n">b1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
     <span class="c1"># fill explicit elements</span>
     <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">beta0</span>
     <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">beta0</span> <span class="o">-</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
