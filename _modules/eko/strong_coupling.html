@@ -242,6 +242,8 @@
             <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">res</span></div>
+
+
 <div class="viewcode-block" id="StrongCoupling"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling">[docs]</a><span class="k">class</span> <span class="nc">StrongCoupling</span><span class="p">:</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Computes the strong coupling constant :math:`a_s`.</span>
@@ -403,7 +405,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># in LO fallback to expanded, as this is the full solution</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">as_expanded</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">as_expanded</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
         <span class="c1"># otherwise rescale the RGE to run in terms of</span>
         <span class="c1"># u = beta0 * ln(scale_to/scale_from)</span>
         <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
@@ -453,7 +455,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_method</span> <span class="o">==</span> <span class="s2">&quot;exact&quot;</span><span class="p">:</span>
             <span class="n">as_new</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_exact</span><span class="p">(</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">as_new</span> <span class="o">=</span> <span class="n">as_expanded</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span><span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
+            <span class="n">as_new</span> <span class="o">=</span> <span class="n">as_expanded</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_order</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">as_new</span>
 
 <div class="viewcode-block" id="StrongCoupling.a_s"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.a_s">[docs]</a>    <span class="k">def</span> <span class="nf">a_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">,</span> <span class="n">fact_scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>

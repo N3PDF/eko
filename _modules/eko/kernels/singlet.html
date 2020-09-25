@@ -177,6 +177,9 @@
             
   <h1>Source code for eko.kernels.singlet</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Colletion of singlet EKOs.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -196,12 +199,18 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        gamma_singlet : list(numpy.ndarray)</span>
+<span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^0 : float</span>
+<span class="sd">        e_s^0 : numpy.ndarray</span>
 <span class="sd">            singlet leading order exact EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ad</span><span class="o">.</span><span class="n">exp_singlet</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ei</span><span class="o">.</span><span class="n">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span></div>
@@ -216,11 +225,21 @@
 <span class="sd">    ----------</span>
 <span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        j01 : float</span>
+<span class="sd">            LO-NLO evolution integral</span>
+<span class="sd">        j11 : float</span>
+<span class="sd">            NLO-NLO evolution integral</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^1 : complex</span>
-<span class="sd">            non-singlet next-to-leading order decompose EKO</span>
+<span class="sd">        e_s^1 : numpy.ndarray</span>
+<span class="sd">            singlet next-to-leading order decompose EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ad</span><span class="o">.</span><span class="n">exp_singlet</span><span class="p">(</span>
         <span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">j01</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">+</span> <span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">j11</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
@@ -234,13 +253,19 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        gamma_singlet : list(numpy.ndarray)</span>
+<span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^1 : complex</span>
-<span class="sd">            non-singlet next-to-leading order decompose-exact EKO</span>
+<span class="sd">        e_s^1 : numpy.ndarray</span>
+<span class="sd">            singlet next-to-leading order decompose-exact EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">nlo_decompose</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j01_exact</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_exact</span><span class="p">)</span></div>
 
@@ -252,13 +277,19 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        gamma_singlet : list(numpy.ndarray)</span>
+<span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^1 : complex</span>
-<span class="sd">            non-singlet next-to-leading order decompose-expanded EKO</span>
+<span class="sd">        e_s^1 : numpy.ndarray</span>
+<span class="sd">            singlet next-to-leading order decompose-expanded EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">nlo_decompose</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j01_expanded</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_expanded</span><span class="p">)</span></div>
 
@@ -270,13 +301,21 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        gamma_singlet : list(numpy.ndarray)</span>
+<span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">        e_s^1 : complex</span>
-<span class="sd">            non-singlet next-to-leading order iterated (exact) EKO</span>
+<span class="sd">            singlet next-to-leading order iterated (exact) EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">a_steps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>
     <span class="n">beta0</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
@@ -297,15 +336,25 @@
     <span class="k">return</span> <span class="n">e</span></div>
 
 
-<div class="viewcode-block" id="nlo_r"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_r">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">nlo_r</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">is_exact</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="r_vec"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.r_vec">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">r_vec</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">is_exact</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute singlet R vector for perturbative mode.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \frac{d}{da_s} \dSV{1}{a_s} &amp;= \frac{\mathbf R (a_s)}{a_s} \cdot \dSV{1}{a_s}\\</span>
+<span class="sd">        \mathbf R (a_s) &amp;= \sum\limits_{k=0} a_s^k \mathbf R_{k}</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
+<span class="sd">        is_exact : boolean</span>
+<span class="sd">            fill up r-vector?</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -334,13 +383,21 @@
 <span class="sd">    ----------</span>
 <span class="sd">        gamma_singlet : list(numpy.ndarray)</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">        r : np.ndarray</span>
 <span class="sd">            R vector</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">        r_vec : compute R vector</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">nlo_r</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">r_vec</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="nlo_r_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_r_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
@@ -352,24 +409,38 @@
 <span class="sd">    ----------</span>
 <span class="sd">        gamma_singlet : list(numpy.ndarray)</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">        r : np.ndarray</span>
 <span class="sd">            R vector</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">        r_vec : compute R vector</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">nlo_r</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">r_vec</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nlo_u_elems"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_u_elems">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">nlo_u_elems</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="u_vec"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.u_vec">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">u_vec</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the elements of the singlet U vector.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \ESk{n}{a_s}{a_s^0} &amp;= \mathbf U (a_s) \ESk{0}{a_s}{a_s^0} {\mathbf U}^{-1} (a_s^0)\\</span>
+<span class="sd">        \mathbf U (a_s) &amp;= \mathbf I + \sum\limits_{k=1} a_s^k \mathbf U_k</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">        r : numpy.ndarray</span>
 <span class="sd">            singlet R vector</span>
+<span class="sd">        ev_op_max_order : int</span>
+<span class="sd">            perturbative expansion order of U</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -395,10 +466,29 @@
 
 
 <div class="viewcode-block" id="sum_u"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.sum_u">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">sum_u</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sum_u</span><span class="p">(</span><span class="n">uvec</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sums up the actual U operator.</span>
+
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \mathbf U (a_s) = \mathbf I + \sum\limits_{k=1} a_s^k \mathbf U_k</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        uvec : numpy.ndarray</span>
+<span class="sd">            U vector (elements)</span>
+<span class="sd">        a : float</span>
+<span class="sd">            strong coupling</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        u : numpy.ndarray</span>
+<span class="sd">            sum</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">p</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">uk</span> <span class="ow">in</span> <span class="n">u</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">uk</span> <span class="ow">in</span> <span class="n">uvec</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">+=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">uk</span>
         <span class="n">p</span> <span class="o">*=</span> <span class="n">a</span>
     <span class="c1"># alternative implementation:</span>
@@ -418,14 +508,26 @@
 <span class="sd">    ----------</span>
 <span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
+<span class="sd">        ev_op_max_order : int</span>
+<span class="sd">            perturbative expansion order of U</span>
+<span class="sd">        r_fnc : callable</span>
+<span class="sd">            getter for the R vector</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^1 : complex</span>
+<span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order perturbative EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">r_fnc</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">)</span>
-    <span class="n">uk</span> <span class="o">=</span> <span class="n">nlo_u_elems</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">)</span>
+    <span class="n">uk</span> <span class="o">=</span> <span class="n">u_vec</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">)</span>
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
     <span class="c1"># iterate elements</span>
     <span class="n">a_steps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>
@@ -450,13 +552,27 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        gamma_singlet : list(numpy.ndarray)</span>
+<span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
+<span class="sd">        ev_op_max_order : int</span>
+<span class="sd">            perturbative expansion order of U</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^1 : complex</span>
+<span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order perturbative-exact EKO</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">        nlo_perturbative : called function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">nlo_perturbative</span><span class="p">(</span>
         <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">nlo_r_exact</span>
@@ -474,11 +590,25 @@
 <span class="sd">    ----------</span>
 <span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
+<span class="sd">        ev_op_max_order : int</span>
+<span class="sd">            perturbative expansion order of U</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^1 : complex</span>
+<span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order perturbative-expanded EKO</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">        nlo_perturbative : called function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">nlo_perturbative</span><span class="p">(</span>
         <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">nlo_r_expanded</span>
@@ -494,14 +624,22 @@
 <span class="sd">    ----------</span>
 <span class="sd">        gamma_singlet : numpy.ndarray</span>
 <span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^1 : complex</span>
+<span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order truncated EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">nlo_r_expanded</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">u</span> <span class="o">=</span> <span class="n">nlo_u_elems</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">u_vec</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
     <span class="c1"># iterate elements</span>
     <span class="n">a_steps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>

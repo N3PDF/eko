@@ -177,8 +177,11 @@
             
   <h1>Source code for eko.kernels.evolution_integrals</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Integrals needed for the exact evolutions.</span>
+
+<span class="sd">.. math::</span>
+<span class="sd">    j^{(n,m)}(a_s,a_s^0) = \int\limits_{a_s^0}^{a_s}\!da_s&#39;\,\frac{(a_s&#39;)^{1+n}}{-\beta^{(m)}(a_s&#39;)}</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -190,11 +193,54 @@
 
 <div class="viewcode-block" id="j00"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j00">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    LO-LO exact evolution integral.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        j^{(0,0)}(a_s,a_s^0) = \int\limits_{a_s^0}^{a_s} \frac{da_s&#39;}{\beta_0 a_s&#39;}</span>
+<span class="sd">           = \frac{\ln(a_s/a_s^0)}{\beta_0}</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        j00 : float</span>
+<span class="sd">            integral</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a1</span> <span class="o">/</span> <span class="n">a0</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="j11_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j11_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">j11_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NLO-NLO exact evolution integral.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        j^{(1,1)}(a_s,a_s^0) = \int\limits_{a_s^0}^{a_s}\!da_s&#39;\,</span>
+<span class="sd">                                \frac{a_s&#39;^2}{\beta_0 a_s&#39;^2 + \beta_1 a_s&#39;^3}</span>
+<span class="sd">            = \frac{1}{\beta_1}\ln\left(\frac{1+b_1 a_s}{1+b_1 a_s^0}\right)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        j11 : float</span>
+<span class="sd">            integral</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">beta_1</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
     <span class="n">b1</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">beta_1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">b1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">a0</span> <span class="o">*</span> <span class="n">b1</span><span class="p">))</span></div>
@@ -202,16 +248,78 @@
 
 <div class="viewcode-block" id="j11_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j11_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">j11_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    NLO-NLO expanded evolution integral.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        j^{(1,1)}_{exp}(a_s,a_s^0) = \frac 1 {\beta_0}(a_s - a_s^0)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        j11_exp : float</span>
+<span class="sd">            integral</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a1</span> <span class="o">-</span> <span class="n">a0</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="j01_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">j01_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    LO-NLO exact evolution integral.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        j^{(0,1)}(a_s,a_s^0) = \int\limits_{a_s^0}^{a_s}\!da_s&#39;\,</span>
+<span class="sd">                            \frac{a_s&#39;}{\beta_0 a_s&#39;^2 + \beta_1 a_s&#39;^3}</span>
+<span class="sd">               = j^{(0,0)}(a_s,a_s^0) - b_1 j^{(1,1)}(a_s,a_s^0)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        j11 : float</span>
+<span class="sd">            integral</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">-</span> <span class="n">beta</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">*</span> <span class="n">j11_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="j01_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">j01_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    LO-NLO expanded evolution integral.</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        j^{(0,1)}_{exp}(a_s,a_s^0) = j^{(0,0)}(a_s,a_s^0) - b_1 j^{(1,1)}_{exp}(a_s,a_s^0)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        j01_exp : float</span>
+<span class="sd">            integral</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">-</span> <span class="n">beta</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">*</span> <span class="n">j11_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span></div>
 </pre></div>
 

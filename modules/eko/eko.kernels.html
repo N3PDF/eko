@@ -260,12 +260,14 @@
 <dl class="py method">
 <dt id="eko.kernels.IntegrationKernelObject.extra_args_ns">
 <code class="sig-name descname">extra_args_ns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels.html#IntegrationKernelObject.extra_args_ns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.IntegrationKernelObject.extra_args_ns" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>additional arguments for the singlet EKO</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="eko.kernels.IntegrationKernelObject.extra_args_s">
 <code class="sig-name descname">extra_args_s</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels.html#IntegrationKernelObject.extra_args_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.IntegrationKernelObject.extra_args_s" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>additional arguments for the non-singlet EKO</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="eko.kernels.IntegrationKernelObject.get_path_params">
@@ -304,7 +306,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>config</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – configuration</p></li>
-<li><p><strong>interpol_dispatcher</strong> (<a class="reference internal" href="eko.html#eko.interpolation.InterpolatorDispatcher" title="eko.interpolation.InterpolatorDispatcher"><em>eko.interpolation.InterpolatorDispatcher</em></a>) – An instance of the InterpolatorDispatcher class</p></li>
+<li><p><strong>interpol_dispatcher</strong> (<a class="reference internal" href="eko.html#eko.interpolation.InterpolatorDispatcher" title="eko.interpolation.InterpolatorDispatcher"><em>eko.interpolation.InterpolatorDispatcher</em></a>) – the basis functions</p></li>
 </ul>
 </dd>
 </dl>
@@ -358,34 +360,132 @@
 <div class="section" id="module-eko.kernels.evolution_integrals">
 <span id="eko-kernels-evolution-integrals-module"></span><h2>eko.kernels.evolution_integrals module<a class="headerlink" href="#module-eko.kernels.evolution_integrals" title="Permalink to this headline">¶</a></h2>
 <p>Integrals needed for the exact evolutions.</p>
+<div class="math notranslate nohighlight">
+\[j^{(n,m)}(a_s,a_s^0) = \int\limits_{a_s^0}^{a_s}\!da_s'\,\frac{(a_s')^{1+n}}{-\beta^{(m)}(a_s')}\]</div>
 <dl class="py function">
 <dt id="eko.kernels.evolution_integrals.j00">
 <code class="sig-prename descclassname">eko.kernels.evolution_integrals.</code><code class="sig-name descname">j00</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/evolution_integrals.html#j00"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.evolution_integrals.j00" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>LO-LO exact evolution integral.</p>
+<div class="math notranslate nohighlight">
+\[j^{(0,0)}(a_s,a_s^0) = \int\limits_{a_s^0}^{a_s} \frac{da_s'}{\beta_0 a_s'}
+   = \frac{\ln(a_s/a_s^0)}{\beta_0}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>j00</strong> – integral</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="eko.kernels.evolution_integrals.j01_exact">
 <code class="sig-prename descclassname">eko.kernels.evolution_integrals.</code><code class="sig-name descname">j01_exact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/evolution_integrals.html#j01_exact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.evolution_integrals.j01_exact" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>LO-NLO exact evolution integral.</p>
+<div class="math notranslate nohighlight">
+\[j^{(0,1)}(a_s,a_s^0) = \int\limits_{a_s^0}^{a_s}\!da_s'\,
+                    \frac{a_s'}{\beta_0 a_s'^2 + \beta_1 a_s'^3}
+       = j^{(0,0)}(a_s,a_s^0) - b_1 j^{(1,1)}(a_s,a_s^0)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>j11</strong> – integral</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="eko.kernels.evolution_integrals.j01_expanded">
 <code class="sig-prename descclassname">eko.kernels.evolution_integrals.</code><code class="sig-name descname">j01_expanded</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/evolution_integrals.html#j01_expanded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.evolution_integrals.j01_expanded" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>LO-NLO expanded evolution integral.</p>
+<div class="math notranslate nohighlight">
+\[j^{(0,1)}_{exp}(a_s,a_s^0) = j^{(0,0)}(a_s,a_s^0) - b_1 j^{(1,1)}_{exp}(a_s,a_s^0)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>j01_exp</strong> – integral</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="eko.kernels.evolution_integrals.j11_exact">
 <code class="sig-prename descclassname">eko.kernels.evolution_integrals.</code><code class="sig-name descname">j11_exact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/evolution_integrals.html#j11_exact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.evolution_integrals.j11_exact" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>NLO-NLO exact evolution integral.</p>
+<div class="math notranslate nohighlight">
+\[j^{(1,1)}(a_s,a_s^0) = \int\limits_{a_s^0}^{a_s}\!da_s'\,
+                        \frac{a_s'^2}{\beta_0 a_s'^2 + \beta_1 a_s'^3}
+    = \frac{1}{\beta_1}\ln\left(\frac{1+b_1 a_s}{1+b_1 a_s^0}\right)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>j11</strong> – integral</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="eko.kernels.evolution_integrals.j11_expanded">
 <code class="sig-prename descclassname">eko.kernels.evolution_integrals.</code><code class="sig-name descname">j11_expanded</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/evolution_integrals.html#j11_expanded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.evolution_integrals.j11_expanded" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>NLO-NLO expanded evolution integral.</p>
+<div class="math notranslate nohighlight">
+\[j^{(1,1)}_{exp}(a_s,a_s^0) = \frac 1 {\beta_0}(a_s - a_s^0)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>j11_exp</strong> – integral</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-eko.kernels.non_singlet">
 <span id="eko-kernels-non-singlet-module"></span><h2>eko.kernels.non_singlet module<a class="headerlink" href="#module-eko.kernels.non_singlet" title="Permalink to this headline">¶</a></h2>
+<p>Colletion of non-singlet EKOs.</p>
 <dl class="py function">
 <dt id="eko.kernels.non_singlet.dispatcher_lo">
 <code class="sig-prename descclassname">eko.kernels.non_singlet.</code><code class="sig-name descname">dispatcher_lo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">_method</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/non_singlet.html#dispatcher_lo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.non_singlet.dispatcher_lo" title="Permalink to this definition">¶</a></dt>
@@ -427,7 +527,12 @@
 <dd><p>Non-singlet leading order exact EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_ns^0</strong> – non-singlet leading order exact EKO</p>
@@ -444,7 +549,12 @@
 <dd><p>Non-singlet next-to-leading order exact EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_ns^1</strong> – non-singlet next-to-leading order exact EKO</p>
@@ -461,7 +571,12 @@
 <dd><p>Non-singlet next-to-leading order expanded EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_ns^1</strong> – non-singlet next-to-leading order expanded EKO</p>
@@ -478,7 +593,13 @@
 <dd><p>Non-singlet next-to-leading order ordered-truncated EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_ns^1</strong> – non-singlet next-to-leading order ordered-truncated EKO</p>
@@ -495,7 +616,13 @@
 <dd><p>Non-singlet next-to-leading order truncated EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_ns</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – non-singlet anomalous dimensions</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_ns^1</strong> – non-singlet next-to-leading order truncated EKO</p>
@@ -509,6 +636,7 @@
 </div>
 <div class="section" id="module-eko.kernels.singlet">
 <span id="eko-kernels-singlet-module"></span><h2>eko.kernels.singlet module<a class="headerlink" href="#module-eko.kernels.singlet" title="Permalink to this headline">¶</a></h2>
+<p>Colletion of singlet EKOs.</p>
 <dl class="py function">
 <dt id="eko.kernels.singlet.dispatcher_lo">
 <code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">dispatcher_lo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">_method</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#dispatcher_lo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.dispatcher_lo" title="Permalink to this definition">¶</a></dt>
@@ -550,13 +678,18 @@
 <dd><p>Singlet leading order exact EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_s^0</strong> – singlet leading order exact EKO</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -567,13 +700,20 @@
 <dd><p>Singlet next-to-leading order decompose EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>j01</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – LO-NLO evolution integral</p></li>
+<li><p><strong>j11</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – NLO-NLO evolution integral</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>e_s^1</strong> – non-singlet next-to-leading order decompose EKO</p>
+<dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order decompose EKO</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -584,13 +724,18 @@
 <dd><p>Singlet next-to-leading order decompose-exact EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>e_s^1</strong> – non-singlet next-to-leading order decompose-exact EKO</p>
+<dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order decompose-exact EKO</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -601,13 +746,18 @@
 <dd><p>Singlet next-to-leading order decompose-expanded EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>e_s^1</strong> – non-singlet next-to-leading order decompose-expanded EKO</p>
+<dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order decompose-expanded EKO</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -618,10 +768,16 @@
 <dd><p>Singlet next-to-leading order iterated (exact) EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>e_s^1</strong> – non-singlet next-to-leading order iterated (exact) EKO</p>
+<dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order iterated (exact) EKO</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
@@ -635,13 +791,21 @@
 <dd><p>Singlet next-to-leading order pertubative EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+<li><p><strong>ev_op_max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – perturbative expansion order of U</p></li>
+<li><p><strong>r_fnc</strong> (<em>callable</em>) – getter for the R vector</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order perturbative EKO</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -652,15 +816,29 @@
 <dd><p>Singlet next-to-leading order pertubative-exact EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+<li><p><strong>ev_op_max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – perturbative expansion order of U</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order perturbative-exact EKO</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.kernels.singlet.nlo_perturbative" title="eko.kernels.singlet.nlo_perturbative"><code class="xref py py-func docutils literal notranslate"><span class="pre">nlo_perturbative()</span></code></a></dt><dd><p>called function</p>
+</dd>
+</dl>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -669,32 +847,29 @@
 <dd><p>Singlet next-to-leading order pertubative-expanded EKO</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+<li><p><strong>ev_op_max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – perturbative expansion order of U</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order perturbative-expanded EKO</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.kernels.singlet.nlo_r">
-<code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">nlo_r</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gamma_singlet</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">ev_op_max_order</span></em>, <em class="sig-param"><span class="n">is_exact</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#nlo_r"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.nlo_r" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute singlet R vector for perturbative mode.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>r</strong> – R vector</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>np.ndarray</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.kernels.singlet.nlo_perturbative" title="eko.kernels.singlet.nlo_perturbative"><code class="xref py py-func docutils literal notranslate"><span class="pre">nlo_perturbative()</span></code></a></dt><dd><p>called function</p>
 </dd>
 </dl>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -703,7 +878,11 @@
 <dd><p>Compute singlet R vector for perturbative-exact mode.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>r</strong> – R vector</p>
@@ -712,6 +891,13 @@
 <dd class="field-odd"><p>np.ndarray</p>
 </dd>
 </dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.kernels.singlet.r_vec" title="eko.kernels.singlet.r_vec"><code class="xref py py-func docutils literal notranslate"><span class="pre">r_vec()</span></code></a></dt><dd><p>compute R vector</p>
+</dd>
+</dl>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -720,7 +906,66 @@
 <dd><p>Compute singlet R vector for perturbative-expanded mode.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a><em>)</em>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>r</strong> – R vector</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.kernels.singlet.r_vec" title="eko.kernels.singlet.r_vec"><code class="xref py py-func docutils literal notranslate"><span class="pre">r_vec()</span></code></a></dt><dd><p>compute R vector</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.kernels.singlet.nlo_truncated">
+<code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">nlo_truncated</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gamma_singlet</span></em>, <em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">ev_op_iterations</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#nlo_truncated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.nlo_truncated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Singlet next-to-leading order truncated EKO</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order truncated EKO</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.kernels.singlet.r_vec">
+<code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">r_vec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gamma_singlet</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">ev_op_max_order</span></em>, <em class="sig-param"><span class="n">is_exact</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#r_vec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.r_vec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute singlet R vector for perturbative mode.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{d}{da_s} \dSV{1}{a_s} &amp;= \frac{\mathbf R (a_s)}{a_s} \cdot \dSV{1}{a_s}\\
+\mathbf R (a_s) &amp;= \sum\limits_{k=0} a_s^k \mathbf R_{k}\end{split}\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
+<li><p><strong>is_exact</strong> (<em>boolean</em>) – fill up r-vector?</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>r</strong> – R vector</p>
@@ -732,29 +977,40 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="eko.kernels.singlet.nlo_truncated">
-<code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">nlo_truncated</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gamma_singlet</span></em>, <em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">ev_op_iterations</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#nlo_truncated"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.nlo_truncated" title="Permalink to this definition">¶</a></dt>
-<dd><p>Singlet next-to-leading order truncated EKO</p>
+<dt id="eko.kernels.singlet.sum_u">
+<code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">sum_u</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">uvec</span></em>, <em class="sig-param"><span class="n">a</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#sum_u"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.sum_u" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sums up the actual U operator.</p>
+<div class="math notranslate nohighlight">
+\[\mathbf U (a_s) = \mathbf I + \sum\limits_{k=1} a_s^k \mathbf U_k\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>gamma_singlet</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet anomalous dimensions matrices</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uvec</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – U vector (elements)</p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – strong coupling</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>e_s^1</strong> – singlet next-to-leading order truncated EKO</p>
+<dd class="field-even"><p><strong>u</strong> – sum</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
-<dt id="eko.kernels.singlet.nlo_u_elems">
-<code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">nlo_u_elems</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">ev_op_max_order</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#nlo_u_elems"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.nlo_u_elems" title="Permalink to this definition">¶</a></dt>
+<dt id="eko.kernels.singlet.u_vec">
+<code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">u_vec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">ev_op_max_order</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#u_vec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.u_vec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the elements of the singlet U vector.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\ESk{n}{a_s}{a_s^0} &amp;= \mathbf U (a_s) \ESk{0}{a_s}{a_s^0} {\mathbf U}^{-1} (a_s^0)\\
+\mathbf U (a_s) &amp;= \mathbf I + \sum\limits_{k=1} a_s^k \mathbf U_k\end{split}\]</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>r</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet R vector</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – singlet R vector</p></li>
+<li><p><strong>ev_op_max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – perturbative expansion order of U</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>u</strong> – U vector</p>
@@ -765,18 +1021,30 @@
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt id="eko.kernels.singlet.sum_u">
-<code class="sig-prename descclassname">eko.kernels.singlet.</code><code class="sig-name descname">sum_u</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">u</span></em>, <em class="sig-param"><span class="n">a</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/singlet.html#sum_u"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.singlet.sum_u" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </div>
 <div class="section" id="module-eko.kernels.utils">
 <span id="eko-kernels-utils-module"></span><h2>eko.kernels.utils module<a class="headerlink" href="#module-eko.kernels.utils" title="Permalink to this headline">¶</a></h2>
+<p>Some utility functions</p>
 <dl class="py function">
 <dt id="eko.kernels.utils.geomspace">
 <code class="sig-prename descclassname">eko.kernels.utils.</code><code class="sig-name descname">geomspace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start</span></em>, <em class="sig-param"><span class="n">end</span></em>, <em class="sig-param"><span class="n">num</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/kernels/utils.html#geomspace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.kernels.utils.geomspace" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Numba port of <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.geomspace.html#numpy.geomspace" title="(in NumPy v1.19)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.geomspace()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – inital value</p></li>
+<li><p><strong>end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – final value</p></li>
+<li><p><strong>num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – steps</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>geomspace</strong> – logarithmic spaced list between <cite>start</cite> and <cite>end</cite></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 </div>

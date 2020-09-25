@@ -177,7 +177,7 @@
             
   <h1>Source code for eko.kernels.utils</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
-
+<span class="sd">&quot;&quot;&quot;Some utility functions&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -186,6 +186,23 @@
 
 <div class="viewcode-block" id="geomspace"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.utils.geomspace">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
 <span class="k">def</span> <span class="nf">geomspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Numba port of :func:`numpy.geomspace`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        start : float</span>
+<span class="sd">            inital value</span>
+<span class="sd">        end : float</span>
+<span class="sd">            final value</span>
+<span class="sd">        num : int</span>
+<span class="sd">            steps</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        geomspace : numpy.ndarray</span>
+<span class="sd">            logarithmic spaced list between `start` and `end`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">end</span><span class="p">),</span> <span class="n">num</span><span class="p">))</span></div>
 </pre></div>
 
