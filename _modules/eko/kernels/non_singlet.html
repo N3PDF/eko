@@ -302,7 +302,8 @@
     <span class="k">return</span> <span class="n">e</span></div>
 
 
-<div class="viewcode-block" id="nlo_ordered_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_ordered_truncated">[docs]</a><span class="k">def</span> <span class="nf">nlo_ordered_truncated</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
+<div class="viewcode-block" id="nlo_ordered_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_ordered_truncated">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<span class="k">def</span> <span class="nf">nlo_ordered_truncated</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Non-singlet next-to-leading order ordered-truncated EKO</span>
 
@@ -381,7 +382,7 @@
         <span class="k">return</span> <span class="n">nlo_truncated</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;ordered-truncated&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">nlo_ordered_truncated</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">nlo_exact</span></div>
 </pre></div>
 
            </div>
