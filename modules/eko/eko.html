@@ -110,6 +110,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="eko.anomalous_dimensions.html">eko.anomalous_dimensions package</a></li>
 <li class="toctree-l4"><a class="reference internal" href="eko.kernels.html">eko.kernels package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eko.operator.html">eko.operator package</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
@@ -117,14 +118,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.beta">eko.beta module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.constants">eko.constants module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.ekomath">eko.ekomath module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.evolution_operator">eko.evolution_operator module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.flavours">eko.flavours module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.interpolation">eko.interpolation module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.mellin">eko.mellin module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#integration-paths">Integration Paths</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#module-eko.operator_grid">eko.operator_grid module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.output">eko.output module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.runner">eko.runner module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-eko.strong_coupling">eko.strong_coupling module</a></li>
@@ -246,6 +245,14 @@ to fullfill the following evolution</p>
 <li class="toctree-l2"><a class="reference internal" href="eko.kernels.html#module-eko.kernels.utils">eko.kernels.utils module</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="eko.operator.html">eko.operator package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eko.operator.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.grid">eko.operator.grid module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.member">eko.operator.member module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.operator">eko.operator.operator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.physical">eko.operator.physical module</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -275,7 +282,7 @@ to fullfill the following evolution</p>
 <dd><p>Insert trivial evolutions basis elements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>old_evols</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.evolution_operator.PhysicalOperator</span></code></a>-like dictionary</p>
+<dd class="field-odd"><p><strong>old_evols</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.evolution_operator.PhysicalOperator</span></code>-like dictionary</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
@@ -314,7 +321,7 @@ to fullfill the following evolution</p>
 <dd><p>Rotate lists in evolution basis back to flavor basis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>in_evols</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.evolution_operator.PhysicalOperator</span></code></a>-like dictionary</p>
+<dd class="field-odd"><p><strong>in_evols</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.evolution_operator.PhysicalOperator</span></code>-like dictionary</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>out</strong> – rotated dictionary</p>
@@ -599,221 +606,6 @@ Riemann zeta function.</p>
 <p>We use the name from <a class="bibtex reference internal" href="../../zzz-refs.html#muselliphd" id="id5">[Mus17]</a>, but not his implementation - rather we use the
 Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004ns" id="id6">[Vog05]</a> implementation.</p>
 </div>
-</dd></dl>
-
-</div>
-<div class="section" id="module-eko.evolution_operator">
-<span id="eko-evolution-operator-module"></span><h2>eko.evolution_operator module<a class="headerlink" href="#module-eko.evolution_operator" title="Permalink to this headline">¶</a></h2>
-<p>This module contains all evolution operator classes.</p>
-<p>See <a class="reference internal" href="../../Code/Operators.html"><span class="doc">Operator overview</span></a>.</p>
-<dl class="py class">
-<dt id="eko.evolution_operator.Operator">
-<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">master</span></em>, <em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">mellin_cut</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Internal representation of a single EKO.</p>
-<p>The actual matrices are computed only upon calling <a class="reference internal" href="#eko.evolution_operator.Operator.compute" title="eko.evolution_operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.
-<a class="reference internal" href="#eko.evolution_operator.Operator.compose" title="eko.evolution_operator.Operator.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compose()</span></code></a> will generate the <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> for the outside world.
-If not computed yet, <a class="reference internal" href="#eko.evolution_operator.Operator.compose" title="eko.evolution_operator.Operator.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compose()</span></code></a> will call <a class="reference internal" href="#eko.evolution_operator.Operator.compute" title="eko.evolution_operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>master</strong> (<a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><em>eko.operator_grid.OperatorMaster</em></a>) – the master instance</p></li>
-<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – evolution source</p></li>
-<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – evolution target</p></li>
-<li><p><strong>mellin_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – cut to the upper limit in the mellin inversion</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="eko.evolution_operator.Operator.compose">
-<code class="sig-name descname">compose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_list</span></em>, <em class="sig-param"><span class="n">instruction_set</span></em>, <em class="sig-param"><span class="n">q2_final</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.compose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compose all <a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> together.</p>
-<p>Calls <a class="reference internal" href="#eko.evolution_operator.Operator.compute" title="eko.evolution_operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>, if necessary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>op_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><em>Operator</em></a><em>)</em>) – list of operators to merge</p></li>
-<li><p><strong>instruction_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – list of instructions (generated by <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.thresholds.FlavourTarget</span></code>)</p></li>
-<li><p><strong>q2_final</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – final scale</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>op</strong> – final operator</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator">PhysicalOperator</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.Operator.compute">
-<code class="sig-name descname">compute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.compute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.compute" title="Permalink to this definition">¶</a></dt>
-<dd><p>compute the actual operators (i.e. run the integrations)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.Operator.labels">
-<code class="sig-name descname">labels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#Operator.labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.Operator.labels" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute necessary sector labels to compute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>labels</strong> – sector labels</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.Operator.xgrid">
-<em class="property">property </em><code class="sig-name descname">xgrid</code><a class="headerlink" href="#eko.evolution_operator.Operator.xgrid" title="Permalink to this definition">¶</a></dt>
-<dd><p>underlying basis grid</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="eko.evolution_operator.OperatorMember">
-<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">OperatorMember</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">error</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#OperatorMember"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.OperatorMember" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>A single operator for a specific element in evolution basis.</p>
-<p>The <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> provide some basic mathematical operations such as products.
-It can also be applied to a pdf vector by the <cite>__call__</cite> method.
-This class will never be exposed to the outside, but will be an internal member
-of the <a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> and <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> instances.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> (<em>np.array</em>) – operator matrix</p></li>
-<li><p><strong>error</strong> (<em>np.array</em>) – operator error matrix</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – operator name</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="eko.evolution_operator.OperatorMember.apply_pdf">
-<code class="sig-name descname">apply_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pdf_member</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#OperatorMember.apply_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.OperatorMember.apply_pdf" title="Permalink to this definition">¶</a></dt>
-<dd><p>The operator member can act on a pdf member.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pdf_member</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><em>numpy.ndarray</em></a>) – pdf vector</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>result</strong> (<em>float</em>) – higher scale pdf</p></li>
-<li><p><strong>error</strong> (<em>float</em>) – evolution uncertainty to pdf at higher scale</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.OperatorMember.input">
-<em class="property">property </em><code class="sig-name descname">input</code><a class="headerlink" href="#eko.evolution_operator.OperatorMember.input" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns input flavour name (given by the second part of the name)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.OperatorMember.is_physical">
-<em class="property">property </em><code class="sig-name descname">is_physical</code><a class="headerlink" href="#eko.evolution_operator.OperatorMember.is_physical" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lives inside a <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a>? determined by name</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.OperatorMember.join">
-<em class="property">static </em><code class="sig-name descname">join</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">steps</span></em>, <em class="sig-param"><span class="n">list_of_paths</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#OperatorMember.join"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.OperatorMember.join" title="Permalink to this definition">¶</a></dt>
-<dd><p>Multiply a list of <a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMember</span></code></a> using the given paths.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember"><em>OperatorMember</em></a><em>)</em><em>)</em>) – list of raw operators, with the lowest scale to the right</p></li>
-<li><p><strong>list_of_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>)</em><em>)</em>) – list of paths</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>final_op</strong> – joined operator</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#eko.evolution_operator.OperatorMember" title="eko.evolution_operator.OperatorMember">OperatorMember</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.OperatorMember.target">
-<em class="property">property </em><code class="sig-name descname">target</code><a class="headerlink" href="#eko.evolution_operator.OperatorMember.target" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns target flavour name (given by the first part of the name)</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="eko.evolution_operator.PhysicalOperator">
-<em class="property">class </em><code class="sig-prename descclassname">eko.evolution_operator.</code><code class="sig-name descname">PhysicalOperator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_members</span></em>, <em class="sig-param"><span class="n">q2_final</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#PhysicalOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.PhysicalOperator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>This is exposed to the outside world.</p>
-<p>This operator is computed via the composition method of the
-<a class="reference internal" href="#eko.evolution_operator.Operator" title="eko.evolution_operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> class.</p>
-<p>This operator can act on PDFs through the <cite>__call__</cite> method.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>op_members</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – list of all members</p></li>
-<li><p><strong>q2_final</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – final scale</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="eko.evolution_operator.PhysicalOperator.apply_pdf">
-<code class="sig-name descname">apply_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pdf_lists</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#PhysicalOperator.apply_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.PhysicalOperator.apply_pdf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply PDFs to the EKOs.</p>
-<p>It assumes as input the PDFs as dictionary in evolution basis with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pdf_lists</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;V&#39;</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
-    <span class="s1">&#39;g&#39;</span> <span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
-    <span class="c1"># ...</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Each member has to be evaluated on the corresponding xgrid (which
-is tracked by <a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a> and not
-<a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a>)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – operator matrices of <a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p></li>
-<li><p><strong>pdf_lists</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – PDFs in evolution basis as list on the corresponding xgrid</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>out</strong> (<em>dict</em>) – evolved PDFs</p></li>
-<li><p><strong>out_errors</strong> (<em>dict</em>) – associated errors of the evolved PDFs</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.evolution_operator.PhysicalOperator.get_raw_operators">
-<code class="sig-name descname">get_raw_operators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/evolution_operator.html#PhysicalOperator.get_raw_operators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.evolution_operator.PhysicalOperator.get_raw_operators" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns serializable matrix representation of all members and their errors</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>ret</strong> – the members are stored under the <code class="docutils literal notranslate"><span class="pre">operators</span></code> key and their
-errors under the <code class="docutils literal notranslate"><span class="pre">operator_errors</span></code> key. They are labeled as
-<code class="docutils literal notranslate"><span class="pre">{outputPDF}.{inputPDF}</span></code>.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -1213,8 +1005,7 @@ such as the definition of paths.</p>
 <p>The integral routine is provided by <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.quad.html#scipy.integrate.quad" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.quad()</span></code></a>.</p>
 <div class="section" id="integration-paths">
 <h3>Integration Paths<a class="headerlink" href="#integration-paths" title="Permalink to this headline">¶</a></h3>
-<p>Although this module provides four different path implementations (<a class="reference internal" href="#eko.mellin.get_path_Talbot" title="eko.mellin.get_path_Talbot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Talbot()</span></code></a>,
-<a class="reference internal" href="#eko.mellin.get_path_line" title="eko.mellin.get_path_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_line()</span></code></a>, <a class="reference internal" href="#eko.mellin.get_path_edge" title="eko.mellin.get_path_edge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_edge()</span></code></a>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">get_path_Cauchy_tan()</span></code>) in practice
+<p>Although this module provides four different path implementations in practice
 only the Talbot path <a class="bibtex reference internal" href="../../zzz-refs.html#abate" id="id7">[AV04]</a></p>
 <div class="math notranslate nohighlight">
 \[p_{\text{Talbot}}(t) =  o + r \cdot ( \theta \cot(\theta) + i\theta)\quad
@@ -1227,36 +1018,47 @@ for the singlet sector. Note that the non-singlet kernels evolve poles only up t
 <dl class="py function">
 <dt id="eko.mellin.Talbot_jac">
 <code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">Talbot_jac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">o</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#Talbot_jac"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.Talbot_jac" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Derivative of Talbot path.</p>
+<div class="math notranslate nohighlight">
+\[p_{\text{Talbot}}(t) =  o + r \cdot ( \theta \cot(\theta) + i\theta ),
+\theta = \pi(2t-1)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – scaling parameter - effectivly corresponds to the intersection of the path with the
+real axis</p></li>
+<li><p><strong>o</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – offset on real axis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>jac</strong> – derivative of Talbot path</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="eko.mellin.Talbot_path">
 <code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">Talbot_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">t</span></em>, <em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">o</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#Talbot_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.Talbot_path" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="eko.mellin.get_path_Talbot">
-<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">get_path_Talbot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#get_path_Talbot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.get_path_Talbot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Talbot path.</p>
 <div class="math notranslate nohighlight">
 \[p_{\text{Talbot}}(t) =  o + r \cdot ( \theta \cot(\theta) + i\theta ),
 \theta = \pi(2t-1)\]</div>
-<p>Returns the path and its derivative which then have to be called with the arguments
-listed under <cite>Other Parameters</cite>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Other Parameters</dt>
+<dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>r</strong> (<em>float</em>) – scaling parameter - effectivly corresponds to the intersection of the path with the
+<li><p><strong>r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – scaling parameter - effectivly corresponds to the intersection of the path with the
 real axis</p></li>
-<li><p><strong>o</strong> (<em>float</em>) – offset on real axis</p></li>
+<li><p><strong>o</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – offset on real axis</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>path</strong> (<em>function</em>) – Talbot path function</p></li>
-<li><p><strong>jac</strong> (<em>function</em>) – derivative of Talbot path</p></li>
-</ul>
-</p>
+<dd class="field-even"><p><strong>path</strong> – Talbot path</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.8)">complex</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1314,7 +1116,7 @@ listed under <cite>Other Parameters</cite>.</p>
 
 <dl class="py function">
 <dt id="eko.mellin.inverse_mellin_transform">
-<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">inverse_mellin_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">integrand</span></em>, <em class="sig-param"><span class="n">cut</span></em>, <em class="sig-param"><span class="n">extra_args</span></em>, <em class="sig-param"><span class="n">epsabs</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">epsrel</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#inverse_mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.inverse_mellin_transform" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">inverse_mellin_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">integrand</span></em>, <em class="sig-param"><span class="n">cut</span></em>, <em class="sig-param"><span class="n">extra_args</span></em>, <em class="sig-param"><span class="n">epsabs</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">epsrel</span><span class="o">=</span><span class="default_value">1e-05</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#inverse_mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.inverse_mellin_transform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inverse Mellin transformation.</p>
 <p>Note that the inversion factor <span class="math notranslate nohighlight">\(x^{-N}\)</span> has already to be <em>included</em> in f(N).
 This convention usually improves the convergence of the integral. Typical kernels
@@ -1343,157 +1145,6 @@ determied by <span class="math notranslate nohighlight">\(t\in [c : 1-c]\)</span
 </dd></dl>
 
 </div>
-</div>
-<div class="section" id="module-eko.operator_grid">
-<span id="eko-operator-grid-module"></span><h2>eko.operator_grid module<a class="headerlink" href="#module-eko.operator_grid" title="Permalink to this headline">¶</a></h2>
-<p>This module contains the <a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a>  and the
-<a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> class.</p>
-<p>The first is the driver class of eko as it is the one that collects all the
-previously instantiated information and does the actual computation of the Q2s.</p>
-<p>See <a class="reference internal" href="../../Code/Operators.html"><span class="doc">Operator overview</span></a>.</p>
-<dl class="py class">
-<dt id="eko.operator_grid.OperatorGrid">
-<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorGrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_grid</span></em>, <em class="sig-param"><span class="n">thresholds_config</span></em>, <em class="sig-param"><span class="n">strong_coupling</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>The operator grid is the driver class of the evolution.</p>
-<p>It receives as input a threshold holder and a generator of a_s.
-From that point onwards it can compute any operator at any q2.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>q2_grid</strong> (<em>array</em>) – Grid in Q2 on where to to compute the operators</p></li>
-<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – order in perturbation theory</p></li>
-<li><p><strong>thresholds_config</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – Instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Threshold</span></code> containing information about the
-thresholds</p></li>
-<li><p><strong>strong_coupling</strong> (<a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><em>eko.strong_coupling.StrongCoupling</em></a>) – Instance of <a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a> able to generate a_s for
-any q</p></li>
-<li><p><strong>kernel_dispatcher</strong> (<em>eko.kernel_generation.KernelDispatcher</em>) – Instance of the <code class="xref py py-class docutils literal notranslate"><span class="pre">KernelDispatcher</span></code> with the
-information about the kernels</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="eko.operator_grid.OperatorGrid.compute_q2grid">
-<code class="sig-name descname">compute_q2grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2grid</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.compute_q2grid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.compute_q2grid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Receives a grid in q^2 and computes all operations necessary
-to return any operator at any given q for the evolution between q2ref and q2grid</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>q2grid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – List of q^2</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>grid_return</strong> – List of PhysicalOperator for each value of q^2</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.operator_grid.OperatorGrid.from_dict">
-<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em>, <em class="sig-param"><span class="n">thresholds_config</span></em>, <em class="sig-param"><span class="n">strong_coupling</span></em>, <em class="sig-param"><span class="n">kernel_dispatcher</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.from_dict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create the object from the theory dictionary.</p>
-<p>Read keys:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Q2grid : required, target grid</p></li>
-<li><p>debug_skip_singlet : optional, avoid singlet integrations?</p></li>
-<li><p>debug_skip_non_singlet : optional, avoid non-singlet integrations?</p></li>
-</ul>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – theory dictionary</p></li>
-<li><p><strong>thresholds_config</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – An instance of the ThresholdsConfig class</p></li>
-<li><p><strong>strong_coupling</strong> (<a class="reference internal" href="#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><em>eko.strong_coupling.StrongCoupling</em></a>) – An instance of the StrongCoupling class</p></li>
-<li><p><strong>kernel_dispatcher</strong> (<em>eko.kernel_generation.KernelDispatcher</em>) – An instance of the KernelDispatcher class</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>obj</strong> – created object</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>cls</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.operator_grid.OperatorGrid.get_op_at_q2">
-<code class="sig-name descname">get_op_at_q2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">qsq</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.get_op_at_q2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.get_op_at_q2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a value of q^2, returns the PhysicalOperator to get
-to q^2 from q0^2</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>qsq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Target value of q^2</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>final_op</strong> – Op(q^2 &lt;- q_0^2)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator">eko.evolution_operator.PhysicalOperator</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.operator_grid.OperatorGrid.set_q2_limits">
-<code class="sig-name descname">set_q2_limits</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2min</span></em>, <em class="sig-param"><span class="n">q2max</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorGrid.set_q2_limits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorGrid.set_q2_limits" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets up the limits of the grid in q^2 to be computed by the OperatorGrid</p>
-<p>This function is a wrapper to compute the necessary operators to go between areas</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>q2min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Minimum value of q^2 that will be computed</p></li>
-<li><p><strong>q2max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Maximum value of q^2 that will be computed</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="eko.operator_grid.OperatorMaster">
-<em class="property">class </em><code class="sig-prename descclassname">eko.operator_grid.</code><code class="sig-name descname">OperatorMaster</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>The <a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> is instantiated for a given set of parameters
-and informs the generation of operators.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>grid</strong> (<a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><em>OperatorGrid</em></a>) – Instance of <a class="reference internal" href="#eko.operator_grid.OperatorGrid" title="eko.operator_grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a></p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Value of nf for this <a class="reference internal" href="#eko.operator_grid.OperatorMaster" title="eko.operator_grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="eko.operator_grid.OperatorMaster.get_op">
-<code class="sig-name descname">get_op</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">generate</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator_grid.html#OperatorMaster.get_op"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator_grid.OperatorMaster.get_op" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a q2_from and a q2_to, returns a raw operator.
-If the <cite>generate</cite> flag is set to True, the operator will also be computed
-in place.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Reference value of q^2</p></li>
-<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Target value of q^2</p></li>
-<li><p><strong>generate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether the operator should be computed (default = False)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>op</strong> – operator to go from q2_from to q2_to</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>eko.evolution_operators.Operator</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </div>
 <div class="section" id="module-eko.output">
 <span id="eko-output-module"></span><h2>eko.output module<a class="headerlink" href="#module-eko.output" title="Permalink to this headline">¶</a></h2>
@@ -1590,7 +1241,7 @@ Null, if self is written sucessfully to stream</p>
 <dd class="field-even"><p><strong>op</strong> – corresponding Operator</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#eko.evolution_operator.PhysicalOperator" title="eko.evolution_operator.PhysicalOperator">PhysicalOperator</a></p>
+<dd class="field-odd"><p><a class="reference internal" href="eko.operator.html#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator">PhysicalOperator</a></p>
 </dd>
 </dl>
 </dd></dl>

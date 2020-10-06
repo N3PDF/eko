@@ -190,7 +190,7 @@
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="c1">#### Interpolation</span>
+
 <div class="viewcode-block" id="Area"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.Area">[docs]</a><span class="k">class</span> <span class="nc">Area</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class that define each of the area</span>
@@ -251,7 +251,7 @@
             <span class="k">yield</span> <span class="n">coef</span></div>
 
 
-<div class="viewcode-block" id="log_evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="log_evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,f8,f8[:,:])&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">log_evaluate_Nx</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluates a single logarithmic Lagrange interpolator in N-space multiplied</span>
@@ -275,7 +275,10 @@
 <span class="sd">            kernel * inversion factor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">for</span> <span class="n">logxmin</span><span class="p">,</span> <span class="n">logxmax</span><span class="p">,</span> <span class="n">coefs</span> <span class="ow">in</span> <span class="n">area_list</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">area_list</span><span class="p">:</span>
+        <span class="n">logxmin</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">logxmax</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">coefs</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
         <span class="c1"># skip area completely?</span>
         <span class="k">if</span> <span class="n">logx</span> <span class="o">&gt;=</span> <span class="n">logxmax</span><span class="p">:</span>
             <span class="k">continue</span>
@@ -299,7 +302,7 @@
     <span class="k">return</span> <span class="n">res</span></div>
 
 
-<div class="viewcode-block" id="evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,f8,f8[:,:])&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">evaluate_Nx</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluates a single linear Lagrange interpolator in N-space multiplied</span>
@@ -323,7 +326,10 @@
 <span class="sd">            basis function * inversion factor</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">for</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">coefs</span> <span class="ow">in</span> <span class="n">area_list</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">area_list</span><span class="p">:</span>
+        <span class="n">xmin</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">xmax</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">coefs</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
         <span class="n">lnxmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">xmax</span><span class="p">)</span>
         <span class="c1"># skip area completely?</span>
         <span class="k">if</span> <span class="n">logx</span> <span class="o">&gt;=</span> <span class="n">lnxmax</span><span class="p">:</span>
@@ -339,7 +345,7 @@
     <span class="k">return</span> <span class="n">res</span></div>
 
 
-<div class="viewcode-block" id="evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_x">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_x">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8[:,:])&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">evaluate_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get a single linear Lagrange interpolator in x-space</span>
@@ -360,7 +366,10 @@
 <span class="sd">            basis function(x)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">coefs</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">area_list</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">area_list</span><span class="p">):</span>
+        <span class="n">xmin</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">xmax</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">coefs</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
         <span class="k">if</span> <span class="n">xmin</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">xmax</span> <span class="ow">or</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">==</span> <span class="n">xmin</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">coef</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coefs</span><span class="p">):</span>
                 <span class="n">res</span> <span class="o">+=</span> <span class="n">coef</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
@@ -369,7 +378,7 @@
     <span class="k">return</span> <span class="n">res</span></div>
 
 
-<div class="viewcode-block" id="log_evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_x">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="log_evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_x">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8[:,:])&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">log_evaluate_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get a single logarithmic Lagrange interpolator in x-space</span>
@@ -390,14 +399,7 @@
 <span class="sd">            basis function(x)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">coefs</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">area_list</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">xmin</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">xmax</span> <span class="ow">or</span> <span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">==</span> <span class="n">xmin</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">coef</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coefs</span><span class="p">):</span>
-                <span class="n">res</span> <span class="o">+=</span> <span class="n">coef</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">res</span>
-
-    <span class="k">return</span> <span class="n">res</span></div>
+    <span class="k">return</span> <span class="n">evaluate_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">area_list</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="BasisFunction"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction">[docs]</a><span class="k">class</span> <span class="nc">BasisFunction</span><span class="p">:</span>
@@ -481,8 +483,8 @@
         <span class="c1"># to be inmutable</span>
         <span class="n">area_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">area</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
-            <span class="n">area_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">area</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="n">area</span><span class="o">.</span><span class="n">xmax</span><span class="p">,</span> <span class="n">area</span><span class="o">.</span><span class="n">coefs</span><span class="p">))</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">area_list</span><span class="p">)</span></div>
+            <span class="n">area_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">area</span><span class="o">.</span><span class="n">xmin</span><span class="p">,</span> <span class="n">area</span><span class="o">.</span><span class="n">xmax</span><span class="p">,</span> <span class="o">*</span><span class="n">area</span><span class="o">.</span><span class="n">coefs</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">area_list</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="BasisFunction.compile_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.compile_x">[docs]</a>    <span class="k">def</span> <span class="nf">compile_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>

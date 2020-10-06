@@ -158,8 +158,6 @@
         
           <li><a href="../../eko.html">eko</a> &raquo;</li>
         
-          <li><a href="../kernels.html">eko.kernels</a> &raquo;</li>
-        
       <li>eko.kernels.singlet</li>
     
     
@@ -192,7 +190,7 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
 
 
-<div class="viewcode-block" id="lo_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.lo_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="lo_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.lo_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">lo_exact</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Singlet leading order exact EKO</span>
@@ -216,8 +214,8 @@
     <span class="k">return</span> <span class="n">ad</span><span class="o">.</span><span class="n">exp_singlet</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ei</span><span class="o">.</span><span class="n">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="nlo_decompose"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_decompose">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">nlo_decompose</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">j01</span><span class="p">,</span> <span class="n">j11</span><span class="p">):</span>
+<div class="viewcode-block" id="nlo_decompose"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_decompose">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8)&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">nlo_decompose</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">j01</span><span class="p">,</span> <span class="n">j11</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Singlet next-to-leading order decompose EKO</span>
 
@@ -241,12 +239,10 @@
 <span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order decompose EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">ad</span><span class="o">.</span><span class="n">exp_singlet</span><span class="p">(</span>
-        <span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">j01</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">+</span> <span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">j11</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
-    <span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="n">ad</span><span class="o">.</span><span class="n">exp_singlet</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">j01</span> <span class="o">+</span> <span class="n">gamma_singlet</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">j11</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="nlo_decompose_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_decompose_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="nlo_decompose_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_decompose_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_decompose_exact</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Singlet next-to-leading order decompose-exact EKO</span>
@@ -267,10 +263,12 @@
 <span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order decompose-exact EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">nlo_decompose</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j01_exact</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_exact</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">nlo_decompose</span><span class="p">(</span>
+        <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j01_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">),</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nlo_decompose_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_decompose_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="nlo_decompose_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_decompose_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_decompose_expanded</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Singlet next-to-leading order decompose-expanded EKO</span>
@@ -291,10 +289,12 @@
 <span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order decompose-expanded EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">nlo_decompose</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j01_expanded</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_expanded</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="n">nlo_decompose</span><span class="p">(</span>
+        <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">ei</span><span class="o">.</span><span class="n">j01_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">),</span> <span class="n">ei</span><span class="o">.</span><span class="n">j11_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nlo_iterate"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_iterate">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="nlo_iterate"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_iterate">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8,u1,u4)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_iterate</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Singlet next-to-leading order iterated (exact) EKO</span>
@@ -314,7 +314,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        e_s^1 : complex</span>
+<span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order iterated (exact) EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">a_steps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>
@@ -330,13 +330,13 @@
             <span class="o">/</span> <span class="p">(</span><span class="n">beta0</span> <span class="o">*</span> <span class="n">a_half</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">a_half</span> <span class="o">**</span> <span class="mi">3</span><span class="p">)</span>
             <span class="o">*</span> <span class="n">delta_a</span>
         <span class="p">)</span>
-        <span class="n">ek</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">exp_singlet</span><span class="p">(</span><span class="n">ln</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ek</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">ad</span><span class="o">.</span><span class="n">exp_singlet</span><span class="p">(</span><span class="n">ln</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">ek</span> <span class="o">@</span> <span class="n">e</span>
         <span class="n">al</span> <span class="o">=</span> <span class="n">ah</span>
     <span class="k">return</span> <span class="n">e</span></div>
 
 
-<div class="viewcode-block" id="r_vec"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.r_vec">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="r_vec"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.r_vec">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:,:](c16[:,:,:],u1,u1,b1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">r_vec</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">is_exact</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute singlet R vector for perturbative mode.</span>
@@ -374,7 +374,7 @@
     <span class="k">return</span> <span class="n">r</span></div>
 
 
-<div class="viewcode-block" id="nlo_r_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_r_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="nlo_r_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_r_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:,:](c16[:,:,:],u1,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_r_exact</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute singlet R vector for perturbative-exact mode.</span>
@@ -400,7 +400,7 @@
     <span class="k">return</span> <span class="n">r_vec</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nlo_r_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_r_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="nlo_r_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_r_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:,:](c16[:,:,:],u1,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_r_expanded</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute singlet R vector for perturbative-expanded mode.</span>
@@ -426,7 +426,7 @@
     <span class="k">return</span> <span class="n">r_vec</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="u_vec"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.u_vec">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="u_vec"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.u_vec">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:,:](c16[:,:,:],u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">u_vec</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute the elements of the singlet U vector.</span>
@@ -451,11 +451,13 @@
     <span class="c1"># init</span>
     <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
     <span class="n">_</span><span class="p">,</span> <span class="n">r_p</span><span class="p">,</span> <span class="n">r_m</span><span class="p">,</span> <span class="n">e_p</span><span class="p">,</span> <span class="n">e_m</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">exp_singlet</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">e_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">e_p</span><span class="p">)</span>
+    <span class="n">e_m</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">e_m</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ev_op_max_order</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
         <span class="c1"># compute R&#39;</span>
         <span class="n">rp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">kk</span><span class="p">):</span>
-            <span class="n">rp</span> <span class="o">+=</span> <span class="n">r</span><span class="p">[</span><span class="n">kk</span> <span class="o">-</span> <span class="n">jj</span><span class="p">]</span> <span class="o">@</span> <span class="n">u</span><span class="p">[</span><span class="n">jj</span><span class="p">]</span>
+            <span class="n">rp</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">kk</span> <span class="o">-</span> <span class="n">jj</span><span class="p">])</span> <span class="o">@</span> <span class="n">u</span><span class="p">[</span><span class="n">jj</span><span class="p">]</span>
         <span class="c1"># now compose U</span>
         <span class="n">u</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
             <span class="p">(</span><span class="n">e_m</span> <span class="o">@</span> <span class="n">rp</span> <span class="o">@</span> <span class="n">e_m</span> <span class="o">+</span> <span class="n">e_p</span> <span class="o">@</span> <span class="n">rp</span> <span class="o">@</span> <span class="n">e_p</span><span class="p">)</span> <span class="o">/</span> <span class="n">kk</span>
@@ -465,7 +467,7 @@
     <span class="k">return</span> <span class="n">u</span></div>
 
 
-<div class="viewcode-block" id="sum_u"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.sum_u">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="sum_u"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.sum_u">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">sum_u</span><span class="p">(</span><span class="n">uvec</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Sums up the actual U operator.</span>
@@ -497,10 +499,8 @@
     <span class="k">return</span> <span class="n">res</span></div>
 
 
-<div class="viewcode-block" id="nlo_perturbative"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_perturbative">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
-<span class="k">def</span> <span class="nf">nlo_perturbative</span><span class="p">(</span>
-    <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">r_fnc</span>
-<span class="p">):</span>
+<div class="viewcode-block" id="nlo_perturbative"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_perturbative">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8,u1,u4,u1,c16[:,:,:])&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">nlo_perturbative</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Singlet next-to-leading order pertubative EKO</span>
 
@@ -518,15 +518,14 @@
 <span class="sd">            number of evolution steps</span>
 <span class="sd">        ev_op_max_order : int</span>
 <span class="sd">            perturbative expansion order of U</span>
-<span class="sd">        r_fnc : callable</span>
-<span class="sd">            getter for the R vector</span>
+<span class="sd">        r : numpy.ndarray</span>
+<span class="sd">            R vector</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">        e_s^1 : numpy.ndarray</span>
 <span class="sd">            singlet next-to-leading order perturbative EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">r_fnc</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">)</span>
     <span class="n">uk</span> <span class="o">=</span> <span class="n">u_vec</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">)</span>
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
     <span class="c1"># iterate elements</span>
@@ -537,13 +536,14 @@
         <span class="n">uh</span> <span class="o">=</span> <span class="n">sum_u</span><span class="p">(</span><span class="n">uk</span><span class="p">,</span> <span class="n">ah</span><span class="p">)</span>
         <span class="n">ul</span> <span class="o">=</span> <span class="n">sum_u</span><span class="p">(</span><span class="n">uk</span><span class="p">,</span> <span class="n">al</span><span class="p">)</span>
         <span class="c1"># join elements</span>
-        <span class="n">ek</span> <span class="o">=</span> <span class="n">uh</span> <span class="o">@</span> <span class="n">e0</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">ul</span><span class="p">)</span>
+        <span class="n">ek</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">e0</span><span class="p">)</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">ul</span><span class="p">)</span>
+        <span class="c1"># import pdb; pdb.set_trace()</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">ek</span> <span class="o">@</span> <span class="n">e</span>
         <span class="n">al</span> <span class="o">=</span> <span class="n">ah</span>
     <span class="k">return</span> <span class="n">e</span></div>
 
 
-<div class="viewcode-block" id="nlo_perturbative_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_perturbative_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="nlo_perturbative_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_perturbative_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8,u1,u4,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_perturbative_exact</span><span class="p">(</span>
     <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span>
 <span class="p">):</span>
@@ -574,12 +574,13 @@
 <span class="sd">    --------</span>
 <span class="sd">        nlo_perturbative : called function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">nlo_r_exact</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">nlo_perturbative</span><span class="p">(</span>
-        <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">nlo_r_exact</span>
+        <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">r</span>
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nlo_perturbative_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_perturbative_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="nlo_perturbative_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_perturbative_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8,u1,u4,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_perturbative_expanded</span><span class="p">(</span>
     <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span>
 <span class="p">):</span>
@@ -610,12 +611,13 @@
 <span class="sd">    --------</span>
 <span class="sd">        nlo_perturbative : called function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">nlo_r_expanded</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">nlo_perturbative</span><span class="p">(</span>
-        <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">nlo_r_expanded</span>
+        <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span><span class="p">,</span> <span class="n">r</span>
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nlo_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_truncated">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="nlo_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_truncated">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](c16[:,:,:],f8,f8,u1,u4)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_truncated</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Singlet next-to-leading order truncated EKO</span>
@@ -640,64 +642,70 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">nlo_r_expanded</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">u_vec</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">u1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complex_</span><span class="p">)</span>
     <span class="c1"># iterate elements</span>
     <span class="n">a_steps</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">geomspace</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>
     <span class="n">al</span> <span class="o">=</span> <span class="n">a_steps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">ah</span> <span class="ow">in</span> <span class="n">a_steps</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
-        <span class="n">e0</span> <span class="o">=</span> <span class="n">lo_exact</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">ah</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
-        <span class="n">ek</span> <span class="o">=</span> <span class="n">e0</span> <span class="o">+</span> <span class="n">ah</span> <span class="o">*</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">e0</span> <span class="o">-</span> <span class="n">al</span> <span class="o">*</span> <span class="n">e0</span> <span class="o">@</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">e0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ascontiguousarray</span><span class="p">(</span><span class="n">lo_exact</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">ah</span><span class="p">,</span> <span class="n">al</span><span class="p">,</span> <span class="n">nf</span><span class="p">))</span>
+        <span class="n">ek</span> <span class="o">=</span> <span class="n">e0</span> <span class="o">+</span> <span class="n">ah</span> <span class="o">*</span> <span class="n">u1</span> <span class="o">@</span> <span class="n">e0</span> <span class="o">-</span> <span class="n">al</span> <span class="o">*</span> <span class="n">e0</span> <span class="o">@</span> <span class="n">u1</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">ek</span> <span class="o">@</span> <span class="n">e</span>
         <span class="n">al</span> <span class="o">=</span> <span class="n">ah</span>
     <span class="k">return</span> <span class="n">e</span></div>
 
 
-<div class="viewcode-block" id="dispatcher_lo"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.dispatcher_lo">[docs]</a><span class="k">def</span> <span class="nf">dispatcher_lo</span><span class="p">(</span><span class="n">_method</span><span class="p">):</span>
+<div class="viewcode-block" id="dispatcher"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.dispatcher">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16[:,:](u1,string,c16[:,:,:],f8,f8,u1,u4,u1)&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">dispatcher</span><span class="p">(</span>  <span class="c1"># pylint: disable=too-many-return-statements</span>
+    <span class="n">order</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span>
+<span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Determine used kernel in LO.</span>
+<span class="sd">    Determine used kernel and call it.</span>
 
-<span class="sd">    In LO we will always use the exact solution.</span>
+<span class="sd">    In LO we always use the exact solution.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">        method : str</span>
 <span class="sd">            method</span>
+<span class="sd">        gamma_singlet : numpy.ndarray</span>
+<span class="sd">            singlet anomalous dimensions matrices</span>
+<span class="sd">        a1 : float</span>
+<span class="sd">            target coupling value</span>
+<span class="sd">        a0 : float</span>
+<span class="sd">            initial coupling value</span>
+<span class="sd">        nf : int</span>
+<span class="sd">            number of active flavors</span>
+<span class="sd">        ev_op_iterations : int</span>
+<span class="sd">            number of evolution steps</span>
+<span class="sd">        ev_op_max_order : int</span>
+<span class="sd">            perturbative expansion order of U</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        ker : callable</span>
-<span class="sd">            kernel</span>
+<span class="sd">        e_s : numpy.ndarray</span>
+<span class="sd">            singlet EKO</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">lo_exact</span></div>
-
-
-<div class="viewcode-block" id="dispatcher_nlo"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.singlet.dispatcher_nlo">[docs]</a><span class="k">def</span> <span class="nf">dispatcher_nlo</span><span class="p">(</span><span class="n">method</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Determine used kernel in NLO.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">        method : str</span>
-<span class="sd">            method</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        ker : callable</span>
-<span class="sd">            kernel</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span> <span class="s2">&quot;iterate-expanded&quot;</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">nlo_iterate</span>
+    <span class="c1"># use always exact in LO</span>
+    <span class="k">if</span> <span class="n">order</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">lo_exact</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
+    <span class="c1"># NLO</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;decompose-exact&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">nlo_decompose_exact</span>
+        <span class="k">return</span> <span class="n">nlo_decompose_exact</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;decompose-expanded&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">nlo_decompose_expanded</span>
+        <span class="k">return</span> <span class="n">nlo_decompose_expanded</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">nlo_perturbative_exact</span>
+        <span class="k">return</span> <span class="n">nlo_perturbative_exact</span><span class="p">(</span>
+            <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span>
+        <span class="p">)</span>
     <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;perturbative-expanded&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">nlo_perturbative_expanded</span>
+        <span class="k">return</span> <span class="n">nlo_perturbative_expanded</span><span class="p">(</span>
+            <span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">,</span> <span class="n">ev_op_max_order</span>
+        <span class="p">)</span>
     <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;truncated&quot;</span><span class="p">,</span> <span class="s2">&quot;ordered-truncated&quot;</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="n">nlo_truncated</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">nlo_truncated</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span>
+    <span class="c1"># if method in [&quot;iterate-exact&quot;, &quot;iterate-expanded&quot;]:</span>
+    <span class="k">return</span> <span class="n">nlo_iterate</span><span class="p">(</span><span class="n">gamma_singlet</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

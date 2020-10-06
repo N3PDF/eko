@@ -14,6 +14,7 @@ Subpackages
 
    eko.anomalous_dimensions
    eko.kernels
+   eko.operator
 
 Submodules
 ----------
@@ -50,14 +51,6 @@ eko.ekomath module
    :undoc-members:
    :show-inheritance:
 
-eko.evolution\_operator module
-------------------------------
-
-.. automodule:: eko.evolution_operator
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 eko.flavours module
 -------------------
 
@@ -78,14 +71,6 @@ eko.mellin module
 -----------------
 
 .. automodule:: eko.mellin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-eko.operator\_grid module
--------------------------
-
-.. automodule:: eko.operator_grid
    :members:
    :undoc-members:
    :show-inheritance:

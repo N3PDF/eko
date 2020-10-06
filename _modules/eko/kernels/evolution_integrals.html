@@ -158,8 +158,6 @@
         
           <li><a href="../../eko.html">eko</a> &raquo;</li>
         
-          <li><a href="../kernels.html">eko.kernels</a> &raquo;</li>
-        
       <li>eko.kernels.evolution_integrals</li>
     
     
@@ -191,7 +189,7 @@
 <span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">beta</span>
 
 
-<div class="viewcode-block" id="j00"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j00">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="j00"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j00">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    LO-LO exact evolution integral.</span>
@@ -217,7 +215,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">a1</span> <span class="o">/</span> <span class="n">a0</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="j11_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j11_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="j11_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j11_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">j11_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    NLO-NLO exact evolution integral.</span>
@@ -246,7 +244,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">beta_1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">b1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">a0</span> <span class="o">*</span> <span class="n">b1</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="j11_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j11_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="j11_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j11_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">j11_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    NLO-NLO expanded evolution integral.</span>
@@ -271,7 +269,7 @@
     <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">beta</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a1</span> <span class="o">-</span> <span class="n">a0</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="j01_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="j01_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">j01_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    LO-NLO exact evolution integral.</span>
@@ -298,7 +296,7 @@
     <span class="k">return</span> <span class="n">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">-</span> <span class="n">beta</span><span class="o">.</span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span> <span class="o">*</span> <span class="n">j11_exact</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="j01_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="j01_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8,u1)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">j01_expanded</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    LO-NLO expanded evolution integral.</span>

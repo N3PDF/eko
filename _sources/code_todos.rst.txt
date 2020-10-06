@@ -21,21 +21,13 @@ From Source Code
 
 `interpolation.py <file:///home/runner/work/eko/eko/src/eko/interpolation.py>`_
 
-.. warning:: #272 move this to InterpolatorDispatcher
+.. warning:: #274 move this to InterpolatorDispatcher
 
 
 
 `output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
 
-.. warning:: #132 explicitly silence yaml
-
-
-
-`evolution_operator.py <file:///home/runner/work/eko/eko/src/eko/evolution_operator.py>`_
-
-.. warning:: #125 check error propagation
-
-.. warning:: #368 make 'cut' external parameter?
+.. warning:: #133 explicitly silence yaml
 
 
 

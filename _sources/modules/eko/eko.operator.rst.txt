@@ -1,0 +1,42 @@
+eko.operator package
+====================
+
+.. automodule:: eko.operator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+eko.operator.grid module
+------------------------
+
+.. automodule:: eko.operator.grid
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.operator.member module
+--------------------------
+
+.. automodule:: eko.operator.member
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.operator.operator module
+----------------------------
+
+.. automodule:: eko.operator.operator
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+eko.operator.physical module
+----------------------------
+
+.. automodule:: eko.operator.physical
+   :members:
+   :undoc-members:
+   :show-inheritance:

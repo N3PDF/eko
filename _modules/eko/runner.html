@@ -181,13 +181,6 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 
-<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">interpolation</span>
-<span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">kernels</span>
-<span class="kn">from</span> <span class="nn">eko.thresholds</span> <span class="kn">import</span> <span class="n">ThresholdsConfig</span>
-<span class="kn">from</span> <span class="nn">eko.operator_grid</span> <span class="kn">import</span> <span class="n">OperatorGrid</span>
-<span class="kn">from</span> <span class="nn">eko.strong_coupling</span> <span class="kn">import</span> <span class="n">StrongCoupling</span>
-<span class="kn">from</span> <span class="nn">eko.output</span> <span class="kn">import</span> <span class="n">Output</span>
-
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
@@ -206,15 +199,26 @@
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">setup</span><span class="p">):</span>
         <span class="c1"># Print theory id setup</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;init Runner with </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">setup</span><span class="p">)</span>
+        <span class="c1"># defer numba compilation</span>
+        <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">interpolation</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
+        <span class="kn">from</span> <span class="nn">.output</span> <span class="kn">import</span> <span class="n">Output</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
+        <span class="kn">from</span> <span class="nn">.strong_coupling</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
+            <span class="n">StrongCoupling</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">.thresholds</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
+            <span class="n">ThresholdsConfig</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">.operator.grid</span> <span class="kn">import</span> <span class="p">(</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
+            <span class="n">OperatorGrid</span><span class="p">,</span>
+        <span class="p">)</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;keep_input&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">setup</span><span class="p">))</span>
 
         <span class="c1"># setup basis grid</span>
         <span class="n">bfd</span> <span class="o">=</span> <span class="n">interpolation</span><span class="o">.</span><span class="n">InterpolatorDispatcher</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">bfd</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
-        <span class="c1"># Generate the dispatcher for the kernels</span>
-        <span class="n">kd</span> <span class="o">=</span> <span class="n">kernels</span><span class="o">.</span><span class="n">KernelDispatcher</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">bfd</span><span class="p">)</span>
         <span class="c1"># FNS</span>
         <span class="n">tc</span> <span class="o">=</span> <span class="n">ThresholdsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;q2_ref&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">q2_ref</span><span class="p">)</span>
@@ -225,11 +229,11 @@
             <span class="n">setup</span><span class="p">,</span>
             <span class="n">tc</span><span class="p">,</span>
             <span class="n">sc</span><span class="p">,</span>
-            <span class="n">kd</span><span class="p">,</span>
+            <span class="n">bfd</span><span class="p">,</span>
         <span class="p">)</span>
 
 <div class="viewcode-block" id="Runner.get_operators"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner.get_operators">[docs]</a>    <span class="k">def</span> <span class="nf">get_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; compute the actual operators &quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;compute the actual operators&quot;&quot;&quot;</span>
         <span class="n">operators</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span><span class="o">.</span><span class="n">compute_q2grid</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">operators</span></div>
 

@@ -158,8 +158,6 @@
         
           <li><a href="../../eko.html">eko</a> &raquo;</li>
         
-          <li><a href="../kernels.html">eko.kernels</a> &raquo;</li>
-        
       <li>eko.kernels.utils</li>
     
     
@@ -184,7 +182,7 @@
 <span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
 
 
-<div class="viewcode-block" id="geomspace"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.utils.geomspace">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span>
+<div class="viewcode-block" id="geomspace"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.utils.geomspace">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8[:](f8,f8,u4)&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">geomspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Numba port of :func:`numpy.geomspace`.</span>
