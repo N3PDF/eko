@@ -218,7 +218,7 @@ previously instantiated information and does the actual computation of the Q2s.<
 <dl class="py class">
 <dt id="eko.operator.grid.OperatorGrid">
 <em class="property">class </em><code class="sig-prename descclassname">eko.operator.grid.</code><code class="sig-name descname">OperatorGrid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">q2_grid</span></em>, <em class="sig-param"><span class="n">thresholds_config</span></em>, <em class="sig-param"><span class="n">strong_coupling</span></em>, <em class="sig-param"><span class="n">interpol_dispatcher</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/grid.html#OperatorGrid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.grid.OperatorGrid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The operator grid is the driver class of the evolution.</p>
 <p>It receives as input a threshold holder and a generator of a_s.
 From that point onwards it can compute any operator at any q2.</p>
@@ -226,7 +226,7 @@ From that point onwards it can compute any operator at any q2.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>q2_grid</strong> (<em>array</em>) – Grid in Q2 on where to to compute the operators</p></li>
-<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – order in perturbation theory</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – order in perturbation theory</p></li>
 <li><p><strong>thresholds_config</strong> (<a class="reference internal" href="eko.html#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – Instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">Threshold</span></code> containing information about the
 thresholds</p></li>
 <li><p><strong>strong_coupling</strong> (<a class="reference internal" href="eko.html#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><em>eko.strong_coupling.StrongCoupling</em></a>) – Instance of <a class="reference internal" href="eko.html#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a> able to generate a_s for
@@ -243,13 +243,13 @@ information about the kernels</p></li>
 to return any operator at any given q for the evolution between q2ref and q2grid</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>q2grid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – List of q^2</p>
+<dd class="field-odd"><p><strong>q2grid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of q^2</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>grid_return</strong> – List of PhysicalOperator for each value of q^2</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -269,7 +269,7 @@ to return any operator at any given q for the evolution between q2ref and q2grid
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – theory dictionary</p></li>
+<li><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – theory dictionary</p></li>
 <li><p><strong>thresholds_config</strong> (<a class="reference internal" href="eko.html#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – An instance of the ThresholdsConfig class</p></li>
 <li><p><strong>strong_coupling</strong> (<a class="reference internal" href="eko.html#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><em>eko.strong_coupling.StrongCoupling</em></a>) – An instance of the StrongCoupling class</p></li>
 <li><p><strong>interpol_dispatcher</strong> (<a class="reference internal" href="eko.html#eko.interpolation.InterpolatorDispatcher" title="eko.interpolation.InterpolatorDispatcher"><em>eko.interpolation.InterpolatorDispatcher</em></a>) – An instance of the InterpolatorDispatcher class</p></li>
@@ -291,7 +291,7 @@ to return any operator at any given q for the evolution between q2ref and q2grid
 to q^2 from q0^2</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>qsq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Target value of q^2</p>
+<dd class="field-odd"><p><strong>qsq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Target value of q^2</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>final_op</strong> – Op(q^2 &lt;- q_0^2)</p>
@@ -310,8 +310,8 @@ to q^2 from q0^2</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>q2min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Minimum value of q^2 that will be computed</p></li>
-<li><p><strong>q2max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Maximum value of q^2 that will be computed</p></li>
+<li><p><strong>q2min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Minimum value of q^2 that will be computed</p></li>
+<li><p><strong>q2max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Maximum value of q^2 that will be computed</p></li>
 </ul>
 </dd>
 </dl>
@@ -322,14 +322,14 @@ to q^2 from q0^2</p>
 <dl class="py class">
 <dt id="eko.operator.grid.OperatorMaster">
 <em class="property">class </em><code class="sig-prename descclassname">eko.operator.grid.</code><code class="sig-name descname">OperatorMaster</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">managers</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/grid.html#OperatorMaster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.grid.OperatorMaster" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The <a class="reference internal" href="#eko.operator.grid.OperatorMaster" title="eko.operator.grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> is instantiated for a given set of parameters
 and informs the generation of operators.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>grid</strong> (<a class="reference internal" href="#eko.operator.grid.OperatorGrid" title="eko.operator.grid.OperatorGrid"><em>OperatorGrid</em></a>) – Instance of <a class="reference internal" href="#eko.operator.grid.OperatorGrid" title="eko.operator.grid.OperatorGrid"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorGrid</span></code></a></p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – Value of nf for this <a class="reference internal" href="#eko.operator.grid.OperatorMaster" title="eko.operator.grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Value of nf for this <a class="reference internal" href="#eko.operator.grid.OperatorMaster" title="eko.operator.grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -342,9 +342,9 @@ in place.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Reference value of q^2</p></li>
-<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Target value of q^2</p></li>
-<li><p><strong>generate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether the operator should be computed (default = False)</p></li>
+<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Reference value of q^2</p></li>
+<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Target value of q^2</p></li>
+<li><p><strong>generate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – Whether the operator should be computed (default = False)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -364,7 +364,7 @@ in place.</p>
 <dl class="py class">
 <dt id="eko.operator.member.OpMember">
 <em class="property">class </em><code class="sig-prename descclassname">eko.operator.member.</code><code class="sig-name descname">OpMember</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">error</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/member.html#OpMember"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.member.OpMember" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A single operator for a specific element in evolution basis.</p>
 <p>This class provide some basic mathematical operations such as products.
 It can also be applied to a pdf vector by the <cite>__call__</cite> method.
@@ -375,7 +375,7 @@ of the <code class="xref py py-class docutils literal notranslate"><span class="
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> (<em>np.array</em>) – operator matrix</p></li>
 <li><p><strong>error</strong> (<em>np.array</em>) – operator error matrix</p></li>
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – operator name</p></li>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – operator name</p></li>
 </ul>
 </dd>
 </dl>
@@ -416,8 +416,8 @@ of the <code class="xref py py-class docutils literal notranslate"><span class="
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference internal" href="#eko.operator.member.OpMember" title="eko.operator.member.OpMember"><em>OpMember</em></a><em>)</em><em>)</em>) – list of raw operators, with the lowest scale to the right</p></li>
-<li><p><strong>list_of_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>)</em><em>)</em>) – list of paths</p></li>
+<li><p><strong>steps</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference internal" href="#eko.operator.member.OpMember" title="eko.operator.member.OpMember"><em>OpMember</em></a><em>)</em><em>)</em>) – list of raw operators, with the lowest scale to the right</p></li>
+<li><p><strong>list_of_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em><em>)</em>) – list of paths</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -444,7 +444,7 @@ of the <code class="xref py py-class docutils literal notranslate"><span class="
 <dl class="py class">
 <dt id="eko.operator.operator.Operator">
 <em class="property">class </em><code class="sig-prename descclassname">eko.operator.operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">managers</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">mellin_cut</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.operator.Operator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Internal representation of a single EKO.</p>
 <p>The actual matrices are computed only upon calling <a class="reference internal" href="#eko.operator.operator.Operator.compute" title="eko.operator.operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.
 <a class="reference internal" href="#eko.operator.operator.Operator.compose" title="eko.operator.operator.Operator.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compose()</span></code></a> will generate the <code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code> for the outside world.
@@ -453,9 +453,9 @@ If not computed yet, <a class="reference internal" href="#eko.operator.operator.
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>master</strong> (<em>eko.operator_grid.OperatorMaster</em>) – the master instance</p></li>
-<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – evolution source</p></li>
-<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – evolution target</p></li>
-<li><p><strong>mellin_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – cut to the upper limit in the mellin inversion</p></li>
+<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – evolution source</p></li>
+<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – evolution target</p></li>
+<li><p><strong>mellin_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – cut to the upper limit in the mellin inversion</p></li>
 </ul>
 </dd>
 </dl>
@@ -467,9 +467,9 @@ If not computed yet, <a class="reference internal" href="#eko.operator.operator.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>op_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference internal" href="#eko.operator.operator.Operator" title="eko.operator.operator.Operator"><em>Operator</em></a><em>)</em>) – list of operators to merge</p></li>
-<li><p><strong>instruction_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – list of instructions (generated by <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.thresholds.FlavourTarget</span></code>)</p></li>
-<li><p><strong>q2_final</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – final scale</p></li>
+<li><p><strong>op_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference internal" href="#eko.operator.operator.Operator" title="eko.operator.operator.Operator"><em>Operator</em></a><em>)</em>) – list of operators to merge</p></li>
+<li><p><strong>instruction_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – list of instructions (generated by <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.thresholds.FlavourTarget</span></code>)</p></li>
+<li><p><strong>q2_final</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – final scale</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -502,7 +502,7 @@ If not computed yet, <a class="reference internal" href="#eko.operator.operator.
 <dd class="field-odd"><p><strong>labels</strong> – sector labels</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>)</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -516,25 +516,25 @@ If not computed yet, <a class="reference internal" href="#eko.operator.operator.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – quad argument</p></li>
-<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – perturbation order</p></li>
-<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – method</p></li>
-<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – element in the singlet sector</p></li>
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – quad argument</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbation order</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – method</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – element in the singlet sector</p></li>
 <li><p><strong>is_log</strong> (<em>boolean</em>) – logarithmic interpolation</p></li>
-<li><p><strong>logx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Mellin inversion point</p></li>
-<li><p><strong>areas</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – basis function configuration</p></li>
-<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – target coupling value</p></li>
-<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – initial coupling value</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of active flavors</p></li>
-<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of evolution steps</p></li>
-<li><p><strong>ev_op_max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – perturbative expansion order of U</p></li>
+<li><p><strong>logx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Mellin inversion point</p></li>
+<li><p><strong>areas</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – basis function configuration</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of evolution steps</p></li>
+<li><p><strong>ev_op_max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative expansion order of U</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>ker</strong> – evaluated integration kernel</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -545,7 +545,7 @@ If not computed yet, <a class="reference internal" href="#eko.operator.operator.
 <dl class="py class">
 <dt id="eko.operator.physical.PhysicalOperator">
 <em class="property">class </em><code class="sig-prename descclassname">eko.operator.physical.</code><code class="sig-name descname">PhysicalOperator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_members</span></em>, <em class="sig-param"><span class="n">q2_final</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/physical.html#PhysicalOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.physical.PhysicalOperator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>This is exposed to the outside world.</p>
 <p>This operator is computed via the composition method of the
 <code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code> class.</p>
@@ -553,8 +553,8 @@ If not computed yet, <a class="reference internal" href="#eko.operator.operator.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>op_members</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – list of all members</p></li>
-<li><p><strong>q2_final</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – final scale</p></li>
+<li><p><strong>op_members</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – list of all members</p></li>
+<li><p><strong>q2_final</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – final scale</p></li>
 </ul>
 </dd>
 </dl>
@@ -576,8 +576,8 @@ is tracked by <code class="xref py py-class docutils literal notranslate"><span 
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – operator matrices of <a class="reference internal" href="#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p></li>
-<li><p><strong>pdf_lists</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) – PDFs in evolution basis as list on the corresponding xgrid</p></li>
+<li><p><strong>ret</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – operator matrices of <a class="reference internal" href="#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p></li>
+<li><p><strong>pdf_lists</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – PDFs in evolution basis as list on the corresponding xgrid</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -601,7 +601,7 @@ errors under the <code class="docutils literal notranslate"><span class="pre">op
 <code class="docutils literal notranslate"><span class="pre">{outputPDF}.{inputPDF}</span></code>.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
