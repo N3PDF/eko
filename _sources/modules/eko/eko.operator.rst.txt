@@ -25,14 +25,6 @@ eko.operator.member module
    :undoc-members:
    :show-inheritance:
 
-eko.operator.operator module
-----------------------------
-
-.. automodule:: eko.operator.operator
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 eko.operator.physical module
 ----------------------------
 

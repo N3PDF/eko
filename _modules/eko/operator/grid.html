@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.operator.grid &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.operator.grid &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -158,6 +158,8 @@
         
           <li><a href="../../eko.html">eko</a> &raquo;</li>
         
+          <li><a href="../operator.html">eko.operator</a> &raquo;</li>
+        
       <li>eko.operator.grid</li>
     
     
@@ -233,7 +235,7 @@
         <span class="c1"># import numba late - that is only here</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Evolution: compiling Numba&quot;</span><span class="p">)</span>
-        <span class="kn">from</span> <span class="nn">.operator</span> <span class="kn">import</span> <span class="n">Operator</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
+        <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">Operator</span>  <span class="c1"># pylint: disable=import-outside-toplevel</span>
 
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="s2">&quot;Evolution: compiling Numba - took </span><span class="si">%.1f</span><span class="s2"> s&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span>
@@ -347,6 +349,7 @@
         <span class="p">}</span>
         <span class="n">method</span> <span class="o">=</span> <span class="n">mod_ev2method</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;fact_to_ren&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;XIF&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;XIR&quot;</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;debug_skip_singlet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;debug_skip_singlet&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>

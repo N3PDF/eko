@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.runner &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.runner &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -225,7 +225,7 @@
         <span class="c1"># strong coupling</span>
         <span class="n">sc</span> <span class="o">=</span> <span class="n">StrongCoupling</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">,</span> <span class="n">tc</span><span class="p">)</span>
         <span class="c1"># setup operator grid</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span> <span class="o">=</span> <span class="n">OperatorGrid</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op_grid</span> <span class="o">=</span> <span class="n">OperatorGrid</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
             <span class="n">setup</span><span class="p">,</span>
             <span class="n">tc</span><span class="p">,</span>
             <span class="n">sc</span><span class="p">,</span>
@@ -234,7 +234,7 @@
 
 <div class="viewcode-block" id="Runner.get_operators"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner.get_operators">[docs]</a>    <span class="k">def</span> <span class="nf">get_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;compute the actual operators&quot;&quot;&quot;</span>
-        <span class="n">operators</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_grid</span><span class="o">.</span><span class="n">compute_q2grid</span><span class="p">()</span>
+        <span class="n">operators</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_grid</span><span class="o">.</span><span class="n">compute_q2grid</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">operators</span></div>
 
 <div class="viewcode-block" id="Runner.get_output"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner.get_output">[docs]</a>    <span class="k">def</span> <span class="nf">get_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -250,7 +250,7 @@
         <span class="n">Q2grid</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_operators</span><span class="p">():</span>
             <span class="n">final_scale</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">q2_final</span>
-            <span class="n">Q2grid</span><span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">final_scale</span><span class="p">)]</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">get_raw_operators</span><span class="p">()</span>
+            <span class="n">Q2grid</span><span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">final_scale</span><span class="p">)]</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">to_raw</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q2grid</span>
         <span class="k">return</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">)</span></div></div>
 </pre></div>

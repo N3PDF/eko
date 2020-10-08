@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko package &mdash; EKO v0.4.1 documentation</title>
+  <title>eko package &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -249,7 +249,6 @@ to fullfill the following evolution</p>
 <li class="toctree-l2"><a class="reference internal" href="eko.operator.html#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.grid">eko.operator.grid module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.member">eko.operator.member module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.operator">eko.operator.operator module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.physical">eko.operator.physical module</a></li>
 </ul>
 </li>
@@ -344,7 +343,7 @@ to fullfill the following evolution</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative orde</p></li>
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative order</p></li>
 <li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavours</p></li>
 </ul>
 </dd>
@@ -364,7 +363,7 @@ to fullfill the following evolution</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative orde</p></li>
+<li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative order</p></li>
 <li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavours</p></li>
 </ul>
 </dd>
@@ -1114,36 +1113,6 @@ listed under <cite>Other Parameters</cite>.</p>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt id="eko.mellin.inverse_mellin_transform">
-<code class="sig-prename descclassname">eko.mellin.</code><code class="sig-name descname">inverse_mellin_transform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">integrand</span></em>, <em class="sig-param"><span class="n">cut</span></em>, <em class="sig-param"><span class="n">extra_args</span></em>, <em class="sig-param"><span class="n">epsabs</span><span class="o">=</span><span class="default_value">1e-12</span></em>, <em class="sig-param"><span class="n">epsrel</span><span class="o">=</span><span class="default_value">1e-05</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/mellin.html#inverse_mellin_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.mellin.inverse_mellin_transform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inverse Mellin transformation.</p>
-<p>Note that the inversion factor <span class="math notranslate nohighlight">\(x^{-N}\)</span> has already to be <em>included</em> in f(N).
-This convention usually improves the convergence of the integral. Typical kernels
-will naturally develop similar factors to which the conversion factor can
-be joined.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>integrand</strong> (<em>function</em>) – Integrand to be passed to the integration routine.
-The integrand can be generated with the <cite>compile_integrand</cite> function.</p></li>
-<li><p><strong>cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Numeric cut-off parameter to the integration, the actual integration borders are
-determied by <span class="math notranslate nohighlight">\(t\in [c : 1-c]\)</span></p></li>
-<li><p><strong>extra_args</strong> (<em>any</em>) – Extra arguments to be passed to the integrand beyond the integration variable</p></li>
-<li><p><strong>epsabs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – absolute error tolerance of the integration</p></li>
-<li><p><strong>epsrel</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – relative error tolerance of the integration</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>res</strong> (<em>float</em>) – integral</p></li>
-<li><p><strong>err</strong> (<em>float</em>) – error estimate</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
 </div>
 <div class="section" id="module-eko.output">
@@ -1404,13 +1373,13 @@ number of loops by one unit</p></li>
 <dl class="py method">
 <dt id="eko.strong_coupling.StrongCoupling.a_s">
 <code class="sig-name descname">a_s</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scale_to</span></em>, <em class="sig-param"><span class="n">fact_scale</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/strong_coupling.html#StrongCoupling.a_s"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.strong_coupling.StrongCoupling.a_s" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes strong coupling <span class="math notranslate nohighlight">\(a_s(Q^2) = \frac{\alpha_s(Q^2)}{4\pi}\)</span>.</p>
+<dd><p>Computes strong coupling <span class="math notranslate nohighlight">\(a_s(\mu_R^2) = \frac{\alpha_s(\mu_R^2)}{4\pi}\)</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>scale_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – final scale to evolve to <span class="math notranslate nohighlight">\(Q^2\)</span></p>
+<dd class="field-odd"><p><strong>scale_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – final scale to evolve to <span class="math notranslate nohighlight">\(\mu_R^2\)</span></p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>a_s</strong> – strong coupling <span class="math notranslate nohighlight">\(a_s(Q^2) = \frac{\alpha_s(Q^2)}{4\pi}\)</span></p>
+<dd class="field-even"><p><strong>a_s</strong> – strong coupling <span class="math notranslate nohighlight">\(a_s(\mu_R^2) = \frac{\alpha_s(\mu_R^2)}{4\pi}\)</span></p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>

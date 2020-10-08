@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.operator.physical &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.operator.physical &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -158,6 +158,8 @@
         
           <li><a href="../../eko.html">eko</a> &raquo;</li>
         
+          <li><a href="../operator.html">eko.operator</a> &raquo;</li>
+        
       <li>eko.operator.physical</li>
     
     
@@ -239,7 +241,7 @@
             <span class="n">new_ops</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">OpMember</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">op_to_compose</span><span class="p">,</span> <span class="n">paths</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">new_ops</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_final</span><span class="p">)</span>
 
-<div class="viewcode-block" id="PhysicalOperator.get_raw_operators"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator.get_raw_operators">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw_operators</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="PhysicalOperator.to_raw"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator.to_raw">[docs]</a>    <span class="k">def</span> <span class="nf">to_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns serializable matrix representation of all members and their errors</span>
 

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.ekomath &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.ekomath &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -190,7 +190,7 @@
 <span class="n">zeta3</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">zeta</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="cern_polygamma"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.cern_polygamma">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="cern_polygamma"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.cern_polygamma">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cern_polygamma</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>  <span class="c1"># pylint: disable=all</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the polygamma functions :math:`\\psi_k(z)`.</span>
@@ -307,7 +307,7 @@
     <span class="c1"># fmt: on</span>
 
 
-<div class="viewcode-block" id="harmonic_S1"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="harmonic_S1"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">harmonic_S1</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the harmonic sum :math:`S_1(N)`.</span>
@@ -335,7 +335,7 @@
     <span class="k">return</span> <span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">euler_gamma</span></div>
 
 
-<div class="viewcode-block" id="harmonic_S2"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S2">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="harmonic_S2"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S2">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">harmonic_S2</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the harmonic sum :math:`S_2(N)`.</span>
@@ -363,7 +363,7 @@
     <span class="k">return</span> <span class="o">-</span><span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">zeta2</span></div>
 
 
-<div class="viewcode-block" id="harmonic_S3"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S3">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="harmonic_S3"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.harmonic_S3">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">harmonic_S3</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the harmonic sum :math:`S_3(N)`.</span>
@@ -391,7 +391,7 @@
     <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">cern_polygamma</span><span class="p">(</span><span class="n">N</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">zeta3</span></div>
 
 
-<div class="viewcode-block" id="mellin_g3"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.mellin_g3">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="mellin_g3"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.ekomath.mellin_g3">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">mellin_g3</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the Mellin transform of :math:`\text{Li}_2(x)/(1+x)`.</span>

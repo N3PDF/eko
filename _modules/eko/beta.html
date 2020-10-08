@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.beta &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.beta &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -186,7 +186,7 @@
 <span class="kn">from</span> <span class="nn">eko</span> <span class="kn">import</span> <span class="n">constants</span>
 
 
-<div class="viewcode-block" id="beta_0"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.beta_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="beta_0"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.beta_0">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">beta_0</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the first coefficient of the QCD beta function.</span>
@@ -207,7 +207,7 @@
     <span class="k">return</span> <span class="n">beta_0</span></div>
 
 
-<div class="viewcode-block" id="beta_1"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.beta_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="beta_1"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.beta_1">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">beta_1</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the second coefficient of the QCD beta function.</span>
@@ -232,7 +232,7 @@
     <span class="k">return</span> <span class="n">beta_1</span></div>
 
 
-<div class="viewcode-block" id="beta_2"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.beta_2">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="beta_2"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.beta_2">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">beta_2</span><span class="p">(</span><span class="n">nf</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes the third coefficient of the QCD beta function</span>
@@ -261,7 +261,7 @@
     <span class="k">return</span> <span class="n">beta_2</span></div>
 
 
-<div class="viewcode-block" id="beta"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.beta">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1,u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="beta"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.beta">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1,u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">beta</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute value of a beta coefficients</span>
@@ -269,7 +269,7 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">        k : int</span>
-<span class="sd">            perturbative orde</span>
+<span class="sd">            perturbative order</span>
 <span class="sd">        nf : int</span>
 <span class="sd">            number of active flavours</span>
 
@@ -290,7 +290,7 @@
     <span class="k">return</span> <span class="n">beta_</span></div>
 
 
-<div class="viewcode-block" id="b"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.b">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1,u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="b"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.beta.b">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1,u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">b</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute b coefficient.</span>
@@ -298,7 +298,7 @@
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">        k : int</span>
-<span class="sd">            perturbative orde</span>
+<span class="sd">            perturbative order</span>
 <span class="sd">        nf : int</span>
 <span class="sd">            number of active flavours</span>
 

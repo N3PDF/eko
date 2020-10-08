@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.strong_coupling &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.strong_coupling &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -195,7 +195,7 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="as_expanded"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.as_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1,f8,u1,f8,f8)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="as_expanded"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.as_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(u1,f8,u1,f8,f8)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">as_expanded</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute expanded expression.</span>
@@ -459,18 +459,18 @@
         <span class="k">return</span> <span class="n">as_new</span>
 
 <div class="viewcode-block" id="StrongCoupling.a_s"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.a_s">[docs]</a>    <span class="k">def</span> <span class="nf">a_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">,</span> <span class="n">fact_scale</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Computes strong coupling :math:`a_s(Q^2) = \\frac{\\alpha_s(Q^2)}{4\\pi}`.</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes strong coupling :math:`a_s(\mu_R^2) = \frac{\alpha_s(\mu_R^2)}{4\pi}`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">            scale_to : float</span>
-<span class="sd">                final scale to evolve to :math:`Q^2`</span>
+<span class="sd">                final scale to evolve to :math:`\mu_R^2`</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            a_s : float</span>
-<span class="sd">                strong coupling :math:`a_s(Q^2) = \\frac{\\alpha_s(Q^2)}{4\\pi}`</span>
+<span class="sd">                strong coupling :math:`a_s(\mu_R^2) = \frac{\alpha_s(\mu_R^2)}{4\pi}`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Set up the path to follow in order to go from q2_0 to q2_ref</span>
         <span class="n">final_as</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_ref</span>

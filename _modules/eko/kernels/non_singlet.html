@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.kernels.non_singlet &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.kernels.non_singlet &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -189,7 +189,7 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">utils</span>
 
 
-<div class="viewcode-block" id="lo_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.lo_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="lo_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.lo_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">lo_exact</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Non-singlet leading order exact EKO</span>
@@ -213,7 +213,7 @@
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">ei</span><span class="o">.</span><span class="n">j00</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="nlo_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="nlo_exact"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_exact">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_exact</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Non-singlet next-to-leading order exact EKO</span>
@@ -239,7 +239,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nlo_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="nlo_expanded"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_expanded">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_expanded</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Non-singlet next-to-leading order expanded EKO</span>
@@ -266,7 +266,7 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="nlo_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_truncated">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1,u4)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="nlo_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_truncated">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1,u4)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_truncated</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Non-singlet next-to-leading order truncated EKO</span>
@@ -300,7 +300,7 @@
     <span class="k">return</span> <span class="n">e</span></div>
 
 
-<div class="viewcode-block" id="nlo_ordered_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_ordered_truncated">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1,u4)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="nlo_ordered_truncated"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.nlo_ordered_truncated">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16[:],f8,f8,u1,u4)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">nlo_ordered_truncated</span><span class="p">(</span><span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Non-singlet next-to-leading order ordered-truncated EKO</span>
@@ -339,7 +339,7 @@
     <span class="k">return</span> <span class="n">e</span></div>
 
 
-<div class="viewcode-block" id="dispatcher"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.dispatcher">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(u1,string,c16[:],f8,f8,u1,u4)&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="dispatcher"><a class="viewcode-back" href="../../../modules/eko/eko.kernels.html#eko.kernels.non_singlet.dispatcher">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(u1,string,c16[:],f8,f8,u1,u4)&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dispatcher</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">gamma_ns</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a0</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">ev_op_iterations</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determine used kernel and call it.</span>

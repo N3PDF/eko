@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.operator package &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.operator package &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -206,6 +206,115 @@
 <span id="eko-operator-package"></span><h1>eko.operator package<a class="headerlink" href="#module-eko.operator" title="Permalink to this headline">¶</a></h1>
 <p>This module contains the central operator classes.</p>
 <p>See <a class="reference internal" href="../../Code/Operators.html"><span class="doc">Operator overview</span></a>.</p>
+<dl class="py class">
+<dt id="eko.operator.Operator">
+<em class="property">class </em><code class="sig-prename descclassname">eko.operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">managers</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">mellin_cut</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.Operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Internal representation of a single EKO.</p>
+<p>The actual matrices are computed only upon calling <a class="reference internal" href="#eko.operator.Operator.compute" title="eko.operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.
+<a class="reference internal" href="#eko.operator.Operator.compose" title="eko.operator.Operator.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compose()</span></code></a> will generate the <code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code> for the outside world.
+If not computed yet, <a class="reference internal" href="#eko.operator.Operator.compose" title="eko.operator.Operator.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compose()</span></code></a> will call <a class="reference internal" href="#eko.operator.Operator.compute" title="eko.operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>master</strong> (<em>eko.operator_grid.OperatorMaster</em>) – the master instance</p></li>
+<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – evolution source</p></li>
+<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – evolution target</p></li>
+<li><p><strong>mellin_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – cut to the upper limit in the mellin inversion</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="eko.operator.Operator.compose">
+<code class="sig-name descname">compose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_list</span></em>, <em class="sig-param"><span class="n">instruction_set</span></em>, <em class="sig-param"><span class="n">q2_final</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator.html#Operator.compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.Operator.compose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compose all <a class="reference internal" href="#eko.operator.Operator" title="eko.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> together.</p>
+<p>Calls <a class="reference internal" href="#eko.operator.Operator.compute" title="eko.operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>, if necessary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference internal" href="#eko.operator.Operator" title="eko.operator.Operator"><em>Operator</em></a><em>)</em>) – list of operators to merge</p></li>
+<li><p><strong>instruction_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – list of instructions (generated by <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.thresholds.FlavourTarget</span></code>)</p></li>
+<li><p><strong>q2_final</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – final scale</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>op</strong> – final operator</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator">PhysicalOperator</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eko.operator.Operator.compute">
+<code class="sig-name descname">compute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator.html#Operator.compute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.Operator.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>compute the actual operators (i.e. run the integrations)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eko.operator.Operator.copy_ns_ops">
+<code class="sig-name descname">copy_ns_ops</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator.html#Operator.copy_ns_ops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.Operator.copy_ns_ops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copy non-singlet kernels, if necessary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eko.operator.Operator.labels">
+<code class="sig-name descname">labels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator.html#Operator.labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.Operator.labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute necessary sector labels to compute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>labels</strong> – sector labels</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.operator.gamma_ns_fact">
+<code class="sig-prename descclassname">eko.operator.</code><code class="sig-name descname">gamma_ns_fact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">mode</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">L</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator.html#gamma_ns_fact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.gamma_ns_fact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="eko.operator.gamma_singlet_fact">
+<code class="sig-prename descclassname">eko.operator.</code><code class="sig-name descname">gamma_singlet_fact</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">L</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator.html#gamma_singlet_fact"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.gamma_singlet_fact" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="eko.operator.quad_ker">
+<code class="sig-prename descclassname">eko.operator.</code><code class="sig-name descname">quad_ker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">u</span></em>, <em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">mode</span></em>, <em class="sig-param"><span class="n">method</span></em>, <em class="sig-param"><span class="n">is_log</span></em>, <em class="sig-param"><span class="n">logx</span></em>, <em class="sig-param"><span class="n">areas</span></em>, <em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">ev_op_iterations</span></em>, <em class="sig-param"><span class="n">ev_op_max_order</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator.html#quad_ker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.quad_ker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raw kernel inside quad</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – quad argument</p></li>
+<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbation order</p></li>
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – method</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – element in the singlet sector</p></li>
+<li><p><strong>is_log</strong> (<em>boolean</em>) – logarithmic interpolation</p></li>
+<li><p><strong>logx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Mellin inversion point</p></li>
+<li><p><strong>areas</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – basis function configuration</p></li>
+<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – target coupling value</p></li>
+<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – initial coupling value</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavors</p></li>
+<li><p><strong>L</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – logarithmic ratio of factorization and renormalization scale</p></li>
+<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of evolution steps</p></li>
+<li><p><strong>ev_op_max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative expansion order of U</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>ker</strong> – evaluated integration kernel</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -438,108 +547,6 @@ of the <code class="xref py py-class docutils literal notranslate"><span class="
 </dd></dl>
 
 </div>
-<div class="section" id="module-eko.operator.operator">
-<span id="eko-operator-operator-module"></span><h2>eko.operator.operator module<a class="headerlink" href="#module-eko.operator.operator" title="Permalink to this headline">¶</a></h2>
-<p>This module contains the main operator class.</p>
-<dl class="py class">
-<dt id="eko.operator.operator.Operator">
-<em class="property">class </em><code class="sig-prename descclassname">eko.operator.operator.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em>, <em class="sig-param"><span class="n">managers</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">mellin_cut</span><span class="o">=</span><span class="default_value">0.01</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/operator.html#Operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.operator.Operator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Internal representation of a single EKO.</p>
-<p>The actual matrices are computed only upon calling <a class="reference internal" href="#eko.operator.operator.Operator.compute" title="eko.operator.operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.
-<a class="reference internal" href="#eko.operator.operator.Operator.compose" title="eko.operator.operator.Operator.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compose()</span></code></a> will generate the <code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code> for the outside world.
-If not computed yet, <a class="reference internal" href="#eko.operator.operator.Operator.compose" title="eko.operator.operator.Operator.compose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compose()</span></code></a> will call <a class="reference internal" href="#eko.operator.operator.Operator.compute" title="eko.operator.operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>master</strong> (<em>eko.operator_grid.OperatorMaster</em>) – the master instance</p></li>
-<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – evolution source</p></li>
-<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – evolution target</p></li>
-<li><p><strong>mellin_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – cut to the upper limit in the mellin inversion</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="eko.operator.operator.Operator.compose">
-<code class="sig-name descname">compose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_list</span></em>, <em class="sig-param"><span class="n">instruction_set</span></em>, <em class="sig-param"><span class="n">q2_final</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/operator.html#Operator.compose"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.operator.Operator.compose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compose all <a class="reference internal" href="#eko.operator.operator.Operator" title="eko.operator.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> together.</p>
-<p>Calls <a class="reference internal" href="#eko.operator.operator.Operator.compute" title="eko.operator.operator.Operator.compute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">compute()</span></code></a>, if necessary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>op_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference internal" href="#eko.operator.operator.Operator" title="eko.operator.operator.Operator"><em>Operator</em></a><em>)</em>) – list of operators to merge</p></li>
-<li><p><strong>instruction_set</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – list of instructions (generated by <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.thresholds.FlavourTarget</span></code>)</p></li>
-<li><p><strong>q2_final</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – final scale</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>op</strong> – final operator</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator">PhysicalOperator</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.operator.operator.Operator.compute">
-<code class="sig-name descname">compute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/operator.html#Operator.compute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.operator.Operator.compute" title="Permalink to this definition">¶</a></dt>
-<dd><p>compute the actual operators (i.e. run the integrations)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.operator.operator.Operator.copy_ns_ops">
-<code class="sig-name descname">copy_ns_ops</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/operator.html#Operator.copy_ns_ops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.operator.Operator.copy_ns_ops" title="Permalink to this definition">¶</a></dt>
-<dd><p>Copy non-singlet kernels, if necessary</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.operator.operator.Operator.labels">
-<code class="sig-name descname">labels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/operator.html#Operator.labels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.operator.Operator.labels" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute necessary sector labels to compute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>labels</strong> – sector labels</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.operator.operator.quad_ker">
-<code class="sig-prename descclassname">eko.operator.operator.</code><code class="sig-name descname">quad_ker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">u</span></em>, <em class="sig-param"><span class="n">order</span></em>, <em class="sig-param"><span class="n">mode</span></em>, <em class="sig-param"><span class="n">method</span></em>, <em class="sig-param"><span class="n">is_log</span></em>, <em class="sig-param"><span class="n">logx</span></em>, <em class="sig-param"><span class="n">areas</span></em>, <em class="sig-param"><span class="n">a1</span></em>, <em class="sig-param"><span class="n">a0</span></em>, <em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">ev_op_iterations</span></em>, <em class="sig-param"><span class="n">ev_op_max_order</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/operator.html#quad_ker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.operator.quad_ker" title="Permalink to this definition">¶</a></dt>
-<dd><p>Raw kernel inside quad</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>u</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – quad argument</p></li>
-<li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbation order</p></li>
-<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – method</p></li>
-<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – element in the singlet sector</p></li>
-<li><p><strong>is_log</strong> (<em>boolean</em>) – logarithmic interpolation</p></li>
-<li><p><strong>logx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Mellin inversion point</p></li>
-<li><p><strong>areas</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a>) – basis function configuration</p></li>
-<li><p><strong>a1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – target coupling value</p></li>
-<li><p><strong>a0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – initial coupling value</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavors</p></li>
-<li><p><strong>ev_op_iterations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of evolution steps</p></li>
-<li><p><strong>ev_op_max_order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative expansion order of U</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>ker</strong> – evaluated integration kernel</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
 <div class="section" id="module-eko.operator.physical">
 <span id="eko-operator-physical-module"></span><h2>eko.operator.physical module<a class="headerlink" href="#module-eko.operator.physical" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
@@ -591,8 +598,8 @@ is tracked by <code class="xref py py-class docutils literal notranslate"><span 
 </dd></dl>
 
 <dl class="py method">
-<dt id="eko.operator.physical.PhysicalOperator.get_raw_operators">
-<code class="sig-name descname">get_raw_operators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/physical.html#PhysicalOperator.get_raw_operators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.physical.PhysicalOperator.get_raw_operators" title="Permalink to this definition">¶</a></dt>
+<dt id="eko.operator.physical.PhysicalOperator.to_raw">
+<code class="sig-name descname">to_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/physical.html#PhysicalOperator.to_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.physical.PhysicalOperator.to_raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns serializable matrix representation of all members and their errors</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>

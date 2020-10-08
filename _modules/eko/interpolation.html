@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.interpolation &mdash; EKO v0.4.1 documentation</title>
+  <title>eko.interpolation &mdash; EKO 0.4.1-develop documentation</title>
   
 
   
@@ -62,7 +62,7 @@
             
             
               <div class="version">
-                0.4
+                develop
               </div>
             
           
@@ -251,7 +251,7 @@
             <span class="k">yield</span> <span class="n">coef</span></div>
 
 
-<div class="viewcode-block" id="log_evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,f8,f8[:,:])&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="log_evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,f8,f8[:,:])&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">log_evaluate_Nx</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluates a single logarithmic Lagrange interpolator in N-space multiplied</span>
@@ -302,7 +302,7 @@
     <span class="k">return</span> <span class="n">res</span></div>
 
 
-<div class="viewcode-block" id="evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,f8,f8[:,:])&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,f8,f8[:,:])&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">evaluate_Nx</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluates a single linear Lagrange interpolator in N-space multiplied</span>
@@ -345,7 +345,7 @@
     <span class="k">return</span> <span class="n">res</span></div>
 
 
-<div class="viewcode-block" id="evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_x">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8[:,:])&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_x">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8[:,:])&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">evaluate_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get a single linear Lagrange interpolator in x-space</span>
@@ -378,7 +378,7 @@
     <span class="k">return</span> <span class="n">res</span></div>
 
 
-<div class="viewcode-block" id="log_evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_x">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8[:,:])&quot;</span><span class="p">)</span>
+<div class="viewcode-block" id="log_evaluate_x"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_x">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;f8(f8,f8[:,:])&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">log_evaluate_x</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get a single logarithmic Lagrange interpolator in x-space</span>
