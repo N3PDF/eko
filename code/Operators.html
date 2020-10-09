@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Input &amp; Output" href="IO.html" />
-    <link rel="prev" title="References" href="../zzz-refs.html" /> 
+    <link rel="next" title="Dependency Graph" href="Dependency.html" />
+    <link rel="prev" title="eko.operator package" href="../modules/eko/eko.operator.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,25 +91,26 @@
             
               <p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Operator Hierachy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eko/eko.html">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Operator Hierachy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">API</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../code_todos.html">TODOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/ekomark/ekomark.html">ekomark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/code_todos.html">TODOs</a></li>
 </ul>
 
             
@@ -162,7 +163,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Code/Operators.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/code/Operators.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -179,7 +180,7 @@
 <h1>Operator Hierachy<a class="headerlink" href="#operator-hierachy" title="Permalink to this headline">¶</a></h1>
 <p>The classes are nested as follows:</p>
 <div class="figure align-center" id="operators">
-<div class="graphviz"><img src="../_images/graphviz-44b135eb93d66538126581505a8b18efdbded691.png" alt="digraph G {
+<div class="graphviz"><img src="../_images/graphviz-aca340af494d9f6b3e2c7163ad89c1d3923ff3ac.png" alt="digraph G {
     bgcolor = transparent
 
     node [shape=box]
@@ -254,7 +255,7 @@ to the final scale</p></li>
 <span class="math notranslate nohighlight">\(\tilde{\mathbf{E}}_S, \tilde{E}_{ns}^{\pm,v}\)</span>, and they never cross a threshold</p></li>
 <li><p>inside <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> they are in “true” evolution
 basis, i.e. they evolve e.g. <span class="math notranslate nohighlight">\(\tilde V, \tilde T_3\)</span> etc., so they are eventually
-a product of the “raw” basis (see <a class="reference internal" href="../Theory/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
+a product of the “raw” basis (see <a class="reference internal" href="../theory/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -269,10 +270,10 @@ a product of the “raw” basis (see <a class="reference internal" href="../The
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="IO.html" class="btn btn-neutral float-right" title="Input &amp; Output" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="Dependency.html" class="btn btn-neutral float-right" title="Dependency Graph" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../zzz-refs.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../modules/eko/eko.operator.html" class="btn btn-neutral float-left" title="eko.operator package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

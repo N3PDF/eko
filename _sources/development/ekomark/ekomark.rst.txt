@@ -1,0 +1,58 @@
+ekomark package
+===============
+
+.. automodule:: ekomark
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+ekomark.LHA module
+------------------
+
+.. automodule:: ekomark.LHA
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ekomark.apfel\_benchmark module
+-------------------------------
+
+.. automodule:: ekomark.apfel_benchmark
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ekomark.apfel\_utils module
+---------------------------
+
+.. automodule:: ekomark.apfel_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ekomark.df\_dict module
+-----------------------
+
+.. automodule:: ekomark.df_dict
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ekomark.plots module
+--------------------
+
+.. automodule:: ekomark.plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+ekomark.toyLH module
+--------------------
+
+.. automodule:: ekomark.toyLH
+   :members:
+   :undoc-members:
+   :show-inheritance:

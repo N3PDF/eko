@@ -89,25 +89,26 @@
             
               <p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Code/Operators.html">Operator Hierachy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Code/IO.html">Input &amp; Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/eko/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/eko/eko.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_todos.html">TODOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/ekomark/ekomark.html">ekomark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/code_todos.html">TODOs</a></li>
 </ul>
 
             
@@ -294,6 +295,10 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/eko/eko.html#eko.mellin.edge_jac">edge_jac() (in module eko.mellin)</a>
+</li>
+      <li><a href="modules/eko/eko.html#eko.mellin.edge_path">edge_path() (in module eko.mellin)</a>
+</li>
       <li>
     eko
 
@@ -532,10 +537,10 @@
 </li>
       <li><a href="modules/eko/eko.operator.html#eko.operator.gamma_singlet_fact">gamma_singlet_fact() (in module eko.operator)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.basis_rotation.generate_input_from_lhapdf">generate_input_from_lhapdf() (in module eko.basis_rotation)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/eko/eko.html#eko.basis_rotation.generate_input_from_lhapdf">generate_input_from_lhapdf() (in module eko.basis_rotation)</a>
+</li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.utils.geomspace">geomspace() (in module eko.kernels.utils)</a>
 </li>
       <li><a href="modules/eko/eko.html#eko.flavours.get_all_flavour_paths">get_all_flavour_paths() (in module eko.flavours)</a>
@@ -562,11 +567,7 @@
 </li>
       <li><a href="modules/eko/eko.html#eko.flavours.FlavourTarget.get_path">get_path() (eko.flavours.FlavourTarget method)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.mellin.get_path_edge">get_path_edge() (in module eko.mellin)</a>
-</li>
       <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_path_from_q2_ref">get_path_from_q2_ref() (eko.thresholds.ThresholdsConfig method)</a>
-</li>
-      <li><a href="modules/eko/eko.html#eko.mellin.get_path_line">get_path_line() (in module eko.mellin)</a>
 </li>
       <li><a href="modules/eko/eko.html#eko.output.Output.get_raw">get_raw() (eko.output.Output method)</a>
 </li>
@@ -629,6 +630,10 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/eko/eko.operator.html#eko.operator.Operator.labels">labels() (eko.operator.Operator method)</a>
+</li>
+      <li><a href="modules/eko/eko.html#eko.mellin.line_jac">line_jac() (in module eko.mellin)</a>
+</li>
+      <li><a href="modules/eko/eko.html#eko.mellin.line_path">line_path() (in module eko.mellin)</a>
 </li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.non_singlet.lo_exact">lo_exact() (in module eko.kernels.non_singlet)</a>
 

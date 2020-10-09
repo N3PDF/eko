@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Interpolation" href="Theory/Interpolation.html" /> 
+    <link rel="next" title="Interpolation" href="theory/Interpolation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,25 +90,26 @@
             
               <p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Code/Operators.html">Operator Hierachy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Code/IO.html">Input &amp; Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/eko/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/eko/eko.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_todos.html">TODOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/ekomark/ekomark.html">ekomark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/code_todos.html">TODOs</a></li>
 </ul>
 
             
@@ -178,58 +179,37 @@
 <div class="section" id="eko-documentation">
 <h1>EKO documentation<a class="headerlink" href="#eko-documentation" title="Permalink to this headline">¶</a></h1>
 <p>EKO solves the DGLAP equations in Mellin space and produces evolution kernel operators.
-It is thus PDF-independet and the operators can be computed for a given configuration
+It is thus PDF-independent and the operators can be computed for a given configuration
 once and be reused after.</p>
-<p>This documentation is organised in three sections: first, an quick overview on the theoretical ingredients is given,
-second, an overview of the implementation details, and, last, the available indices.</p>
+<p>This documentation is organised in four sections: first, an quick overview on the theoretical ingredients is given,
+second, an overview of the implementation details, third, an overview about the development tools, and, last, the available indices.</p>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zzz-refs.html">References</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Code/Operators.html">Operator Hierachy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Code/IO.html">Input &amp; Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/eko/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/eko/eko.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code/Dependency.html">Dependency Graph</a></li>
 </ul>
 </div>
-<dl class="py function">
-<dt>
-<code class="sig-prename descclassname">eko.</code><code class="sig-name descname">run_dglap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/eko.html#run_dglap"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>This function takes a DGLAP theory configuration dictionary
-and performs the solution of the DGLAP equations.</p>
-<p>The EKO <span class="math notranslate nohighlight">\(\mathbf E_{k,j}(a_s^1\leftarrow a_s^0)\)</span> is determined in order
-to fullfill the following evolution</p>
-<div class="math notranslate nohighlight">
-\[\mathbf f(x_k,a_s^1) = \mathbf E_{k,j}(a_s^1\leftarrow a_s^0) \mathbf f(x_j,a_s^0)\]</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>setup</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – input card - see <a class="reference internal" href="Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>output</strong> – output dictionary - see <a class="reference internal" href="Code/IO.html"><span class="doc">Input &amp; Output</span></a></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
-</dd>
-</dl>
-</dd></dl>
-
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="code_todos.html">TODOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/ekomark/ekomark.html">ekomark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development/code_todos.html">TODOs</a></li>
 </ul>
 </div>
 </div>
@@ -250,7 +230,7 @@ to fullfill the following evolution</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Theory/Interpolation.html" class="btn btn-neutral float-right" title="Interpolation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="theory/Interpolation.html" class="btn btn-neutral float-right" title="Interpolation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

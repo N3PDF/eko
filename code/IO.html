@@ -39,8 +39,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Dependency Graph" href="Dependency.html" />
-    <link rel="prev" title="Operator Hierachy" href="Operators.html" /> 
+    <link rel="next" title="eko package" href="../modules/eko/eko.html" />
+    <link rel="prev" title="References" href="../zzz-refs.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,18 +91,17 @@
             
               <p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Operators.html">Operator Hierachy</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Input &amp; Output</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#input">Input</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output">Output</a><ul>
@@ -111,12 +110,14 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/eko/eko.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Operators.html">Operator Hierachy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules/eko/modules.html">API</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../code_todos.html">TODOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/ekomark/ekomark.html">ekomark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/code_todos.html">TODOs</a></li>
 </ul>
 
             
@@ -169,7 +170,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Code/IO.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/code/IO.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -184,38 +185,127 @@
             
   <div class="section" id="input-output">
 <h1>Input &amp; Output<a class="headerlink" href="#input-output" title="Permalink to this headline">¶</a></h1>
-<p>For explaining the runcards we use the following convention:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code> - <em>type [default value, if available]</em> : description</p></li>
-</ul>
+<p>We use <a class="reference external" href="https://github.com/yaml/pyyaml">yaml</a> runcards for piping input and output files.</p>
 <div class="section" id="input">
 <h2>Input<a class="headerlink" href="#input" title="Permalink to this headline">¶</a></h2>
-<p>The input run card may contain the following key-value pairs:</p>
+<p>The input is split into two runcard</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">PTO</span></code> - <em>integer</em> : order of perturbation theory: <code class="docutils literal notranslate"><span class="pre">0</span></code> = LO, …</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">alphas</span></code> - <em>float</em> : reference value of the strong coupling <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)\)</span> (Note that we have to use
-<span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)\)</span> here, instead of <span class="math notranslate nohighlight">\(a_s(\mu_0^2)\)</span> for legacy reasons)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code> - <em>list(float)</em> : the interpolation grid</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code> - <em>integer[4]</em> : polynomial degree of the interpolating function</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code> - <em>boolean [True]</em> : use logarithmic interpolation?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Q2grid</span></code> - <em>list(float)</em> : the target grid in <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
+<li><p>a theory runcard (compatible with the NNPDF theory database) that defines the physical setup
+and environment</p></li>
+<li><p>a operator runcard that defines the numerical setup and the requested operators</p></li>
 </ul>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">theory input runcard</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PTO</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p></td>
+<td><p>[required]</p></td>
+<td><p>order of perturbation theory: <code class="docutils literal notranslate"><span class="pre">0</span></code> = LO, …</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">alphas</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
+<td><p>[required]</p></td>
+<td><p>reference value of the strong coupling <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)\)</span> (Note that we have to use
+<span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)\)</span> here, instead of <span class="math notranslate nohighlight">\(a_s(\mu_0^2)\)</span> for legacy reasons)</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">operator input runcard</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code></p></td>
+<td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code></p></td>
+<td><p>[required]</p></td>
+<td><p>the interpolation grid</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td><p>polynomial degree of the interpolating function</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+<td><p>use logarithmic interpolation?</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Q2grid</span></code></p></td>
+<td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code></p></td>
+<td><p>[required]</p></td>
+<td><p>the target grid in <span class="math notranslate nohighlight">\(Q^2\)</span></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="output">
 <h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> instance will contain the following key-value pairs:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code> - <em>list(float)</em> : the interpolation grid</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code> - <em>integer</em> : polynomial degree of the interpolating function</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code> - <em>boolean</em> : use logarithmic interpolation?</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">q2_ref</span></code> - <em>float</em> : starting scale</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Q2grid</span></code> - <em>dict</em> : all operators at the requested values of <span class="math notranslate nohighlight">\(Q^2\)</span> represented by the key</p></li>
-</ul>
+<p>The <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> instance represents the following runcard:</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">output runcard</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code></p></td>
+<td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code></p></td>
+<td><p>the interpolation grid</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p></td>
+<td><p>polynomial degree of the interpolating function</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p>use logarithmic interpolation?</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">q2_ref</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
+<td><p>starting scale</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Q2grid</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a></p></td>
+<td><p>all operators at the requested values of <span class="math notranslate nohighlight">\(Q^2\)</span> represented by the key</p></td>
+</tr>
+</tbody>
+</table>
 <p>The grid elements contains two keys each</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">operators</span></code> - <em>dict</em> : all evolution kernel operators where the key indicates which distribution is generated by which other one
+<li><p><code class="docutils literal notranslate"><span class="pre">operators</span></code> a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> with all evolution kernel operators where the key indicates which distribution is generated by which other one
 and the value represents the eko in matrix representation</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">operator_errors</span></code> - <em>dict</em> : the integration errors associated to the respective operators following the same conventions as
+<li><p><code class="docutils literal notranslate"><span class="pre">operator_errors</span></code> a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code></a> with the integration errors associated to the respective operators following the same conventions as
 the <code class="docutils literal notranslate"><span class="pre">operator</span></code> dictionary</p></li>
 </ul>
 <div class="section" id="example-output-dump">
@@ -264,10 +354,10 @@ line - instead here we have chosen the more compact inline list representation f
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Dependency.html" class="btn btn-neutral float-right" title="Dependency Graph" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../modules/eko/eko.html" class="btn btn-neutral float-right" title="eko package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="Operators.html" class="btn btn-neutral float-left" title="Operator Hierachy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../zzz-refs.html" class="btn btn-neutral float-left" title="References" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

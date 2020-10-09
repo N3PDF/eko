@@ -89,25 +89,26 @@
             
               <p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../Code/Operators.html">Operator Hierachy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Code/IO.html">Input &amp; Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/eko.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/ekomark/ekomark.html">ekomark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/code_todos.html">TODOs</a></li>
 </ul>
 
             
@@ -178,7 +179,7 @@
 <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This module contains the central operator classes.</span>
 
-<span class="sd">See :doc:`Operator overview &lt;/Code/Operators&gt;`.</span>
+<span class="sd">See :doc:`Operator overview &lt;/code/Operators&gt;`.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
@@ -453,11 +454,12 @@
                             <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">],</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">],</span>
                         <span class="p">),</span>
-                        <span class="n">epsabs</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">epsrel</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+                        <span class="n">epsabs</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span>
+                        <span class="n">epsrel</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
                         <span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                         <span class="n">full_output</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                     <span class="p">)</span>
-                    <span class="n">val</span><span class="p">,</span><span class="n">err</span> <span class="o">=</span> <span class="n">res</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+                    <span class="n">val</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">res</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">op_members</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">err</span>
 

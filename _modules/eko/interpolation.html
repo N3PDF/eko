@@ -89,25 +89,26 @@
             
               <p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Theory/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../Code/Operators.html">Operator Hierachy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Code/IO.html">Input &amp; Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Code/Dependency.html">Dependency Graph</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/modules.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/eko/eko.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../code_todos.html">TODOs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/ekomark/ekomark.html">ekomark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/code_todos.html">TODOs</a></li>
 </ul>
 
             
@@ -207,7 +208,7 @@
 <span class="sd">            number of polynomial</span>
 <span class="sd">        block: tuple(int, int)</span>
 <span class="sd">            kmin and kmax</span>
-<span class="sd">        xgrid: array(float)</span>
+<span class="sd">        xgrid: numpy.ndarray</span>
 <span class="sd">            Grid in x-space from which the interpolators are constructed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -253,12 +254,12 @@
 
 <div class="viewcode-block" id="log_evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.log_evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,f8,f8[:,:])&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">log_evaluate_Nx</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluates a single logarithmic Lagrange interpolator in N-space multiplied</span>
 <span class="sd">    by the Mellin-inversion factor.</span>
 
 <span class="sd">    .. math::</span>
-<span class="sd">        \\tilde p(N)*exp(- N * log(x))</span>
+<span class="sd">        \tilde p(N)*\exp(- N * \ln(x))</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -304,12 +305,12 @@
 
 <div class="viewcode-block" id="evaluate_Nx"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.evaluate_Nx">[docs]</a><span class="nd">@nb</span><span class="o">.</span><span class="n">njit</span><span class="p">(</span><span class="s2">&quot;c16(c16,f8,f8[:,:])&quot;</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">evaluate_Nx</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">logx</span><span class="p">,</span> <span class="n">area_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluates a single linear Lagrange interpolator in N-space multiplied</span>
 <span class="sd">    by the Mellin-inversion factor.</span>
 
 <span class="sd">    .. math::</span>
-<span class="sd">        \\tilde p(N)*exp(- N * log(x))</span>
+<span class="sd">        \tilde p(N)*\exp(- N * \ln(x))</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -412,15 +413,15 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        xgrid : array</span>
+<span class="sd">        xgrid : numpy.ndarray</span>
 <span class="sd">            Grid in x-space from which the interpolators are constructed</span>
 <span class="sd">        poly_number : int</span>
 <span class="sd">            number of polynomial</span>
 <span class="sd">        list_of_blocks: list(tuple(int, int))</span>
 <span class="sd">            list of tuples with the (kmin, kmax) values for each area</span>
-<span class="sd">        mode_log: bool (default: True)</span>
+<span class="sd">        mode_log: bool</span>
 <span class="sd">            use logarithmic interpolation?</span>
-<span class="sd">        mode_N: bool (default: True)</span>
+<span class="sd">        mode_N: bool</span>
 <span class="sd">            if true compiles the function on N, otherwise compiles x</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -475,9 +476,13 @@
 
 <div class="viewcode-block" id="BasisFunction.areas_to_const"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.areas_to_const">[docs]</a>    <span class="k">def</span> <span class="nf">areas_to_const</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Retruns a tuple of tuples, one for each area</span>
-<span class="sd">        each containing</span>
+<span class="sd">        Returns an array containing all areas with</span>
 <span class="sd">        (`xmin`, `xmax`, `numpy.array` of coefficients)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            numpy.ndarray</span>
+<span class="sd">                area config</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># This is necessary as numba will ask for everything</span>
         <span class="c1"># to be inmutable</span>
@@ -520,15 +525,15 @@
         <span class="k">return</span> <span class="n">res</span></div>
 
 <div class="viewcode-block" id="BasisFunction.compile_n"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.BasisFunction.compile_n">[docs]</a>    <span class="k">def</span> <span class="nf">compile_n</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compiles the function to evaluate the interpolator in N space.</span>
 
 <span class="sd">        Generates a function `evaluate_Nx` with a (N, logx) signature.</span>
 
 <span class="sd">        .. math::</span>
-<span class="sd">            \\tilde p(N)*exp(- N * log(x))</span>
+<span class="sd">            \tilde p(N)*\exp(- N * \ln(x))</span>
 
-<span class="sd">        The polynomials contain naturally factors of :math:`exp(N * j * log(x_{min/max}))`</span>
+<span class="sd">        The polynomials contain naturally factors of :math:`\exp(N * j * \ln(x_{min/max}))`</span>
 <span class="sd">        which can be joined with the Mellin inversion factor.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
@@ -559,13 +564,13 @@
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">        xgrid_in : array</span>
+<span class="sd">        xgrid_in : numpy.ndarray</span>
 <span class="sd">            Grid in x-space from which the interpolators are constructed</span>
 <span class="sd">        polynomial_degree : int</span>
 <span class="sd">            degree of the interpolation polynomial</span>
-<span class="sd">        log: bool  (default: True)</span>
+<span class="sd">        log: bool</span>
 <span class="sd">            Whether it is a log or linear interpolator</span>
-<span class="sd">        mode_N: bool (default: True)</span>
+<span class="sd">        mode_N: bool</span>
 <span class="sd">            if true compiles the function on N, otherwise compiles x</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -635,11 +640,25 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create object from dictionary.</span>
 
-<span class="sd">        Read keys:</span>
+<span class="sd">        .. list-table:: setup runcard parameters</span>
+<span class="sd">            :header-rows: 1</span>
 
-<span class="sd">            - interpolation_xgrid : required, basis grid</span>
-<span class="sd">            - interpolation_is_log : default=True, use logarithmic interpolation?</span>
-<span class="sd">            - interpolation_polynomial_degree : default=4, polynomial degree of interpolation</span>
+<span class="sd">            *   - Name</span>
+<span class="sd">                - Type</span>
+<span class="sd">                - default</span>
+<span class="sd">                - description</span>
+<span class="sd">            *   - ``interpolation_xgrid``</span>
+<span class="sd">                - :py:obj:`list(float)`</span>
+<span class="sd">                - [required]</span>
+<span class="sd">                - the interpolation grid</span>
+<span class="sd">            *   - ``interpolation_polynomial_degree``</span>
+<span class="sd">                - :py:obj:`int`</span>
+<span class="sd">                - ``4``</span>
+<span class="sd">                - polynomial degree of the interpolating function</span>
+<span class="sd">            *   - ``interpolation_is_log``</span>
+<span class="sd">                - :py:obj:`bool`</span>
+<span class="sd">                - ``True``</span>
+<span class="sd">                - use logarithmic interpolation?</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
