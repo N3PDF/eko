@@ -102,7 +102,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -636,11 +637,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="n">basis_functions</span>
 
 <div class="viewcode-block" id="InterpolatorDispatcher.from_dict"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">setup</span><span class="p">,</span> <span class="n">mode_N</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">operators_card</span><span class="p">,</span> <span class="n">mode_N</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create object from dictionary.</span>
 
-<span class="sd">        .. list-table:: setup runcard parameters</span>
+<span class="sd">        .. list-table:: operators runcard parameters</span>
 <span class="sd">            :header-rows: 1</span>
 
 <span class="sd">            *   - Name</span>
@@ -662,15 +663,15 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">            setup : dict</span>
+<span class="sd">            operators_card : dict</span>
 <span class="sd">                input configurations</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># load xgrid</span>
-        <span class="n">xgrid</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">]</span>
+        <span class="n">xgrid</span> <span class="o">=</span> <span class="n">operators_card</span><span class="p">[</span><span class="s2">&quot;interpolation_xgrid&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">xgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;make_grid&quot;</span><span class="p">:</span>
             <span class="n">xgrid</span> <span class="o">=</span> <span class="n">make_grid</span><span class="p">(</span><span class="o">*</span><span class="n">xgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-        <span class="n">is_log_interpolation</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;interpolation_is_log&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
-        <span class="n">polynom_rank</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;interpolation_polynomial_degree&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">is_log_interpolation</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">operators_card</span><span class="p">[</span><span class="s2">&quot;interpolation_is_log&quot;</span><span class="p">])</span>
+        <span class="n">polynom_rank</span> <span class="o">=</span> <span class="n">operators_card</span><span class="p">[</span><span class="s2">&quot;interpolation_polynomial_degree&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">xgrid</span><span class="p">,</span>
             <span class="n">polynom_rank</span><span class="p">,</span>

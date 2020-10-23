@@ -102,7 +102,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -336,7 +337,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">q2_ref</span>
 
 <div class="viewcode-block" id="StrongCoupling.from_dict"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.strong_coupling.StrongCoupling.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">setup</span><span class="p">,</span> <span class="n">thresholds_config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">theory_card</span><span class="p">,</span> <span class="n">thresholds_config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Create object from theory dictionary.</span>
 
@@ -349,7 +350,7 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">            setup : dict</span>
+<span class="sd">            theory_card : dict</span>
 <span class="sd">                theory dictionary</span>
 <span class="sd">            thresholds_config : eko.thresholds.ThresholdsConfig</span>
 <span class="sd">                threshold configuration</span>
@@ -361,10 +362,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># read my values</span>
         <span class="c1"># TODO cast to a_s here</span>
-        <span class="n">alpha_ref</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;alphas&quot;</span><span class="p">]</span>
-        <span class="n">q2_alpha</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;Qref&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="n">order</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;PTO&quot;</span><span class="p">]</span>
-        <span class="n">mod_ev</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ModEv&quot;</span><span class="p">,</span> <span class="s2">&quot;EXA&quot;</span><span class="p">)</span>
+        <span class="n">alpha_ref</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;alphas&quot;</span><span class="p">]</span>
+        <span class="n">q2_alpha</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;Qref&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">order</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;PTO&quot;</span><span class="p">]</span>
+        <span class="n">mod_ev</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;ModEv&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">mod_ev</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;EXA&quot;</span><span class="p">,</span> <span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span> <span class="s2">&quot;decompose-exact&quot;</span><span class="p">,</span> <span class="s2">&quot;perturbative-exact&quot;</span><span class="p">]:</span>
             <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;exact&quot;</span>
         <span class="k">elif</span> <span class="n">mod_ev</span> <span class="ow">in</span> <span class="p">[</span>
@@ -381,7 +382,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown evolution mode </span><span class="si">{</span><span class="n">mod_ev</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="c1"># eventually read my dependents</span>
         <span class="k">if</span> <span class="n">thresholds_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">thresholds_config</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
+            <span class="n">thresholds_config</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">theory_card</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">alpha_ref</span><span class="p">,</span> <span class="n">q2_alpha</span><span class="p">,</span> <span class="n">thresholds_config</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_compute_exact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>

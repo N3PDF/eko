@@ -107,6 +107,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="eko.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">eko.anomalous_dimensions package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-eko.anomalous_dimensions.harmonics">eko.anomalous_dimensions.harmonics module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-eko.anomalous_dimensions.lo">eko.anomalous_dimensions.lo module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-eko.anomalous_dimensions.nlo">eko.anomalous_dimensions.nlo module</a></li>
 </ul>
@@ -119,7 +120,6 @@
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.basis_rotation">eko.basis_rotation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.beta">eko.beta module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.constants">eko.constants module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.ekomath">eko.ekomath module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.flavours">eko.flavours module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.interpolation">eko.interpolation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.mellin">eko.mellin module</a></li>
@@ -129,7 +129,8 @@
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.thresholds">eko.thresholds module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -316,6 +317,144 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="module-eko.anomalous_dimensions.harmonics">
+<span id="eko-anomalous-dimensions-harmonics-module"></span><h2>eko.anomalous_dimensions.harmonics module<a class="headerlink" href="#module-eko.anomalous_dimensions.harmonics" title="Permalink to this headline">¶</a></h2>
+<p>Implements higher mathematical functions.</p>
+<p>The functions are discribed in <a class="reference internal" href="../../theory/Mellin.html"><span class="doc">Mellin space</span></a>.</p>
+<dl class="py function">
+<dt id="eko.anomalous_dimensions.harmonics.cern_polygamma">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.harmonics.</code><code class="sig-name descname">cern_polygamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Z</span></em>, <em class="sig-param"><span class="n">K</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/harmonics.html#cern_polygamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the polygamma functions <span class="math notranslate nohighlight">\(\psi_k(z)\)</span>.</p>
+<p>Reimplementation of <code class="docutils literal notranslate"><span class="pre">WPSIPG</span></code> (C317) in <a class="reference external" href="http://cernlib.web.cern.ch/cernlib/">CERNlib</a>
+<a class="bibtex reference internal" href="../../zzz-refs.html#kolbig1972221" id="id3">[Kol72]</a>.</p>
+<p>Note that the SciPy implementation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html#scipy.special.digamma" title="(in SciPy v1.5.3)"><code class="xref py py-data docutils literal notranslate"><span class="pre">scipy.special.digamma</span></code></a>
+does not allow for complex inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Z</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – argument of polygamma function</p></li>
+<li><p><strong>K</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – order of polygamma function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>H</strong> – k-th polygamma function <span class="math notranslate nohighlight">\(\psi_k(z)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)">complex</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.anomalous_dimensions.harmonics.harmonic_S1">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.harmonics.</code><code class="sig-name descname">harmonic_S1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/harmonics.html#harmonic_S1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.harmonics.harmonic_S1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_1(N)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[S_1(N) = \sum\limits_{j=1}^N \frac 1 j = \psi_0(N+1)+\gamma_E\]</div>
+<p>with <span class="math notranslate nohighlight">\(\psi_0(N)\)</span> the digamma function and <span class="math notranslate nohighlight">\(\gamma_E\)</span> the
+Euler-Mascheroni constant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_1</strong> – (simple) Harmonic sum <span class="math notranslate nohighlight">\(S_1(N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)">complex</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.anomalous_dimensions.harmonics.harmonic_S2">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.harmonics.</code><code class="sig-name descname">harmonic_S2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/harmonics.html#harmonic_S2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.harmonics.harmonic_S2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_2(N)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[S_2(N) = \sum\limits_{j=1}^N \frac 1 {j^2} = -\psi_1(N+1)+\zeta(2)\]</div>
+<p>with <span class="math notranslate nohighlight">\(\psi_1(N)\)</span> the trigamma function and <span class="math notranslate nohighlight">\(\zeta\)</span> the
+Riemann zeta function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_2</strong> – Harmonic sum <span class="math notranslate nohighlight">\(S_2(N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)">complex</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.anomalous_dimensions.harmonics.harmonic_S3">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.harmonics.</code><code class="sig-name descname">harmonic_S3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/harmonics.html#harmonic_S3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.harmonics.harmonic_S3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the harmonic sum <span class="math notranslate nohighlight">\(S_3(N)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[S_3(N) = \sum\limits_{j=1}^N \frac 1 {j^3} = \frac 1 2 \psi_2(N+1)+\zeta(3)\]</div>
+<p>with <span class="math notranslate nohighlight">\(\psi_2(N)\)</span> the 2nd-polygamma function and <span class="math notranslate nohighlight">\(\zeta\)</span> the
+Riemann zeta function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>S_3</strong> – Harmonic sum <span class="math notranslate nohighlight">\(S_3(N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)">complex</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="eko.anomalous_dimensions.harmonics.mellin_g3">
+<code class="sig-prename descclassname">eko.anomalous_dimensions.harmonics.</code><code class="sig-name descname">mellin_g3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/harmonics.html#mellin_g3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.harmonics.mellin_g3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the Mellin transform of <span class="math notranslate nohighlight">\(\text{Li}_2(x)/(1+x)\)</span>.</p>
+<p>This function appears in the analytic continuation of the harmonic sum
+<span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> which in turn appears in the NLO anomalous dimension
+(see <a class="reference internal" href="../../theory/Mellin.html#harmonic-sums"><span class="std std-ref">Harmonic Sums</span></a>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>mellin_g3</strong> – approximate Mellin transform <span class="math notranslate nohighlight">\(\mathcal{M}[\text{Li}_2(x)/(1+x)](N)\)</span></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)">complex</a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We use the name from <a class="bibtex reference internal" href="../../zzz-refs.html#muselliphd" id="id4">[Mus17]</a>, but not his implementation - rather we use the
+Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a> implementation.</p>
+</div>
+</dd></dl>
+
+</div>
 <div class="section" id="module-eko.anomalous_dimensions.lo">
 <span id="eko-anomalous-dimensions-lo-module"></span><h2>eko.anomalous_dimensions.lo module<a class="headerlink" href="#module-eko.anomalous_dimensions.lo" title="Permalink to this headline">¶</a></h2>
 <p>This file contains the leading-order Altarelli-Parisi splitting kernels.</p>
@@ -323,7 +462,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <dt id="eko.anomalous_dimensions.lo.gamma_gg_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_gg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">s1</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_gg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_gg_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order gluon-gluon anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id3">[VMV04]</a>.</p>
+<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id6">[VMV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -345,7 +484,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <dt id="eko.anomalous_dimensions.lo.gamma_gq_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_gq_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_gq_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_gq_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order gluon-quark anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id4">[VMV04]</a>.</p>
+<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id7">[VMV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p>
@@ -363,7 +502,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <dt id="eko.anomalous_dimensions.lo.gamma_ns_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_ns_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">s1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_ns_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_ns_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.4) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id5">[MVV04]</a>.</p>
+<p>Implements Eq. (3.4) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id8">[MVV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -384,7 +523,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <dt id="eko.anomalous_dimensions.lo.gamma_qg_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_qg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_qg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_qg_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order quark-gluon anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id6">[VMV04]</a>.</p>
+<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id9">[VMV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -446,12 +585,12 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <p>This file contains the next-to-leading-order Altarelli-Parisi splitting kernels.</p>
 <p>These expression have been obtained using the procedure described in the
 <a class="reference external" href="https://github.com/N3PDF/eko/wiki/Parse-NLO-expressions">wiki</a>
-involving <code class="docutils literal notranslate"><span class="pre">FormGet</span></code> <a class="bibtex reference internal" href="../../zzz-refs.html#hahn-2016ebn" id="id7">[HPS16]</a>.</p>
+involving <code class="docutils literal notranslate"><span class="pre">FormGet</span></code> <a class="bibtex reference internal" href="../../zzz-refs.html#hahn-2016ebn" id="id10">[HPS16]</a>.</p>
 <dl class="py function">
 <dt id="eko.anomalous_dimensions.nlo.gamma_gg_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_gg_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_gg_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_gg_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order gluon-gluon singlet anomalous dimension.</p>
-<p>Implements Eq. (3.9) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id8">[VMV04]</a>.</p>
+<p>Implements Eq. (3.9) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id11">[VMV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -473,7 +612,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_gq_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_gq_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_gq_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_gq_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order gluon-quark singlet anomalous dimension.</p>
-<p>Implements Eq. (3.8) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id9">[VMV04]</a>.</p>
+<p>Implements Eq. (3.8) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id12">[VMV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -495,7 +634,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_nsm_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_nsm_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_nsm_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_nsm_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order valence-like non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id10">[MVV04]</a>.</p>
+<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id13">[MVV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -517,7 +656,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_nsp_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_nsp_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_nsp_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_nsp_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order singlet-like non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id11">[MVV04]</a>.</p>
+<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id14">[MVV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -539,7 +678,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_ps_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_ps_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_ps_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_ps_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order pure-singlet quark-quark anomalous dimension.</p>
-<p>Implements Eq. (3.6) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id12">[VMV04]</a>.</p>
+<p>Implements Eq. (3.6) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id15">[VMV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -561,7 +700,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_qg_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_qg_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_qg_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_qg_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order quark-gluon singlet anomalous dimension.</p>
-<p>Implements Eq. (3.7) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id13">[VMV04]</a>.</p>
+<p>Implements Eq. (3.7) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id16">[VMV04]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Operator Hierachy" href="../../code/Operators.html" />
+    <link rel="next" title="Operator Classes" href="../../code/Operators.html" />
     <link rel="prev" title="eko.kernels package" href="eko.kernels.html" /> 
 </head>
 
@@ -120,7 +120,6 @@
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.basis_rotation">eko.basis_rotation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.beta">eko.beta module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.constants">eko.constants module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.ekomath">eko.ekomath module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.flavours">eko.flavours module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.interpolation">eko.interpolation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.mellin">eko.mellin module</a></li>
@@ -130,7 +129,8 @@
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.thresholds">eko.thresholds module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -367,7 +367,7 @@ to return any operator at any given q for the evolution between q2ref and q2grid
 
 <dl class="py method">
 <dt id="eko.operator.grid.OperatorGrid.from_dict">
-<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">setup</span></em>, <em class="sig-param"><span class="n">thresholds_config</span></em>, <em class="sig-param"><span class="n">strong_coupling</span></em>, <em class="sig-param"><span class="n">interpol_dispatcher</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/grid.html#OperatorGrid.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.grid.OperatorGrid.from_dict" title="Permalink to this definition">¶</a></dt>
+<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">theory_card</span></em>, <em class="sig-param"><span class="n">operators_card</span></em>, <em class="sig-param"><span class="n">thresholds_config</span></em>, <em class="sig-param"><span class="n">strong_coupling</span></em>, <em class="sig-param"><span class="n">interpol_dispatcher</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/grid.html#OperatorGrid.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.grid.OperatorGrid.from_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create the object from the theory dictionary.</p>
 <p>Read keys:</p>
 <blockquote>
@@ -628,7 +628,7 @@ errors under the <code class="docutils literal notranslate"><span class="pre">op
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../code/Operators.html" class="btn btn-neutral float-right" title="Operator Hierachy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../../code/Operators.html" class="btn btn-neutral float-right" title="Operator Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="eko.kernels.html" class="btn btn-neutral float-left" title="eko.kernels package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

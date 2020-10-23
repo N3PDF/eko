@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>eko.runner &mdash; EKO 0.5.2-develop documentation</title>
+  <title>&lt;no title&gt; &mdash; EKO 0.5.2-develop documentation</title>
   
 
   
@@ -100,11 +100,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../code/Utilities.html">Utility Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../code/Dependency.html">Dependency Graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Utilities.html">Utility Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
@@ -156,14 +156,14 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-        
-          <li><a href="../eko.html">eko</a> &raquo;</li>
-        
-      <li>eko.runner</li>
+      <li>&lt;no title&gt;</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/code/IO-tabs/ThresholdConfig.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -175,122 +175,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for eko.runner</h1><div class="highlight"><pre>
-<span></span># -*- coding: utf-8 -*-
-&quot;&quot;&quot;
-    This file contains the main application class of eko
-&quot;&quot;&quot;
-import logging
-import copy
+  <table class="docutils align-default" id="id1">
+<caption><span class="caption-text">ThresholdConfig input runcard</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FNS</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
+<td><p>[required]</p></td>
+<td><p>possible values are <cite>FFNS</cite> - representing a fixed flavor number scheme, or, <cite>ZM-VFNS</cite>, <cite>FONLL-A</cite> - representing a variable flavor number scheme (VFNS)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Q0</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
+<td><p>[required]</p></td>
+<td><p>reference scale from which to start</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NfFF</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p></td>
+<td><p>[required if in FFNS, ignored otherwise]</p></td>
+<td><p>number of fixed flavors if applicable</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mc</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
+<td><p>[required if in VFNS, ignored otherwise]</p></td>
+<td><p>charm mass in GeV</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mb</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
+<td><p>[required if in VFNS, ignored otherwise]</p></td>
+<td><p>bottom mass in GeV</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mt</span></code></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
+<td><p>[required if in VFNS, ignored otherwise]</p></td>
+<td><p>top mass in GeV</p></td>
+</tr>
+</tbody>
+</table>
 
-from . import interpolation
-from .output import Output
-from .strong_coupling import StrongCoupling
-from .thresholds import ThresholdsConfig
-from .operator.grid import OperatorGrid
-
-logger = logging.getLogger(__name__)
-
-
-<div class="viewcode-block" id="Runner"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner">[docs]</a>class Runner:
-    &quot;&quot;&quot;
-    Represents a single input configuration.
-
-    For details about the configuration, see :doc:`here &lt;/code/IO&gt;`
-
-    Parameters
-    ----------
-        setup : dict
-            input configurations
-    &quot;&quot;&quot;
-
-    banner1 = &quot;&quot;&quot;
-EEEE  K  K   OOO
-E     K K   O   O
-EEE   KK    O   O
-E     K K   O   O
-EEEE  K  K   OOO
-&quot;&quot;&quot;
-
-    banner2 = &quot;&quot;&quot;
-EEEEEEE  KK  KK   OOOOO
-EE       KK KK   OO   OO
-EEEEE    KKKK    OO   OO
-EE       KK KK   OO   OO
-EEEEEEE  KK  KK   OOOOO&quot;&quot;&quot;
-
-    banner3 = r&quot;&quot;&quot; # Varsity
- ________  ___  ____    ___    
-|_   __  ||_  ||_  _| .&#39;   `.  
-  | |_ \_|  | |_/ /  /  .-.  \ 
-  |  _| _   |  __&#39;.  | |   | | 
- _| |__/ | _| |  \ \_\  `-&#39;  / 
-|________||____||____|`.___.&#39;  
-&quot;&quot;&quot;
-
-    banner4 = r&quot;&quot;&quot; # Georgia11
-`7MM\&quot;&quot;&quot;YMM  `7MMF&#39; `YMM&#39; .g8&quot;&quot;8q.   
-  MM    `7    MM   .M&#39; .dP&#39;    `YM. 
-  MM   d      MM .d&quot;   dM&#39;      `MM 
-  MMmmMM      MMMMM.   MM        MM 
-  MM   Y  ,   MM  VMA  MM.      ,MP 
-  MM     ,M   MM   `MM.`Mb.    ,dP&#39; 
-.JMMmmmmMMM .JMML.   MMb.`&quot;bmmd&quot;&#39;   
-&quot;&quot;&quot;
-
-    # Roman
-    banner5 = r&quot;&quot;&quot;
-oooooooooooo oooo    oooo  \\ .oooooo.   
-`888&#39;     `8 `888   .8P&#39;  //////    `Y8b  
- 888          888  d8&#39;   \\o\/////    888 
- 888oooo8     88888[    \\\\/8/////   888 
- 888    &quot;     888`88b.      888 ///   888 
- 888       o  888  `88b.    `88b //  d88&#39; 
-o888ooooood8 o888o  o888o     `Y8bood8P&#39;  
-&quot;&quot;&quot;
-
-    def __init__(self, theory_card, operators_card):
-        self.out = Output()
-
-        # setup basis grid
-        bfd = interpolation.InterpolatorDispatcher.from_dict(operators_card)
-        self.out.update(bfd.to_dict())
-        # FNS
-        tc = ThresholdsConfig.from_dict(theory_card)
-        self.out[&quot;q2_ref&quot;] = float(tc.q2_ref)
-        # strong coupling
-        sc = StrongCoupling.from_dict(theory_card, tc)
-        # setup operator grid
-        self.op_grid = OperatorGrid.from_dict(
-            theory_card,
-            operators_card,
-            tc,
-            sc,
-            bfd,
-        )
-
-<div class="viewcode-block" id="Runner.get_operators"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner.get_operators">[docs]</a>    def get_operators(self):
-        &quot;&quot;&quot;compute the actual operators&quot;&quot;&quot;
-        operators = self.op_grid.compute_q2grid()
-        return operators</div>
-
-<div class="viewcode-block" id="Runner.get_output"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.runner.Runner.get_output">[docs]</a>    def get_output(self):
-        &quot;&quot;&quot;
-        Collects all data for output (to run the evolution)
-
-        Returns
-        -------
-            ret : eko.output.Output
-                output instance
-        &quot;&quot;&quot;
-        # add all operators
-        Q2grid = {}
-        for op in self.get_operators():
-            final_scale = op.q2_final
-            Q2grid[float(final_scale)] = op.to_raw()
-        self.out[&quot;Q2grid&quot;] = Q2grid
-        return copy.deepcopy(self.out)</div></div>
-</pre></div>
 
            </div>
            

@@ -108,7 +108,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -194,7 +195,7 @@
 <p>It is usefull to define in addition <span class="math notranslate nohighlight">\(b_k = \beta_k/\beta_0, k&gt;0\)</span>.</p>
 <p>We implement two different strategies to solve the renormalization group equation (RGE):</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;exact&quot;</span></code>: Solve using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code></a>.
+<li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;exact&quot;</span></code>: Solve using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp" title="(in SciPy v1.5.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code></a>.
 In LO we fall back to the expanded solution as this is already the true solution.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;expanded&quot;</span></code>: using approximate solutions:</p></li>
 </ul>

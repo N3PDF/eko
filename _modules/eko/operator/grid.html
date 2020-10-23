@@ -102,7 +102,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -310,7 +311,8 @@
 <div class="viewcode-block" id="OperatorGrid.from_dict"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.grid.OperatorGrid.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span>
-        <span class="n">setup</span><span class="p">,</span>
+        <span class="n">theory_card</span><span class="p">,</span>
+        <span class="n">operators_card</span><span class="p">,</span>
         <span class="n">thresholds_config</span><span class="p">,</span>
         <span class="n">strong_coupling</span><span class="p">,</span>
         <span class="n">interpol_dispatcher</span><span class="p">,</span>
@@ -341,8 +343,8 @@
 <span class="sd">                created object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;PTO&quot;</span><span class="p">])</span>
-        <span class="n">method</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ModEv&quot;</span><span class="p">,</span> <span class="s2">&quot;iterate-exact&quot;</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;PTO&quot;</span><span class="p">])</span>
+        <span class="n">method</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;ModEv&quot;</span><span class="p">]</span>
         <span class="n">mod_ev2method</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;EXA&quot;</span><span class="p">:</span> <span class="s2">&quot;iterate-exact&quot;</span><span class="p">,</span>
             <span class="s2">&quot;EXP&quot;</span><span class="p">:</span> <span class="s2">&quot;iterate-expanded&quot;</span><span class="p">,</span>
@@ -350,12 +352,12 @@
         <span class="p">}</span>
         <span class="n">method</span> <span class="o">=</span> <span class="n">mod_ev2method</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;method&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">method</span>
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;fact_to_ren&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;XIF&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;XIR&quot;</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;debug_skip_singlet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;debug_skip_singlet&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;debug_skip_non_singlet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;debug_skip_non_singlet&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="n">q2_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float_</span><span class="p">)</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;fact_to_ren&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;XIF&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;XIR&quot;</span><span class="p">])</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operators_card</span><span class="p">[</span><span class="s2">&quot;ev_op_max_order&quot;</span><span class="p">]</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operators_card</span><span class="p">[</span><span class="s2">&quot;ev_op_iterations&quot;</span><span class="p">]</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;debug_skip_singlet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operators_card</span><span class="p">[</span><span class="s2">&quot;debug_skip_singlet&quot;</span><span class="p">]</span>
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;debug_skip_non_singlet&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operators_card</span><span class="p">[</span><span class="s2">&quot;debug_skip_non_singlet&quot;</span><span class="p">]</span>
+        <span class="n">q2_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">operators_card</span><span class="p">[</span><span class="s2">&quot;Q2grid&quot;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">float_</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
             <span class="n">config</span><span class="p">,</span> <span class="n">q2_grid</span><span class="p">,</span> <span class="n">thresholds_config</span><span class="p">,</span> <span class="n">strong_coupling</span><span class="p">,</span> <span class="n">interpol_dispatcher</span>
         <span class="p">)</span></div>

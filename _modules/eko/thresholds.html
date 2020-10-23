@@ -102,7 +102,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -177,8 +178,11 @@
   <h1>Source code for eko.thresholds</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This module holds the classes that define the FNS: Threshold,</span>
-<span class="sd">    Area</span>
+<span class="sd">This module holds the classes that define the flavor number schemes (FNS).</span>
+
+<span class="sd">Run card parameters:</span>
+
+<span class="sd">.. include:: /code/IO-tabs/ThresholdConfig.txt</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">numbers</span>
@@ -330,17 +334,30 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_operator_paths</span> <span class="o">=</span> <span class="n">get_all_flavour_paths</span><span class="p">(</span><span class="n">nf_protected</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ThresholdsConfig.from_dict"><a class="viewcode-back" href="../../modules/eko/eko.html#eko.thresholds.ThresholdsConfig.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">setup</span><span class="p">):</span>
-        <span class="n">FNS</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;FNS&quot;</span><span class="p">]</span>
-        <span class="n">q2_ref</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">setup</span><span class="p">[</span><span class="s2">&quot;Q0&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">theory_card</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create the object from the run card.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">            theory_card : dict</span>
+<span class="sd">                run card with the keys given at the head of the :mod:`module &lt;eko.thresholds&gt;`</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            cls : ThresholdConfig</span>
+<span class="sd">                created object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">FNS</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;FNS&quot;</span><span class="p">]</span>
+        <span class="n">q2_ref</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;Q0&quot;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">FNS</span> <span class="o">!=</span> <span class="s2">&quot;FFNS&quot;</span><span class="p">:</span>  <span class="c1"># setup ZM-VFNS</span>
-            <span class="n">mc</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;mc&quot;</span><span class="p">]</span>
-            <span class="n">mb</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;mb&quot;</span><span class="p">]</span>
-            <span class="n">mt</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;mt&quot;</span><span class="p">]</span>
+            <span class="n">mc</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;mc&quot;</span><span class="p">]</span>
+            <span class="n">mb</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;mb&quot;</span><span class="p">]</span>
+            <span class="n">mt</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;mt&quot;</span><span class="p">]</span>
             <span class="n">threshold_list</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mc</span><span class="p">,</span> <span class="n">mb</span><span class="p">,</span> <span class="n">mt</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
             <span class="n">nf</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># here FFNS</span>
-            <span class="n">nf</span> <span class="o">=</span> <span class="n">setup</span><span class="p">[</span><span class="s2">&quot;NfFF&quot;</span><span class="p">]</span>
+            <span class="n">nf</span> <span class="o">=</span> <span class="n">theory_card</span><span class="p">[</span><span class="s2">&quot;NfFF&quot;</span><span class="p">]</span>
             <span class="n">threshold_list</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">q2_ref</span><span class="p">,</span> <span class="n">FNS</span><span class="p">,</span> <span class="n">threshold_list</span><span class="o">=</span><span class="n">threshold_list</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="n">nf</span><span class="p">)</span></div>
 

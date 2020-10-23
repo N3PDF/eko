@@ -9,9 +9,11 @@ From Docstrings
 From Source Code
 ----------------
 
-`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
+`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
 
-.. warning:: #133 explicitly silence yaml
+.. warning:: #66 this is just a hack because I'm not able to generalize this part
+
+.. warning:: #113 can this be made more concise, or is this really the best that can be done?
 
 
 
@@ -21,11 +23,9 @@ From Source Code
 
 
 
-`flavours.py <file:///home/runner/work/eko/eko/src/eko/flavours.py>`_
+`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
 
-.. warning:: #66 this is just a hack because I'm not able to generalize this part
-
-.. warning:: #113 can this be made more concise, or is this really the best that can be done?
+.. warning:: #133 explicitly silence yaml
 
 
 

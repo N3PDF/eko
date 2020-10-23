@@ -115,7 +115,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -280,8 +281,8 @@ the Mellin inverse.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}S_m(N) = \sum\limits_{j=1}^N \frac 1 {j^m} = \frac{(-1)^{m-1}}{(m-1)!} \psi_{m-1}(N+1)+c_m \quad
 \text{with}\, c_m = \left\{\begin{array}{ll} \gamma_E, &amp; m=1\\ \zeta(m), &amp; m&gt;1\end{array} \right.\end{split}\]</div>
-<p>and where <span class="math notranslate nohighlight">\(\psi_k(N)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>-th polygamma function (implemented as <a class="reference internal" href="../modules/eko/eko.html#eko.ekomath.cern_polygamma" title="eko.ekomath.cern_polygamma"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eko.ekomath.cern_polygamma()</span></code></a>)
-and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta function (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.zeta.html#scipy.special.zeta" title="(in SciPy v1.5.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.special.zeta()</span></code></a>).</p>
+<p>and where <span class="math notranslate nohighlight">\(\psi_k(N)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>-th polygamma function (implemented as <a class="reference internal" href="../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a>)
+and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta function (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.zeta.html#scipy.special.zeta" title="(in SciPy v1.5.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.special.zeta()</span></code></a>).</p>
 <ul class="simple">
 <li><p>for the sums <span class="math notranslate nohighlight">\(S_{-m}(N)\)</span> and <span class="math notranslate nohighlight">\(m &gt; 0\)</span> we use <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id2">[GRV90]</a></p></li>
 </ul>
@@ -297,7 +298,7 @@ nor in <a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" i
 <div class="math notranslate nohighlight">
 \[\begin{split}S_{-2,1}(N) &amp;= - \frac 5 8 \zeta(3) + \zeta(2)\left(S_{-1}(N) - \frac{\eta}{N} + \log(2)\right) + \eta\left(\frac{S_{1}(N)}{N^2} + g_3(N)\right)\\
 g_3(N) &amp;= \mathcal M \left[\frac{\text{Li}_2(x)}{1+x}\right](N)\end{split}\]</div>
-<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id9">[Vog05]</a> (implemented as <a class="reference internal" href="../modules/eko/eko.html#eko.ekomath.mellin_g3" title="eko.ekomath.mellin_g3"><code class="xref py py-meth docutils literal notranslate"><span class="pre">eko.ekomath.mellin_g3()</span></code></a>).</p>
+<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id9">[Vog05]</a> (implemented as <a class="reference internal" href="../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.mellin_g3" title="eko.anomalous_dimensions.harmonics.mellin_g3"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mellin_g3()</span></code></a>).</p>
 </div>
 </div>
 

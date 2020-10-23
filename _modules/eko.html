@@ -102,7 +102,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../code/IO.html">Input &amp; Output</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../code/Operators.html">Operator Hierachy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code/Utilities.html">Utility Classes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/Dependency.html">Dependency Graph</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
@@ -178,7 +179,7 @@
 <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">runner</span>
 
 
-<div class="viewcode-block" id="run_dglap"><a class="viewcode-back" href="../modules/eko/eko.html#eko.run_dglap">[docs]</a><span class="k">def</span> <span class="nf">run_dglap</span><span class="p">(</span><span class="n">setup</span><span class="p">):</span>
+<div class="viewcode-block" id="run_dglap"><a class="viewcode-back" href="../modules/eko/eko.html#eko.run_dglap">[docs]</a><span class="k">def</span> <span class="nf">run_dglap</span><span class="p">(</span><span class="n">theory_card</span><span class="p">,</span> <span class="n">operators_card</span><span class="p">):</span>
     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function takes a DGLAP theory configuration dictionary</span>
 <span class="sd">    and performs the solution of the DGLAP equations.</span>
@@ -199,7 +200,7 @@
 <span class="sd">        output : dict</span>
 <span class="sd">            output dictionary - see :doc:`/code/IO`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">Runner</span><span class="p">(</span><span class="n">setup</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">Runner</span><span class="p">(</span><span class="n">theory_card</span><span class="p">,</span> <span class="n">operators_card</span><span class="p">)</span>
     <span class="n">output</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get_output</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">output</span></div>
 </pre></div>

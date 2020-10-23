@@ -9,6 +9,14 @@ eko.anomalous\_dimensions package
 Submodules
 ----------
 
+eko.anomalous\_dimensions.harmonics module
+------------------------------------------
+
+.. automodule:: eko.anomalous_dimensions.harmonics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 eko.anomalous\_dimensions.lo module
 -----------------------------------
 
