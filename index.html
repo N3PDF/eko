@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>EKO documentation &mdash; EKO 0.5.2-develop documentation</title>
+  <title>Welcome to EKO! &mdash; EKO 0.5.2-develop documentation</title>
   
 
   
@@ -39,7 +39,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Interpolation" href="theory/Interpolation.html" /> 
+    <link rel="next" title="Features" href="overview/features.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,7 +88,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Theory:</span></p>
+              <p class="caption"><span class="caption-text">Overview:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview/features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview/indices.html">Indices and tables</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Theory:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="theory/Interpolation.html">Interpolation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory/Mellin.html">Mellin Space and Transformations</a></li>
@@ -96,7 +102,6 @@
 <li class="toctree-l1"><a class="reference internal" href="theory/DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory/FlavourBasis.html">Evolution Basis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zzz-refs.html">References</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation:</span></p>
@@ -109,6 +114,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Development:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="development/Benchmarks.html">Benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development/ekomark/ekomark.html">ekomark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development/code_todos.html">TODOs</a></li>
 </ul>
@@ -157,7 +163,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>EKO documentation</li>
+      <li>Welcome to EKO!</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -176,52 +182,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <a class="reference internal image-reference" href="_images/Logo.png"><img alt="EKO logo" class="align-center" src="_images/Logo.png" style="width: 300px;" /></a>
-<div class="section" id="eko-documentation">
-<h1>EKO documentation<a class="headerlink" href="#eko-documentation" title="Permalink to this headline">¶</a></h1>
-<p>EKO solves the DGLAP equations in Mellin space and produces evolution kernel operators.
-It is thus PDF-independent and the operators can be computed for a given configuration
+  <div class="section" id="welcome-to-eko">
+<h1>Welcome to EKO!<a class="headerlink" href="#welcome-to-eko" title="Permalink to this headline">¶</a></h1>
+<a class="reference internal image-reference" href="_images/Logo.png"><img alt="EKO logo" class="align-center" src="_images/Logo.png" style="width: 300px;" /></a>
+<p>EKO solves the <abbr title="Dokshitzer-Gribov-Lipatov-Altarelli-Parisi">DGLAP</abbr> equations in Mellin space and produces evolution kernel operators (EKO).
+It is <abbr title="Parton Distribution Function">PDF</abbr>-independent and the operators can be computed for a given configuration
 once and be reused after.</p>
-<p>This documentation is organised in four sections: first, an quick overview on the theoretical ingredients is given,
-second, an overview of the implementation details, third, an overview about the development tools, and, last, the available indices.</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Theory:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="theory/Interpolation.html">Interpolation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory/Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory/pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory/FlavourBasis.html">Evolution Basis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory/Benchmarks.html">Benchmarks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="zzz-refs.html">References</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Implementation:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="code/IO.html">Input &amp; Output</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules/eko/eko.html">API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code/Operators.html">Operator Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code/Utilities.html">Utility Classes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="code/Dependency.html">Dependency Graph</a></li>
-</ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Development:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="development/ekomark/ekomark.html">ekomark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development/code_todos.html">TODOs</a></li>
-</ul>
 </div>
+<div class="toctree-wrapper compound">
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
 </div>
 
 
@@ -232,7 +206,7 @@ second, an overview of the implementation details, third, an overview about the 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="theory/Interpolation.html" class="btn btn-neutral float-right" title="Interpolation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview/features.html" class="btn btn-neutral float-right" title="Features" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
