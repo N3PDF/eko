@@ -164,7 +164,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/code/Utilities.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/code/Utilities.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -188,55 +188,16 @@ the <a class="reference internal" href="../modules/eko/eko.html#eko.strong_coupl
 </ul>
 </li>
 </ul>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">ThresholdConfig input runcard</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Type</p></th>
-<th class="head"><p>default</p></th>
-<th class="head"><p>description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FNS</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
-<td><p>[required]</p></td>
-<td><p>possible values are <cite>FFNS</cite> - representing a fixed flavor number scheme, or, <cite>ZM-VFNS</cite>, <cite>FONLL-A</cite> - representing a variable flavor number scheme (VFNS)</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Q0</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
-<td><p>[required]</p></td>
-<td><p>reference scale from which to start</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NfFF</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p></td>
-<td><p>[required if in FFNS, ignored otherwise]</p></td>
-<td><p>number of fixed flavors if applicable</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mc</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
-<td><p>[required if in VFNS, ignored otherwise]</p></td>
-<td><p>charm mass in GeV</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mb</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
-<td><p>[required if in VFNS, ignored otherwise]</p></td>
-<td><p>bottom mass in GeV</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mt</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
-<td><p>[required if in VFNS, ignored otherwise]</p></td>
-<td><p>top mass in GeV</p></td>
-</tr>
-</tbody>
-</table>
+<p>ThresholdConfig parameters:</p>
 <ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> <code class="docutils literal notranslate"><span class="pre">FNS</span></code> active flavor number scheme. Possible values are <cite>FFNS</cite>,
+representing a <abbr title="Fixed Flavor Number Scheme">FFNS</abbr>, or, <cite>ZM-VFNS</cite>, <cite>FONLL-A</cite>, <cite>FONLL-A’</cite>,
+representing a <abbr title="Variable Flavor Number Scheme">VFNS</abbr>; <strong>Required</strong></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">Q0</span></code> reference scale from which to start; <strong>Required</strong></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> <code class="docutils literal notranslate"><span class="pre">NfFF</span></code> number of fixed flavors if applicable; <strong>Required</strong> if in <abbr title="Fixed Flavor Number Scheme">FFNS</abbr>, ignored otherwise</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mc</span></code> charm mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mb</span></code> bottom mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mt</span></code> top mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
 <li><p><a class="reference internal" href="../modules/eko/eko.html#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.strong_coupling.StrongCoupling</span></code></a> Implementation of the <a class="reference internal" href="../theory/pQCD.html#strong-coupling"><span class="std std-ref">Strong Coupling</span></a></p></li>
 <li><p><a class="reference internal" href="../modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher" title="eko.interpolation.InterpolatorDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">eko.interpolation.InterpolatorDispatcher</span></code></a> Implementation of the <a class="reference internal" href="../theory/Interpolation.html"><span class="doc">Interpolation</span></a></p></li>
 </ul>

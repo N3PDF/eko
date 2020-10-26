@@ -162,7 +162,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/code/IO-tabs/ThresholdConfig.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/code/IO-tabs/InterpolatorDispatcher.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,16 +175,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>ThresholdConfig parameters:</p>
+  <p>InterpolatorDispatcher parameter:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> <code class="docutils literal notranslate"><span class="pre">FNS</span></code> active flavor number scheme. Possible values are <cite>FFNS</cite>,
-representing a <abbr title="Fixed Flavor Number Scheme">FFNS</abbr>, or, <cite>ZM-VFNS</cite>, <cite>FONLL-A</cite>, <cite>FONLL-A’</cite>,
-representing a <abbr title="Variable Flavor Number Scheme">VFNS</abbr>; <strong>Required</strong></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">Q0</span></code> reference scale from which to start; <strong>Required</strong></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> <code class="docutils literal notranslate"><span class="pre">NfFF</span></code> number of fixed flavors if applicable; <strong>Required</strong> if in <abbr title="Fixed Flavor Number Scheme">FFNS</abbr>, ignored otherwise</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mc</span></code> charm mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mb</span></code> bottom mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mt</span></code> top mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code> <code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code> the interpolation grid; <strong>Required</strong></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> <code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code> polynomial degree of the interpolating function; <strong>Required</strong></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a> <code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code> use logarithmic interpolation? <strong>Required</strong></p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code> <code class="docutils literal notranslate"><span class="pre">Q2grid</span></code> the target grid in <span class="math notranslate nohighlight">\(Q^2\)</span>; <strong>Required</strong></p></li>
 </ul>
 
 

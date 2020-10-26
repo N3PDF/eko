@@ -171,7 +171,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/code/IO.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/code/IO.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -224,98 +224,30 @@ and environment</p></li>
 </tr>
 </tbody>
 </table>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">ThresholdConfig input runcard</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Type</p></th>
-<th class="head"><p>default</p></th>
-<th class="head"><p>description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">FNS</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
-<td><p>[required]</p></td>
-<td><p>possible values are <cite>FFNS</cite> - representing a fixed flavor number scheme, or, <cite>ZM-VFNS</cite>, <cite>FONLL-A</cite> - representing a variable flavor number scheme (VFNS)</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Q0</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
-<td><p>[required]</p></td>
-<td><p>reference scale from which to start</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NfFF</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p></td>
-<td><p>[required if in FFNS, ignored otherwise]</p></td>
-<td><p>number of fixed flavors if applicable</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mc</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
-<td><p>[required if in VFNS, ignored otherwise]</p></td>
-<td><p>charm mass in GeV</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mb</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
-<td><p>[required if in VFNS, ignored otherwise]</p></td>
-<td><p>bottom mass in GeV</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mt</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a></p></td>
-<td><p>[required if in VFNS, ignored otherwise]</p></td>
-<td><p>top mass in GeV</p></td>
-</tr>
-</tbody>
-</table>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">operator input runcard</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Type</p></th>
-<th class="head"><p>default</p></th>
-<th class="head"><p>description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code></p></td>
-<td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code></p></td>
-<td><p>[required]</p></td>
-<td><p>the interpolation grid</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
-<td><p>polynomial degree of the interpolating function</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code></p></td>
-<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
-<td><p>use logarithmic interpolation?</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Q2grid</span></code></p></td>
-<td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code></p></td>
-<td><p>[required]</p></td>
-<td><p>the target grid in <span class="math notranslate nohighlight">\(Q^2\)</span></p></td>
-</tr>
-</tbody>
-</table>
+<p>ThresholdConfig parameters:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> <code class="docutils literal notranslate"><span class="pre">FNS</span></code> active flavor number scheme. Possible values are <cite>FFNS</cite>,
+representing a <abbr title="Fixed Flavor Number Scheme">FFNS</abbr>, or, <cite>ZM-VFNS</cite>, <cite>FONLL-A</cite>, <cite>FONLL-A’</cite>,
+representing a <abbr title="Variable Flavor Number Scheme">VFNS</abbr>; <strong>Required</strong></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">Q0</span></code> reference scale from which to start; <strong>Required</strong></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> <code class="docutils literal notranslate"><span class="pre">NfFF</span></code> number of fixed flavors if applicable; <strong>Required</strong> if in <abbr title="Fixed Flavor Number Scheme">FFNS</abbr>, ignored otherwise</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mc</span></code> charm mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mb</span></code> bottom mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mt</span></code> top mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
+</ul>
+<p>InterpolatorDispatcher parameter:</p>
+<ul class="simple">
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code> <code class="docutils literal notranslate"><span class="pre">interpolation_xgrid</span></code> the interpolation grid; <strong>Required</strong></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> <code class="docutils literal notranslate"><span class="pre">interpolation_polynomial_degree</span></code> polynomial degree of the interpolating function; <strong>Required</strong></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a> <code class="docutils literal notranslate"><span class="pre">interpolation_is_log</span></code> use logarithmic interpolation? <strong>Required</strong></p></li>
+<li><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list(float)</span></code> <code class="docutils literal notranslate"><span class="pre">Q2grid</span></code> the target grid in <span class="math notranslate nohighlight">\(Q^2\)</span>; <strong>Required</strong></p></li>
+</ul>
 </div>
 <div class="section" id="output">
 <h2>Output<a class="headerlink" href="#output" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> instance represents the following runcard:</p>
-<table class="docutils align-default" id="id4">
-<caption><span class="caption-text">output runcard</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">output runcard</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 33%" />
