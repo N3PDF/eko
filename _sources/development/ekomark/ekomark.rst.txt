@@ -49,6 +49,14 @@ ekomark.plots module
    :undoc-members:
    :show-inheritance:
 
+ekomark.runner module
+---------------------
+
+.. automodule:: ekomark.runner
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 ekomark.toyLH module
 --------------------
 
