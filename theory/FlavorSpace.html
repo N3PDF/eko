@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Evolution Basis &mdash; EKO 0.5.2-develop documentation</title>
+  <title>Flavor Space &mdash; EKO 0.5.2-develop documentation</title>
   
 
   
@@ -103,7 +103,13 @@
 <li class="toctree-l1"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Evolution Basis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Flavor Space</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#flavor-basis">Flavor Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basis">+/- Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evolution-basis">Evolution Basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-bases">Other Bases</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
@@ -166,13 +172,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Evolution Basis</li>
+      <li>Flavor Space</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/theory/FlavourBasis.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/theory/FlavorSpace.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -185,17 +191,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="evolution-basis">
-<h1>Evolution Basis<a class="headerlink" href="#evolution-basis" title="Permalink to this headline">¶</a></h1>
-<p>The evolution flavours are</p>
+  <div class="section" id="flavor-space">
+<h1>Flavor Space<a class="headerlink" href="#flavor-space" title="Permalink to this headline">¶</a></h1>
+<p>An <abbr title="Evolution Kernel Operator">EKO</abbr> is rank-4 operator both in flavor and momentum fraction space.
+By Flavor Space we mean the 13-dimensional function space that contains
+the different <abbr title="Parton Distribution Function(s)">PDF</abbr> flavor. Note that there is an abiguity concerning the
+word “Flavor Basis” which is sometimes refered to as an <em>abstract</em> basis
+in the Flavor Space, but often the specific basis described here below is meant.</p>
+<div class="section" id="flavor-basis">
+<h2>Flavor Basis<a class="headerlink" href="#flavor-basis" title="Permalink to this headline">¶</a></h2>
+<p>Here we use the raw quark flavors along with the gluon as they correspond to the
+operator in the Lagrange density:</p>
 <div class="math notranslate nohighlight">
-\[V, V_3, V_8, V_{15}, V_{24}, V_{35}, T_3, T_8, T_{15}, T_{24}, T_{35}, \Sigma, g\]</div>
-<p>and they can be seperated into two major classes: the singlet sector, consisting of the
+\[g, u, \bar u, d, \bar d, s, \bar s, c, \bar c, b, \bar b, t, \bar t\]</div>
+<ul class="simple">
+<li><p>we deliver the <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> in this basis, although the flavors are
+slightly differently arranged (Implementation: <a class="reference internal" href="../modules/eko/eko.html#eko.basis_rotation.flavor_basis_pids" title="eko.basis_rotation.flavor_basis_pids"><code class="xref py py-data docutils literal notranslate"><span class="pre">here</span></code></a>).</p></li>
+<li><p>most cross section programs as well as <a class="reference external" href="https://lhapdf.hepforge.org/">LHAPDF</a> <a class="bibtex reference internal" href="../zzz-refs.html#buckley-2014ana" id="id1">[BFL+15]</a> use this basis</p></li>
+<li><p>we will consider this basis as the canonical basis</p></li>
+</ul>
+</div>
+<div class="section" id="basis">
+<h2>+/- Basis<a class="headerlink" href="#basis" title="Permalink to this headline">¶</a></h2>
+<p>Instead of using the raw flavors, we recombine the quark flavors into</p>
+<div class="math notranslate nohighlight">
+\[q^\pm = q \pm \bar q\]</div>
+<p>as this is closer to the actual physics: <span class="math notranslate nohighlight">\(q^-\)</span> corresponds to the valence quark distribution
+that e.g. in the proton will carry most of the momentum at large x and <span class="math notranslate nohighlight">\(q^+\)</span> effectively is the
+sea quark distribution:</p>
+<div class="math notranslate nohighlight">
+\[g, u^+, u^-, d^+, d^-, s^+, s^-, c^+, c^-, b^+, b^-, t^+, t^-\]</div>
+<ul class="simple">
+<li><p>this basis is <em>not</em> normalized with respect to the canonical flavor basis</p></li>
+<li><p>the basis transformation to the Flavor Basis is implemented in
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">rotate_pm_to_flavor()</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="evolution-basis">
+<h2>Evolution Basis<a class="headerlink" href="#evolution-basis" title="Permalink to this headline">¶</a></h2>
+<p>As the gluon is flavor-blind it is handy to solve <abbr title="Dokshitzer-Gribov-Lipatov-Altarelli-Parisi">DGLAP</abbr> not in the flavor basis,
+but in the Evolution Basis where instead we need to solve a minimal coupled system.
+The new basis elements can be seperated into two major classes: the singlet sector, consisting of the
 singlet distribution <span class="math notranslate nohighlight">\(\Sigma\)</span> and the gluon distribution <span class="math notranslate nohighlight">\(g\)</span>, and the non-singlet
 sector. The non-singlet sector can be again subdivided into three groups: first the full
 valence distribution <span class="math notranslate nohighlight">\(V\)</span>, second the valence-like distributions
 <span class="math notranslate nohighlight">\(V_3 \ldots V_{35}\)</span>, and third the singlet like distributions <span class="math notranslate nohighlight">\(T_3 \ldots T_{35}\)</span>.
-The mapping between the Evolution Basis and the Flavour Basis is given by</p>
+The mapping between the Evolution Basis and the +/- Basis is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Sigma &amp;= \sum\limits_{j} q_j^+\\
 V &amp;= \sum\limits_{j} q_j^-\\
@@ -209,13 +250,23 @@ T_8 &amp;= u^+ + d^+ - 2 s^+\\
 T_{15} &amp;= u^+ + d^+ + s^+ - 3 c^+\\
 T_{24} &amp;= u^+ + d^+ + s^+ + c^+ - 4 b^+\\
 T_{35} &amp;= u^+ + d^+ + s^+ + c^+ + b^+ - 5 t^+\end{split}\]</div>
-<p>with</p>
-<div class="math notranslate nohighlight">
-\[q^\pm = q \pm \bar q\]</div>
-<p>Note that the associated numbers to the valence-like and singlet-like non-singlet distributions
+<ul class="simple">
+<li><p>the associated numbers to the valence-like and singlet-like non-singlet distributions
 <span class="math notranslate nohighlight">\(k\)</span> follow the common group-theoretical notation <span class="math notranslate nohighlight">\(k = n_f^2 - 1\)</span>
-where <span class="math notranslate nohighlight">\(n_f\)</span> denotes the incorporated number of quark flavours.</p>
-<p>The matching conditions when crossing flavour thresholds are given in <a class="reference internal" href="Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
+where <span class="math notranslate nohighlight">\(n_f\)</span> denotes the incorporated number of quark flavors</p></li>
+<li><p>this basis is <em>not</em> normalized with respect to the canonical flavor basis, this means that in the
+final step before the <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> is created, the elements have to be normalized</p></li>
+<li><p>the basis transformation from the Flavor Basis is implemented in
+<a class="reference internal" href="../modules/eko/eko.html#eko.basis_rotation.rotate_flavor_to_evolution" title="eko.basis_rotation.rotate_flavor_to_evolution"><code class="xref py py-data docutils literal notranslate"><span class="pre">rotate_flavor_to_evolution</span></code></a></p></li>
+</ul>
+</div>
+<div class="section" id="other-bases">
+<h2>Other Bases<a class="headerlink" href="#other-bases" title="Permalink to this headline">¶</a></h2>
+<p>In an <abbr title="Parton Distribution Function(s)">PDF</abbr> fitting environment sometimes yet different bases are used to enforce or improve positivity
+of the <abbr title="Parton Distribution Function(s)">PDF</abbr> <a class="bibtex reference internal" href="../zzz-refs.html#candido-2020yat" id="id2">[CFH20]</a>. E.g. <a class="bibtex reference internal" href="../zzz-refs.html#giele-2002hx" id="id3">[G+02]</a> uses</p>
+<div class="math notranslate nohighlight">
+\[u_v = u^-, d_v = d^-, L_+ = 2(\bar u + \bar d), L_- = \bar d - \bar u, s^+, c^+, b^+, g\]</div>
+</div>
 </div>
 
 

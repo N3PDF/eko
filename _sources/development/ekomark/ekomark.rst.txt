@@ -41,6 +41,14 @@ ekomark.df\_dict module
    :undoc-members:
    :show-inheritance:
 
+ekomark.lhapdf\_benchmark module
+--------------------------------
+
+.. automodule:: ekomark.lhapdf_benchmark
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 ekomark.plots module
 --------------------
 

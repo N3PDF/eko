@@ -114,7 +114,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
@@ -290,7 +290,7 @@ the Mellin inverse.</p>
 \[\begin{split}S_m(N) = \sum\limits_{j=1}^N \frac 1 {j^m} = \frac{(-1)^{m-1}}{(m-1)!} \psi_{m-1}(N+1)+c_m \quad
 \text{with}\, c_m = \left\{\begin{array}{ll} \gamma_E, &amp; m=1\\ \zeta(m), &amp; m&gt;1\end{array} \right.\end{split}\]</div>
 <p>and where <span class="math notranslate nohighlight">\(\psi_k(N)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>-th polygamma function (implemented as <a class="reference internal" href="../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a>)
-and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta function (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.zeta.html#scipy.special.zeta" title="(in SciPy v1.5.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.special.zeta()</span></code></a>).</p>
+and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta function (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.zeta.html#scipy.special.zeta" title="(in SciPy v1.5.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.special.zeta()</span></code></a>).</p>
 <ul class="simple">
 <li><p>for the sums <span class="math notranslate nohighlight">\(S_{-m}(N)\)</span> and <span class="math notranslate nohighlight">\(m &gt; 0\)</span> we use <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id2">[GRV90]</a></p></li>
 </ul>
@@ -300,13 +300,12 @@ and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta
 and with -1 elsewise.</p>
 <ul class="simple">
 <li><p>for the sums with greater depth we use the lists provided in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id3">[GRV90]</a><a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id4">[Mus17]</a><a class="bibtex reference internal" href="../zzz-refs.html#blumlein-1998if" id="id5">[BK99]</a>.</p></li>
-<li><p>Note, however, that the formula for <span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> is neither correct in <a class="bibtex reference internal" href="../zzz-refs.html#blumlein-1998if" id="id6">[BK99]</a>
-nor in <a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id7">[Mus17]</a> but in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id8">[GRV90]</a> (where it is called <span class="math notranslate nohighlight">\(\tilde S\)</span>):</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> we use the implementation of <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id6">[GRV90]</a> (where it is called <span class="math notranslate nohighlight">\(\tilde S\)</span>):</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}S_{-2,1}(N) &amp;= - \frac 5 8 \zeta(3) + \zeta(2)\left(S_{-1}(N) - \frac{\eta}{N} + \log(2)\right) + \eta\left(\frac{S_{1}(N)}{N^2} + g_3(N)\right)\\
 g_3(N) &amp;= \mathcal M \left[\frac{\text{Li}_2(x)}{1+x}\right](N)\end{split}\]</div>
-<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id9">[Vog05]</a> (implemented as <a class="reference internal" href="../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.mellin_g3" title="eko.anomalous_dimensions.harmonics.mellin_g3"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mellin_g3()</span></code></a>).</p>
+<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id7">[Vog05]</a> (implemented as <a class="reference internal" href="../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.mellin_g3" title="eko.anomalous_dimensions.harmonics.mellin_g3"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mellin_g3()</span></code></a>).</p>
 </div>
 </div>
 

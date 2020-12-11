@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
@@ -127,7 +127,6 @@
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.basis_rotation">eko.basis_rotation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.beta">eko.beta module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.constants">eko.constants module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.flavours">eko.flavours module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.interpolation">eko.interpolation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.mellin">eko.mellin module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.html#module-eko.output">eko.output module</a></li>
@@ -251,9 +250,9 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_singlet_0" title="eko.anomalous_dimensions.lo.gamma_singlet_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.lo.gamma_singlet_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_singlet_0" title="eko.anomalous_dimensions.lo.gamma_singlet_0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.lo.gamma_singlet_0</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_singlet_1" title="eko.anomalous_dimensions.nlo.gamma_singlet_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_singlet_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(1)}(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_singlet_1" title="eko.anomalous_dimensions.nlo.gamma_singlet_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_singlet_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(1)}(N)\)</span></p>
 </dd>
 </dl>
 </div>
@@ -269,7 +268,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative order</p></li>
 <li><p><strong>mode</strong> (<em>&quot;m&quot; | &quot;p&quot; | &quot;v&quot;</em>) – sector identifier</p></li>
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin variable</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -282,11 +281,11 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_ns_0" title="eko.anomalous_dimensions.lo.gamma_ns_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.lo.gamma_ns_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{ns}^{(0)}(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_ns_0" title="eko.anomalous_dimensions.lo.gamma_ns_0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.lo.gamma_ns_0</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{ns}^{(0)}(N)\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_nsp_1" title="eko.anomalous_dimensions.nlo.gamma_nsp_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_nsp_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{ns,+}^{(1)}(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_nsp_1" title="eko.anomalous_dimensions.nlo.gamma_nsp_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_nsp_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{ns,+}^{(1)}(N)\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_nsm_1" title="eko.anomalous_dimensions.nlo.gamma_nsm_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_nsm_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{ns,-}^{(1)}(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_nsm_1" title="eko.anomalous_dimensions.nlo.gamma_nsm_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_nsm_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{ns,-}^{(1)}(N)\)</span></p>
 </dd>
 </dl>
 </div>
@@ -301,7 +300,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative order</p></li>
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin variable</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -314,9 +313,9 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_singlet_0" title="eko.anomalous_dimensions.lo.gamma_singlet_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.lo.gamma_singlet_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_singlet_0" title="eko.anomalous_dimensions.lo.gamma_singlet_0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.lo.gamma_singlet_0</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(0)}(N)\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_singlet_1" title="eko.anomalous_dimensions.nlo.gamma_singlet_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_singlet_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(1)}(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_singlet_1" title="eko.anomalous_dimensions.nlo.gamma_singlet_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eko.anomalous_dimensions.nlo.gamma_singlet_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{S}^{(1)}(N)\)</span></p>
 </dd>
 </dl>
 </div>
@@ -335,7 +334,7 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <dd><p>Computes the polygamma functions <span class="math notranslate nohighlight">\(\psi_k(z)\)</span>.</p>
 <p>Reimplementation of <code class="docutils literal notranslate"><span class="pre">WPSIPG</span></code> (C317) in <a class="reference external" href="http://cernlib.web.cern.ch/cernlib/">CERNlib</a>
 <a class="bibtex reference internal" href="../../zzz-refs.html#kolbig1972221" id="id3">[Kol72]</a>.</p>
-<p>Note that the SciPy implementation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html#scipy.special.digamma" title="(in SciPy v1.5.3)"><code class="xref py py-data docutils literal notranslate"><span class="pre">scipy.special.digamma</span></code></a>
+<p>Note that the SciPy implementation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html#scipy.special.digamma" title="(in SciPy v1.5.4)"><code class="xref py py-data docutils literal notranslate"><span class="pre">scipy.special.digamma</span></code></a>
 does not allow for complex inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -375,7 +374,7 @@ Euler-Mascheroni constant.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cern_polygamma</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
 </dd>
 </dl>
 </div>
@@ -403,7 +402,7 @@ Riemann zeta function.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cern_polygamma</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
 </dd>
 </dl>
 </div>
@@ -431,7 +430,7 @@ Riemann zeta function.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-func docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cern_polygamma</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\psi_0(N)\)</span></p>
 </dd>
 </dl>
 </div>
@@ -476,7 +475,7 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
 <li><p><strong>s1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – S1(N)</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -536,7 +535,7 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -562,7 +561,7 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
 <li><p><strong>s1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – S1(N)</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -575,13 +574,13 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_ns_0" title="eko.anomalous_dimensions.lo.gamma_ns_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_ns_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qq}^{(0)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_ns_0" title="eko.anomalous_dimensions.lo.gamma_ns_0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_ns_0</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qq}^{(0)}\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_qg_0" title="eko.anomalous_dimensions.lo.gamma_qg_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_qg_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qg}^{(0)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_qg_0" title="eko.anomalous_dimensions.lo.gamma_qg_0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_qg_0</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qg}^{(0)}\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_gq_0" title="eko.anomalous_dimensions.lo.gamma_gq_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_gq_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{gq}^{(0)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_gq_0" title="eko.anomalous_dimensions.lo.gamma_gq_0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_gq_0</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{gq}^{(0)}\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_gg_0" title="eko.anomalous_dimensions.lo.gamma_gg_0"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_gg_0()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{gg}^{(0)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.lo.gamma_gg_0" title="eko.anomalous_dimensions.lo.gamma_gg_0"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_gg_0</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{gg}^{(0)}\)</span></p>
 </dd>
 </dl>
 </div>
@@ -603,7 +602,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -625,7 +624,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -647,7 +646,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -669,7 +668,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -691,7 +690,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -713,7 +712,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -739,7 +738,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -752,15 +751,15 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_nsp_1" title="eko.anomalous_dimensions.nlo.gamma_nsp_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_nsp_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qq}^{(1)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_nsp_1" title="eko.anomalous_dimensions.nlo.gamma_nsp_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_nsp_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qq}^{(1)}\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_ps_1" title="eko.anomalous_dimensions.nlo.gamma_ps_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_ps_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qq}^{(1)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_ps_1" title="eko.anomalous_dimensions.nlo.gamma_ps_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_ps_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qq}^{(1)}\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_qg_1" title="eko.anomalous_dimensions.nlo.gamma_qg_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_qg_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qg}^{(1)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_qg_1" title="eko.anomalous_dimensions.nlo.gamma_qg_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_qg_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{qg}^{(1)}\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_gq_1" title="eko.anomalous_dimensions.nlo.gamma_gq_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_gq_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{gq}^{(1)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_gq_1" title="eko.anomalous_dimensions.nlo.gamma_gq_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_gq_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{gq}^{(1)}\)</span></p>
 </dd>
-<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_gg_1" title="eko.anomalous_dimensions.nlo.gamma_gg_1"><code class="xref py py-func docutils literal notranslate"><span class="pre">gamma_gg_1()</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{gg}^{(1)}\)</span></p>
+<dt><a class="reference internal" href="#eko.anomalous_dimensions.nlo.gamma_gg_1" title="eko.anomalous_dimensions.nlo.gamma_gg_1"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gamma_gg_1</span></code></a></dt><dd><p><span class="math notranslate nohighlight">\(\gamma_{gg}^{(1)}\)</span></p>
 </dd>
 </dl>
 </div>

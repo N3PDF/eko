@@ -101,7 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
@@ -285,8 +285,8 @@
 <span class="sd">                alpha_s(!) at the reference scale :math:`\alpha_s(\mu_0^2)`</span>
 <span class="sd">            scale_ref : float</span>
 <span class="sd">                reference scale :math:`\mu_0^2`</span>
-<span class="sd">            threshold_holder : eko.thresholds.ThresholdsConfig</span>
-<span class="sd">                An instance of :class:`~eko.thresholds.ThresholdsConfig`</span>
+<span class="sd">            threshold_holder : eko.thresholds.ThresholdsAtlas</span>
+<span class="sd">                An instance of :class:`~eko.thresholds.ThresholdsAtlas`</span>
 <span class="sd">            order: int</span>
 <span class="sd">                Evaluated order of the beta function: ``0`` = LO, ...</span>
 <span class="sd">            method : [&quot;expanded&quot;, &quot;exact&quot;]</span>
@@ -296,7 +296,7 @@
 <span class="sd">        --------</span>
 <span class="sd">            &gt;&gt;&gt; alpha_ref = 0.35</span>
 <span class="sd">            &gt;&gt;&gt; scale_ref = 2</span>
-<span class="sd">            &gt;&gt;&gt; threshold_holder = ThresholdsConfig( ... )</span>
+<span class="sd">            &gt;&gt;&gt; threshold_holder = ThresholdsAtlas( ... )</span>
 <span class="sd">            &gt;&gt;&gt; sc = StrongCoupling(alpha_ref, scale_ref, threshold_holder)</span>
 <span class="sd">            &gt;&gt;&gt; q2 = 91.1**2</span>
 <span class="sd">            &gt;&gt;&gt; sc.a_s(q2)</span>
@@ -316,7 +316,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;alpha_s_ref has to be positive - got </span><span class="si">{</span><span class="n">alpha_s_ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">scale_ref</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;scale_ref has to be positive - got </span><span class="si">{</span><span class="n">scale_ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsConfig</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">thresh</span><span class="p">,</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsAtlas</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Needs a Threshold instance&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">order</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;a_s beyond NNLO is not implemented&quot;</span><span class="p">)</span>
@@ -327,14 +327,9 @@
 
         <span class="c1"># create new threshold object</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">as_ref</span> <span class="o">=</span> <span class="n">alpha_s_ref</span> <span class="o">/</span> <span class="mf">4.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>  <span class="c1"># convert to a_s</span>
-        <span class="k">if</span> <span class="n">thresh</span><span class="o">.</span><span class="n">scheme</span> <span class="o">==</span> <span class="s2">&quot;FFNS&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsConfig</span><span class="p">(</span>
-                <span class="n">scale_ref</span><span class="p">,</span> <span class="n">thresh</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">nf</span><span class="o">=</span><span class="n">thresh</span><span class="o">.</span><span class="n">nf_ref</span>
-            <span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsConfig</span><span class="p">(</span>
-                <span class="n">scale_ref</span><span class="p">,</span> <span class="n">thresh</span><span class="o">.</span><span class="n">scheme</span><span class="p">,</span> <span class="n">threshold_list</span><span class="o">=</span><span class="n">thresh</span><span class="o">.</span><span class="n">_area_walls</span>
-            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsAtlas</span><span class="p">(</span>
+            <span class="n">thresh</span><span class="o">.</span><span class="n">area_walls</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">scale_ref</span>
+        <span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
             <span class="s2">&quot;Strong Coupling: Reference a_s(Q^2=</span><span class="si">%f</span><span class="s2">)=</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q2_ref</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_ref</span>
         <span class="p">)</span>
@@ -360,7 +355,7 @@
 <span class="sd">        ----------</span>
 <span class="sd">            theory_card : dict</span>
 <span class="sd">                theory dictionary</span>
-<span class="sd">            thresholds_config : eko.thresholds.ThresholdsConfig</span>
+<span class="sd">            thresholds_config : eko.thresholds.ThresholdsAtlas</span>
 <span class="sd">                threshold configuration</span>
 
 <span class="sd">        Returns</span>
@@ -390,7 +385,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown evolution mode </span><span class="si">{</span><span class="n">mod_ev</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="c1"># eventually read my dependents</span>
         <span class="k">if</span> <span class="n">thresholds_config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">thresholds_config</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">theory_card</span><span class="p">)</span>
+            <span class="n">thresholds_config</span> <span class="o">=</span> <span class="n">thresholds</span><span class="o">.</span><span class="n">ThresholdsAtlas</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">theory_card</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">alpha_ref</span><span class="p">,</span> <span class="n">q2_alpha</span><span class="p">,</span> <span class="n">thresholds_config</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_compute_exact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_ref</span><span class="p">,</span> <span class="n">nf</span><span class="p">,</span> <span class="n">scale_from</span><span class="p">,</span> <span class="n">scale_to</span><span class="p">):</span>
@@ -484,20 +479,16 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># Set up the path to follow in order to go from q2_0 to q2_ref</span>
         <span class="n">final_as</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_ref</span>
-        <span class="n">area_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">get_path_from_q2_ref</span><span class="p">(</span><span class="n">scale_to</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold_holder</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">scale_to</span><span class="p">)</span>
         <span class="c1"># as a default assume mu_F^2 = mu_R^2</span>
         <span class="k">if</span> <span class="n">fact_scale</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fact_scale</span> <span class="o">=</span> <span class="n">scale_to</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">area</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">area_path</span><span class="p">):</span>
-            <span class="n">q2_from</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">q2_ref</span>
-            <span class="n">q2_to</span> <span class="o">=</span> <span class="n">area</span><span class="o">.</span><span class="n">q2_towards</span><span class="p">(</span><span class="n">scale_to</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">):</span>
-                <span class="k">continue</span>
-            <span class="n">new_as</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute</span><span class="p">(</span><span class="n">final_as</span><span class="p">,</span> <span class="n">area</span><span class="o">.</span><span class="n">nf</span><span class="p">,</span> <span class="n">q2_from</span><span class="p">,</span> <span class="n">q2_to</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">seg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">new_as</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute</span><span class="p">(</span><span class="n">final_as</span><span class="p">,</span> <span class="n">seg</span><span class="o">.</span><span class="n">nf</span><span class="p">,</span> <span class="n">seg</span><span class="o">.</span><span class="n">q2_from</span><span class="p">,</span> <span class="n">seg</span><span class="o">.</span><span class="n">q2_to</span><span class="p">)</span>
             <span class="c1"># apply matching conditions: see hep-ph/9706430</span>
             <span class="c1"># - if there is yet a step to go</span>
-            <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">area_path</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="n">next_nf_is_down</span> <span class="o">=</span> <span class="n">area_path</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nf</span> <span class="o">&lt;</span> <span class="n">area</span><span class="o">.</span><span class="n">nf</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">next_nf_is_down</span> <span class="o">=</span> <span class="n">path</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">nf</span> <span class="o">&lt;</span> <span class="n">seg</span><span class="o">.</span><span class="n">nf</span>
                 <span class="c1"># q2_to is the threshold value</span>
                 <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">scale_to</span> <span class="o">/</span> <span class="n">fact_scale</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">next_nf_is_down</span><span class="p">:</span>

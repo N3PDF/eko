@@ -101,7 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../zzz-refs.html">References</a></li>
 </ul>
@@ -196,7 +196,7 @@
 <span class="sd">    A single operator for a specific element in evolution basis.</span>
 
 <span class="sd">    This class provide some basic mathematical operations such as products.</span>
-<span class="sd">    It can also be applied to a pdf vector by the `__call__` method.</span>
+<span class="sd">    It can also be applied to a pdf vector via :meth:`apply_pdf`.</span>
 <span class="sd">    This class will never be exposed to the outside, but will be an internal member</span>
 <span class="sd">    of the :class:`Operator` and :class:`PhysicalOperator` instances.</span>
 
@@ -206,130 +206,50 @@
 <span class="sd">            operator matrix</span>
 <span class="sd">        error : np.array</span>
 <span class="sd">            operator error matrix</span>
-<span class="sd">        name : str</span>
-<span class="sd">            operator name</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">error</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-    <span class="k">def</span> <span class="nf">_split_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Splits the name according to target.input&quot;&quot;&quot;</span>
-        <span class="c1"># we need to do this late, as in raw mode the name to not follow this principle</span>
-        <span class="n">name_spl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_spl</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The operator name has no valid format: target.input&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
-            <span class="n">name_spl</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">name_spl</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_spl</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The operator name has no valid format: target.input&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">name_spl</span>
+<div class="viewcode-block" id="OpMember.copy"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.member.OpMember.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span></div>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns target flavour name (given by the first part of the name)&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_name</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Returns input flavour name (given by the second part of the name)&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_name</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">is_physical</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Lives inside a :class:`PhysicalOperator`? determined by name&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;NS_p&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_m&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_v&quot;</span><span class="p">,</span> <span class="s2">&quot;S_qq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_qg&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gg&quot;</span><span class="p">]:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="kc">True</span>
-
-<div class="viewcode-block" id="OpMember.apply_pdf"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.member.OpMember.apply_pdf">[docs]</a>    <span class="k">def</span> <span class="nf">apply_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The operator member can act on a pdf member.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            pdf_member : numpy.ndarray</span>
-<span class="sd">                pdf vector</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            result : float</span>
-<span class="sd">                higher scale pdf</span>
-<span class="sd">            error : float</span>
-<span class="sd">                evolution uncertainty to pdf at higher scale</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">)</span>
-        <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">,</span> <span class="n">pdf_member</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">error</span></div>
-
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-
-    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
-        <span class="c1"># scalar multiplication</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
-            <span class="n">one</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
-            <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span> <span class="o">*</span> <span class="n">one</span>
-            <span class="n">rerror</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="o">*</span> <span class="n">one</span>
-            <span class="n">new_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-        <span class="c1"># matrix multiplication</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">OpMember</span><span class="p">):</span>
-            <span class="c1"># check compatibility</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_physical</span> <span class="o">!=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">is_physical</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Operators do not live in the same space!&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_physical</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span> <span class="o">!=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">target</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="sa">f</span><span class="s2">&quot;Can not sum </span><span class="si">{</span><span class="n">operator_member</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> OpMembers!&quot;</span>
-                    <span class="p">)</span>
-                <span class="n">new_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">operator_member</span><span class="o">.</span><span class="n">input</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">new_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">operator_member</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">rerror</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">error</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Can&#39;t multiply OpMember and </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">operator_member</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-            <span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__matmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
+        <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">rerror</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">error</span>
         <span class="n">lval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
         <span class="n">ler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span>
         <span class="n">new_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">lval</span><span class="p">,</span> <span class="n">rval</span><span class="p">)</span>
         <span class="c1"># TODO check error propagation</span>
         <span class="n">new_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">lval</span><span class="p">,</span> <span class="n">rerror</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">ler</span><span class="p">,</span> <span class="n">rval</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">OpMember</span><span class="p">(</span><span class="n">new_val</span><span class="p">,</span> <span class="n">new_err</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">new_val</span><span class="p">,</span> <span class="n">new_err</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t multiply OpMember and </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">other</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">other</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
             <span class="c1"># we only allow the integer 0 as alias for the true zero operator</span>
             <span class="k">if</span> <span class="n">operator_member</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="s2">&quot;The only integer we can sum to is 0 (as alias for the zero operator)&quot;</span>
+                    <span class="s2">&quot;The only number we can sum to is 0 (as alias for the zero operator)&quot;</span>
                 <span class="p">)</span>
             <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span>
             <span class="n">rerror</span> <span class="o">=</span> <span class="mf">0.0</span>
-            <span class="n">new_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="n">OpMember</span><span class="p">):</span>
-            <span class="c1"># check compatibility</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_physical</span> <span class="o">!=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">is_physical</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Operators do not live in the same space!&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_physical</span> <span class="ow">and</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;Can not sum </span><span class="si">{</span><span class="n">operator_member</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> OpMembers!&quot;</span>
-                <span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operator_member</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">):</span>
             <span class="n">rval</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">value</span>
             <span class="n">rerror</span> <span class="o">=</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">error</span>
-            <span class="n">new_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t sum OpMember and </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">operator_member</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">new_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="n">rval</span>
         <span class="n">new_err</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">+</span> <span class="n">rerror</span>
-        <span class="k">return</span> <span class="n">OpMember</span><span class="p">(</span><span class="n">new_val</span><span class="p">,</span> <span class="n">new_err</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">new_val</span><span class="p">,</span> <span class="n">new_err</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__neg__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">operator_member</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
@@ -343,37 +263,8 @@
     <span class="k">def</span> <span class="fm">__rsub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__radd__</span><span class="p">(</span><span class="o">-</span><span class="n">operator_member</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">operator_member</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">operator_member</span><span class="p">)</span>
-
-<div class="viewcode-block" id="OpMember.join"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.member.OpMember.join">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">list_of_paths</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Multiply a list of :class:`OpMember` using the given paths.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">            steps : list(list(OpMember))</span>
-<span class="sd">                list of raw operators, with the lowest scale to the right</span>
-<span class="sd">            list_of_paths : list(list(str))</span>
-<span class="sd">                list of paths</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">            final_op : OpMember</span>
-<span class="sd">                joined operator</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">final_op</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">list_of_paths</span><span class="p">:</span>
-            <span class="n">cur_op</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="n">member</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">steps</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
-                <span class="n">new_op</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="n">member</span><span class="p">]</span>
-                <span class="k">if</span> <span class="n">cur_op</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">cur_op</span> <span class="o">=</span> <span class="n">new_op</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">cur_op</span> <span class="o">=</span> <span class="n">cur_op</span> <span class="o">*</span> <span class="n">new_op</span>
-            <span class="n">final_op</span> <span class="o">+=</span> <span class="n">cur_op</span>
-        <span class="k">return</span> <span class="n">final_op</span></div></div>
+    <span class="k">def</span> <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__mul__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

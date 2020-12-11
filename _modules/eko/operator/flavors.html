@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>eko.operator.flavors &mdash; EKO 0.5.2-develop documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon32x32.png"/>
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> EKO
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                develop
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Overview:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/features.html">Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview/indices.html">Indices and tables</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Theory:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory/Interpolation.html">Interpolation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory/pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory/DGLAP.html">Solving DGLAP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory/FlavorSpace.html">Flavor Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../zzz-refs.html">References</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Implementation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../code/IO.html">Input &amp; Output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/eko/eko.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code/Operators.html">Operator Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code/Utilities.html">Utility Classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../code/Dependency.html">Dependency Graph</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Development:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/Benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/ekomark/ekomark.html">ekomark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/code_todos.html">TODOs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">EKO</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../eko.html">eko</a> &raquo;</li>
+        
+          <li><a href="../operator.html">eko.operator</a> &raquo;</li>
+        
+      <li>eko.operator.flavors</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for eko.operator.flavors</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The write-up of the matching conditions is given in</span>
+<span class="sd">:doc:`Matching Conditions &lt;/theory/Matching&gt;`.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">basis_rotation</span> <span class="k">as</span> <span class="n">br</span>
+
+
+<span class="n">singlet_labels</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;S_qq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_qg&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gq&quot;</span><span class="p">,</span> <span class="s2">&quot;S_gg&quot;</span><span class="p">)</span>
+<span class="n">non_singlet_labels</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;NS_m&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_p&quot;</span><span class="p">,</span> <span class="s2">&quot;NS_v&quot;</span><span class="p">)</span>
+<span class="n">full_labels</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">singlet_labels</span><span class="p">,</span> <span class="o">*</span><span class="n">non_singlet_labels</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="MemberName"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.flavors.MemberName">[docs]</a><span class="k">class</span> <span class="nc">MemberName</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Operator member name</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        name : str</span>
+<span class="sd">            operator name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">_split_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Splits the name according to target.input&quot;&quot;&quot;</span>
+        <span class="c1"># we need to do this late, as in raw mode the name to not follow this principle</span>
+        <span class="n">name_spl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_spl</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The operator name has no valid format: target.input&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+            <span class="n">name_spl</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">name_spl</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name_spl</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The operator name has no valid format: target.input&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">name_spl</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">target</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns target flavor name (given by the first part of the name)&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_name</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns input flavor name (given by the second part of the name)&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split_name</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="pids_from_intrinsic_evol"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.flavors.pids_from_intrinsic_evol">[docs]</a><span class="k">def</span> <span class="nf">pids_from_intrinsic_evol</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">nlf</span><span class="p">,</span> <span class="n">normalize</span><span class="p">):</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Obtain the list of pids with their corresponding weight, that are contributing to ``evol``</span>
+
+<span class="sd">    The normalization of the weights is only needed for the output rotation:</span>
+
+<span class="sd">    - if we want to build e.g. the singlet in the initial state we simply have to sum</span>
+<span class="sd">      to obtain :math:`S = u + \bar u + d + \bar d + \ldots`</span>
+<span class="sd">    - if we want to rotate back in the output we have to *normalize* the weights:</span>
+<span class="sd">      e.g. in nf=3 :math:`u = \frac 1 6 S + \frac 1 6 V + \ldots`</span>
+
+<span class="sd">    The normalization can only happen here since we&#39;re actively cutting out some</span>
+<span class="sd">    flavor (according to ``nlf``).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        evol : str</span>
+<span class="sd">            evolution label</span>
+<span class="sd">        nlf : int</span>
+<span class="sd">            maximum number of light flavors</span>
+<span class="sd">        normalize : bool</span>
+<span class="sd">            normalize output</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        m : list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">evol_idx</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="n">evol_basis</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">is_evol</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="n">is_evol</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">is_evol</span><span class="p">:</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="n">rotate_flavor_to_evolution</span><span class="p">[</span><span class="n">evol_idx</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">pid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">br</span><span class="o">.</span><span class="n">flavor_basis_pids</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">nlf</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">:</span>
+                <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">rotate_pm_to_flavor</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+    <span class="c1"># normalize?</span>
+    <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">@</span> <span class="n">weights</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">norm</span>
+    <span class="k">return</span> <span class="n">weights</span></div>
+
+
+<div class="viewcode-block" id="get_range"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.flavors.get_range">[docs]</a><span class="k">def</span> <span class="nf">get_range</span><span class="p">(</span><span class="n">evol_labels</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine the number of light and heavy flavors participating in the input and output.</span>
+
+<span class="sd">    Here, we assume that the T distributions (e.g. T15) appears *always*</span>
+<span class="sd">    before the corresponding V distribution (e.g. V15).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        nf_in : int</span>
+<span class="sd">            number of light flavors in the input</span>
+<span class="sd">        nf_out : int</span>
+<span class="sd">            number of light flavors in the output</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nf_in</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">nf_out</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+        <span class="n">nf</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">if</span> <span class="n">label</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;T&quot;</span><span class="p">:</span>
+            <span class="n">nf</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">label</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">nf</span>
+
+    <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">evol_labels</span><span class="p">:</span>
+        <span class="n">nf_in</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">update</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">input</span><span class="p">),</span> <span class="n">nf_in</span><span class="p">)</span>
+        <span class="n">nf_out</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">update</span><span class="p">(</span><span class="n">op</span><span class="o">.</span><span class="n">target</span><span class="p">),</span> <span class="n">nf_out</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">nf_in</span><span class="p">,</span> <span class="n">nf_out</span></div>
+
+
+<div class="viewcode-block" id="rotate_pm_to_flavor"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.flavors.rotate_pm_to_flavor">[docs]</a><span class="k">def</span> <span class="nf">rotate_pm_to_flavor</span><span class="p">(</span><span class="n">label</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rotate from +- basis to flavor basis.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        label : str</span>
+<span class="sd">            label</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        l : list(float)</span>
+<span class="sd">            list of weights</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># g and ph are unaltered</span>
+    <span class="k">if</span> <span class="n">label</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;ph&quot;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">br</span><span class="o">.</span><span class="n">rotate_flavor_to_evolution</span><span class="p">[</span><span class="n">br</span><span class="o">.</span><span class="n">evol_basis</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">label</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="c1"># no it has to be a quark with + or - appended</span>
+    <span class="k">if</span> <span class="n">label</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="s2">&quot;duscbt&quot;</span> <span class="ow">or</span> <span class="n">label</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid pm label: </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">br</span><span class="o">.</span><span class="n">flavor_basis_pids</span><span class="p">))</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="n">flavor_basis_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">label</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">pid</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="n">flavor_basis_pids</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    <span class="n">l</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1"># + is +, - is -</span>
+    <span class="k">if</span> <span class="n">label</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span><span class="p">:</span>
+        <span class="n">l</span><span class="p">[</span><span class="n">br</span><span class="o">.</span><span class="n">flavor_basis_pids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="o">-</span><span class="n">pid</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">l</span><span class="p">[</span><span class="n">br</span><span class="o">.</span><span class="n">flavor_basis_pids</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="o">-</span><span class="n">pid</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">l</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019-2020, the N3PDF team
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

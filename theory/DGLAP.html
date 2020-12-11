@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Evolution Basis" href="FlavourBasis.html" />
+    <link rel="next" title="Flavor Space" href="FlavorSpace.html" />
     <link rel="prev" title="pQCD ingredients" href="pQCD.html" /> 
 </head>
 
@@ -115,7 +115,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
@@ -221,7 +221,7 @@ and the equations to solve become</p>
 <p>with <span class="math notranslate nohighlight">\(\mathcal P\)</span> the path-ordering operator. In the non-singlet sector the equations decouple and
 we do not need to worry about neither matrices nor the path-ordering.</p>
 <p>Using <a class="reference internal" href="Interpolation.html"><span class="doc">Interpolation</span></a> on both the inital and final PDF, we can then discretize the
-EKO in x-space and define <span class="math notranslate nohighlight">\({\mathbf{E}}_{k,j}\)</span> (represented by
+<abbr title="Evolution Kernel Operator">EKO</abbr> in x-space and define <span class="math notranslate nohighlight">\({\mathbf{E}}_{k,j}\)</span> (represented by
 <code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code>) by</p>
 <div class="math notranslate nohighlight">
 \[{\mathbf{E}}_{k,j}(a_s \leftarrow a_s^0) = \mathcal{M}^{-1}\left[\tilde{\mathbf{E}}(a_s \leftarrow a_s^0)\tilde p_j\right](x_k)\]</div>
@@ -232,11 +232,11 @@ EKO in x-space and define <span class="math notranslate nohighlight">\({\mathbf{
 <div class="section" id="leading-order">
 <h2>Leading Order<a class="headerlink" href="#leading-order" title="Permalink to this headline">¶</a></h2>
 <p>Expanding the anomalous dimension <span class="math notranslate nohighlight">\(\gamma(a_s)\)</span> and the beta function <span class="math notranslate nohighlight">\(\beta(a_s)\)</span>
-to LO we obtain the (exact) EKO:</p>
+to <abbr title="Leading Order">LO</abbr> we obtain the (exact) <abbr title="Evolution Kernel Operator">EKO</abbr>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\ln \tilde {\mathbf E}^{(0)}(a_s \leftarrow a_s^0) &amp;= \gamma^{(0)}\int\limits_{a_s^0}^{a_s} \frac{da_s'}{\beta_0 a_s'} = \gamma^{(0)} \cdot j^{(0,0)}(a_s,a_s^0)\\
 j^{(0,0)}(a_s,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s} \frac{da_s'}{\beta_0 a_s'} = \frac{\ln(a_s/a_s^0)}{\beta_0}\end{split}\]</div>
-<p>In LO we always use the <em>exact</em> solution.</p>
+<p>In <abbr title="Leading Order">LO</abbr> we always use the <em>exact</em> solution.</p>
 <div class="section" id="lo-non-singlet-evolution">
 <h3>LO Non-Singlet Evolution<a class="headerlink" href="#lo-non-singlet-evolution" title="Permalink to this headline">¶</a></h3>
 <p>We find</p>
@@ -262,7 +262,7 @@ the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</sp
 <div class="math notranslate nohighlight">
 \[\begin{split}\lambda_{\pm} &amp;= \frac 1 {2} \left( \ln \tilde E_{qq}^{(0)} + \ln \tilde E_{gg}^{(0)} \pm \sqrt{(\ln \tilde E_{qq}^{(0)}-\ln \tilde E_{gg}^{(0)})^2 + 4\ln \tilde E_{qg}^{(0)}\ln \tilde E_{gq}^{(0)}} \right)\\
 {\mathbf e}_{\pm} &amp;= \frac{1}{\lambda_{\pm} - \lambda_{\mp}} \left( \ln \mathbf{\tilde E}^{(0)}_S  - \lambda_{\mp} \mathbf I \right)\end{split}\]</div>
-<p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the 2x2 identity matrix in flavour space and, e.g., <span class="math notranslate nohighlight">\(\ln \tilde E_{qq}^{(0)} = \gamma_{qq}^{(0)}j^{(0,0)}(a_s,a_s^0)\)</span>.</p>
+<p>with <span class="math notranslate nohighlight">\(\mathbf I\)</span> the 2x2 identity matrix in flavor space and, e.g., <span class="math notranslate nohighlight">\(\ln \tilde E_{qq}^{(0)} = \gamma_{qq}^{(0)}j^{(0,0)}(a_s,a_s^0)\)</span>.</p>
 <p>The projectors obey the usual properties, i.e.</p>
 <div class="math notranslate nohighlight">
 \[{\mathbf e}_{\pm} \cdot {\mathbf e}_{\pm} = {\mathbf e}_{\pm}\,,\quad {\mathbf e}_{\pm} \cdot {\mathbf e}_{\mp} = 0\,,\quad \ep + \em = \mathbf I\]</div>
@@ -280,18 +280,18 @@ the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</sp
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \tilde f_{ns}^{(1)}(a_s) = \frac{\gamma_{ns}^{(0)} a_s + \gamma_{ns}^{(1)} a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} \cdot \tilde f_{ns}^{(1)}(a_s)\]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma_{ns} \in \{\gamma_{ns,+},\gamma_{ns,-}=\gamma_{ns,v}\}\)</span>.</p>
-<p>We obtain the (exact) EKO <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id4">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a><a class="bibtex reference internal" href="../zzz-refs.html#bonvini-2012sh" id="id6">[Bon12]</a>:</p>
+<p>We obtain the (exact) <abbr title="Evolution Kernel Operator">EKO</abbr> <a class="bibtex reference internal" href="../zzz-refs.html#ruizarriola-1998er" id="id4">[RA98]</a><a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a><a class="bibtex reference internal" href="../zzz-refs.html#bonvini-2012sh" id="id6">[Bon12]</a>:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\ln \tilde E^{(1)}_{ns}(a_s \leftarrow a_s^0) &amp;= \gamma^{(0)} \cdot j^{(0,1)}(a_s,a_s^0) + \gamma^{(1)} \cdot j^{(1,1)}(a_s,a_s^0)\\
 j^{(1,1)}(a_s,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s}\!da_s'\,\frac{a_s'^2}{\beta_0 a_s'^2 + \beta_1 a_s'^3} = \frac{1}{\beta_1}\ln\left(\frac{1+b_1 a_s}{1+b_1 a_s^0}\right)\\
 j^{(0,1)}(a_s,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s}\!da_s'\,\frac{a_s'}{\beta_0 a_s'^2 + \beta_1 a_s'^3} = j^{(0,0)}(a_s,a_s^0) - b_1 j^{(1,1)}(a_s,a_s^0)\end{split}\]</div>
-<p>Note that we recover the LO solution:</p>
+<p>Note that we recover the <abbr title="Leading Order">LO</abbr> solution:</p>
 <div class="math notranslate nohighlight">
 \[\ln \tilde E^{(1)}_{ns}(a_s \leftarrow a_s^0) = \ln \tilde E^{(0)}_{ns}(a_s \leftarrow a_s^0) + j^{(1,1)}(a_s,a_s^0)(\gamma^{(1)} - b_1 \gamma^{(0)})\]</div>
-<p>In NLO we provide different strategies to define the EKO:</p>
+<p>In <abbr title="Next-to-leading Order">NLO</abbr> we provide different strategies to define the <abbr title="Evolution Kernel Operator">EKO</abbr>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['iterate-exact',</span> <span class="pre">'decompose-exact',</span> <span class="pre">'perturbative-exact']</span></code>: use the <em>exact</em> solution as defined above</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['iterate-expanded',</span> <span class="pre">'decompose-expanded',</span> <span class="pre">'perturbative-expanded']</span></code>: use the <em>exact</em> LO solution and substitute
+<li><p><code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['iterate-expanded',</span> <span class="pre">'decompose-expanded',</span> <span class="pre">'perturbative-expanded']</span></code>: use the <em>exact</em> <abbr title="Leading Order">LO</abbr> solution and substitute
 <span class="math notranslate nohighlight">\(j^{(1,1)}(a_s,a_s^0) \to j^{(1,1)}_{exp}(a_s,a_s^0) = \frac 1 {\beta_0}(a_s - a_s^0)\)</span>
 and <span class="math notranslate nohighlight">\(j^{(0,1)}(a_s,a_s^0) \to j^{(0,1)}_{exp}(a_s,a_s^0) = j^{(0,0)}(a_s,a_s^0) - b_1 j^{(1,1)}_{exp}(a_s,a_s^0)\)</span></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">=</span> <span class="pre">'ordered-truncated'</span></code>: expanding the <em>argument</em> of the exponential of the new term but keeping the order we obtain:</p></li>
@@ -314,12 +314,12 @@ and <span class="math notranslate nohighlight">\(j^{(0,1)}(a_s,a_s^0) \to j^{(0,
 <p>For <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['iterate-exact',</span> <span class="pre">'iterate-expanded']</span></code> we use a discretized path-ordering <a class="bibtex reference internal" href="../zzz-refs.html#bonvini-2012sh" id="id7">[Bon12]</a>:</p>
 <div class="math notranslate nohighlight">
 \[\ESk{1}{a_s}{a_s^0} = \prod\limits_{k=n}^{0} \ESk{1}{a_s^{k+1}}{a_s^{k}}\quad \text{with} a_s^{n+1} = a_s\]</div>
-<p>where the order of the product is such that later EKOs are to the left and</p>
+<p>where the order of the product is such that later <abbr title="Evolution Kernel Operator">EKO</abbr> are to the left and</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\ESk{1}{a_s^{k+1}}{a_s^{k}} &amp;= \exp\left(-\frac{\gamma(a_s^{k+1/2})}{\beta(a_s^{k+1/2})} \Delta a_s \right) \\
 a_s^{k+1/2} &amp;= a_0 + \left(k+ \frac 1 2\right) \Delta a_s\\
 \Delta a_s &amp;= \frac{a_s - a_s^0}{n + 1}\end{split}\]</div>
-<p>using the projector algebra from LO to exponentiate the single steps.</p>
+<p>using the projector algebra from <abbr title="Leading Order">LO</abbr> to exponentiate the single steps.</p>
 <p>For <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['decompose-exact',</span> <span class="pre">'decompose-expanded']</span></code>: use the exact or the approximate exact
 integrals from the non-singlet sector and then decompose <span class="math notranslate nohighlight">\(\ln \tilde{\mathbf E}^{(1)}\)</span> -
 this will neglect the non-commutativity of the singlet matrices.</p>
@@ -329,7 +329,7 @@ We set <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" 
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \dSV{1}{a_s} = \frac{\mathbf R (a_s)}{a_s} \cdot \dSV{1}{a_s}\,, \quad
 \mathbf R (a_s) = \sum\limits_{k=0} a_s^k \mathbf R_{k}\]</div>
-<p>where in NLO we find</p>
+<p>where in <abbr title="Next-to-leading Order">NLO</abbr> we find</p>
 <div class="math notranslate nohighlight">
 \[\mathbf R_0 = \gamma_{S}^{(0)}/\beta_0\,,\quad
 \mathbf R_1 = \gamma_{S}^{(1)}/\beta_0 - b_1 \gamma_{S}^{(0)}\]</div>
@@ -374,7 +374,7 @@ operator <span class="math notranslate nohighlight">\(\mathbf U(a_s)\)</span> wi
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="FlavourBasis.html" class="btn btn-neutral float-right" title="Evolution Basis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="FlavorSpace.html" class="btn btn-neutral float-right" title="Flavor Space" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="pQCD.html" class="btn btn-neutral float-left" title="pQCD ingredients" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

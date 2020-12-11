@@ -9,6 +9,14 @@ eko.operator package
 Submodules
 ----------
 
+eko.operator.flavors module
+---------------------------
+
+.. automodule:: eko.operator.flavors
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 eko.operator.grid module
 ------------------------
 

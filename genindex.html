@@ -101,7 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="theory/Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory/pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zzz-refs.html">References</a></li>
 </ul>
@@ -212,14 +212,10 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/eko/eko.html#eko.strong_coupling.StrongCoupling.a_s">a_s() (eko.strong_coupling.StrongCoupling method)</a>
 </li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.member.OpMember.apply_pdf">apply_pdf() (eko.operator.member.OpMember method)</a>
-
-      <ul>
-        <li><a href="modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator.apply_pdf">(eko.operator.physical.PhysicalOperator method)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator.ad_to_evol_map">ad_to_evol_map() (eko.operator.physical.PhysicalOperator class method)</a>
 </li>
-        <li><a href="modules/eko/eko.html#eko.output.Output.apply_pdf">(eko.output.Output method)</a>
+      <li><a href="modules/eko/eko.html#eko.output.Output.apply_pdf">apply_pdf() (eko.output.Output method)</a>
 </li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/eko/eko.html#eko.interpolation.Area">Area (class in eko.interpolation)</a>
@@ -276,17 +272,17 @@
 </li>
       <li><a href="modules/eko/eko.html#eko.interpolation.BasisFunction.compile_n">compile_n() (eko.interpolation.BasisFunction method)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.interpolation.BasisFunction.compile_x">compile_x() (eko.interpolation.BasisFunction method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.Operator.compose">compose() (eko.operator.Operator method)</a>
+      <li><a href="modules/eko/eko.html#eko.interpolation.BasisFunction.compile_x">compile_x() (eko.interpolation.BasisFunction method)</a>
 </li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.Operator.compute">compute() (eko.operator.Operator method)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.grid.OperatorGrid.compute">compute() (eko.operator.grid.OperatorGrid method)</a>
+
+      <ul>
+        <li><a href="modules/eko/eko.operator.html#eko.operator.Operator.compute">(eko.operator.Operator method)</a>
 </li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.grid.OperatorGrid.compute_q2grid">compute_q2grid() (eko.operator.grid.OperatorGrid method)</a>
-</li>
-      <li><a href="modules/eko/eko.html#eko.output.Output.concat">concat() (eko.output.Output method)</a>
+      </ul></li>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.member.OpMember.copy">copy() (eko.operator.member.OpMember method)</a>
 </li>
       <li><a href="modules/eko/eko.operator.html#eko.operator.Operator.copy_ns_ops">copy_ns_ops() (eko.operator.Operator method)</a>
 </li>
@@ -375,13 +371,6 @@
 </li>
       </ul></li>
       <li>
-    eko.flavours
-
-      <ul>
-        <li><a href="modules/eko/eko.html#module-eko.flavours">module</a>
-</li>
-      </ul></li>
-      <li>
     eko.interpolation
 
       <ul>
@@ -409,8 +398,6 @@
         <li><a href="modules/eko/eko.kernels.html#module-eko.kernels.non_singlet">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     eko.kernels.singlet
 
@@ -418,6 +405,8 @@
         <li><a href="modules/eko/eko.kernels.html#module-eko.kernels.singlet">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     eko.kernels.utils
 
@@ -437,6 +426,13 @@
 
       <ul>
         <li><a href="modules/eko/eko.operator.html#module-eko.operator">module</a>
+</li>
+      </ul></li>
+      <li>
+    eko.operator.flavors
+
+      <ul>
+        <li><a href="modules/eko/eko.operator.html#module-eko.operator.flavors">module</a>
 </li>
       </ul></li>
       <li>
@@ -496,6 +492,8 @@
         <li><a href="modules/eko/eko.html#eko.interpolation.evaluate_x">(in module eko.interpolation)</a>
 </li>
       </ul></li>
+      <li><a href="modules/eko/eko.html#eko.basis_rotation.evol_basis">evol_basis (in module eko.basis_rotation)</a>
+</li>
       <li><a href="modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.exp_singlet">exp_singlet() (in module eko.anomalous_dimensions)</a>
 </li>
   </ul></td>
@@ -504,10 +502,14 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.html#eko.basis_rotation.fill_trivial_dists">fill_trivial_dists() (in module eko.basis_rotation)</a>
+      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsAtlas.ffns">ffns() (eko.thresholds.ThresholdsAtlas class method)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.flavours.FlavourTarget">FlavourTarget (class in eko.flavours)</a>
+      <li><a href="modules/eko/eko.html#eko.basis_rotation.flavor_basis_names">flavor_basis_names (in module eko.basis_rotation)</a>
 </li>
+      <li><a href="modules/eko/eko.html#eko.basis_rotation.flavor_basis_pids">flavor_basis_pids (in module eko.basis_rotation)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher.from_dict">from_dict() (eko.interpolation.InterpolatorDispatcher class method)</a>
 
       <ul>
@@ -515,7 +517,7 @@
 </li>
         <li><a href="modules/eko/eko.html#eko.strong_coupling.StrongCoupling.from_dict">(eko.strong_coupling.StrongCoupling class method)</a>
 </li>
-        <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig.from_dict">(eko.thresholds.ThresholdsConfig class method)</a>
+        <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsAtlas.from_dict">(eko.thresholds.ThresholdsAtlas class method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -546,6 +548,8 @@
 </li>
       <li><a href="modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.lo.gamma_qg_0">gamma_qg_0() (in module eko.anomalous_dimensions.lo)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.nlo.gamma_qg_1">gamma_qg_1() (in module eko.anomalous_dimensions.nlo)</a>
 </li>
       <li><a href="modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.gamma_singlet">gamma_singlet() (in module eko.anomalous_dimensions)</a>
@@ -556,41 +560,19 @@
 </li>
       <li><a href="modules/eko/eko.operator.html#eko.operator.gamma_singlet_fact">gamma_singlet_fact() (in module eko.operator)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.html#eko.basis_rotation.generate_input_from_lhapdf">generate_input_from_lhapdf() (in module eko.basis_rotation)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.grid.OperatorGrid.generate">generate() (eko.operator.grid.OperatorGrid method)</a>
 </li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.utils.geomspace">geomspace() (in module eko.kernels.utils)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.flavours.get_all_flavour_paths">get_all_flavour_paths() (in module eko.flavours)</a>
-</li>
-      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_areas">get_areas() (eko.thresholds.ThresholdsConfig method)</a>
-</li>
-      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_areas_idx">get_areas_idx() (eko.thresholds.ThresholdsConfig method)</a>
-</li>
-      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_composition_path">get_composition_path() (eko.thresholds.ThresholdsConfig method)</a>
-</li>
       <li><a href="modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher.get_interpolation">get_interpolation() (eko.interpolation.InterpolatorDispatcher method)</a>
-</li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.grid.OperatorMaster.get_op">get_op() (eko.operator.grid.OperatorMaster method)</a>
-
-      <ul>
-        <li><a href="modules/eko/eko.html#eko.output.Output.get_op">(eko.output.Output method)</a>
-</li>
-      </ul></li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.grid.OperatorGrid.get_op_at_q2">get_op_at_q2() (eko.operator.grid.OperatorGrid method)</a>
-</li>
-      <li><a href="modules/eko/eko.html#eko.runner.Runner.get_operators">get_operators() (eko.runner.Runner method)</a>
 </li>
       <li><a href="modules/eko/eko.html#eko.runner.Runner.get_output">get_output() (eko.runner.Runner method)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.flavours.FlavourTarget.get_path">get_path() (eko.flavours.FlavourTarget method)</a>
-</li>
-      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig.get_path_from_q2_ref">get_path_from_q2_ref() (eko.thresholds.ThresholdsConfig method)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.flavors.get_range">get_range() (in module eko.operator.flavors)</a>
 </li>
       <li><a href="modules/eko/eko.html#eko.output.Output.get_raw">get_raw() (eko.output.Output method)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.flavours.get_singlet_paths">get_singlet_paths() (in module eko.flavours)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.grid.OperatorGrid.get_threshold_operators">get_threshold_operators() (eko.operator.grid.OperatorGrid method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -612,15 +594,15 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.member.OpMember.input">input() (eko.operator.member.OpMember property)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.flavors.MemberName.input">input() (eko.operator.flavors.MemberName property)</a>
 </li>
       <li><a href="modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher">InterpolatorDispatcher (class in eko.interpolation)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.html#eko.interpolation.BasisFunction.is_below_x">is_below_x() (eko.interpolation.BasisFunction method)</a>
+      <li><a href="modules/eko/eko.html#eko.thresholds.PathSegment.intersect">intersect() (eko.thresholds.PathSegment class method)</a>
 </li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.member.OpMember.is_physical">is_physical() (eko.operator.member.OpMember property)</a>
+      <li><a href="modules/eko/eko.html#eko.interpolation.BasisFunction.is_below_x">is_below_x() (eko.interpolation.BasisFunction method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -632,15 +614,13 @@
 </li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_exact">j01_exact() (in module eko.kernels.evolution_integrals)</a>
 </li>
-      <li><a href="modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_expanded">j01_expanded() (in module eko.kernels.evolution_integrals)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j01_expanded">j01_expanded() (in module eko.kernels.evolution_integrals)</a>
+</li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j11_exact">j11_exact() (in module eko.kernels.evolution_integrals)</a>
 </li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.evolution_integrals.j11_expanded">j11_expanded() (in module eko.kernels.evolution_integrals)</a>
-</li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.member.OpMember.join">join() (eko.operator.member.OpMember static method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -680,6 +660,8 @@
 </li>
       <li><a href="modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.mellin_g3">mellin_g3() (in module eko.anomalous_dimensions.harmonics)</a>
 </li>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.flavors.MemberName">MemberName (class in eko.operator.flavors)</a>
+</li>
       <li>
     module
 
@@ -700,8 +682,6 @@
 </li>
         <li><a href="modules/eko/eko.html#module-eko.constants">eko.constants</a>
 </li>
-        <li><a href="modules/eko/eko.html#module-eko.flavours">eko.flavours</a>
-</li>
         <li><a href="modules/eko/eko.html#module-eko.interpolation">eko.interpolation</a>
 </li>
         <li><a href="modules/eko/eko.kernels.html#module-eko.kernels">eko.kernels</a>
@@ -717,6 +697,8 @@
         <li><a href="modules/eko/eko.html#module-eko.mellin">eko.mellin</a>
 </li>
         <li><a href="modules/eko/eko.operator.html#module-eko.operator">eko.operator</a>
+</li>
+        <li><a href="modules/eko/eko.operator.html#module-eko.operator.flavors">eko.operator.flavors</a>
 </li>
         <li><a href="modules/eko/eko.operator.html#module-eko.operator.grid">eko.operator.grid</a>
 </li>
@@ -741,10 +723,12 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/eko/eko.html#eko.constants.NC">NC (in module eko.constants)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig.nf_range">nf_range() (eko.thresholds.ThresholdsConfig method)</a>
+      <li><a href="modules/eko/eko.html#eko.thresholds.PathSegment.nf">nf() (eko.thresholds.PathSegment property)</a>
+
+      <ul>
+        <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsAtlas.nf">(eko.thresholds.ThresholdsAtlas method)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig.nf_ref">nf_ref() (eko.thresholds.ThresholdsConfig property)</a>
-</li>
+      </ul></li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_decompose">nlo_decompose() (in module eko.kernels.singlet)</a>
 </li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.singlet.nlo_decompose_exact">nlo_decompose_exact() (in module eko.kernels.singlet)</a>
@@ -789,8 +773,6 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.grid.OperatorMaster">OperatorMaster (class in eko.operator.grid)</a>
-</li>
       <li><a href="modules/eko/eko.operator.html#eko.operator.member.OpMember">OpMember (class in eko.operator.member)</a>
 </li>
       <li><a href="modules/eko/eko.html#eko.output.Output">Output (class in eko.output)</a>
@@ -801,7 +783,15 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsAtlas.path">path() (eko.thresholds.ThresholdsAtlas method)</a>
+</li>
+      <li><a href="modules/eko/eko.html#eko.thresholds.PathSegment">PathSegment (class in eko.thresholds)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator">PhysicalOperator (class in eko.operator.physical)</a>
+</li>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.flavors.pids_from_intrinsic_evol">pids_from_intrinsic_evol() (in module eko.operator.flavors)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -813,8 +803,6 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.html#eko.thresholds.Area.q2_towards">q2_towards() (eko.thresholds.Area method)</a>
-</li>
       <li><a href="modules/eko/eko.operator.html#eko.operator.quad_ker">quad_ker() (in module eko.operator)</a>
 </li>
   </ul></td>
@@ -825,11 +813,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.singlet.r_vec">r_vec() (in module eko.kernels.singlet)</a>
 </li>
-      <li><a href="modules/eko/eko.html#eko.basis_rotation.rotate_output">rotate_output() (in module eko.basis_rotation)</a>
+      <li><a href="modules/eko/eko.html#eko.basis_rotation.rotate_flavor_to_evolution">rotate_flavor_to_evolution (in module eko.basis_rotation)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.html#eko.output.Output.rotate_pdfs_to_flavor_basis">rotate_pdfs_to_flavor_basis() (eko.output.Output static method)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.flavors.rotate_pm_to_flavor">rotate_pm_to_flavor() (in module eko.operator.flavors)</a>
 </li>
       <li><a href="modules/eko/eko.html#eko.run_dglap">run_dglap() (in module eko)</a>
 </li>
@@ -841,12 +829,10 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.grid.OperatorGrid.set_q2_limits">set_q2_limits() (eko.operator.grid.OperatorGrid method)</a>
+      <li><a href="modules/eko/eko.html#eko.strong_coupling.StrongCoupling">StrongCoupling (class in eko.strong_coupling)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.html#eko.strong_coupling.StrongCoupling">StrongCoupling (class in eko.strong_coupling)</a>
-</li>
       <li><a href="modules/eko/eko.kernels.html#eko.kernels.singlet.sum_u">sum_u() (in module eko.kernels.singlet)</a>
 </li>
   </ul></td>
@@ -859,17 +845,19 @@
 </li>
       <li><a href="modules/eko/eko.html#eko.mellin.Talbot_path">Talbot_path() (in module eko.mellin)</a>
 </li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.member.OpMember.target">target() (eko.operator.member.OpMember property)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.flavors.MemberName.target">target() (eko.operator.flavors.MemberName property)</a>
+</li>
+      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsAtlas">ThresholdsAtlas (class in eko.thresholds)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="modules/eko/eko.html#eko.thresholds.ThresholdsConfig">ThresholdsConfig (class in eko.thresholds)</a>
-</li>
       <li><a href="modules/eko/eko.html#eko.interpolation.InterpolatorDispatcher.to_dict">to_dict() (eko.interpolation.InterpolatorDispatcher method)</a>
 </li>
-      <li><a href="modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator.to_raw">to_raw() (eko.operator.physical.PhysicalOperator method)</a>
+      <li><a href="modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator.to_flavor_basis_tensor">to_flavor_basis_tensor() (eko.operator.physical.PhysicalOperator method)</a>
 </li>
       <li><a href="modules/eko/eko.html#eko.constants.TR">TR (in module eko.constants)</a>
+</li>
+      <li><a href="modules/eko/eko.html#eko.thresholds.PathSegment.tuple">tuple() (eko.thresholds.PathSegment property)</a>
 </li>
   </ul></td>
 </tr></table>

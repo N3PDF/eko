@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
@@ -121,7 +121,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#module-eko.basis_rotation">eko.basis_rotation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-eko.beta">eko.beta module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-eko.constants">eko.constants module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-eko.flavours">eko.flavours module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-eko.interpolation">eko.interpolation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-eko.mellin">eko.mellin module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-eko.output">eko.output module</a></li>
@@ -249,6 +248,7 @@ to fullfill the following evolution</p>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="eko.operator.html">eko.operator package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="eko.operator.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.flavors">eko.operator.flavors module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.grid">eko.operator.grid module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.member">eko.operator.member module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eko.operator.html#module-eko.operator.physical">eko.operator.physical module</a></li>
@@ -262,75 +262,36 @@ to fullfill the following evolution</p>
 </div>
 <div class="section" id="module-eko.basis_rotation">
 <span id="eko-basis-rotation-module"></span><h2>eko.basis_rotation module<a class="headerlink" href="#module-eko.basis_rotation" title="Permalink to this headline">¶</a></h2>
-<p>This module contains the definitions of the different basis used, i.e.:</p>
-<ul>
-<li><p>flavor basis:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">22</span>  <span class="o">-</span><span class="mi">6</span>  <span class="o">-</span><span class="mi">5</span>  <span class="o">-</span><span class="mi">4</span>  <span class="o">-</span><span class="mi">3</span>  <span class="o">-</span><span class="mi">2</span>  <span class="o">-</span><span class="mi">1</span>   <span class="mi">21</span>  <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>
-<span class="n">gm</span>  <span class="n">tb</span>  <span class="n">bb</span>  <span class="n">cb</span>  <span class="n">sb</span>  <span class="n">ub</span>  <span class="n">db</span>   <span class="n">g</span>   <span class="n">d</span>   <span class="n">u</span>   <span class="n">s</span>   <span class="n">c</span>   <span class="n">b</span>   <span class="n">t</span>
-</pre></div>
-</div>
-</li>
-<li><p>QCD Evolution basis:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>   <span class="mi">8</span>   <span class="mi">9</span>  <span class="mi">10</span>  <span class="mi">11</span>  <span class="mi">12</span>  <span class="mi">13</span>
-<span class="n">gm</span>  <span class="n">S</span>   <span class="n">g</span>   <span class="n">V</span>   <span class="n">V3</span>  <span class="n">V8</span> <span class="n">V15</span> <span class="n">V24</span> <span class="n">V35</span>  <span class="n">T3</span> <span class="n">T8</span>  <span class="n">T15</span> <span class="n">T24</span> <span class="n">T35</span>
-</pre></div>
-</div>
-</li>
-</ul>
-<dl class="py function">
-<dt id="eko.basis_rotation.fill_trivial_dists">
-<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">fill_trivial_dists</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_evols</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/basis_rotation.html#fill_trivial_dists"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.basis_rotation.fill_trivial_dists" title="Permalink to this definition">¶</a></dt>
-<dd><p>Insert trivial evolutions basis elements.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>old_evols</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.evolution_operator.PhysicalOperator</span></code>-like dictionary</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>evols</strong> (<em>dict</em>) – updated dictionary</p></li>
-<li><p><strong>trivial_dists</strong> (<em>list</em>) – inserted elements</p></li>
-</ul>
-</p>
-</dd>
-</dl>
+<p>This module contains the definitions of the
+<a class="reference internal" href="../../theory/FlavorSpace.html"><span class="doc">Flavor Basis and Evolution Basis</span></a>.</p>
+<dl class="py data">
+<dt id="eko.basis_rotation.evol_basis">
+<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">evol_basis</code><em class="property"> = ('ph', 'S', 'g', 'V', 'V3', 'V8', 'V15', 'V24', 'V35', 'T3', 'T8', 'T15', 'T24', 'T35')</em><a class="headerlink" href="#eko.basis_rotation.evol_basis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorted elements in Evolution Basis as <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>.</p>
+<p>Definition: <a class="reference internal" href="../../theory/FlavorSpace.html#flavor-basis"><span class="std std-ref">here</span></a>.</p>
+<p>corresponding <abbr title="Parton Distribution Function(s)">PDF</abbr> : <span class="math notranslate nohighlight">\(\gamma, \Sigma, g, V_{3}, V_{8}, V_{15}, V_{24},
+V_{35}, T_{3}, T_{8}, T_{15}, T_{24}, T_{35}\)</span></p>
 </dd></dl>
 
-<dl class="py function">
-<dt id="eko.basis_rotation.generate_input_from_lhapdf">
-<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">generate_input_from_lhapdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lhapdf</span></em>, <em class="sig-param"><span class="n">xs</span></em>, <em class="sig-param"><span class="n">Q2init</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/basis_rotation.html#generate_input_from_lhapdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.basis_rotation.generate_input_from_lhapdf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rotate lhapdf-like input object from flavor space to evolution space</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>lhapdf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><em>object</em></a>) – lhapdf-like input object (i.e. an object with xfxQ2)</p></li>
-<li><p><strong>xs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – input x values</p></li>
-<li><p><strong>Q2init</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – input scale</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>input_dict</strong> – a mapping evolution element to callable</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
-</dd>
-</dl>
+<dl class="py data">
+<dt id="eko.basis_rotation.flavor_basis_names">
+<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">flavor_basis_names</code><em class="property"> = ('ph', 'tbar', 'bbar', 'cbar', 'sbar', 'ubar', 'dbar', 'g', 'd', 'u', 's', 'c', 'b', 't')</em><a class="headerlink" href="#eko.basis_rotation.flavor_basis_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>String representation of <a class="reference internal" href="#eko.basis_rotation.flavor_basis_pids" title="eko.basis_rotation.flavor_basis_pids"><code class="xref py py-data docutils literal notranslate"><span class="pre">flavor_basis_pids</span></code></a>.</p>
 </dd></dl>
 
-<dl class="py function">
-<dt id="eko.basis_rotation.rotate_output">
-<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">rotate_output</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_evols</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/basis_rotation.html#rotate_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.basis_rotation.rotate_output" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rotate lists in evolution basis back to flavor basis.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>in_evols</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – <code class="xref py py-class docutils literal notranslate"><span class="pre">eko.evolution_operator.PhysicalOperator</span></code>-like dictionary</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>out</strong> – rotated dictionary</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
-</dd>
-</dl>
+<dl class="py data">
+<dt id="eko.basis_rotation.flavor_basis_pids">
+<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">flavor_basis_pids</code><em class="property"> = (22, -6, -5, -4, -3, -2, -1, 21, 1, 2, 3, 4, 5, 6)</em><a class="headerlink" href="#eko.basis_rotation.flavor_basis_pids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorted elements in Flavor Basis as <abbr title="(Monte Carlo) parton identifier">pid</abbr>.</p>
+<p>Definition: <a class="reference external" href="https://pdg.lbl.gov/2019/reviews/rpp2019-rev-monte-carlo-numbering.pdf">here</a></p>
+<p>corresponding <abbr title="Parton Distribution Function(s)">PDF</abbr> : <span class="math notranslate nohighlight">\(\gamma, \bar t, \bar b, \bar c, \bar s, \bar u, \bar d, g,
+d, u, s, c, b, t\)</span></p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="eko.basis_rotation.rotate_flavor_to_evolution">
+<code class="sig-prename descclassname">eko.basis_rotation.</code><code class="sig-name descname">rotate_flavor_to_evolution</code><em class="property"> = array([[ 1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],        [ 0,  1,  1,  1,  1,  1,  1,  0,  1,  1,  1,  1,  1,  1],        [ 0,  0,  0,  0,  0,  0,  0,  1,  0,  0,  0,  0,  0,  0],        [ 0, -1, -1, -1, -1, -1, -1,  0,  1,  1,  1,  1,  1,  1],        [ 0,  0,  0,  0,  0, -1,  1,  0, -1,  1,  0,  0,  0,  0],        [ 0,  0,  0,  0,  2, -1, -1,  0,  1,  1, -2,  0,  0,  0],        [ 0,  0,  0,  3, -1, -1, -1,  0,  1,  1,  1, -3,  0,  0],        [ 0,  0,  4, -1, -1, -1, -1,  0,  1,  1,  1,  1, -4,  0],        [ 0,  5, -1, -1, -1, -1, -1,  0,  1,  1,  1,  1,  1, -5],        [ 0,  0,  0,  0,  0,  1, -1,  0, -1,  1,  0,  0,  0,  0],        [ 0,  0,  0,  0, -2,  1,  1,  0,  1,  1, -2,  0,  0,  0],        [ 0,  0,  0, -3,  1,  1,  1,  0,  1,  1,  1, -3,  0,  0],        [ 0,  0, -4,  1,  1,  1,  1,  0,  1,  1,  1,  1, -4,  0],        [ 0, -5,  1,  1,  1,  1,  1,  0,  1,  1,  1,  1,  1, -5]])</em><a class="headerlink" href="#eko.basis_rotation.rotate_flavor_to_evolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Basis rotation matrix between <a class="reference internal" href="../../theory/FlavorSpace.html"><span class="doc">Flavor Basis and Evolution Basis</span></a>.</p>
 </dd></dl>
 
 </div>
@@ -346,7 +307,7 @@ to fullfill the following evolution</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative order</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -366,7 +327,7 @@ to fullfill the following evolution</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – perturbative order</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavours</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavors</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -385,7 +346,7 @@ to fullfill the following evolution</p>
 <p>Implements Eq. (3.1) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id1">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavours</p>
+<dd class="field-odd"><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavors</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>beta_0</strong> – first coefficient of the QCD beta function <span class="math notranslate nohighlight">\(\beta_0^{n_f}\)</span></p>
@@ -403,7 +364,7 @@ to fullfill the following evolution</p>
 <p>Implements Eq. (3.2) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id2">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavours</p>
+<dd class="field-odd"><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavors</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>beta_1</strong> – second coefficient of the QCD beta function <span class="math notranslate nohighlight">\(\beta_1^{n_f}\)</span></p>
@@ -421,7 +382,7 @@ to fullfill the following evolution</p>
 <p>Implements Eq. (3.3) of <a class="bibtex reference internal" href="../../zzz-refs.html#herzog-2017ohr" id="id3">[HRU+17]</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavours</p>
+<dd class="field-odd"><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of active flavors</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>beta_2</strong> – third coefficient of the QCD beta function <span class="math notranslate nohighlight">\(\beta_2^{n_f}\)</span></p>
@@ -469,92 +430,6 @@ to fullfill the following evolution</p>
 <dt id="eko.constants.TR">
 <code class="sig-prename descclassname">eko.constants.</code><code class="sig-name descname">TR</code><em class="property"> = 0.5</em><a class="headerlink" href="#eko.constants.TR" title="Permalink to this definition">¶</a></dt>
 <dd><p>the normalization of fundamental generators</p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-eko.flavours">
-<span id="eko-flavours-module"></span><h2>eko.flavours module<a class="headerlink" href="#module-eko.flavours" title="Permalink to this headline">¶</a></h2>
-<p>This module holds the <a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a> class and the data
-related to the flavour combinations.</p>
-<p>The write-up of the matching conditions is given in
-<a class="reference internal" href="../../theory/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
-<dl class="py class">
-<dt id="eko.flavours.FlavourTarget">
-<em class="property">class </em><code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">FlavourTarget</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">original</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nf_min</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#FlavourTarget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.FlavourTarget" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Defines the path across the quark thresholds.</p>
-<p>See <a class="reference internal" href="../../theory/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – name of the flavour target (T8, V8, etc)</p></li>
-<li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em>) – path to get to the target from the origin at the minimum possible nf</p></li>
-<li><p><strong>original</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em>) – original flavour name (or names if the result is a combination)</p></li>
-<li><p><strong>nf_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – minimal nf for which this flavour is active</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="eko.flavours.FlavourTarget.get_path">
-<code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf_target</span></em>, <em class="sig-param"><span class="n">n_thresholds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#FlavourTarget.get_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.FlavourTarget.get_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the path to a given value of nf
-given a number of thresholds to be crossed</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>nf_target</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – nf value of the target flavour</p></li>
-<li><p><strong>n_thresholds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of thresholds which are going to be crossed</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>instructions</strong> – a dictonary whose keys are the incoming flavour
-and whose items are the corresponding path</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.flavours.get_all_flavour_paths">
-<code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">get_all_flavour_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#get_all_flavour_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.get_all_flavour_paths" title="Permalink to this definition">¶</a></dt>
-<dd><p>Builds all <a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a> - see <a class="reference internal" href="../../theory/Matching.html"><span class="doc">Matching Conditions</span></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nf</strong> (<em>None | int</em>) – if given, paths are filtered by beeing active for at least <cite>nf</cite> flavours</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>ls</strong> – all instructions</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>(<a class="reference internal" href="#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget">FlavourTarget</a>)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="eko.flavours.get_singlet_paths">
-<code class="sig-prename descclassname">eko.flavours.</code><code class="sig-name descname">get_singlet_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to</span></em>, <em class="sig-param"><span class="n">fromm</span></em>, <em class="sig-param"><span class="n">depth</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/flavours.html#get_singlet_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.flavours.get_singlet_paths" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute all possible path in the singlet sector to reach <cite>to</cite> starting from  <cite>fromm</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>to</strong> (<em>'q'</em><em> or </em><em>'g'</em>) – final point</p></li>
-<li><p><strong>fromm</strong> (<em>'q'</em><em> or </em><em>'g'</em>) – starting point</p></li>
-<li><p><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – nesting level; 1 corresponds to the trivial first step</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>ls</strong> – list of all possible paths, where each path is in increasing order, e.g.
-[P1(c &lt;- a), P2(c &lt;- a), …] and P1(c &lt;- a) = [(c &lt;- b), (b &lt;- a)]</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>))</p>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
@@ -1060,7 +935,7 @@ real axis</p></li>
 to PDFs and dumping to file.</p>
 <dl class="py method">
 <dt id="eko.output.Output.apply_pdf">
-<code class="sig-name descname">apply_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lhapdf_like</span></em>, <em class="sig-param"><span class="n">targetgrid</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rotate_to_flavor_basis</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.apply_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.apply_pdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">apply_pdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lhapdf_like</span></em>, <em class="sig-param"><span class="n">targetgrid</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">rotate_to_evolution_basis</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.apply_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.apply_pdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply all available operators to the input PDFs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1068,7 +943,6 @@ to PDFs and dumping to file.</p>
 <li><p><strong>lhapdf_like</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><em>object</em></a>) – object that provides an xfxQ2 callable (as <a class="reference external" href="https://lhapdf.hepforge.org/">lhapdf</a>
 and <code class="xref py py-class docutils literal notranslate"><span class="pre">ekomark.toyLH.toyPDF</span></code> do) (and thus is in flavor basis)</p></li>
 <li><p><strong>targetgrid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – if given, interpolates to the pdfs given at targetgrid (instead of xgrid)</p></li>
-<li><p><strong>rotate_to_flavor_basis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – rotate output back to flavor basis</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1081,29 +955,15 @@ and <code class="xref py py-class docutils literal notranslate"><span class="pre
 </dd></dl>
 
 <dl class="py method">
-<dt id="eko.output.Output.concat">
-<code class="sig-name descname">concat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.concat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.concat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Concatenate (multiply) two outputs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>other</strong> (<a class="reference internal" href="#eko.output.Output" title="eko.output.Output"><em>Output</em></a>) – other factor to be multiplied from the left, i.e. with <em>smaller</em> intial scale</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>out</strong> – self * other</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#eko.output.Output" title="eko.output.Output">Output</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="eko.output.Output.dump_yaml">
-<code class="sig-name descname">dump_yaml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stream</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.dump_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.dump_yaml" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">dump_yaml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stream</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">binarize</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.dump_yaml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.dump_yaml" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize result as YAML.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>stream</strong> (<em>(</em><em>Default: None</em><em>)</em>) – if given, dump is written on it</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stream</strong> (<a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em> or </em><em>stream</em>) – if given, dump is written on it</p></li>
+<li><p><strong>binarize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – dump in binary format (instead of list format)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>dump</strong> – result of dump(output, stream), i.e. a string, if no stream is given or
@@ -1117,11 +977,14 @@ Null, if self is written sucessfully to stream</p>
 
 <dl class="py method">
 <dt id="eko.output.Output.dump_yaml_to_file">
-<code class="sig-name descname">dump_yaml_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.dump_yaml_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.dump_yaml_to_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">dump_yaml_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">binarize</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.dump_yaml_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.dump_yaml_to_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes YAML representation to a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – target file name</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – target file name</p></li>
+<li><p><strong>binarize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – dump in binary format (instead of list format)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>ret</strong> – result of dump(output, stream), i.e. Null if written sucessfully</p>
@@ -1133,33 +996,19 @@ Null, if self is written sucessfully to stream</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="eko.output.Output.get_op">
-<code class="sig-name descname">get_op</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.get_op"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.get_op" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load a <code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code> from the raw data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>q2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – target scale</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>op</strong> – corresponding Operator</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="eko.operator.html#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator">PhysicalOperator</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="eko.output.Output.get_raw">
-<code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.get_raw" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_raw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">binarize</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.get_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.get_raw" title="Permalink to this definition">¶</a></dt>
 <dd><p>Serialize result as dict/YAML.</p>
 <p>This maps the original numpy matrices to lists.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>out</strong> – dictionary which will be written on output</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>binarize</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – dump in binary format (instead of list format)</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>out</strong> – dictionary which will be written on output</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1194,23 +1043,6 @@ Null, if self is written sucessfully to stream</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>output</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.output.Output.rotate_pdfs_to_flavor_basis">
-<em class="property">static </em><code class="sig-name descname">rotate_pdfs_to_flavor_basis</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_grid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/output.html#Output.rotate_pdfs_to_flavor_basis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.output.Output.rotate_pdfs_to_flavor_basis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Rotate all PDFs from evolution basis to flavor basis</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>in_grid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – a map q2 to pdfs and their errors in evolution basis</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>out_grid</strong> – updated map</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1256,12 +1088,6 @@ Null, if self is written sucessfully to stream</p>
 <dt id="eko.runner.Runner.banner5">
 <code class="sig-name descname">banner5</code><em class="property"> = '\noooooooooooo oooo    oooo  \\\\ .oooooo.   \n`888\'     `8 `888   .8P\'  //////    `Y8b  \n 888          888  d8\'   \\\\o\\/////    888 \n 888oooo8     88888[    \\\\\\\\/8/////   888 \n 888    &quot;     888`88b.      888 ///   888 \n 888       o  888  `88b.    `88b //  d88\' \no888ooooood8 o888o  o888o     `Y8bood8P\'  \n'</em><a class="headerlink" href="#eko.runner.Runner.banner5" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt id="eko.runner.Runner.get_operators">
-<code class="sig-name descname">get_operators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/runner.html#Runner.get_operators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.runner.Runner.get_operators" title="Permalink to this definition">¶</a></dt>
-<dd><p>compute the actual operators</p>
-</dd></dl>
 
 <dl class="py method">
 <dt id="eko.runner.Runner.get_output">
@@ -1313,7 +1139,7 @@ number of loops by one unit</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>alpha_s_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – alpha_s(!) at the reference scale <span class="math notranslate nohighlight">\(\alpha_s(\mu_0^2)\)</span></p></li>
 <li><p><strong>scale_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – reference scale <span class="math notranslate nohighlight">\(\mu_0^2\)</span></p></li>
-<li><p><strong>threshold_holder</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – An instance of <a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThresholdsConfig</span></code></a></p></li>
+<li><p><strong>threshold_holder</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsAtlas" title="eko.thresholds.ThresholdsAtlas"><em>eko.thresholds.ThresholdsAtlas</em></a>) – An instance of <a class="reference internal" href="#eko.thresholds.ThresholdsAtlas" title="eko.thresholds.ThresholdsAtlas"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThresholdsAtlas</span></code></a></p></li>
 <li><p><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Evaluated order of the beta function: <code class="docutils literal notranslate"><span class="pre">0</span></code> = LO, …</p></li>
 <li><p><strong>method</strong> (<em>[</em><em>&quot;expanded&quot;</em><em>, </em><em>&quot;exact&quot;</em><em>]</em>) – Applied method to solve the beta function</p></li>
 </ul>
@@ -1322,7 +1148,7 @@ number of loops by one unit</p></li>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alpha_ref</span> <span class="o">=</span> <span class="mf">0.35</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">scale_ref</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">threshold_holder</span> <span class="o">=</span> <span class="n">ThresholdsConfig</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">threshold_holder</span> <span class="o">=</span> <span class="n">ThresholdsAtlas</span><span class="p">(</span> <span class="o">...</span> <span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sc</span> <span class="o">=</span> <span class="n">StrongCoupling</span><span class="p">(</span><span class="n">alpha_ref</span><span class="p">,</span> <span class="n">scale_ref</span><span class="p">,</span> <span class="n">threshold_holder</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">q2</span> <span class="o">=</span> <span class="mf">91.1</span><span class="o">**</span><span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sc</span><span class="o">.</span><span class="n">a_s</span><span class="p">(</span><span class="n">q2</span><span class="p">)</span>
@@ -1363,7 +1189,7 @@ number of loops by one unit</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>theory_card</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – theory dictionary</p></li>
-<li><p><strong>thresholds_config</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsConfig" title="eko.thresholds.ThresholdsConfig"><em>eko.thresholds.ThresholdsConfig</em></a>) – threshold configuration</p></li>
+<li><p><strong>thresholds_config</strong> (<a class="reference internal" href="#eko.thresholds.ThresholdsAtlas" title="eko.thresholds.ThresholdsAtlas"><em>eko.thresholds.ThresholdsAtlas</em></a>) – threshold configuration</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1409,176 +1235,139 @@ number of loops by one unit</p></li>
 </div>
 <div class="section" id="module-eko.thresholds">
 <span id="eko-thresholds-module"></span><h2>eko.thresholds module<a class="headerlink" href="#module-eko.thresholds" title="Permalink to this headline">¶</a></h2>
-<p>This module holds the classes that define the flavor number schemes (FNS).</p>
-<p>Run card parameters:</p>
-<p>ThresholdConfig parameters:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> <code class="docutils literal notranslate"><span class="pre">FNS</span></code> active flavor number scheme. Possible values are <cite>FFNS</cite>,
-representing a <abbr title="Fixed Flavor Number Scheme">FFNS</abbr>, or, <cite>ZM-VFNS</cite>, <cite>FONLL-A</cite>, <cite>FONLL-A’</cite>,
-representing a <abbr title="Variable Flavor Number Scheme">VFNS</abbr>; <strong>Required</strong></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">Q0</span></code> reference scale from which to start; <strong>Required</strong></p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a> <code class="docutils literal notranslate"><span class="pre">NfFF</span></code> number of fixed flavors if applicable; <strong>Required</strong> if in <abbr title="Fixed Flavor Number Scheme">FFNS</abbr>, ignored otherwise</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mc</span></code> charm mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mb</span></code> bottom mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
-<li><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a> <code class="docutils literal notranslate"><span class="pre">mt</span></code> top mass in GeV; <strong>Required</strong> if in <abbr title="Variable Flavor Number Scheme">VFNS</abbr>, ignored otherwise</p></li>
-</ul>
+<p>This module holds the classes that define the <abbr title="Flavor Number Scheme">FNS</abbr>.</p>
 <dl class="py class">
 <dt id="eko.thresholds.Area">
-<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">Area</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_min</span></em>, <em class="sig-param"><span class="n">q2_max</span></em>, <em class="sig-param"><span class="n">q2_0</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Area" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">Area</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_min</span></em>, <em class="sig-param"><span class="n">q2_max</span></em>, <em class="sig-param"><span class="n">nf</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Area"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Area" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Sets up a single threhold area with a fixed configuration.</p>
+<p>Sets up a single threshold area with a fixed configuration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>q2_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – lower bound of the area</p></li>
 <li><p><strong>q2_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – upper bound of the area</p></li>
-<li><p><strong>q2_0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – reference point of the area (can be anywhere in the area)</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – number of flavours in the area</p></li>
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – number of flavors in the area</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="eko.thresholds.PathSegment">
+<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">PathSegment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">area</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#PathSegment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.PathSegment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Oriented path in the threshold area landscape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – starting point</p></li>
+<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – final point</p></li>
+<li><p><strong>area</strong> (<a class="reference internal" href="#eko.thresholds.Area" title="eko.thresholds.Area"><em>eko.thresholds.Area</em></a>) – containing area</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="eko.thresholds.Area.q2_towards">
-<code class="sig-name descname">q2_towards</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#Area.q2_towards"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.Area.q2_towards" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return q2_min or q2_max depending on whether
-we are going towards the max or the min or q2
-if we are alreay in the correct area</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>q2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – reference point</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>q2_next</strong> – the closest point to q2 that is within the area</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
-</dd>
-</dl>
-</dd></dl>
+<dt id="eko.thresholds.PathSegment.intersect">
+<em class="property">classmethod </em><code class="sig-name descname">intersect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_from</span></em>, <em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">area</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#PathSegment.intersect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.PathSegment.intersect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eko.thresholds.PathSegment.nf">
+<em class="property">property </em><code class="sig-name descname">nf</code><a class="headerlink" href="#eko.thresholds.PathSegment.nf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="eko.thresholds.PathSegment.tuple">
+<em class="property">property </em><code class="sig-name descname">tuple</code><a class="headerlink" href="#eko.thresholds.PathSegment.tuple" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt id="eko.thresholds.ThresholdsConfig">
-<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">ThresholdsConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_ref</span></em>, <em class="sig-param"><span class="n">scheme</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">threshold_list</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nf</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsConfig" title="Permalink to this definition">¶</a></dt>
+<dt id="eko.thresholds.ThresholdsAtlas">
+<em class="property">class </em><code class="sig-prename descclassname">eko.thresholds.</code><code class="sig-name descname">ThresholdsAtlas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thresholds</span></em>, <em class="sig-param"><span class="n">q2_ref</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsAtlas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsAtlas" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>The threshold class holds information about the thresholds any
-Q2 has to pass in order to get there from a given q2_ref and scheme.</p>
+<p>Holds information about the thresholds any Q2 has to pass in order to get
+there from a given q2_ref.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>q2_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Reference q^2</p></li>
-<li><p><strong>scheme</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Choice of scheme</p></li>
-<li><p><strong>threshold_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – List of q^2 thresholds should the scheme accept it</p></li>
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of flavors for the FFNS</p></li>
+<li><p><strong>thresholds</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>)</em>) – List of q^2 thresholds</p></li>
+<li><p><strong>q2_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – reference scale</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
-<dt id="eko.thresholds.ThresholdsConfig.from_dict">
-<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">theory_card</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsConfig.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsConfig.from_dict" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create the object from the run card.</p>
+<dt id="eko.thresholds.ThresholdsAtlas.ffns">
+<em class="property">classmethod </em><code class="sig-name descname">ffns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">q2_ref</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsAtlas.ffns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsAtlas.ffns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a <abbr title="Fixed Flavor Number Scheme">FFNS</abbr> setup.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>theory_card</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – run card with the keys given at the head of the <a class="reference internal" href="#module-eko.thresholds" title="eko.thresholds"><code class="xref py py-mod docutils literal notranslate"><span class="pre">module</span></code></a></p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of light flavors</p></li>
+<li><p><strong>q2_ref</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – reference scale</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="eko.thresholds.ThresholdsAtlas.from_dict">
+<em class="property">classmethod </em><code class="sig-name descname">from_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">theory_card</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">'k'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsAtlas.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsAtlas.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the object from the run card.</p>
+<p>The thresholds are computed by <span class="math notranslate nohighlight">\((m_q \cdot k_q^{Thr})\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theory_card</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – run card with the keys given at the head of the <a class="reference internal" href="#module-eko.thresholds" title="eko.thresholds"><code class="xref py py-mod docutils literal notranslate"><span class="pre">module</span></code></a></p></li>
+<li><p><strong>prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – prefix for the ratio parameters</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>cls</strong> – created object</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>ThresholdConfig</p>
+<dd class="field-odd"><p><a class="reference internal" href="#eko.thresholds.ThresholdsAtlas" title="eko.thresholds.ThresholdsAtlas">ThresholdsAtlas</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="eko.thresholds.ThresholdsConfig.get_areas">
-<code class="sig-name descname">get_areas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsConfig.get_areas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsConfig.get_areas" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the Areas in which each value of q2arr falls</p>
+<dt id="eko.thresholds.ThresholdsAtlas.nf">
+<code class="sig-name descname">nf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsAtlas.nf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsAtlas.nf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the number of flavor active at the given scale.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>q2arr</strong> (<em>np.array</em>) – array of values of q2</p>
+<dd class="field-odd"><p><strong>q2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – reference scale</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>areas</strong> – list with the areas for q2arr</p>
+<dd class="field-even"><p><strong>nf</strong> – number of active flavors</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="eko.thresholds.ThresholdsConfig.get_areas_idx">
-<code class="sig-name descname">get_areas_idx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsConfig.get_areas_idx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsConfig.get_areas_idx" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the index of the area in which each value of q2arr falls.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>q2arr</strong> (<em>np.array</em>) – array of values of q2</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>areas_idx</strong> – list with the indices of the corresponding areas for q2arr</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.thresholds.ThresholdsConfig.get_composition_path">
-<code class="sig-name descname">get_composition_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nf</span></em>, <em class="sig-param"><span class="n">n_thres</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsConfig.get_composition_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsConfig.get_composition_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterates all flavour targets.</p>
+<dt id="eko.thresholds.ThresholdsAtlas.path">
+<code class="sig-name descname">path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2_to</span></em>, <em class="sig-param"><span class="n">q2_from</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsAtlas.path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsAtlas.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get path from q2_from to q2_to.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nf</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – nf value of the target flavour</p></li>
-<li><p><strong>n_thres</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of thresholds which are going to be crossed</p></li>
+<li><p><strong>q2_to</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – target value of q2</p></li>
+<li><p><strong>q2_from</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – starting value of q2</p></li>
 </ul>
-</dd>
-<dt class="field-even">Yields</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>name</strong> (<em>string</em>) – flavour name</p></li>
-<li><p><strong>path</strong> (<em>list</em>) – flavour path</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.thresholds.ThresholdsConfig.get_path_from_q2_ref">
-<code class="sig-name descname">get_path_from_q2_ref</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">q2</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsConfig.get_path_from_q2_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsConfig.get_path_from_q2_ref" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the Area path from q2_ref to q2.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>q2</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – Target value of q2</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>area_path</strong> – List of Areas to go through in order to get from q2_ref
-to q2. The first one is the one containg q2_ref while the
-last one contains q2</p>
+<dd class="field-even"><p><strong>path</strong> – List of PathSegment to go through in order to get from q2_from
+to q2_to.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>(<a class="reference internal" href="#eko.thresholds.PathSegment" title="eko.thresholds.PathSegment">PathSegment</a>)</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.thresholds.ThresholdsConfig.nf_range">
-<code class="sig-name descname">nf_range</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/thresholds.html#ThresholdsConfig.nf_range"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.thresholds.ThresholdsConfig.nf_range" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterate number of flavours, including min_nf <em>and</em> max_nf</p>
-<dl class="field-list simple">
-<dt class="field-odd">Yields</dt>
-<dd class="field-odd"><p><strong>nf</strong> (<em>int</em>) – number of flavour</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="eko.thresholds.ThresholdsConfig.nf_ref">
-<em class="property">property </em><code class="sig-name descname">nf_ref</code><a class="headerlink" href="#eko.thresholds.ThresholdsConfig.nf_ref" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of flavours in the reference area</p>
 </dd></dl>
 
 </dd></dl>

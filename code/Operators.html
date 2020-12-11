@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../theory/Mellin.html">Mellin Space and Transformations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../theory/FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
@@ -220,19 +220,9 @@ dashed lines means “evolves into”</span><a class="headerlink" href="#operato
 <div><ul class="simple">
 <li><p>this is the master class which administrates all evolution kernel operator tasks</p></li>
 <li><p>it is instantiated once for each run</p></li>
-<li><p>it divides the given range of <span class="math notranslate nohighlight">\(Q^2\)</span> into the necessary threshold crossings and
-creates a <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.grid.OperatorMaster" title="eko.operator.grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a> for each</p></li>
+<li><p>it divides the given range of <span class="math notranslate nohighlight">\(Q^2\)</span> into the necessary threshold crossings</p></li>
 <li><p>it recollects all necessary operators in the end to create the
-<a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> following the instructions of
-<a class="reference internal" href="../modules/eko/eko.html#eko.flavours.FlavourTarget" title="eko.flavours.FlavourTarget"><code class="xref py py-class docutils literal notranslate"><span class="pre">FlavourTarget</span></code></a></p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p><a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.grid.OperatorMaster" title="eko.operator.grid.OperatorMaster"><code class="xref py py-class docutils literal notranslate"><span class="pre">OperatorMaster</span></code></a></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>this represents a configuration for a fixed number of flavours</p></li>
-<li><p>it creates an <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.Operator" title="eko.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> for each final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
+<a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a></p></li>
 </ul>
 </div></blockquote>
 </li>

@@ -107,7 +107,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="FlavourBasis.html">Evolution Basis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
@@ -203,8 +203,8 @@
 <p>It is usefull to define in addition <span class="math notranslate nohighlight">\(b_k = \beta_k/\beta_0, k&gt;0\)</span>.</p>
 <p>We implement two different strategies to solve the renormalization group equation (RGE):</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;exact&quot;</span></code>: Solve using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp" title="(in SciPy v1.5.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code></a>.
-In LO we fall back to the expanded solution as this is already the true solution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;exact&quot;</span></code>: Solve using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp" title="(in SciPy v1.5.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code></a>.
+In <abbr title="Leading Order">LO</abbr> we fall back to the expanded solution as this is already the true solution.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;expanded&quot;</span></code>: using approximate solutions:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
