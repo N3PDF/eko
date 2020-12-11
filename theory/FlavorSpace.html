@@ -41,8 +41,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Matching Conditions on Crossing Thresholds" href="Matching.html" />
-    <link rel="prev" title="Solving DGLAP" href="DGLAP.html" /> 
+    <link rel="next" title="pQCD ingredients" href="pQCD.html" />
+    <link rel="prev" title="Mellin Space and Transformations" href="Mellin.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -101,15 +101,21 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="Interpolation.html">Interpolation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Mellin.html">Mellin Space and Transformations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Flavor Space</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#flavor-basis">Flavor Basis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basis">+/- Basis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#evolution-basis">Evolution Basis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-bases">Other Bases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operator-bases">Operator Bases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#operator-flavor-basis">Operator Flavor Basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operator-anomalous-dimension-basis">Operator Anomalous Dimension Basis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operator-evolution-basis">Operator Evolution Basis</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pQCD.html">pQCD ingredients</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../zzz-refs.html">References</a></li>
 </ul>
@@ -193,8 +199,9 @@
             
   <div class="section" id="flavor-space">
 <h1>Flavor Space<a class="headerlink" href="#flavor-space" title="Permalink to this headline">¶</a></h1>
-<p>An <abbr title="Evolution Kernel Operator">EKO</abbr> is a rank-4 operator acting both in flavor and momentum fraction space.
-By Flavor Space we mean the 13-dimensional function space that contains
+<p>An <abbr title="Evolution Kernel Operator">EKO</abbr> is a rank-4 operator acting both in Flavor Space <span class="math notranslate nohighlight">\(\mathcal F\)</span>
+and momentum fraction space <span class="math notranslate nohighlight">\(\mathcal X\)</span>.
+By Flavor Space <span class="math notranslate nohighlight">\(\mathcal F\)</span> we mean the 13-dimensional function space that contains
 the different <abbr title="Parton Distribution Function(s)">PDF</abbr> flavor. Note that there is an abiguity concerning the
 word “Flavor Basis” which is sometimes refered to as an <em>abstract</em> basis
 in the Flavor Space, but often the specific basis described here below is meant.</p>
@@ -203,7 +210,7 @@ in the Flavor Space, but often the specific basis described here below is meant.
 <p>Here we use the raw quark flavors along with the gluon as they correspond to the
 operator in the Lagrange density:</p>
 <div class="math notranslate nohighlight">
-\[g, u, \bar u, d, \bar d, s, \bar s, c, \bar c, b, \bar b, t, \bar t\]</div>
+\[\mathcal F = \text{span}(g, u, \bar u, d, \bar d, s, \bar s, c, \bar c, b, \bar b, t, \bar t)\]</div>
 <ul class="simple">
 <li><p>we deliver the <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> in this basis, although the flavors are
 slightly differently arranged (Implementation: <a class="reference internal" href="../modules/eko/eko.html#eko.basis_rotation.flavor_basis_pids" title="eko.basis_rotation.flavor_basis_pids"><code class="xref py py-data docutils literal notranslate"><span class="pre">here</span></code></a>).</p></li>
@@ -220,9 +227,9 @@ slightly differently arranged (Implementation: <a class="reference internal" hre
 that e.g. in the proton will carry most of the momentum at large x and <span class="math notranslate nohighlight">\(q^+\)</span> effectively is the
 sea quark distribution:</p>
 <div class="math notranslate nohighlight">
-\[g, u^+, u^-, d^+, d^-, s^+, s^-, c^+, c^-, b^+, b^-, t^+, t^-\]</div>
+\[\mathcal F \sim \text{span}(g, u^+, u^-, d^+, d^-, s^+, s^-, c^+, c^-, b^+, b^-, t^+, t^-)\]</div>
 <ul class="simple">
-<li><p>this basis is <em>not</em> normalized with respect to the canonical flavor basis</p></li>
+<li><p>this basis is <em>not</em> normalized with respect to the canonical Flavor Basis</p></li>
 <li><p>the basis transformation to the Flavor Basis is implemented in
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">rotate_pm_to_flavor()</span></code></p></li>
 </ul>
@@ -254,7 +261,7 @@ T_{35} &amp;= u^+ + d^+ + s^+ + c^+ + b^+ - 5 t^+\end{split}\]</div>
 <li><p>the associated numbers to the valence-like and singlet-like non-singlet distributions
 <span class="math notranslate nohighlight">\(k\)</span> follow the common group-theoretical notation <span class="math notranslate nohighlight">\(k = n_f^2 - 1\)</span>
 where <span class="math notranslate nohighlight">\(n_f\)</span> denotes the incorporated number of quark flavors</p></li>
-<li><p>this basis is <em>not</em> normalized with respect to the canonical flavor basis, this means that in the
+<li><p>this basis is <em>not</em> normalized with respect to the canonical Flavor Basis, this means that in the
 final step before the <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> is created, the elements have to be normalized</p></li>
 <li><p>the basis transformation from the Flavor Basis is implemented in
 <a class="reference internal" href="../modules/eko/eko.html#eko.basis_rotation.rotate_flavor_to_evolution" title="eko.basis_rotation.rotate_flavor_to_evolution"><code class="xref py py-data docutils literal notranslate"><span class="pre">rotate_flavor_to_evolution</span></code></a></p></li>
@@ -267,6 +274,42 @@ of the <abbr title="Parton Distribution Function(s)">PDF</abbr> <a class="bibtex
 <div class="math notranslate nohighlight">
 \[u_v = u^-, d_v = d^-, L_+ = 2(\bar u + \bar d), L_- = \bar d - \bar u, s^+, c^+, b^+, g\]</div>
 </div>
+<div class="section" id="operator-bases">
+<h2>Operator Bases<a class="headerlink" href="#operator-bases" title="Permalink to this headline">¶</a></h2>
+<p>An <abbr title="Evolution Kernel Operator">EKO</abbr> <span class="math notranslate nohighlight">\(\mathbf E\)</span> is operator in the Flavor Space <span class="math notranslate nohighlight">\(\mathcal F\)</span> mapping one vector onto an other:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf E \in \mathcal F \otimes \mathcal F\]</div>
+<p>so to specify the basis for these operators we need to specify the basis for both the input and output space:</p>
+<div class="section" id="operator-flavor-basis">
+<h3>Operator Flavor Basis<a class="headerlink" href="#operator-flavor-basis" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>here we mean <a class="reference internal" href="#flavor-basis"><span class="std std-ref">Flavor Basis</span></a> both in the input and the output space</p></li>
+<li><p>the <a class="reference internal" href="../modules/eko/eko.html#eko.output.Output" title="eko.output.Output"><code class="xref py py-class docutils literal notranslate"><span class="pre">Output</span></code></a> is delivered in this basis</p></li>
+<li><p>this basis has <span class="math notranslate nohighlight">\((2n_f+ 1)^2 = 13^2 = 169\)</span> elements</p></li>
+<li><p>this basis can span arbitrary thresholds</p></li>
+</ul>
+</div>
+<div class="section" id="operator-anomalous-dimension-basis">
+<h3>Operator Anomalous Dimension Basis<a class="headerlink" href="#operator-anomalous-dimension-basis" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>here we mean the true underlying physical basis where elements correspond to the different splitting functions,
+i.e. <span class="math notranslate nohighlight">\(\mathbf{E}_S, E_{ns,v}, E_{ns,+}, E_{ns,-}\)</span></p></li>
+<li><p>this basis has 4 elements in <abbr title="Leading Order">LO</abbr>, 6 elements in <abbr title="Next-to-leading Order">NLO</abbr> and its maximum 7 elemets after <abbr title="Next-to-Next-to-leading Order">NNLO</abbr></p></li>
+<li><p>this basis can <em>not</em> span any threshold but can only be used for a <em>fixed</em> number of flavors</p></li>
+<li><p>all actual computations are done in this basis</p></li>
+</ul>
+</div>
+<div class="section" id="operator-evolution-basis">
+<h3>Operator Evolution Basis<a class="headerlink" href="#operator-evolution-basis" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>here we mean <a class="reference internal" href="#evolution-basis"><span class="std std-ref">Evolution Basis</span></a> both in the input and the output space</p></li>
+<li><p>this basis does <strong>not</strong> coincide with the <a class="reference internal" href="#operator-anomalous-dimension-basis"><span class="std std-ref">Operator Anomalous Dimension Basis</span></a> as the decision on which operator of that
+basis is used is a non-trivial decision - see <a class="reference internal" href="Matching.html"><span class="doc">Matching Conditions on Crossing Thresholds</span></a></p></li>
+<li><p>this basis has <span class="math notranslate nohighlight">\(2n_f+ 3 = 15\)</span> elements</p></li>
+<li><p>this basis can span arbitrary thresholds</p></li>
+</ul>
+</div>
+</div>
 </div>
 
 
@@ -277,10 +320,10 @@ of the <abbr title="Parton Distribution Function(s)">PDF</abbr> <a class="bibtex
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Matching.html" class="btn btn-neutral float-right" title="Matching Conditions on Crossing Thresholds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pQCD.html" class="btn btn-neutral float-right" title="pQCD ingredients" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="DGLAP.html" class="btn btn-neutral float-left" title="Solving DGLAP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Mellin.html" class="btn btn-neutral float-left" title="Mellin Space and Transformations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

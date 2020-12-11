@@ -99,9 +99,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/Interpolation.html">Interpolation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../zzz-refs.html">References</a></li>
 </ul>
@@ -196,10 +196,12 @@
 
 <div class="viewcode-block" id="PhysicalOperator"><a class="viewcode-back" href="../../../modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator">[docs]</a><span class="k">class</span> <span class="nc">PhysicalOperator</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    This is exposed to the outside world.</span>
+<span class="sd">    This joins several fixed flavor scheme operators together.</span>
 
-<span class="sd">    This operator is computed via the composition method of the</span>
-<span class="sd">    :class:`Operator` class.</span>
+<span class="sd">    - provides the connection between the 3-dimensional anomalous dimension</span>
+<span class="sd">      basis and the 4-dimensional evolution basis</span>
+<span class="sd">    - provides the connection between the 4-dimensional evolution basis</span>
+<span class="sd">      and the 4-dimensional flavor basis</span>
 
 
 <span class="sd">    Parameters</span>
@@ -220,8 +222,7 @@
 <span class="sd">        Obtain map between the 3-dimensional anomalous dimension basis and the</span>
 <span class="sd">        4-dimensional evolution basis.</span>
 
-<span class="sd">        .. todo:: update docs, in VFNS sometimes IC is irrelevant if nf&gt;=4</span>
-<span class="sd">                explain which to keep and which to hide</span>
+<span class="sd">        .. todo:: in VFNS sometimes IC is irrelevant if nf&gt;=4</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

@@ -101,9 +101,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Interpolation.html">Interpolation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Mellin.html">Mellin Space and Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/pQCD.html">pQCD ingredients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/DGLAP.html">Solving DGLAP</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../theory/FlavorSpace.html">Flavor Space</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../theory/Matching.html">Matching Conditions on Crossing Thresholds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../zzz-refs.html">References</a></li>
 </ul>
@@ -533,9 +533,13 @@ of the <code class="xref py py-class docutils literal notranslate"><span class="
 <dt id="eko.operator.physical.PhysicalOperator">
 <em class="property">class </em><code class="sig-prename descclassname">eko.operator.physical.</code><code class="sig-name descname">PhysicalOperator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op_members</span></em>, <em class="sig-param"><span class="n">q2_final</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/operator/physical.html#PhysicalOperator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.operator.physical.PhysicalOperator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>This is exposed to the outside world.</p>
-<p>This operator is computed via the composition method of the
-<code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code> class.</p>
+<p>This joins several fixed flavor scheme operators together.</p>
+<ul class="simple">
+<li><p>provides the connection between the 3-dimensional anomalous dimension
+basis and the 4-dimensional evolution basis</p></li>
+<li><p>provides the connection between the 4-dimensional evolution basis
+and the 4-dimensional flavor basis</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -551,8 +555,7 @@ of the <code class="xref py py-class docutils literal notranslate"><span class="
 4-dimensional evolution basis.</p>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
-<p>update docs, in VFNS sometimes IC is irrelevant if nf&gt;=4
-explain which to keep and which to hide</p>
+<p>in VFNS sometimes IC is irrelevant if nf&gt;=4</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
