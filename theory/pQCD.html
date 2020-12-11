@@ -104,6 +104,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pQCD ingredients</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#strong-coupling">Strong Coupling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#splitting-functions">Splitting Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scale-variations">Scale Variations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="DGLAP.html">Solving DGLAP</a></li>
@@ -211,7 +212,7 @@ In <abbr title="Leading Order">LO</abbr> we fall back to the expanded solution a
 \[\begin{split}a^{\text{LO}}_s(\mu_R^2)  &amp;= \frac{a_s(\mu_0^2)}{1 + a_s(\mu_0^2) \beta_0 \ln(\mu_R^2/\mu_0^2)} \\
 a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) &amp;= a^{\text{LO}}_s(\mu_R^2)-b_1 \left[a^{\text{LO}}_s(\mu_R^2)\right]^2 \ln\left(1+a_s(\mu_0^2) \beta_0 \ln(\mu_R^2/\mu_0^2)\right) \\
 a^{\text{NNLO}}_{s,\text{exp}}(\mu_R^2) &amp;= a^{\text{LO}}_s(\mu_R^2)\left[1 + a^{\text{LO}}_s(\mu_R^2)\left(a^{\text{LO}}_s(\mu_R^2) - a_s(\mu_0^2)\right)(b_2 - b_1^2) \right.\\
-                                      &amp; \hspace{60pt} \left. + a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) b_1 \ln\left(a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2)/a_s(\mu_0^2)\right)\right]\end{split}\]</div>
+                                    &amp; \hspace{60pt} \left. + a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) b_1 \ln\left(a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2)/a_s(\mu_0^2)\right)\right]\end{split}\]</div>
 <p>When the renormalization scale crosses a flavor threshold matching conditions have to be
 applied <a class="bibtex reference internal" href="../zzz-refs.html#schroder-2005hy" id="id4">[SS06]</a> <a class="bibtex reference internal" href="../zzz-refs.html#chetyrkin-2005ia" id="id5">[CKS06]</a>.</p>
 </div>
@@ -221,8 +222,22 @@ applied <a class="bibtex reference internal" href="../zzz-refs.html#schroder-200
 coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and are given by <a class="bibtex reference internal" href="../zzz-refs.html#moch-2004pa" id="id6">[MVV04]</a> <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004mw" id="id7">[VMV04]</a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{P}(x,a_s(\mu^2)) &amp;= \sum\limits_{j=0} a_s^{j+1}(\mu^2) \mathbf{P}^{(j)}(x) \\
-{\gamma}^{(j)}(N,a_s) &amp;= -\mathcal{M}[\mathbf{P}^{(j)}(x,a_s)](N)\end{split}\]</div>
+{\gamma}^{(j)}(N) &amp;= -\mathcal{M}[\mathbf{P}^{(j)}(x)](N)\end{split}\]</div>
 <p>Note the additional minus in the definition of <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
+</div>
+<div class="section" id="scale-variations">
+<h2>Scale Variations<a class="headerlink" href="#scale-variations" title="Permalink to this headline">¶</a></h2>
+<p>The usual procedure in solving <abbr title="Dokshitzer-Gribov-Lipatov-Altarelli-Parisi">DGLAP</abbr> that is also imployed <a class="reference internal" href="DGLAP.html"><span class="doc">here</span></a> is to rewrite
+the equations in term of the running coupling <span class="math notranslate nohighlight">\(a_s\)</span> assuming the factorization scale
+<span class="math notranslate nohighlight">\(\mu_F^2\)</span> (the inherit scale of the <abbr title="Parton Distribution Function(s)">PDF</abbr>) and the renormalization scale <span class="math notranslate nohighlight">\(\mu_R^2\)</span>
+(the inherit scale for the strong coupling) to be equal. This constraint can however be lifted by a
+suitable redefinition of the splitting kernels</p>
+<div class="math notranslate nohighlight">
+\[\gamma^{(1)}(N) \to \gamma^{(1)}(N) - \beta_0 \ln(\mu_F^2/\mu_R^2) \gamma^{(0)}\]</div>
+<p>while keeping the evalutation of the strong coupling always at <span class="math notranslate nohighlight">\(\mu_R^2\)</span>.
+Estimating the theoretical uncertanties imposed on <abbr title="Parton Distribution Function(s)">PDF</abbr> determination due to missing higher
+order corrections using scale variation in the evolution corresponds to schemes A and B
+in <a class="bibtex reference internal" href="../zzz-refs.html#abdulkhalek-2019ihb" id="id8">[AK+19]</a>.</p>
 </div>
 </div>
 

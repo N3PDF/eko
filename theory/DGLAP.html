@@ -199,12 +199,12 @@
             
   <div class="section" id="solving-dglap">
 <h1>Solving DGLAP<a class="headerlink" href="#solving-dglap" title="Permalink to this headline">¶</a></h1>
-<p>We are solving the DGLAP equations given in x-space by</p>
+<p>We are solving the <abbr title="Dokshitzer-Gribov-Lipatov-Altarelli-Parisi">DGLAP</abbr> equations given in x-space by</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{d\ln(\mu_F^2)} \mathbf{f}(x,\mu_F^2) =
     \int\limits_x^1\!\frac{dy}{y}\, \mathbf{P}(x/y,a_s) \cdot \mathbf{f}(y,\mu_F^2)\]</div>
 <p>with <span class="math notranslate nohighlight">\(\mathbf P\)</span> the Altarelli-Parisi splitting functions (see <a class="reference internal" href="pQCD.html"><span class="doc">pQCD ingredients</span></a>).
-In <a class="reference internal" href="Mellin.html"><span class="doc">Mellin space</span></a> the DGLAP equations are just differential equations:</p>
+In <a class="reference internal" href="Mellin.html"><span class="doc">Mellin space</span></a> the <abbr title="Dokshitzer-Gribov-Lipatov-Altarelli-Parisi">DGLAP</abbr> equations are just differential equations:</p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{d\ln(\mu_F^2)} \tilde{\mathbf{f}}(\mu_F^2) = -\gamma(a_s) \cdot \tilde{\mathbf{f}}(\mu_F^2)\]</div>
 <p>(Note the additional minus in the definition for <span class="math notranslate nohighlight">\(\gamma\)</span>).</p>
@@ -214,20 +214,24 @@ and the equations to solve become</p>
 \[\frac{d}{da_s} \tilde{\mathbf{f}}(a_s)
     = \frac{d\ln(\mu_F^2)}{da_s} \cdot \frac{d \tilde{\mathbf{f}}(\mu_F^2)}{d\ln(\mu_F^2)}
     = -\frac{\gamma(a_s)}{\beta(a_s)} \cdot \tilde{\mathbf{f}}(a_s)\]</div>
-<p>The (formal) solution can then be written in terms of an evolution kernel operator (EKO) <span class="math notranslate nohighlight">\(\mathbf E\)</span> <a class="bibtex reference internal" href="../zzz-refs.html#bonvini-2012sh" id="id1">[Bon12]</a></p>
+<p>This assumes the factorization scale <span class="math notranslate nohighlight">\(\mu_F^2\)</span> (the inherit scale of the <abbr title="Parton Distribution Function(s)">PDF</abbr>) and the
+renormalization scale <span class="math notranslate nohighlight">\(\mu_R^2\)</span> (the inherit scale for the strong coupling) to be equal,
+but tis constraint can however be lifted (see <a class="reference internal" href="pQCD.html#scale-variations"><span class="std std-ref">Scale Variations</span></a>).</p>
+<p>The (formal) solution can then be written in terms of an <abbr title="Evolution Kernel Operator">EKO</abbr> <span class="math notranslate nohighlight">\(\mathbf E\)</span> <a class="bibtex reference internal" href="../zzz-refs.html#bonvini-2012sh" id="id1">[Bon12]</a></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\tilde{\mathbf{f}}(a_s) &amp;= \tilde{\mathbf{E}}(a_s \leftarrow a_s^0) \cdot \tilde{\mathbf{f}}(a_s^0)\\
 \tilde{\mathbf{E}}(a_s \leftarrow a_s^0) &amp;= \mathcal P \exp\left[-\int\limits_{a_s^0}^{a_s} \frac{\gamma(a_s')}{\beta(a_s')} da_s' \right]\end{split}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\mathcal P\)</span> the path-ordering operator. In the non-singlet sector the equations decouple and
 we do not need to worry about neither matrices nor the path-ordering.</p>
-<p>Using <a class="reference internal" href="Interpolation.html"><span class="doc">Interpolation</span></a> on both the inital and final PDF, we can then discretize the
+<p>Using <a class="reference internal" href="Interpolation.html"><span class="doc">Interpolation</span></a> on both the inital and final <abbr title="Parton Distribution Function(s)">PDF</abbr>, we can then discretize the
 <abbr title="Evolution Kernel Operator">EKO</abbr> in x-space and define <span class="math notranslate nohighlight">\({\mathbf{E}}_{k,j}\)</span> (represented by
-<code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code>) by</p>
+<a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.Operator" title="eko.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a>) by</p>
 <div class="math notranslate nohighlight">
 \[{\mathbf{E}}_{k,j}(a_s \leftarrow a_s^0) = \mathcal{M}^{-1}\left[\tilde{\mathbf{E}}(a_s \leftarrow a_s^0)\tilde p_j\right](x_k)\]</div>
-<p>Now, we can write the solution to DGLAP in a true matrix operator scheme and find</p>
+<p>Now, we can write the solution to <abbr title="Dokshitzer-Gribov-Lipatov-Altarelli-Parisi">DGLAP</abbr> in a true matrix operator scheme and find</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{f}(x_k,a_s) = {\mathbf{E}}_{k,j}(a_s \leftarrow a_s^0) \mathbf{f}(x_j,a_s^0)\]</div>
+<p>so the <abbr title="Evolution Kernel Operator">EKO</abbr> is a rank-4 operator acting both in flavor and momentum fraction space.</p>
 <p>The issue of matching conditions when crossing flavor thresholds is dicussed in a seperate <a class="reference internal" href="Matching.html"><span class="doc">document</span></a></p>
 <div class="section" id="leading-order">
 <h2>Leading Order<a class="headerlink" href="#leading-order" title="Permalink to this headline">¶</a></h2>
@@ -243,7 +247,7 @@ j^{(0,0)}(a_s,a_s^0) &amp;= \int\limits_{a_s^0}^{a_s} \frac{da_s'}{\beta_0 a_s'}
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \tilde f_{ns}^{(0)}(a_s) = \frac{\gamma_{ns}^{(0)}}{\beta_0 a_s}  \cdot \tilde f_{ns}^{(0)}(a_s)\]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma_{ns}^{(0)} = \gamma_{ns,+}^{(0)} = \gamma_{ns,-}^{(0)} = \gamma_{ns,v}^{(0)} = \gamma_{qq}^{(0)}\)</span>.</p>
-<p>The EKO is then given by a simple exponential <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id2">[Vog05]</a></p>
+<p>The <abbr title="Evolution Kernel Operator">EKO</abbr> is then given by a simple exponential <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id2">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
 \[\tilde E^{(0)}_{ns}(a_s \leftarrow a_s^0) = \exp\left[\gamma_{ns}^{(0)} \ln(a_s/a_s^0)/\beta_0 \right]\]</div>
 </div>
@@ -267,7 +271,7 @@ the eigenvalues <span class="math notranslate nohighlight">\(\lambda_{\pm}\)</sp
 <div class="math notranslate nohighlight">
 \[{\mathbf e}_{\pm} \cdot {\mathbf e}_{\pm} = {\mathbf e}_{\pm}\,,\quad {\mathbf e}_{\pm} \cdot {\mathbf e}_{\mp} = 0\,,\quad \ep + \em = \mathbf I\]</div>
 <p>and thus the exponentiation becomes easier again.</p>
-<p>The EKO is then given by</p>
+<p>The <abbr title="Evolution Kernel Operator">EKO</abbr> is then given by</p>
 <div class="math notranslate nohighlight">
 \[\ESk{0}{a_s}{a_s^0} = \ep \exp(\lambda_{+}) + \em \exp(\lambda_{-})\]</div>
 </div>
@@ -311,7 +315,9 @@ and <span class="math notranslate nohighlight">\(j^{(0,1)}(a_s,a_s^0) \to j^{(0,
 \[\frac{d}{da_s} \dSV{1}{a_s} = \frac{\gamma_{S}^{(0)} a_s + \gamma_{S}^{(1)} a_s^2}{\beta_0 a_s^2 + \beta_1 a_s^3} \cdot \dSV{1}{a_s}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma_{S}^{(0)} \gamma_{S}^{(1)} \neq \gamma_{S}^{(1)} \gamma_{S}^{(0)}\)</span>.</p>
 <p>Here the strategies are:</p>
-<p>For <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['iterate-exact',</span> <span class="pre">'iterate-expanded']</span></code> we use a discretized path-ordering <a class="bibtex reference internal" href="../zzz-refs.html#bonvini-2012sh" id="id7">[Bon12]</a>:</p>
+<ul class="simple">
+<li><p>for <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['iterate-exact',</span> <span class="pre">'iterate-expanded']</span></code> we use a discretized path-ordering <a class="bibtex reference internal" href="../zzz-refs.html#bonvini-2012sh" id="id7">[Bon12]</a>:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[\ESk{1}{a_s}{a_s^0} = \prod\limits_{k=n}^{0} \ESk{1}{a_s^{k+1}}{a_s^{k}}\quad \text{with} a_s^{n+1} = a_s\]</div>
 <p>where the order of the product is such that later <abbr title="Evolution Kernel Operator">EKO</abbr> are to the left and</p>
@@ -320,12 +326,14 @@ and <span class="math notranslate nohighlight">\(j^{(0,1)}(a_s,a_s^0) \to j^{(0,
 a_s^{k+1/2} &amp;= a_0 + \left(k+ \frac 1 2\right) \Delta a_s\\
 \Delta a_s &amp;= \frac{a_s - a_s^0}{n + 1}\end{split}\]</div>
 <p>using the projector algebra from <abbr title="Leading Order">LO</abbr> to exponentiate the single steps.</p>
-<p>For <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['decompose-exact',</span> <span class="pre">'decompose-expanded']</span></code>: use the exact or the approximate exact
+<ul class="simple">
+<li><p>for <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['decompose-exact',</span> <span class="pre">'decompose-expanded']</span></code>: use the exact or the approximate exact
 integrals from the non-singlet sector and then decompose <span class="math notranslate nohighlight">\(\ln \tilde{\mathbf E}^{(1)}\)</span> -
-this will neglect the non-commutativity of the singlet matrices.</p>
-<p>For <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['perturbative-exact',</span> <span class="pre">'perturbative-expanded',</span> <span class="pre">'ordered-truncated',</span> <span class="pre">'truncated']</span></code>
-we seek for an perturbative solution around the (exact) leading order operator:
-We set <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id8">[Vog05]</a></p>
+this will neglect the non-commutativity of the singlet matrices.</p></li>
+<li><p>for <code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">in</span> <span class="pre">['perturbative-exact',</span> <span class="pre">'perturbative-expanded',</span> <span class="pre">'ordered-truncated',</span> <span class="pre">'truncated']</span></code>
+we seek for an perturbative solution around the (exact) leading order operator:</p></li>
+</ul>
+<p>We set <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id8">[Vog05]</a></p>
 <div class="math notranslate nohighlight">
 \[\frac{d}{da_s} \dSV{1}{a_s} = \frac{\mathbf R (a_s)}{a_s} \cdot \dSV{1}{a_s}\,, \quad
 \mathbf R (a_s) = \sum\limits_{k=0} a_s^k \mathbf R_{k}\]</div>
