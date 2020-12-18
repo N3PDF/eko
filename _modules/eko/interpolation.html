@@ -301,7 +301,13 @@
             <span class="n">facti</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">/</span> <span class="nb">pow</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="n">factk</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-                <span class="n">pmax</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="o">-</span><span class="n">umax</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">emax</span>
+                <span class="c1"># this condition is actually not necessary in python since</span>
+                <span class="c1"># there pow(0,0) == 1 and apparently this is inherited in</span>
+                <span class="c1"># Numba/C, however this is mathematically cleaner</span>
+                <span class="k">if</span> <span class="n">umax</span> <span class="o">==</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">pmax</span> <span class="o">=</span> <span class="n">emax</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pmax</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="o">-</span><span class="n">umax</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">*</span> <span class="n">emax</span>
                 <span class="c1"># drop factor by analytics?</span>
                 <span class="k">if</span> <span class="n">logx</span> <span class="o">&gt;=</span> <span class="n">logxmin</span><span class="p">:</span>
                     <span class="n">pmin</span> <span class="o">=</span> <span class="mi">0</span>

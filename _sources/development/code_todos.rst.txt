@@ -11,7 +11,7 @@ From Source Code
 
 `interpolation.py <file:///home/runner/work/eko/eko/src/eko/interpolation.py>`_
 
-.. warning:: #274 move this to InterpolatorDispatcher
+.. warning:: #280 move this to InterpolatorDispatcher
 
 
 
