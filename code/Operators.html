@@ -189,18 +189,28 @@
 <h1>Operator Classes<a class="headerlink" href="#operator-classes" title="Permalink to this headline">¶</a></h1>
 <p>The classes are nested as follows:</p>
 <div class="figure align-center" id="operators">
-<div class="graphviz"><img src="../_images/graphviz-797105c8f890c2c11f4a3424bde45504f3e630fd.png" alt="digraph G {
+<div class="graphviz"><img src="../_images/graphviz-b6d4e88772176968619dfd5ea340e3166e0c90e7.png" alt="digraph G {
     bgcolor = transparent
 
     node [shape=box]
     OperatorGrid [label=&quot;OperatorGrid&quot;];
+    test, test1, test2222, test3 [style=invis];
     Operator [label=&quot;Operator&quot; ];
     PhysicalOperator [label=&quot;PhysicalOperator&quot;];
     OpMember [label=&quot;OpMember&quot;];
+    ndarray [label=&quot;np.ndarray&quot;];
 
-    OperatorGrid -&gt; Operator;
+    {rank=same OperatorGrid test test1, test2222, test3}
+    {rank=same Operator PhysicalOperator ndarray}
+
+    OperatorGrid -&gt; Operator [weight=1000];
     Operator -&gt; OpMember;
-    Operator -&gt; PhysicalOperator [style=dashed];
+    Operator -&gt; PhysicalOperator [style=dashed len=10];
+    PhysicalOperator -&gt; ndarray [style=dashed len=10];
+    PhysicalOperator -&gt; OpMember
+    OperatorGrid -&gt; test -&gt; test1 -&gt; test2222 -&gt; test3 [style=invis];
+    test1 -&gt; PhysicalOperator [weight=1000 style=invis];
+    test3 -&gt; ndarray [weight=1000 style=invis];
 }" class="graphviz" /></div>
 <p class="caption"><span class="caption-text">nesting of the operator classes: solid lines means “has many”,
 dashed lines means “evolves into”</span><a class="headerlink" href="#operators" title="Permalink to this image">¶</a></p>
@@ -211,15 +221,17 @@ dashed lines means “evolves into”</span><a class="headerlink" href="#operato
 <div><ul class="simple">
 <li><p>this is the master class which administrates all operator tasks</p></li>
 <li><p>it is instantiated once for each run</p></li>
-<li><p>it divides the given range of <span class="math notranslate nohighlight">\(Q^2\)</span> into the necessary threshold crossings</p></li>
+<li><p>it holds all necessary <a class="reference internal" href="IO.html"><span class="doc">configurations</span></a></p></li>
+<li><p>it holds all necessary instances of the <a class="reference internal" href="Utilities.html"><span class="doc">Utility Classes</span></a></p></li>
 </ul>
 </div></blockquote>
 </li>
 <li><p><a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.Operator" title="eko.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>this represents a configuration for a fixed final scale <span class="math notranslate nohighlight">\(Q^2\)</span></p></li>
-<li><p>this uses the 3-dimensional anomalous dimension basis</p></li>
+<li><p>this represents a configuration for a fixed final scale <span class="math notranslate nohighlight">\(Q_1^2\)</span></p></li>
+<li><p>this performs the actual <a class="reference internal" href="../theory/DGLAP.html"><span class="doc">computation</span></a></p></li>
+<li><p>this uses the 3-dimensional <a class="reference internal" href="../theory/FlavorSpace.html#operator-anomalous-dimension-basis"><span class="std std-ref">Operator Anomalous Dimension Basis</span></a></p></li>
 <li><p>its <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.member.OpMember" title="eko.operator.member.OpMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpMember</span></code></a> are only valid in the current
 threshold area</p></li>
 </ul>
@@ -230,18 +242,19 @@ threshold area</p></li>
 <div><ul class="simple">
 <li><p>this is the connection of the <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.Operator" title="eko.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a>
 between the different flavor bases</p></li>
+<li><p>it is initialized with the 3-dimensional <a class="reference internal" href="../theory/FlavorSpace.html#operator-anomalous-dimension-basis"><span class="std std-ref">Operator Anomalous Dimension Basis</span></a></p></li>
+<li><p>it does recombine the operator in the <a class="reference internal" href="../theory/FlavorSpace.html#operator-evolution-basis"><span class="std std-ref">Operator Evolution Basis</span></a>
+(see <a class="reference internal" href="../theory/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
+<li><p>it exports the operators to <a class="reference internal" href="../theory/FlavorSpace.html#operator-flavor-basis"><span class="std std-ref">Operator Flavor Basis</span></a> in a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.19)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></p></li>
 </ul>
 </div></blockquote>
 </li>
 <li><p><a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.member.OpMember" title="eko.operator.member.OpMember"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpMember</span></code></a></p>
 <blockquote>
 <div><ul class="simple">
-<li><p>this represents a single operator in Mellin space for a fixed flavor space operator</p></li>
-<li><p>inside <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.Operator" title="eko.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> they are in anomalous dimension basis, i.e.
-<span class="math notranslate nohighlight">\(\tilde{\mathbf{E}}_S, \tilde{E}_{ns}^{\pm,v}\)</span>, and they never cross a threshold</p></li>
-<li><p>inside <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> they are in evolution
-basis, i.e. they evolve e.g. <span class="math notranslate nohighlight">\(\tilde V, \tilde T_3\)</span> etc., so they are eventually
-a product of the anomalous dimension basis (see <a class="reference internal" href="../theory/Matching.html"><span class="doc">Matching Conditions</span></a>)</p></li>
+<li><p>this represents a single operator in Mellin space for a given element of the <a class="reference internal" href="../theory/FlavorSpace.html#operator-bases"><span class="std std-ref">Operator Bases</span></a></p></li>
+<li><p>inside <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.Operator" title="eko.operator.Operator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></a> they are in <a class="reference internal" href="../theory/FlavorSpace.html#operator-anomalous-dimension-basis"><span class="std std-ref">Operator Anomalous Dimension Basis</span></a></p></li>
+<li><p>inside <a class="reference internal" href="../modules/eko/eko.operator.html#eko.operator.physical.PhysicalOperator" title="eko.operator.physical.PhysicalOperator"><code class="xref py py-class docutils literal notranslate"><span class="pre">PhysicalOperator</span></code></a> they are in <a class="reference internal" href="../theory/FlavorSpace.html#operator-evolution-basis"><span class="std std-ref">Operator Evolution Basis</span></a></p></li>
 </ul>
 </div></blockquote>
 </li>

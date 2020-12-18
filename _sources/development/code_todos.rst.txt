@@ -15,12 +15,6 @@ From Source Code
 
 
 
-`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
-
-.. warning:: #146 explicitly silence yaml
-
-
-
 `strong_coupling.py <file:///home/runner/work/eko/eko/src/eko/strong_coupling.py>`_
 
 .. warning:: #181 cast to a_s here
@@ -28,6 +22,12 @@ From Source Code
 .. warning:: #272 set up a cache system here
 
 .. warning:: #310 recover color constants
+
+
+
+`output.py <file:///home/runner/work/eko/eko/src/eko/output.py>`_
+
+.. warning:: #146 explicitly silence yaml
 
 
 
