@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>pQCD ingredients &mdash; EKO 0.5.2-develop documentation</title>
+  <title>pQCD ingredients &mdash; EKO 0.6.0-develop documentation</title>
   
 
   
@@ -19,7 +19,10 @@
   
     <link rel="shortcut icon" href="../_static/favicon32x32.png"/>
   
+
   
+  
+
   
 
   
@@ -32,7 +35,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> EKO
+            <a href="../index.html" class="icon icon-home"> EKO
           
 
           
@@ -165,6 +167,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -176,7 +180,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/theory/pQCD.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -197,14 +201,14 @@
 <p>Implementation: <a class="reference internal" href="../modules/eko/eko.html#eko.strong_coupling.StrongCoupling" title="eko.strong_coupling.StrongCoupling"><code class="xref py py-class docutils literal notranslate"><span class="pre">StrongCoupling</span></code></a>.</p>
 <p>We use perturbative QCD with the running coupling
 <span class="math notranslate nohighlight">\(a_s(\mu_R^2) = \alpha_s(\mu_R^2)/(4\pi)\)</span> given at 5-loop by
-<a class="bibtex reference internal" href="../zzz-refs.html#herzog-2017ohr" id="id1">[HRU+17]</a> <a class="bibtex reference internal" href="../zzz-refs.html#luthe-2016ima" id="id2">[LMMS16]</a> <a class="bibtex reference internal" href="../zzz-refs.html#baikov-2016tgj" id="id3">[BCK17]</a></p>
+<span id="id1">[<a class="reference internal" href="../zzz-refs.html#id2"><span>HRU+17</span></a>]</span> <span id="id2">[<a class="reference internal" href="../zzz-refs.html#id3"><span>LMMS16</span></a>]</span> <span id="id3">[<a class="reference internal" href="../zzz-refs.html#id4"><span>BCK17</span></a>]</span></p>
 <div class="math notranslate nohighlight">
 \[\frac{da_s(\mu_R^2)}{d\ln\mu_R^2} = \beta(a_s(\mu_R^2)) \
 = - \sum\limits_{n=0} \beta_n a_s^{n+2}(\mu_R^2)\]</div>
 <p>It is usefull to define in addition <span class="math notranslate nohighlight">\(b_k = \beta_k/\beta_0, k&gt;0\)</span>.</p>
 <p>We implement two different strategies to solve the renormalization group equation (RGE):</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;exact&quot;</span></code>: Solve using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp" title="(in SciPy v1.5.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code></a>.
+<li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;exact&quot;</span></code>: Solve using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp" title="(in SciPy v1.6.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code></a>.
 In <abbr title="Leading Order">LO</abbr> we fall back to the expanded solution as this is already the true solution.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">method=&quot;expanded&quot;</span></code>: using approximate solutions:</p></li>
 </ul>
@@ -214,12 +218,12 @@ a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) &amp;= a^{\text{LO}}_s(\mu_R^2)-b_1 \left
 a^{\text{NNLO}}_{s,\text{exp}}(\mu_R^2) &amp;= a^{\text{LO}}_s(\mu_R^2)\left[1 + a^{\text{LO}}_s(\mu_R^2)\left(a^{\text{LO}}_s(\mu_R^2) - a_s(\mu_0^2)\right)(b_2 - b_1^2) \right.\\
                                     &amp; \hspace{60pt} \left. + a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2) b_1 \ln\left(a^{\text{NLO}}_{s,\text{exp}}(\mu_R^2)/a_s(\mu_0^2)\right)\right]\end{split}\]</div>
 <p>When the renormalization scale crosses a flavor threshold matching conditions have to be
-applied <a class="bibtex reference internal" href="../zzz-refs.html#schroder-2005hy" id="id4">[SS06]</a> <a class="bibtex reference internal" href="../zzz-refs.html#chetyrkin-2005ia" id="id5">[CKS06]</a>.</p>
+applied <span id="id4">[<a class="reference internal" href="../zzz-refs.html#id11"><span>SS06</span></a>]</span> <span id="id5">[<a class="reference internal" href="../zzz-refs.html#id12"><span>CKS06</span></a>]</span>.</p>
 </div>
 <div class="section" id="splitting-functions">
 <h2>Splitting Functions<a class="headerlink" href="#splitting-functions" title="Permalink to this headline">¶</a></h2>
 <p>The Altarelli-Parisi splitting kernels can be expanded in powers of the strong
-coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and are given by <a class="bibtex reference internal" href="../zzz-refs.html#moch-2004pa" id="id6">[MVV04]</a> <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004mw" id="id7">[VMV04]</a></p>
+coupling <span class="math notranslate nohighlight">\(a_s(\mu^2)\)</span> and are given by <span id="id6">[<a class="reference internal" href="../zzz-refs.html#id5"><span>MVV04</span></a>]</span> <span id="id7">[<a class="reference internal" href="../zzz-refs.html#id6"><span>VMV04</span></a>]</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{P}(x,a_s(\mu^2)) &amp;= \sum\limits_{j=0} a_s^{j+1}(\mu^2) \mathbf{P}^{(j)}(x) \\
 {\gamma}^{(j)}(N) &amp;= -\mathcal{M}[\mathbf{P}^{(j)}(x)](N)\end{split}\]</div>
@@ -237,7 +241,7 @@ suitable redefinition of the splitting kernels</p>
 <p>while keeping the evalutation of the strong coupling always at <span class="math notranslate nohighlight">\(\mu_R^2\)</span>.
 Estimating the theoretical uncertanties imposed on <abbr title="Parton Distribution Function(s)">PDF</abbr> determination due to missing higher
 order corrections using scale variation in the evolution corresponds to schemes A and B
-in <a class="bibtex reference internal" href="../zzz-refs.html#abdulkhalek-2019ihb" id="id8">[AK+19]</a>.</p>
+in <span id="id8">[<a class="reference internal" href="../zzz-refs.html#id25"><span>AK+19</span></a>]</span>.</p>
 </div>
 </div>
 
@@ -246,37 +250,29 @@ in <a class="bibtex reference internal" href="../zzz-refs.html#abdulkhalek-2019i
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="DGLAP.html" class="btn btn-neutral float-right" title="Solving DGLAP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="FlavorSpace.html" class="btn btn-neutral float-left" title="Flavor Space" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="DGLAP.html" class="btn btn-neutral float-right" title="Solving DGLAP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="FlavorSpace.html" class="btn btn-neutral float-left" title="Flavor Space" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2019-2020, the N3PDF team
+        &#169; Copyright 2019-2020, the N3PDF team.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

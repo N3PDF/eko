@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>eko.anomalous_dimensions package &mdash; EKO 0.5.2-develop documentation</title>
+  <title>eko.anomalous_dimensions package &mdash; EKO 0.6.0-develop documentation</title>
   
 
   
@@ -19,7 +19,10 @@
   
     <link rel="shortcut icon" href="../../_static/favicon32x32.png"/>
   
+
   
+  
+
   
 
   
@@ -32,7 +35,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> EKO
+            <a href="../../index.html" class="icon icon-home"> EKO
           
 
           
@@ -184,6 +186,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -197,7 +201,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../_sources/modules/eko/eko.anomalous_dimensions.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -218,8 +222,8 @@
 <div class="math notranslate nohighlight">
 \[\mathbf{P}(x) = \sum\limits_{j=0} a_s^{j+1} \mathbf P^{(j)}(x)\]</div>
 <p>with <span class="math notranslate nohighlight">\(a_s = \frac{\alpha_S(\mu^2)}{4\pi}\)</span>.
-The 3-loop references for the non-singlet <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id1">[MVV04]</a>
-and singlet <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id2">[VMV04]</a> case contain also the lower
+The 3-loop references for the non-singlet <span id="id1">[<a class="reference internal" href="../../zzz-refs.html#id5"><span>MVV04</span></a>]</span>
+and singlet <span id="id2">[<a class="reference internal" href="../../zzz-refs.html#id6"><span>VMV04</span></a>]</span> case contain also the lower
 order results. The results are also determined in Mellin space in
 terms of the anomalous dimensions (note the additional sign!)</p>
 <div class="math notranslate nohighlight">
@@ -333,8 +337,8 @@ dimension matrix <span class="math notranslate nohighlight">\(\gamma_{S}(N)\)</s
 <code class="sig-prename descclassname">eko.anomalous_dimensions.harmonics.</code><code class="sig-name descname">cern_polygamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">Z</span></em>, <em class="sig-param"><span class="n">K</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/harmonics.html#cern_polygamma"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.harmonics.cern_polygamma" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the polygamma functions <span class="math notranslate nohighlight">\(\psi_k(z)\)</span>.</p>
 <p>Reimplementation of <code class="docutils literal notranslate"><span class="pre">WPSIPG</span></code> (C317) in <a class="reference external" href="http://cernlib.web.cern.ch/cernlib/">CERNlib</a>
-<a class="bibtex reference internal" href="../../zzz-refs.html#kolbig1972221" id="id3">[Kol72]</a>.</p>
-<p>Note that the SciPy implementation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html#scipy.special.digamma" title="(in SciPy v1.5.4)"><code class="xref py py-data docutils literal notranslate"><span class="pre">scipy.special.digamma</span></code></a>
+<span id="id3">[<a class="reference internal" href="../../zzz-refs.html#id13"><span>Kol72</span></a>]</span>.</p>
+<p>Note that the SciPy implementation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.digamma.html#scipy.special.digamma" title="(in SciPy v1.6.0)"><code class="xref py py-data docutils literal notranslate"><span class="pre">scipy.special.digamma</span></code></a>
 does not allow for complex inputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -456,8 +460,8 @@ Riemann zeta function.</p>
 </dl>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We use the name from <a class="bibtex reference internal" href="../../zzz-refs.html#muselliphd" id="id4">[Mus17]</a>, but not his implementation - rather we use the
-Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004ns" id="id5">[Vog05]</a> implementation.</p>
+<p>We use the name from <span id="id4">[<a class="reference internal" href="../../zzz-refs.html#id15"><span>Mus17</span></a>]</span>, but not his implementation - rather we use the
+Pegasus <span id="id5">[<a class="reference internal" href="../../zzz-refs.html#id10"><span>Vog05</span></a>]</span> implementation.</p>
 </div>
 </dd></dl>
 
@@ -469,7 +473,7 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <dt id="eko.anomalous_dimensions.lo.gamma_gg_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_gg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">s1</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_gg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_gg_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order gluon-gluon anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id6">[VMV04]</a>.</p>
+<p>Implements Eq. (3.5) of <span id="id6">[<a class="reference internal" href="../../zzz-refs.html#id6"><span>VMV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -491,7 +495,7 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <dt id="eko.anomalous_dimensions.lo.gamma_gq_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_gq_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_gq_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_gq_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order gluon-quark anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id7">[VMV04]</a>.</p>
+<p>Implements Eq. (3.5) of <span id="id7">[<a class="reference internal" href="../../zzz-refs.html#id6"><span>VMV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>N</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.9)"><em>complex</em></a>) – Mellin moment</p>
@@ -509,7 +513,7 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <dt id="eko.anomalous_dimensions.lo.gamma_ns_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_ns_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">s1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_ns_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_ns_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.4) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id8">[MVV04]</a>.</p>
+<p>Implements Eq. (3.4) of <span id="id8">[<a class="reference internal" href="../../zzz-refs.html#id5"><span>MVV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -530,7 +534,7 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <dt id="eko.anomalous_dimensions.lo.gamma_qg_0">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.lo.</code><code class="sig-name descname">gamma_qg_0</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/lo.html#gamma_qg_0"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.lo.gamma_qg_0" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the leading-order quark-gluon anomalous dimension</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id9">[VMV04]</a>.</p>
+<p>Implements Eq. (3.5) of <span id="id9">[<a class="reference internal" href="../../zzz-refs.html#id6"><span>VMV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -592,12 +596,12 @@ Pegasus <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004
 <p>This file contains the next-to-leading-order Altarelli-Parisi splitting kernels.</p>
 <p>These expression have been obtained using the procedure described in the
 <a class="reference external" href="https://github.com/N3PDF/eko/wiki/Parse-NLO-expressions">wiki</a>
-involving <code class="docutils literal notranslate"><span class="pre">FormGet</span></code> <a class="bibtex reference internal" href="../../zzz-refs.html#hahn-2016ebn" id="id10">[HPS16]</a>.</p>
+involving <code class="docutils literal notranslate"><span class="pre">FormGet</span></code> <span id="id10">[<a class="reference internal" href="../../zzz-refs.html#id18"><span>HPS16</span></a>]</span>.</p>
 <dl class="py function">
 <dt id="eko.anomalous_dimensions.nlo.gamma_gg_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_gg_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_gg_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_gg_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order gluon-gluon singlet anomalous dimension.</p>
-<p>Implements Eq. (3.9) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id11">[VMV04]</a>.</p>
+<p>Implements Eq. (3.9) of <span id="id11">[<a class="reference internal" href="../../zzz-refs.html#id6"><span>VMV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -619,7 +623,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_gq_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_gq_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_gq_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_gq_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order gluon-quark singlet anomalous dimension.</p>
-<p>Implements Eq. (3.8) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id12">[VMV04]</a>.</p>
+<p>Implements Eq. (3.8) of <span id="id12">[<a class="reference internal" href="../../zzz-refs.html#id6"><span>VMV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -641,7 +645,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_nsm_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_nsm_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_nsm_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_nsm_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order valence-like non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id13">[MVV04]</a>.</p>
+<p>Implements Eq. (3.5) of <span id="id13">[<a class="reference internal" href="../../zzz-refs.html#id5"><span>MVV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -663,7 +667,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_nsp_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_nsp_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_nsp_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_nsp_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order singlet-like non-singlet anomalous dimension.</p>
-<p>Implements Eq. (3.5) of <a class="bibtex reference internal" href="../../zzz-refs.html#moch-2004pa" id="id14">[MVV04]</a>.</p>
+<p>Implements Eq. (3.5) of <span id="id14">[<a class="reference internal" href="../../zzz-refs.html#id5"><span>MVV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -685,7 +689,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_ps_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_ps_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_ps_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_ps_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order pure-singlet quark-quark anomalous dimension.</p>
-<p>Implements Eq. (3.6) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id15">[VMV04]</a>.</p>
+<p>Implements Eq. (3.6) of <span id="id15">[<a class="reference internal" href="../../zzz-refs.html#id6"><span>VMV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -707,7 +711,7 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
 <dt id="eko.anomalous_dimensions.nlo.gamma_qg_1">
 <code class="sig-prename descclassname">eko.anomalous_dimensions.nlo.</code><code class="sig-name descname">gamma_qg_1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">nf</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/eko/anomalous_dimensions/nlo.html#gamma_qg_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#eko.anomalous_dimensions.nlo.gamma_qg_1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the next-to-leading-order quark-gluon singlet anomalous dimension.</p>
-<p>Implements Eq. (3.7) of <a class="bibtex reference internal" href="../../zzz-refs.html#vogt-2004mw" id="id16">[VMV04]</a>.</p>
+<p>Implements Eq. (3.7) of <span id="id16">[<a class="reference internal" href="../../zzz-refs.html#id6"><span>VMV04</span></a>]</span>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -773,37 +777,29 @@ involving <code class="docutils literal notranslate"><span class="pre">FormGet</
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="eko.kernels.html" class="btn btn-neutral float-right" title="eko.kernels package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="eko.html" class="btn btn-neutral float-left" title="eko package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="eko.kernels.html" class="btn btn-neutral float-right" title="eko.kernels package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="eko.html" class="btn btn-neutral float-left" title="eko package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2019-2020, the N3PDF team
+        &#169; Copyright 2019-2020, the N3PDF team.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

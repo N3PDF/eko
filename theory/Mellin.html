@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Mellin Space and Transformations &mdash; EKO 0.5.2-develop documentation</title>
+  <title>Mellin Space and Transformations &mdash; EKO 0.6.0-develop documentation</title>
   
 
   
@@ -19,7 +19,10 @@
   
     <link rel="shortcut icon" href="../_static/favicon32x32.png"/>
   
+
   
+  
+
   
 
   
@@ -32,7 +35,6 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"tLL": ["\\text{LL}", 0], "dSV": ["{{\\begin{pmatrix}\\tilde \\Sigma\\\\\\tilde g\\end{pmatrix}}^{(#1)}\\!(#2)}", 2], "dVf": ["{\\tilde{V}^{(#1)}(#2)}", 2], "dVj": ["{\\tilde{V}_{\\!#1}^{(#2)}(#3)}", 3], "dTj": ["{\\tilde{T}_{\\!#1}^{(#2)}(#3)}", 3], "ES": ["{\\tilde{\\mathbf{E}}_S({#1}\\leftarrow {#2})}", 2], "ESk": ["{\\tilde{\\mathbf{E}}_S^{(#1)}({#2}\\leftarrow {#3})}", 3], "Ensv": ["{\\tilde{E}_{ns}^v({#1}\\leftarrow {#2})}", 2], "Ensp": ["{\\tilde{E}_{ns}^+({#1}\\leftarrow {#2})}", 2], "Ensm": ["{\\tilde{E}_{ns}^-({#1}\\leftarrow {#2})}", 2], "em": ["{\\mathbf{e}}_-", 0], "ep": ["{\\mathbf{e}}_+", 0]}}})</script>
     
@@ -56,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> EKO
+            <a href="../index.html" class="icon icon-home"> EKO
           
 
           
@@ -171,6 +173,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -182,7 +186,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/theory/Mellin.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -277,7 +281,7 @@ are doing, are proportional to
 <div class="section" id="harmonic-sums">
 <h2>Harmonic Sums<a class="headerlink" href="#harmonic-sums" title="Permalink to this headline">¶</a></h2>
 <p>In the computations of the anomalous dimensions (generalized) harmonic sums
-<a class="bibtex reference internal" href="../zzz-refs.html#ablinger-2013hcp" id="id1">[Abl12]</a> appear naturally:</p>
+<span id="id1">[<a class="reference internal" href="../zzz-refs.html#id17"><span>Abl12</span></a>]</span> appear naturally:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}S_{m}(N) &amp;= \sum\limits_{j=1}^N \frac{(\text{sign}(m))^j}{j^{|m|}} \\
 S_{m_0,m_1\ldots}(N) &amp;= \sum\limits_{j=1}^N \frac{(\text{sign}(m_0))^j}{j^{|m_0|}} S_{m_1\ldots}(j)\end{split}\]</div>
@@ -290,22 +294,22 @@ the Mellin inverse.</p>
 \[\begin{split}S_m(N) = \sum\limits_{j=1}^N \frac 1 {j^m} = \frac{(-1)^{m-1}}{(m-1)!} \psi_{m-1}(N+1)+c_m \quad
 \text{with}\, c_m = \left\{\begin{array}{ll} \gamma_E, &amp; m=1\\ \zeta(m), &amp; m&gt;1\end{array} \right.\end{split}\]</div>
 <p>and where <span class="math notranslate nohighlight">\(\psi_k(N)\)</span> is the <span class="math notranslate nohighlight">\(k\)</span>-th polygamma function (implemented as <a class="reference internal" href="../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.cern_polygamma" title="eko.anomalous_dimensions.harmonics.cern_polygamma"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cern_polygamma()</span></code></a>)
-and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta function (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.zeta.html#scipy.special.zeta" title="(in SciPy v1.5.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.special.zeta()</span></code></a>).</p>
+and <span class="math notranslate nohighlight">\(\zeta\)</span> the Riemann zeta function (using <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.zeta.html#scipy.special.zeta" title="(in SciPy v1.6.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.special.zeta()</span></code></a>).</p>
 <ul class="simple">
-<li><p>for the sums <span class="math notranslate nohighlight">\(S_{-m}(N)\)</span> and <span class="math notranslate nohighlight">\(m &gt; 0\)</span> we use <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id2">[GRV90]</a></p></li>
+<li><p>for the sums <span class="math notranslate nohighlight">\(S_{-m}(N)\)</span> and <span class="math notranslate nohighlight">\(m &gt; 0\)</span> we use <span id="id2">[<a class="reference internal" href="../zzz-refs.html#id14"><span>GRV90</span></a>]</span></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[S_m'(N) = 2^{m-1}(S_m(N) + S_{-m}(N)) = \frac{1+\eta}{2} S_m(N/2) + \frac{1-\eta}{2}S_m((N-1)/2)\]</div>
 <p>where formally <span class="math notranslate nohighlight">\(\eta = (-1)^N\)</span> but in all singlet-like quantities it has to be analytically continued with 1
 and with -1 elsewise.</p>
 <ul class="simple">
-<li><p>for the sums with greater depth we use the lists provided in <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id3">[GRV90]</a><a class="bibtex reference internal" href="../zzz-refs.html#muselliphd" id="id4">[Mus17]</a><a class="bibtex reference internal" href="../zzz-refs.html#blumlein-1998if" id="id5">[BK99]</a>.</p></li>
-<li><p>For <span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> we use the implementation of <a class="bibtex reference internal" href="../zzz-refs.html#gluck-1989ze" id="id6">[GRV90]</a> (where it is called <span class="math notranslate nohighlight">\(\tilde S\)</span>):</p></li>
+<li><p>for the sums with greater depth we use the lists provided in <span id="id3">[<a class="reference internal" href="../zzz-refs.html#id14"><span>GRV90</span></a>,<a class="reference internal" href="../zzz-refs.html#id15"><span>Mus17</span></a>,<a class="reference internal" href="../zzz-refs.html#id16"><span>BK99</span></a>]</span>.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(S_{-2,1}(N)\)</span> we use the implementation of <span id="id4">[<a class="reference internal" href="../zzz-refs.html#id14"><span>GRV90</span></a>]</span> (where it is called <span class="math notranslate nohighlight">\(\tilde S\)</span>):</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\begin{split}S_{-2,1}(N) &amp;= - \frac 5 8 \zeta(3) + \zeta(2)\left(S_{-1}(N) - \frac{\eta}{N} + \log(2)\right) + \eta\left(\frac{S_{1}(N)}{N^2} + g_3(N)\right)\\
 g_3(N) &amp;= \mathcal M \left[\frac{\text{Li}_2(x)}{1+x}\right](N)\end{split}\]</div>
-<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <a class="bibtex reference internal" href="../zzz-refs.html#vogt-2004ns" id="id7">[Vog05]</a> (implemented as <a class="reference internal" href="../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.mellin_g3" title="eko.anomalous_dimensions.harmonics.mellin_g3"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mellin_g3()</span></code></a>).</p>
+<p>where for <span class="math notranslate nohighlight">\(g_3(N)\)</span> we use the parametrization of <span id="id5">[<a class="reference internal" href="../zzz-refs.html#id10"><span>Vog05</span></a>]</span> (implemented as <a class="reference internal" href="../modules/eko/eko.anomalous_dimensions.html#eko.anomalous_dimensions.harmonics.mellin_g3" title="eko.anomalous_dimensions.harmonics.mellin_g3"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mellin_g3()</span></code></a>).</p>
 </div>
 </div>
 
@@ -314,37 +318,29 @@ g_3(N) &amp;= \mathcal M \left[\frac{\text{Li}_2(x)}{1+x}\right](N)\end{split}\]
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="FlavorSpace.html" class="btn btn-neutral float-right" title="Flavor Space" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="Interpolation.html" class="btn btn-neutral float-left" title="Interpolation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="FlavorSpace.html" class="btn btn-neutral float-right" title="Flavor Space" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Interpolation.html" class="btn btn-neutral float-left" title="Interpolation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2019-2020, the N3PDF team
+        &#169; Copyright 2019-2020, the N3PDF team.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
